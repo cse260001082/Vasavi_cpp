@@ -118,6 +118,7 @@ Enter your choice (1-6):
   - The cumulative fine on day `d` is simply `d * rate`. No separate running total is needed.
 - Total Fine = N x Rate.
 - Ask the student if they want to pay from the wallet (1 for YES, 0 for NO).
+  - Use a **`do-while` loop** for this question: it must be asked at least once, and it repeats until the student enters exactly `1` or `0` (any other number prints the invalid-choice message).
   - If YES: check if wallet balance is at least the Total Fine. If yes, deduct it. If not, print the "not enough balance" message.
   - If NO: print that the fine is left unpaid.
 
@@ -154,6 +155,7 @@ Enter your choice (1-6):
 | Total | `Total Fine: Rs.<totalFine>` |
 | Pay question | `Do you want to pay this fine from your wallet? (1 for YES, 0 for NO): ` |
 | Fine paid | `Fine of Rs.<totalFine> paid successfully! New Balance: Rs.<balance>` |
+| Pay answer not 0 or 1 | `Invalid choice! Please enter 1 for YES or 0 for NO.` |
 | Balance too low for fine | `Not enough balance to pay library fine.` |
 | Chose NO | `Fine left unpaid.` |
 | Invalid menu choice | `Invalid choice! Please select a valid option (1-6).` |
@@ -236,6 +238,7 @@ Run the program fresh for each group. Balance starts at `1500.00`.
 - [ ] Category `4`: "Invalid Category!" and you return to the menu.
 - [ ] Category `1`, days `0`: "No overdue days! Fine is Rs.0.00."
 - [ ] Category `2`, days `3`: breakdown `15.00`, `30.00`, `45.00`, total `45.00`.
+- [ ] Pay = `5`, then `-1`: "Invalid choice! ..." is printed each time and the question is asked again. Then enter `1`.
 - [ ] Pay = `1`: new balance `1455.00`.
 - [ ] Pay = `0`: "Fine left unpaid.", balance unchanged.
 - [ ] Category `3`, days `100` (fine `2500.00`), pay = `1` with balance `1500.00`: "Not enough balance to pay library fine."
