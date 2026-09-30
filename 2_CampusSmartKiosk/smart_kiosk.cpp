@@ -7,10 +7,13 @@ Target Time: 45 - 60 mins
 
 Instructions:
 1. Read the complete story and requirements in PROBLEM_STORY.md.
-2. ✍️ Grab a PEN & PAPER to trace variable values and conditions before writing code!
+2. Grab a PEN & PAPER to trace variable values and conditions before writing code!
 3. If you need step-by-step guidance, refer to HINTS.md.
 4. Complete the // TODO sections inside each function below.
-5. Test all options in the dashboard menu!
+5. Test all options using the checklist at the end of PROBLEM_STORY.md.
+
+NOTE: Type NUMBERS ONLY when the kiosk asks for a number. If you type a letter,
+      cin fails and the program can hang. If that happens, press Ctrl+C and rerun.
 ========================================================================================
 */
 
@@ -32,7 +35,7 @@ const double DAILY_WITHDRAW_LIMIT = 10000.0;
 void printReceiptBorder(int length)
 {
     // TODO: Write a for loop to print '=' character 'length' times, followed by endl.
-    
+
 }
 
 // -------------------------------------------------------------------------------------
@@ -47,29 +50,33 @@ bool authenticateUser(int correctPin)
     int enteredPin;
 
     // TODO: Write a while loop (while attempts < 3)
-    // 1. Prompt user to enter PIN
-    // 2. Check if enteredPin == correctPin -> print success message and return true
+    // 1. Prompt user to enter PIN: "Enter 4-Digit Security PIN: "
+    // 2. Check if enteredPin == correctPin -> print "Access Granted!" and return true
     // 3. Else, increment attempts, calculate remaining attempts (3 - attempts)
-    //    and display a warning.
-    // 4. If all 3 attempts fail, print the lock out message and return false.
+    //    and print "Incorrect PIN! <remaining> attempts remaining."
+    //    (print this only if remaining > 0)
+    // 4. After the loop (3 failed attempts), print
+    //    "SYSTEM LOCKED: Too many incorrect attempts. Contact Admin." and return false.
 
-    return true; // Replace with your logic
+    return true; // PLACEHOLDER: replace this with your logic (otherwise the lockout never happens!)
 }
 
 // -------------------------------------------------------------------------------------
-// 3. DISPLAY DASHBOARD MENU
+// 3. DISPLAY DASHBOARD MENU  (already done for you)
 // -------------------------------------------------------------------------------------
+// Description: Just prints the menu text. It does not read any input and does not
+//              change any variable.
 void showMenu()
 {
     cout << "\n========================================\n";
-    cout << "     🏫 CAMPUS SMART KIOSK DASHBOARD\n";
+    cout << "     CAMPUS SMART KIOSK DASHBOARD\n";
     cout << "========================================\n";
-    cout << "1. 👤 Check Balance & Account Profile\n";
-    cout << "2. 💵 Deposit Money (with Bonus!)\n";
-    cout << "3. 💸 Withdraw Cash\n";
-    cout << "4. 📚 Library Desk (Overdue Fine)\n";
-    cout << "5. 🧾 Print Mini-Statement\n";
-    cout << "6. 🚪 Exit & Logout\n";
+    cout << "1. Check Balance & Account Profile\n";
+    cout << "2. Deposit Money (with Bonus!)\n";
+    cout << "3. Withdraw Cash\n";
+    cout << "4. Library Desk (Overdue Fine Payment)\n";
+    cout << "5. Print Mini-Statement\n";
+    cout << "6. Exit & Logout\n";
     cout << "========================================\n";
     cout << "Enter your choice (1-6): ";
 }
@@ -77,15 +84,18 @@ void showMenu()
 // -------------------------------------------------------------------------------------
 // 4. CHECK BALANCE & PROFILE
 // -------------------------------------------------------------------------------------
+// Description: Shows the student's name, ID and balance. Balance is passed by value
+//              because we only READ it here (no change needed).
 // Concepts: 'if-else' condition
 void checkBalance(double balance, string name, string studentId)
 {
-    cout << "\n--- 👤 Account Profile ---\n";
-    cout << "Student Name : " << name << "\n";
-    cout << "Student ID   : " << studentId << "\n";
-    cout << "Wallet Balance: ₹" << fixed << setprecision(2) << balance << "\n";
+    cout << "\n--- Account Profile ---\n";
+    cout << "Student Name  : " << name << "\n";
+    cout << "Student ID    : " << studentId << "\n";
+    cout << "Wallet Balance: Rs." << balance << "\n";
 
-    // TODO: Check if balance is 0.0 or less, print an alert to deposit funds.
+    // TODO: If balance is 0.0 or less, print
+    // "[Alert] Your wallet balance is empty. Please deposit funds."
 }
 
 // -------------------------------------------------------------------------------------
@@ -96,14 +106,15 @@ void checkBalance(double balance, string name, string studentId)
 void depositMoney(double &balance)
 {
     double amount;
-    cout << "\nEnter amount to deposit: ₹";
+    cout << "\nEnter Deposit Amount: Rs.";
     cin >> amount;
 
     // TODO:
-    // 1. Validate: If amount <= 0, print error and return.
-    // 2. Bonus check: If amount >= 5000, calculate bonus = amount * 0.02 and announce it.
+    // 1. Validate: If amount <= 0, print "Invalid deposit amount!" and return.
+    // 2. Bonus check: If amount >= 5000, calculate bonus = amount * 0.02 and print
+    //    "Congratulations! You received a 2% bonus of Rs.<bonus>!"
     // 3. Update balance: balance = balance + amount + bonus;
-    // 4. Display the updated balance.
+    // 4. Print "Updated Balance: Rs.<balance>"
 }
 
 // -------------------------------------------------------------------------------------
@@ -114,16 +125,16 @@ void depositMoney(double &balance)
 void withdrawMoney(double &balance)
 {
     double amount;
-    cout << "\nEnter amount to withdraw: ₹";
+    cout << "\nEnter Withdrawal Amount: Rs.";
     cin >> amount;
 
-    // TODO:
-    // Check the following conditions in order:
-    // 1. If amount <= 0 -> "❌ Invalid amount!"
-    // 2. If balance == 0 -> "❌ Transaction Denied: Your balance is zero."
-    // 3. If amount > balance -> "❌ Insufficient funds! Available: ₹..."
-    // 4. If amount > DAILY_WITHDRAW_LIMIT -> "❌ Exceeds daily withdrawal limit of ₹10,000."
-    // 5. Else -> deduct amount from balance and print success message with new balance.
+    // TODO: Check the following conditions IN THIS ORDER (if / else if / else):
+    // 1. amount <= 0                  -> "Invalid withdrawal amount!"
+    // 2. balance == 0                 -> "Transaction Denied: Your balance is zero."
+    // 3. amount > balance             -> "Insufficient Funds! You only have Rs.<balance>."
+    // 4. amount > DAILY_WITHDRAW_LIMIT-> "Exceeds daily withdrawal limit of Rs.10,000."
+    // 5. else                         -> balance = balance - amount; then print
+    //                                    "Please collect your cash. Remaining balance: Rs.<balance>"
 }
 
 // -------------------------------------------------------------------------------------
@@ -133,10 +144,10 @@ void withdrawMoney(double &balance)
 // Concepts: 'switch-case', 'for' loop, 'if-else', pass-by-reference
 void libraryFineCalculator(double &balance)
 {
-    cout << "\n--- 📚 Library Overdue Desk ---\n";
-    cout << "1. Standard Textbook      (₹5 / day)\n";
-    cout << "2. Reference / Rare Book  (₹15 / day)\n";
-    cout << "3. Digital Media / Laptop (₹25 / day)\n";
+    cout << "\n--- Library Overdue Desk ---\n";
+    cout << "1. Standard Textbook      (Rs.5 / day)\n";
+    cout << "2. Reference / Rare Book  (Rs.15 / day)\n";
+    cout << "3. Digital Media / Laptop (Rs.25 / day)\n";
     cout << "Select Book Category (1-3): ";
 
     int category;
@@ -156,38 +167,45 @@ void libraryFineCalculator(double &balance)
 
     if (days <= 0)
     {
-        cout << "No overdue days! Fine is ₹0.00.\n";
+        cout << "No overdue days! Fine is Rs.0.00.\n";
         return;
     }
 
-    // TODO: Use a for loop (day = 1 to days) to print cumulative fine per day
+    // TODO: Use a for loop (day = 1 to days) to print the cumulative fine for each day:
+    //   "Day <day>: Cumulative Fine = Rs.<day * ratePerDay>"
+    // (No running total needed! Cumulative fine on day N is simply day * ratePerDay.)
     cout << "\n--- Fine Accumulation Breakdown ---\n";
     // Write your for loop here:
 
     double totalFine = days * ratePerDay;
-    cout << "Total Fine to Pay: ₹" << totalFine << "\n";
+    cout << "Total Fine: Rs." << totalFine << "\n";
 
-    // TODO: Ask student if they want to pay now:
-    // int payChoice; (1 for YES, 0 for NO)
-    // If YES:
-    //    - Check if balance >= totalFine
-    //    - If yes: balance -= totalFine, print success message
-    //    - Else: print "❌ Insufficient balance to pay fine."
+    // TODO: Ask the student:
+    //   "Do you want to pay this fine from your wallet? (1 for YES, 0 for NO): "
+    // int payChoice;
+    // If YES (1):
+    //    - If balance >= totalFine: balance = balance - totalFine and print
+    //      "Fine of Rs.<totalFine> paid successfully! New Balance: Rs.<balance>"
+    //    - Else print "Not enough balance to pay library fine."
+    // If NO (0):
+    //    - Print "Fine left unpaid."
 }
 
 // -------------------------------------------------------------------------------------
-// 8. PRINT MINI STATEMENT
+// 8. PRINT MINI STATEMENT  (already done for you)
 // -------------------------------------------------------------------------------------
+// Description: Prints a decorated receipt with the student's name, ID and balance.
+//              It uses YOUR printReceiptBorder() function for the lines.
 void printMiniStatement(double balance, string name, string studentId)
 {
     cout << "\n";
     printReceiptBorder(45);
-    cout << "         🏫 CAMPUS DIGITAL WALLET RECEIPT\n";
+    cout << "         CAMPUS DIGITAL WALLET RECEIPT\n";
     printReceiptBorder(45);
     cout << " Student Name   : " << name << "\n";
     cout << " Student ID     : " << studentId << "\n";
-    cout << " Final Balance  : ₹" << fixed << setprecision(2) << balance << "\n";
-    cout << " Account Status : ACTIVE\n";
+    cout << " Final Balance  : Rs." << balance << "\n";
+    cout << " Account Status : Account Active\n";
     printReceiptBorder(45);
 }
 
@@ -196,15 +214,22 @@ void printMiniStatement(double balance, string name, string studentId)
 // -------------------------------------------------------------------------------------
 int main()
 {
+    // Print every decimal number with exactly 2 digits (e.g. 7620.00) for the WHOLE program.
+    // 'fixed' + 'setprecision(2)' stay active once set, so we only write this once.
+    cout << fixed << setprecision(2);
+
     printReceiptBorder(50);
-    cout << "      🌟 WELCOME TO CAMPUS SMART KIOSK 🌟\n";
+    cout << "        WELCOME TO CAMPUS SMART KIOSK\n";
     printReceiptBorder(50);
 
+    // Name and ID are read with a simple 'cin >>', so type them WITHOUT spaces
+    // (e.g. Vasavi, CS2026).
     string studentName, studentId;
     cout << "Enter Your Name: ";
-    getline(cin, studentName);
+    cin >> studentName;
     cout << "Enter Student ID: ";
     cin >> studentId;
+    cout << "\n";
 
     // Authenticate user with PIN
     if (!authenticateUser(CORRECT_PIN))
@@ -212,26 +237,17 @@ int main()
         // Program terminates if authentication fails 3 times
         return 0;
     }
+    cout << "Welcome " << studentName << "!\n";
 
     double walletBalance = 1500.00; // Starting wallet balance
     int choice = 0;
 
-    // Main Dashboard Loop
-    // TODO: Write a while loop that keeps showing menu until choice == 6
+    // Main Dashboard Loop (keeps showing the menu until choice == 6)
     while (choice != 6)
     {
         showMenu();
         cin >> choice;
 
-        // TODO: Use a switch(choice) statement to call corresponding functions:
-        // case 1: checkBalance(...)
-        // case 2: depositMoney(...)
-        // case 3: withdrawMoney(...)
-        // case 4: libraryFineCalculator(...)
-        // case 5: printMiniStatement(...)
-        // case 6: print farewell message
-        // default: print "Invalid choice! Please enter a number between 1 and 6."
-        
         switch (choice)
         {
             case 1:
@@ -250,10 +266,10 @@ int main()
                 printMiniStatement(walletBalance, studentName, studentId);
                 break;
             case 6:
-                cout << "\nThank you for using Campus Smart Kiosk, " << studentName << "! Have a wonderful day! 👋\n";
+                cout << "\nThank you for using Campus Smart Kiosk. Have a wonderful day, " << studentName << "!\n";
                 break;
             default:
-                cout << "\n❌ Invalid choice! Please select a valid option (1-6).\n";
+                cout << "\nInvalid choice! Please select a valid option (1-6).\n";
                 break;
         }
     }
