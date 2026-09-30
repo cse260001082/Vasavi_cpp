@@ -180,9 +180,14 @@ void libraryFineCalculator(double &balance)
     double totalFine = days * ratePerDay;
     cout << "Total Fine: Rs." << totalFine << "\n";
 
-    // TODO: Ask the student:
+    // TODO: Ask the student using a do-while loop, so the question is asked at least once
+    // and REPEATS until they type exactly 1 or 0:
     //   "Do you want to pay this fine from your wallet? (1 for YES, 0 for NO): "
     // int payChoice;
+    // If payChoice is not 0 and not 1, print
+    //   "Invalid choice! Please enter 1 for YES or 0 for NO."
+    // and ask again.
+    // Then, once you have a valid answer:
     // If YES (1):
     //    - If balance >= totalFine: balance = balance - totalFine and print
     //      "Fine of Rs.<totalFine> paid successfully! New Balance: Rs.<balance>"

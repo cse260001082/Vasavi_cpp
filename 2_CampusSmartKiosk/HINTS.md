@@ -155,7 +155,7 @@ if (amount <= 0) {
 ---
 
 ### 6. Function: `libraryFineCalculator(double &balance)`
-*Concept: `switch-case`, `for` loop, `if-else`*
+*Concept: `switch-case`, `for` loop, `do-while` loop, `if-else`*
 
 #### Self-Check Questions:
 - *How does the rate per day get decided?*
@@ -166,6 +166,8 @@ if (amount <= 0) {
     - Default: print `Invalid Category!` and `return;`
 - *Do I need a running total variable inside the `for` loop?*
   **Answer:** No! The cumulative fine on day `day` is simply `day * ratePerDay`.
+- *Why a `do-while` and not a `while` for the payment question?*
+  **Answer:** We must ask the question at least once before we can check the answer. A `do-while` checks its condition AFTER the first run.
 - *Do I need `&` here?*
   **Answer:** Yes, because paying the fine changes the balance in `main()`.
 
@@ -176,11 +178,17 @@ for (int day = 1; day <= days; day++) {
 }
 ```
 
-Payment part:
+Payment part (a `do-while` asks at least once and repeats until the answer is 0 or 1):
 ```cpp
 int payChoice;
-cout << "Do you want to pay this fine from your wallet? (1 for YES, 0 for NO): ";
-cin >> payChoice;
+do {
+    cout << "Do you want to pay this fine from your wallet? (1 for YES, 0 for NO): ";
+    cin >> payChoice;
+
+    if (payChoice != 0 && payChoice != 1) {
+        cout << "Invalid choice! Please enter 1 for YES or 0 for NO.\n";
+    }
+} while (payChoice != 0 && payChoice != 1);
 
 if (payChoice == 1) {
     if (balance >= totalFine) {
