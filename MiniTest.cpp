@@ -60,19 +60,35 @@ int sumDigits(int n)
 
 int reversedNum(int n)
 {
-
+    bool isnegative = false;
+    if (n < 0)
+    {
+        isnegative = true;
+        n = -n;
+    }
+    int reverse_num = 0;
+    while (n != 0)
+    {
+        reverse_num = reverse_num * 10 + (n % 10);
+        n = n / 10;
+    }if(isnegative){
+        reverse_num = -reverse_num;
+    }
+    return reverse_num;
     // Write code again here... with own, without any reference code..
 }
 
 int main()
 {
     int n;
+
     cin >> n;
 
     cout << "Number: " << n << endl;
-    // cout << "Reversed Number: " << reversedNum(n);
+    cout << "Reversed Number: " << reversedNum(n) << endl;
     // cout << "Sum of Digits: " << sumDigits(n);
     digitDetail(n);
+    reversedNum(n);
     return 0;
 }
 

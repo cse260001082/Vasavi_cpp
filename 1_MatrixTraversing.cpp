@@ -91,8 +91,13 @@ const int MAX = 20;
 //       Inner loop goes through each column (0 to cols-1).
 void traverseRowByRow(int mat[MAX][MAX], int rows, int cols)
 {
+    int i,j;
     // TODO: Write your code here
-    
+    for(int i = 0;i < rows;i++){
+        for(int j = 0;j < cols;j++){
+            cout << mat[i][j] << " ";
+        }
+    }
     cout << endl;
 }
 
@@ -103,8 +108,13 @@ void traverseRowByRow(int mat[MAX][MAX], int rows, int cols)
 //       Inner loop goes through each row (0 to rows-1).
 void traverseColByCol(int mat[MAX][MAX], int rows, int cols)
 {
+    int i,j;
     // TODO: Write your code here
-    
+    for(i = 0;i < cols; i++){
+        for(j = 0;j < rows;j++){
+            cout << mat[j][i] << " ";
+        }
+    }
     cout << endl;
 }
 
