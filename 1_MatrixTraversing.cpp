@@ -4,7 +4,7 @@
 ========================================================================================
 
 Hey Vasavi! In this problem, you will master 2D Arrays (Matrices) and Functions in C++.
-You are given a matrix of size (Rows x Columns). You need to implement 4 different ways 
+You are given a matrix of size (Rows x Columns). You need to implement 4 different ways
 to traverse (visit and print) every element of the matrix:
 
   1. Row-by-Row Traversal   (Left-to-Right, Top-to-Bottom)
@@ -91,10 +91,12 @@ const int MAX = 20;
 //       Inner loop goes through each column (0 to cols-1).
 void traverseRowByRow(int mat[MAX][MAX], int rows, int cols)
 {
-    int i,j;
+    int i, j;
     // TODO: Write your code here
-    for(int i = 0;i < rows;i++){
-        for(int j = 0;j < cols;j++){
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < cols; j++)
+        {
             cout << mat[i][j] << " ";
         }
     }
@@ -108,10 +110,12 @@ void traverseRowByRow(int mat[MAX][MAX], int rows, int cols)
 //       Inner loop goes through each row (0 to rows-1).
 void traverseColByCol(int mat[MAX][MAX], int rows, int cols)
 {
-    int i,j;
+    int i, j;
     // TODO: Write your code here
-    for(i = 0;i < cols; i++){
-        for(j = 0;j < rows;j++){
+    for (i = 0; i < cols; i++)
+    {
+        for (j = 0; j < rows; j++)
+        {
             cout << mat[j][i] << " ";
         }
     }
@@ -129,18 +133,69 @@ void traverseColByCol(int mat[MAX][MAX], int rows, int cols)
 //       2. Print right column from top to bottom, then right--
 //       3. If top <= bottom: print bottom row from right to left, then bottom--
 //       4. If left <= right: print left column from bottom to top, then left++
+//    - Outer Ring:
+//        * Top row (left to right)    : 1  2  3  4  5
+//        * Right col (top to bottom)  : 10 15 20 25
+//        * Bottom row (right to left) : 24 23 22 21
+//        * Left col (bottom to top)   : 16 11 6
+
 void traverseSpiral(int mat[MAX][MAX], int rows, int cols)
 {
-    // TODO: Write your code here
-    
+    // TODO: Write your code here\
+    // This was Outer Loop (k = 0) we can automate or recursively use this in a loop to spiral everything...
+    int k = 0;
+    while (k <= (rows - 1) / 2)
+    {
+        // 1st Row
+        for (int i = k; i < cols - k; i++)
+        {
+            cout << mat[0][i] << " ";
+        }
+        // Last Colm
+        for (int i = k + 1; i < rows - k - 1; i++)
+        {
+            cout << mat[i][cols - 1] << " ";
+        }
+        // Last Row (R -> L)
+        for (int i = cols - 2 - k; i >= k; i--)
+        {
+            cout << mat[rows - 1][i] << " ";
+        }
+        // 1st Colm (Bottom to Up)
+        for (int i = rows - 2 - k; i > k; i--)
+        {
+            cout << mat[i][0] << " ";
+        }
+
+        k++;
+    }
     cout << endl;
 }
 
 // -------------------------------------------------------------------------------------
 // 4. DIAGONAL TRAVERSAL
+/*
+Your idea is good. Peeling the matrix into layers with k is a real, valid approach, and the loop bounds on your four for loops are close. I found three problems, and I'll let you fix them.
+
+1. The fixed index ignores k. Look at what stays constant in each loop:
+- top row: mat[0][i]
+- last column: mat[i][cols - 1]
+- last row: mat[rows - 1][i]
+- first column: mat[i][0]
+
+For the outer ring (k = 0) these happen to be correct, so the first ring looks fine. Now trace the 5x5 example by hand for k = 1. The top row of the inner ring should be 7 8 9. Which row is that, and what does mat[0][i] give you instead? Then ask the same question about the other three loops.
+
+2. A corner gets skipped. Trace k = 0 on the 5x5 example and compare with the expected output. Is 25 printed? Look at where the last-column loop stops and where the last-row loop starts. Which one should print the bottom-right corner? Decide, then adjust one of them.
+
+3. A stray backslash in your comment. Line 144 ends with here\. In C++, a backslash at the end of a // comment continues the comment onto the next line. It's harmless this time because the next line is also a comment. If it were code, that code would be silently commented out. Just delete the \.
+
+On rectangles: you're right that it breaks. Think about a 3x5 matrix. Your while condition only looks at rows. What happens to a 1-row or 1-column inner layer? The four-boundary hint in the file (top, bottom, left, right) is built for this, and the if checks on the bottom row and left column are what stop the double-printing. Once your square version works, try that as a second attempt.
+
+Fix problems 1 and 2, run Test Case 1 (3x3) and Test Case 2 (5x5), and tell me what you get.
+*/
 // -------------------------------------------------------------------------------------
-// HINT: 
-// Part 1 (Top Triangle): 
+// HINT:
+// Part 1 (Top Triangle):
 //   For each starting column c from 0 to cols-1:
 //   Start at row = 0, col = c. Move down-left (row++, col--) while row < rows and col >= 0.
 // Part 2 (Bottom Triangle):
@@ -149,7 +204,7 @@ void traverseSpiral(int mat[MAX][MAX], int rows, int cols)
 void traverseDiagonal(int mat[MAX][MAX], int rows, int cols)
 {
     // TODO: Write your code here
-    
+
     cout << endl;
 }
 
@@ -176,7 +231,8 @@ int main()
     int mat[MAX][MAX];
 
     cout << "Enter number of rows and columns: ";
-    if (!(cin >> rows >> cols)) return 0;
+    if (!(cin >> rows >> cols))
+        return 0;
 
     cout << "Enter the matrix elements (" << rows * cols << " numbers):\n";
     for (int i = 0; i < rows; i++)
