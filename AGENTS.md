@@ -35,4 +35,4 @@
   - Row-by-row: done.
   - Column-by-column: done.
   - Spiral: attempted with a layer counter `k`. It still has bugs: the fixed index in each loop ignores `k`, and the bottom-right corner is skipped. It only works for square matrices. Next step is to fix those, then try the four-boundary (`top`, `bottom`, `left`, `right`) approach from the hint for rectangles.
-  - Diagonal: not started.
+  - Diagonal: done. Vasavi designed the diagonal-sum `n = i + j` approach; completed with boundary check `j >= 0 && j < cols`.

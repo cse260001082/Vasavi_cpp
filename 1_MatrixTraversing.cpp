@@ -203,8 +203,19 @@ Fix problems 1 and 2, run Test Case 1 (3x3) and Test Case 2 (5x5), and tell me w
 //   Start at row = r, col = cols-1. Move down-left (row++, col--) while row < rows and col >= 0.
 void traverseDiagonal(int mat[MAX][MAX], int rows, int cols)
 {
-    // TODO: Write your code here
-
+    // Vasavi's approach: on any diagonal, row + col = n
+    for (int n = 0; n <= rows + cols - 2; n++)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            int j = n - i;
+            // Check if column j is inside the valid matrix boundaries
+            if (j >= 0 && j < cols)
+            {
+                cout << mat[i][j] << " ";
+            }
+        }
+    }
     cout << endl;
 }
 
