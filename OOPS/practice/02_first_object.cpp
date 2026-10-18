@@ -7,6 +7,6 @@ class Pencil {
 };
 
 int main() {
-    ___ ___;
+    Pencil myPencil;
     return 0;
 }

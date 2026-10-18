@@ -3,8 +3,11 @@
 // Check: the completed program should compile and produce no output.
 // Explain: does defining a class also create an object?
 
-___ Pencil {
-}___
+#include<iostream>
+using namespace std;
+class Pencil{
+
+};
 
 int main() {
     return 0;
