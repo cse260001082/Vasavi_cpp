@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Dice Roll Interview Prep</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a teal hero band with a live die, then one reading column beside a sticky rail of revision stops; on phones the rail becomes a sticky chip bar */
+:root {
+  --bg: #FFFFEB;
+  --surface: #FFFFFF;
+  --border: #E4E4D0;
+  --ink: #1A1A1A;
+  --ink-2: #3D3D36;
+  --muted: #6E6E64;
+  --accent: #034F46;
+  --on-accent: #FFFFEB;
+  --accent-text: #034F46;
+  --lav: #F0D7FF;
+  --on-lav: #1A1A1A;
+  --ember: #FFA946;
+  --ember-soft: #FFEBCF;
+  --on-ember: #1A1A1A;
+  --hero-bg: #034F46;
+  --hero-fg: #FFFFEB;
+  --hero-fg-2: #CFE3DC;
+  --hero-chip: #0A5F55;
+  --hero-line: #2F7A70;
+  --code-bg: #222222;
+  --code-fg: #FFFFEB;
+  --code-fg-2: #CFCFBF;
+  --code-num: #8A8A80;
+  --code-hover: #2E2E2A;
+  --code-hl: #3A2D47;
+  --code-note-bg: #2F2F2A;
+  --code-chip: #45385A;
+  --syn-key: #F0D7FF;
+  --syn-str: #FFA946;
+  --syn-num: #8FD9C9;
+  --syn-attr: #C9E6DF;
+  --syn-dim: #8A8A80;
+  --bar: #138A77;
+  --grid: #E4E4D0;
+  --die-face: #FFFFFF;
+  --die-pip: #1A1A1A;
+  --die-edge: #1A1A1A;
+  --tip-bg: #1A1A1A;
+  --tip-fg: #FFFFEB;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+    --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+    --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+    --hero-bg: #034F46; --hero-fg: #FFFFEB; --hero-fg-2: #CFE3DC; --hero-chip: #0A5F55; --hero-line: #2F7A70;
+    --code-bg: #121212; --code-fg: #FFFFEB; --code-fg-2: #CFCFBF; --code-num: #8A8A80; --code-hover: #262623; --code-hl: #3A2D47; --code-note-bg: #262622; --code-chip: #45385A;
+    --bar: #A777D6; --grid: #36362F; --die-face: #FFFFEB; --die-pip: #1A1A1A; --die-edge: #8A8A80;
+    --tip-bg: #FFFFEB; --tip-fg: #1A1A1A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+  --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+  --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+  --hero-bg: #034F46; --hero-fg: #FFFFEB; --hero-fg-2: #CFE3DC; --hero-chip: #0A5F55; --hero-line: #2F7A70;
+  --code-bg: #121212; --code-fg: #FFFFEB; --code-fg-2: #CFCFBF; --code-num: #8A8A80; --code-hover: #262623; --code-hl: #3A2D47; --code-note-bg: #262622; --code-chip: #45385A;
+  --bar: #A777D6; --grid: #36362F; --die-face: #FFFFEB; --die-pip: #1A1A1A; --die-edge: #8A8A80;
+  --tip-bg: #FFFFEB; --tip-fg: #1A1A1A;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  background: var(--bg);
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+code, pre, kbd { font-family: var(--font-mono); }
+p code, li code, dd code, td code, .ans code, .say code, .callout code, .hint code {
+  font-size: .86em;
+  background: var(--lav);
+  color: var(--on-lav);
+  padding: .06em .35em;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+.ans pre code, .snip code { background: none; color: inherit; padding: 0; font-size: inherit; border-radius: 0; overflow-wrap: normal; }
+.callout code, .say code { background: var(--surface); color: var(--ink); }
+kbd {
+  font-size: .82em;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: .05em .4em;
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 6.4vw, 3.9rem); line-height: 1; letter-spacing: -0.025em; font-weight: 800; margin: .15em 0 .35em; }
+h2 { font-size: clamp(1.75rem, 3.6vw, 2.3rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .5em; }
+h3 { font-size: 1.28rem; line-height: 1.25; font-weight: 700; margin: 1.9em 0 .55em; }
+h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
+.kicker {
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-weight: 700;
+  color: var(--accent-text);
+  margin: 0 0 .6em;
+}
+.small { font-size: .9rem; color: var(--muted); }
+.measure { max-width: 68ch; }
+
+.btn {
+  font: 700 .95rem/1.2 var(--font-body);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.btn:hover { filter: brightness(1.12); }
+.btn:disabled { opacity: .5; cursor: default; filter: none; }
+.btn-ghost { background: transparent; color: var(--accent-text); border-color: var(--border); }
+.btn-ghost:hover { background: var(--surface); filter: none; }
+.btn-small { padding: 6px 13px; font-size: .86rem; }
+.btn-ember { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+.btn[aria-pressed="true"].btn-got { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.btn[aria-pressed="true"].btn-again { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+input[type="search"], input[type="text"], select, textarea {
+  font: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  max-width: 100%;
+}
+input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--accent); flex: none; margin: 3px 0 0; }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); }
+.hero-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 44px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 40px;
+  align-items: center;
+}
+.eyebrow { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--lav); margin: 0; }
+.hero h1 { color: var(--hero-fg); }
+.lede { max-width: 58ch; font-size: 1.1rem; color: var(--hero-fg-2); margin: 0 0 22px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.stat {
+  background: var(--hero-chip);
+  border: 1px solid var(--hero-line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-width: 150px;
+}
+.stat-label { font-size: .78rem; color: var(--hero-fg-2); }
+.stat-val { font-weight: 700; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.meter { height: 6px; border-radius: 99px; background: var(--hero-line); margin-top: 6px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--ember); border-radius: 99px; transition: width .3s; }
+.hero-dice {
+  background: var(--hero-chip);
+  border: 1px solid var(--hero-line);
+  border-radius: 18px;
+  padding: 22px;
+  text-align: center;
+  width: 280px;
+}
+.mini-dice { display: flex; gap: 16px; justify-content: center; }
+.mini-dice span { display: block; width: 86px; height: 86px; }
+.mini-result { font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; margin: 12px 0 12px; font-variant-numeric: tabular-nums; }
+.mini-cap { font-size: .82rem; color: var(--hero-fg-2); margin: 12px 0 0; }
+.die { width: 100%; height: 100%; display: block; }
+.die-body { fill: var(--die-face); stroke: var(--die-edge); stroke-width: 4; }
+.die-pip { fill: var(--die-pip); }
+.shake { animation: shake .5s; }
+.shaking { animation: shake .5s infinite; }
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(20deg); }
+  50% { transform: rotate(-20deg); }
+  75% { transform: rotate(20deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* layout */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 200px minmax(0, 1fr);
+  gap: 52px;
+}
+.rail {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  align-self: start;
+  padding-block: 36px 24px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.rail-title { font-size: .76rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--muted); margin: 0 0 10px 12px; }
+.rail-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; position: relative; }
+.rail-list a {
+  display: block;
+  padding: 7px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink-2);
+  font-weight: 700;
+  font-size: .94rem;
+}
+.rail-list a:hover { background: var(--surface); }
+.rail-list a.on { background: var(--lav); color: var(--on-lav); }
+.rail-note { font-size: .82rem; color: var(--muted); margin: 18px 12px 0; }
+main { padding-block: 24px 40px; min-width: 0; }
+.sec { padding-block: 44px; border-top: 1px solid var(--border); scroll-margin-top: 12px; }
+.sec:first-child { border-top: 0; padding-top: 20px; }
+.sec > p { max-width: 68ch; }
+
+/* interview */
+.looks { margin: 0; display: grid; border-top: 1px solid var(--border); max-width: 760px; }
+.looks > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.looks dt { font-weight: 700; font-family: var(--font-display); font-size: 1.05rem; }
+.looks dd { margin: 0; color: var(--ink-2); }
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 12px; max-width: 760px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.steps li::before {
+  content: counter(s);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: .9rem;
+}
+.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 18px 24px; margin-top: 28px; max-width: 760px; }
+.callout h3 { margin-top: 0; }
+.callout ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.callout a { color: inherit; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* code viewer */
+.seg { display: inline-flex; flex-wrap: wrap; gap: 6px; margin: 6px 0 12px; }
+.seg button {
+  font: 600 .9rem var(--font-mono);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.file-sum { color: var(--ink-2); margin: 0 0 12px; }
+.code-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.code-tools .small { margin-left: auto; }
+.code {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: 14px;
+  padding-block: 14px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.ln { display: grid; grid-template-columns: 3.2em minmax(0, 1fr); width: 100%; text-align: left; }
+.ln-num { color: var(--code-num); text-align: right; padding-right: 16px; user-select: none; font-variant-numeric: tabular-nums; }
+.ln-code { white-space: pre-wrap; overflow-wrap: anywhere; padding-right: 16px; }
+.ln-tap { all: unset; display: grid; grid-template-columns: 3.2em minmax(0, 1fr); width: 100%; cursor: pointer; }
+.ln-tap .ln-num { color: var(--code-fg-2); }
+.ln-tap:hover { background: var(--code-hover); }
+.ln-tap:focus-visible { outline: 2px solid var(--ember); outline-offset: -2px; }
+.ln-tap[aria-expanded="true"] { background: var(--code-hl); }
+.ln-tap[aria-expanded="true"] .ln-num { color: var(--ember); }
+.note {
+  margin: 4px 16px 10px 3.2em;
+  background: var(--code-note-bg);
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--code-fg);
+}
+.note code { background: var(--code-chip); color: var(--code-fg); font-size: .88em; padding: .05em .35em; border-radius: 5px; }
+.t-key { color: var(--syn-key); }
+.t-str { color: var(--syn-str); }
+.t-num { color: var(--syn-num); }
+.t-attr { color: var(--syn-attr); }
+.t-fn { color: var(--syn-attr); }
+.t-dim { color: var(--syn-dim); }
+
+.table-wrap { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; }
+td:first-child { font-weight: 700; }
+.cmp td { font-weight: 400; }
+.cmp td code { white-space: nowrap; }
+
+/* trace */
+.trace { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+.trace-code { max-height: 520px; overflow: auto; position: relative; }
+.trace-code .ln.hl { background: var(--code-hl); box-shadow: inset 4px 0 0 var(--ember); }
+.trace-code .ln.hl .ln-num { color: var(--ember); }
+.trace-side { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px; min-width: 0; }
+.trace-count { font-size: .78rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin: 0; }
+.trace-side h3 { margin: 4px 0 6px; }
+.trace-text { margin: 0 0 14px; min-height: 4.8em; }
+.tp { border: 1px solid var(--border); border-radius: 12px; background: var(--bg); padding: 12px 14px 10px; text-align: center; }
+.tp-label { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; text-align: left; margin: 0 0 6px; }
+.tp-dice { display: flex; justify-content: center; gap: 12px; min-height: 64px; }
+.tp-dice span { display: block; width: 60px; height: 60px; }
+.tp-result { font-weight: 700; font-size: 1.15rem; margin: 8px 0 4px; font-variant-numeric: tabular-nums; }
+.tp-hist { list-style: none; margin: 0; padding: 0; font-size: .9rem; min-height: 1.6em; }
+.tp-hist li { border-top: 1px solid var(--border); padding: 3px 0; }
+.tp-empty { color: var(--muted); font-size: .85rem; }
+.vars { margin-top: 14px; font-size: .9rem; }
+.vars td, .vars th { padding: 6px 10px; }
+.vars td:first-child { font-family: var(--font-mono); font-weight: 600; }
+.vars td:last-child { font-family: var(--font-mono); }
+.vars .none { color: var(--muted); font-family: var(--font-body); font-style: italic; }
+.vars tr.changed td { background: var(--ember-soft); }
+.trace-nav { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+
+/* randomness */
+.one-line { background: var(--code-bg); color: var(--code-fg); border-radius: 12px; padding: 14px 18px; font-size: 15px; overflow-x: auto; max-width: 760px; }
+.machine { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 8px 20px 20px; max-width: 760px; }
+.m-row { display: grid; grid-template-columns: 11.5em minmax(0, 1fr) 6.5em; gap: 14px; align-items: baseline; padding: 11px 0; border-bottom: 1px solid var(--border); }
+.m-expr { font-family: var(--font-mono); font-weight: 600; font-size: .95rem; }
+.m-say { color: var(--ink-2); font-size: .95rem; }
+.m-val { font-family: var(--font-mono); font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; }
+.m-row.final .m-val span { background: var(--ember); color: var(--on-ember); border-radius: 6px; padding: 1px 10px; }
+.strip-wrap { margin: 34px 4px 30px; position: relative; }
+.strip { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.strip div { text-align: center; padding: 10px 0; font-weight: 700; border-left: 1px solid var(--border); font-size: .92rem; }
+.strip div:first-child { border-left: 0; }
+.strip div.on { background: var(--lav); color: var(--on-lav); }
+.strip-scale { position: relative; height: 1.4em; margin-top: 4px; }
+.strip-scale span { position: absolute; transform: translateX(-50%); font-family: var(--font-mono); font-size: .78rem; color: var(--muted); }
+.marker { position: absolute; top: -22px; bottom: 1.6em; width: 0; border-left: 2px solid var(--ember); transition: left .35s; }
+.marker::before { content: ""; position: absolute; top: 0; left: -7px; border: 6px solid transparent; border-top: 8px solid var(--ember); }
+.machine-foot { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.test-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 14px; }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.chart { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 16px 10px; position: relative; min-width: 0; }
+.chart-sub { font-family: var(--font-mono); font-size: .8rem; color: var(--ink-2); margin: 0 0 6px; overflow-wrap: anywhere; }
+.chart-key { display: flex; align-items: center; gap: 8px; font-size: .82rem; color: var(--muted); margin: 0 0 4px; }
+.chart-key i { display: inline-block; width: 22px; border-top: 2px solid var(--ink); }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart svg text { fill: var(--muted); font-family: var(--font-body); font-size: 11px; }
+.chart svg .face-label { fill: var(--ink-2); font-weight: 700; font-size: 12px; }
+.chart .grid { stroke: var(--grid); stroke-width: 1; }
+.chart .bar { fill: var(--bar); transition: opacity .15s; }
+.chart .bar.on { opacity: .7; }
+.chart .exp { stroke: var(--ink); stroke-width: 2; }
+.chart .hit { fill: transparent; pointer-events: all; cursor: default; }
+.chart .hit:focus-visible { outline: none; stroke: var(--ember); stroke-width: 2; }
+.tip {
+  position: absolute;
+  pointer-events: none;
+  background: var(--tip-bg);
+  color: var(--tip-fg);
+  font-size: .82rem;
+  line-height: 1.35;
+  padding: 6px 10px;
+  border-radius: 7px;
+  white-space: nowrap;
+  transform: translate(-50%, -100%);
+  z-index: 5;
+}
+.ctable { font-size: .82rem; margin-top: 6px; }
+.ctable th, .ctable td { text-align: center; padding: 4px 2px; font-variant-numeric: tabular-nums; font-weight: 400; }
+.ctable th:first-child, .ctable td:first-child { text-align: left; font-weight: 700; }
+.ctable th { text-transform: none; letter-spacing: 0; font-size: .82rem; }
+
+/* question bank */
+.q-tools { display: grid; gap: 10px; margin-bottom: 18px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font: 700 .84rem var(--font-body);
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.q-row2 { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.q-row2 input { flex: 1 1 220px; }
+.q-count { font-size: .88rem; color: var(--muted); }
+.q-list { display: grid; gap: 12px; }
+.q { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; min-width: 0; }
+.q-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; font-weight: 700; color: var(--muted); }
+.badge { font-size: .74rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; }
+.badge-often { background: var(--ember); color: var(--on-ember); }
+.badge-got { background: var(--accent); color: var(--on-accent); }
+.badge-again { background: var(--ember-soft); color: var(--ink); border: 1px solid var(--ember); }
+.q-text { font-weight: 700; font-size: 1.06rem; margin: 6px 0 12px; }
+.q-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.ans { margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); color: var(--ink-2); }
+.ans > :first-child { margin-top: 0; }
+.ans p, .ans ul, .ans ol { margin: 0 0 .6em; }
+.ans ul, .ans ol { padding-left: 1.25em; }
+.say { background: var(--lav); color: var(--on-lav); border-radius: 12px; padding: 10px 14px; margin-top: 10px; }
+.say b { display: block; font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 2px; }
+.q-empty { color: var(--muted); }
+
+/* mock */
+.mock { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 24px; max-width: 820px; }
+.mock-top { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.mock-q { font-family: var(--font-display); font-size: clamp(1.3rem, 3vw, 1.65rem); font-weight: 700; line-height: 1.25; margin: 8px 0 18px; text-wrap: balance; }
+.timer { font-family: var(--font-mono); font-weight: 600; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+.timer.done { color: var(--on-ember); background: var(--ember); border-radius: 6px; padding: 0 8px; }
+.mock-score { font-size: .9rem; color: var(--muted); }
+.toggle { display: inline-flex; gap: 8px; align-items: center; font-size: .9rem; cursor: pointer; }
+
+/* live changes */
+.task { border-top: 1px solid var(--border); padding-block: 18px; max-width: 820px; }
+.task:last-child { border-bottom: 1px solid var(--border); }
+.task-head { display: flex; gap: 12px; align-items: flex-start; }
+.task-head label { display: flex; gap: 12px; align-items: flex-start; cursor: pointer; flex: 1; }
+.task-title { font-weight: 700; font-size: 1.04rem; }
+.lvl { font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 2px 9px; margin-right: 6px; white-space: nowrap; vertical-align: 2px; }
+.lvl-Easy { background: var(--lav); color: var(--on-lav); }
+.lvl-Medium { background: var(--ember-soft); color: var(--ink); border: 1px solid var(--ember); }
+.lvl-Harder { background: var(--ink); color: var(--bg); }
+.lvl-Talk { background: var(--surface); color: var(--ink-2); border: 1px solid var(--border); }
+.task-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 0 32px; }
+.hint, .task .ans { margin: 12px 0 0 32px; }
+.hint { background: var(--ember-soft); color: var(--ink); border-radius: 10px; padding: 10px 14px; }
+.snip-label { font-size: .8rem; color: var(--muted); margin: 10px 0 4px; font-weight: 700; }
+.snip { background: var(--code-bg); color: var(--code-fg); border-radius: 10px; padding: 12px 14px; font-size: 13.5px; line-height: 1.55; overflow-x: auto; margin: 0; }
+
+/* github */
+.two { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; max-width: 820px; }
+.box { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; min-width: 0; }
+.box ul { margin: 0; padding-left: 1.2em; }
+.box code { white-space: normal; }
+.readme { position: relative; max-width: 820px; }
+.readme pre { background: var(--code-bg); color: var(--code-fg); border-radius: 14px; padding: 18px; font-size: 13.5px; line-height: 1.55; overflow-x: auto; margin: 0; white-space: pre; }
+.readme .btn { position: absolute; top: 10px; right: 10px; }
+.copy-msg { font-size: .85rem; color: var(--muted); min-height: 1.4em; margin: 6px 0 0; }
+.num-steps { max-width: 760px; padding-left: 1.3em; display: grid; gap: 6px; }
+
+/* checklist */
+.check-groups { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; max-width: 900px; }
+.check-groups h3 { margin-top: 0; }
+.check-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.check-list label { display: flex; gap: 12px; align-items: flex-start; padding: 8px 10px; border-radius: 10px; cursor: pointer; }
+.check-list label:hover { background: var(--surface); }
+.check-list input:checked + span { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--muted); }
+.intro-box { max-width: 820px; }
+.intro-box textarea { width: 100%; min-height: 150px; line-height: 1.55; resize: vertical; }
+.saved { font-size: .85rem; color: var(--muted); min-height: 1.4em; margin: 4px 0 0; }
+
+/* glossary */
+.words-tools { margin-bottom: 14px; }
+.words-tools input { width: min(420px, 100%); }
+.words { margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0 28px; }
+.words > div { border-top: 1px solid var(--border); padding: 12px 0; min-width: 0; }
+.words dt { font-weight: 700; font-family: var(--font-display); font-size: 1.04rem; }
+.words dd { margin: 2px 0 0; color: var(--ink-2); font-size: .95rem; }
+
+/* footer */
+.foot { border-top: 1px solid var(--border); }
+.foot-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 26px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.foot-in p { margin: 0; max-width: 70ch; }
+.reset-confirm { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+@media (max-width: 1100px) {
+  .trace { grid-template-columns: 1fr; }
+  .trace-code { max-height: 300px; }
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail {
+    z-index: 20;
+    background: var(--bg);
+    padding-block: 10px;
+    max-height: none;
+    overflow: visible;
+    margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    border-bottom: 1px solid var(--border);
+  }
+  .rail-title, .rail-note { display: none; }
+  .rail-list { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+  .rail-list::-webkit-scrollbar { display: none; }
+  .rail-list a { white-space: nowrap; background: var(--surface); border: 1px solid var(--border); padding: 5px 12px; border-radius: 999px; font-size: .86rem; }
+  .rail-list a.on { border-color: var(--lav); }
+  .sec { scroll-margin-top: 64px; }
+}
+@media (max-width: 760px) {
+  .hero-in { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 32px 28px; }
+  .hero-dice { width: auto; }
+  .charts, .two, .check-groups { grid-template-columns: minmax(0, 1fr); }
+  .looks > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .m-row { grid-template-columns: minmax(0, 1fr) auto; gap: 2px 12px; }
+  .m-say { grid-column: 1 / -1; grid-row: 2; font-size: .88rem; }
+  .code { font-size: 13px; }
+  .ln, .ln-tap { grid-template-columns: 2.6em minmax(0, 1fr); }
+  .ln-num { padding-right: 10px; }
+  .note { margin-left: 12px; margin-right: 12px; }
+  .task-actions, .hint, .task .ans { margin-left: 0; }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">Programming Club, IIT Indore · Software Division induction</p>
+      <h1>Dice Roll Interview Prep</h1>
+      <p class="lede">Hi Vasavi! Use this page to revise after each explanation session. Read a part, try to answer out loud, and only then open the answer. Your ticks are saved in this browser, so you can stop and come back anytime.</p>
+      <div class="hero-stats" id="heroStats"></div>
+    </div>
+    <div class="hero-dice">
+      <div class="mini-dice"><span id="miniA"></span><span id="miniB"></span></div>
+      <p class="mini-result" id="miniResult" aria-live="polite">3 + 5 = 8</p>
+      <button class="btn btn-ember" id="miniRoll" type="button">Roll 2 dice</button>
+      <p class="mini-cap">Built the same way as your project: shake, wait 0.5 s, then two random faces.</p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="rail" aria-label="Sections">
+    <p class="rail-title">Revise in this order</p>
+    <ul class="rail-list">
+      <li><a href="#interview">The interview</a></li>
+      <li><a href="#code">Your code</a></li>
+      <li><a href="#trace">Trace a click</a></li>
+      <li><a href="#random">Randomness</a></li>
+      <li><a href="#questions">Question bank</a></li>
+      <li><a href="#mock">Mock interview</a></li>
+      <li><a href="#live">Live changes</a></li>
+      <li><a href="#github">GitHub &amp; README</a></li>
+      <li><a href="#checklist">Checklist</a></li>
+      <li><a href="#words">Words to know</a></li>
+    </ul>
+    <p class="rail-note">First time through, go top to bottom. After that, jump to the Mock interview and fill the gaps it finds.</p>
+  </nav>
+
+  <main id="main">
+
+    <section id="interview" class="sec">
+      <p class="kicker">Start here</p>
+      <h2>What the interview looks like</h2>
+      <p>The induction PDF says they will ask about your code, and that <em>"code you cannot explain will count against you."</em> So the goal is clear: be able to explain every line of your three files, and make a small change when they ask.</p>
+
+      <h3>What they will look at</h3>
+      <dl class="looks">
+        <div><dt>Functionality</dt><dd>Does it work without bugs? Every button, every roll, on a laptop and a phone.</dd></div>
+        <div><dt>Code quality</dt><dd>Is it readable and organised? Yours is three short files with plain names.</dd></div>
+        <div><dt>UI/UX</dt><dd>Is it clean and responsive? Show it on your phone as well.</dd></div>
+        <div><dt>Understanding</dt><dd>Can you explain and change your own code? This one matters most.</dd></div>
+        <div><dt>Effort</dt><dd>README, hosting, a good commit history, maybe one extra feature.</dd></div>
+      </dl>
+      <p class="small">For the Dice Roll problem they also list: correct and unbiased random logic, the look of the dice and animation, clean separation of HTML, CSS and JS, responsive design, and being able to explain how your code works.</p>
+
+      <h3>How it usually goes</h3>
+      <ol class="steps">
+        <li><div><strong>Introduce yourself and the project.</strong> About one minute. Write yours in the <a href="#checklist">Checklist</a> section.</div></li>
+        <li><div><strong>Demo.</strong> Open the live site. Roll 1 die, roll 2 dice, show the history, then make the window narrow or open it on your phone.</div></li>
+        <li><div><strong>Walk through the code.</strong> They may point at any line and ask "what does this do?"</div></li>
+        <li><div><strong>Questions.</strong> HTML, CSS, JavaScript, randomness, Git.</div></li>
+        <li><div><strong>A small live change.</strong> Something like "keep only 5 rolls in the history."</div></li>
+        <li><div><strong>About you.</strong> Why the club, what you want to learn.</div></li>
+        <li><div><strong>Your question for them.</strong> Keep one ready.</div></li>
+      </ol>
+      <p class="small">Every panel is different, so treat this as a likely order, not a fixed script.</p>
+
+      <div class="callout">
+        <h3>Three rules for the room</h3>
+        <ul>
+          <li>Point at the line on the screen while you explain it.</li>
+          <li>If you are not sure, say "I'm not sure, but I think…" and reason out loud. Thinking out loud is much better than silence.</li>
+          <li>The rules allow AI help. Be honest about how you used it, and show you understand by explaining.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="code" class="sec">
+      <p class="kicker">Explain every line</p>
+      <h2>Your code, line by line</h2>
+      <p>Three files, three jobs. HTML says <strong>what</strong> is on the page, CSS says how it <strong>looks</strong>, and JavaScript says what it <strong>does</strong> when you click.</p>
+      <p>Before you tap a line, say out loud what you think it does. Then tap it to check. Lines without a note are just closing brackets or blank lines.</p>
+      <div class="seg" id="fileTabs">
+        <button type="button" data-file="html" aria-pressed="true">index.html</button>
+        <button type="button" data-file="css" aria-pressed="false">style.css</button>
+        <button type="button" data-file="js" aria-pressed="false">script.js</button>
+      </div>
+      <p class="file-sum" id="fileSum"></p>
+      <div class="code-tools">
+        <button type="button" class="btn btn-ghost btn-small" id="openAll">Open all notes</button>
+        <button type="button" class="btn btn-ghost btn-small" id="closeAll">Close all</button>
+        <span class="small" id="openCount"></span>
+      </div>
+      <div class="code" id="codeView"></div>
+
+      <h3>How the three files find each other</h3>
+      <p>The browser loads style.css because of the <code>&lt;link&gt;</code> tag, and script.js because of the <code>&lt;script&gt;</code> tag. After that, <strong>names</strong> connect everything. An interviewer might ask: "How does your JavaScript know which image to change?" This table is the answer.</p>
+      <div class="table-wrap">
+        <table class="map">
+          <thead><tr><th>Name</th><th>In index.html</th><th>In style.css</th><th>In script.js</th></tr></thead>
+          <tbody>
+            <tr><td>dice1, dice2</td><td><code>&lt;img id="dice1"&gt;</code></td><td><code>.dice img</code> sets the size</td><td><code>getElementById</code>, then <code>src</code> and <code>classList</code></td></tr>
+            <tr><td>result</td><td><code>&lt;p id="result"&gt;</code></td><td><code>#result</code> makes it big and bold</td><td><code>textContent</code> changes the words</td></tr>
+            <tr><td>btn1, btn2</td><td><code>&lt;button id="btn1"&gt;</code></td><td><code>button</code> and <code>button:hover</code></td><td><code>addEventListener("click", …)</code></td></tr>
+            <tr><td>history</td><td><code>&lt;ul id="history"&gt;</code></td><td><code>#history</code> and <code>#history li</code></td><td><code>createElement</code>, <code>prepend</code>, <code>remove</code></td></tr>
+            <tr><td>shake</td><td>not in the HTML at all</td><td><code>.shake</code> and <code>@keyframes shake</code></td><td><code>classList.add</code> and <code>classList.remove</code></td></tr>
+            <tr><td>container, dice</td><td><code>&lt;div class="container"&gt;</code></td><td><code>.container</code>, <code>.dice img</code></td><td>not used</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>You already know half of this from C</h3>
+      <p>JavaScript looks a lot like C. If they ask, you can connect the two.</p>
+      <div class="table-wrap">
+        <table class="cmp">
+          <thead><tr><th>In C</th><th>In JavaScript</th><th>Difference</th></tr></thead>
+          <tbody>
+            <tr><td><code>int a = 5;</code></td><td><code>let a = 5;</code></td><td>No type is written. JavaScript works it out.</td></tr>
+            <tr><td><code>const int x = 5;</code></td><td><code>const x = 5;</code></td><td>Same idea: can't be reassigned.</td></tr>
+            <tr><td><code>int getRandom() { … }</code></td><td><code>function getRandom() { … }</code></td><td>The word <code>function</code> instead of a return type.</td></tr>
+            <tr><td><code>if (count == 1)</code></td><td><code>if (count === 1)</code></td><td>Use three equals signs in JavaScript.</td></tr>
+            <tr><td><code>rand() % 6 + 1</code></td><td><code>Math.floor(Math.random() * 6) + 1</code></td><td>Both give 1 to 6.</td></tr>
+            <tr><td><code>(int) 4.7</code></td><td><code>Math.floor(4.7)</code></td><td>Both give 4 for positive numbers.</td></tr>
+            <tr><td><code>printf("%d", a);</code></td><td><code>console.log(a);</code></td><td>Prints to the Console in DevTools (<kbd>F12</kbd>).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="trace" class="sec">
+      <p class="kicker">The question you will almost surely get</p>
+      <h2>Trace one click on "Roll 2 Dice"</h2>
+      <p>"What happens when I click this button?" Step through it here. To keep it simple, pretend the dice land on 4 and 3. When you can tell the whole story without looking, you're ready.</p>
+      <div class="trace">
+        <div class="code trace-code" id="traceCode" aria-label="script.js with the current line highlighted"></div>
+        <div class="trace-side">
+          <p class="trace-count" id="traceCount"></p>
+          <h3 id="traceTitle"></h3>
+          <p class="trace-text" id="traceText"></p>
+          <div class="tp" aria-live="polite">
+            <p class="tp-label">On the page right now</p>
+            <div class="tp-dice"><span id="tpD1"></span><span id="tpD2"></span></div>
+            <p class="tp-result" id="tpResult"></p>
+            <ul class="tp-hist" id="tpHist"></ul>
+          </div>
+          <div class="table-wrap">
+            <table class="vars"><thead><tr><th>Name</th><th>Value now</th></tr></thead><tbody id="traceVars"></tbody></table>
+          </div>
+          <div class="trace-nav">
+            <button type="button" class="btn btn-ghost" id="tPrev">Back</button>
+            <button type="button" class="btn" id="tNext">Next step</button>
+            <button type="button" class="btn btn-ghost" id="tReset">Start again</button>
+          </div>
+        </div>
+      </div>
+      <p class="small">Tip: the arrow keys <kbd>←</kbd> <kbd>→</kbd> also move through the steps when a trace button is focused.</p>
+    </section>
+
+    <section id="random" class="sec">
+      <p class="kicker">Evaluation point: correct and unbiased random logic</p>
+      <h2>Is your die fair?</h2>
+      <p>All of the randomness in your project lives in one line, inside <code>getRandom()</code>:</p>
+      <pre class="one-line" id="oneLine"></pre>
+
+      <h3>Watch the line work</h3>
+      <div class="machine">
+        <div class="m-row"><span class="m-expr">Math.random()</span><span class="m-say">a decimal from 0 up to 1, but never exactly 1</span><span class="m-val" id="mv1"></span></div>
+        <div class="m-row"><span class="m-expr">× 6</span><span class="m-say">now it is somewhere from 0 up to 5.999…</span><span class="m-val" id="mv2"></span></div>
+        <div class="m-row"><span class="m-expr">Math.floor( … )</span><span class="m-say">cut off everything after the decimal point: 0, 1, 2, 3, 4 or 5</span><span class="m-val" id="mv3"></span></div>
+        <div class="m-row final"><span class="m-expr">+ 1</span><span class="m-say">shift 0–5 up to 1–6, the faces of a real die</span><span class="m-val"><span id="mv4"></span></span></div>
+        <div class="strip-wrap" aria-hidden="true">
+          <div class="marker" id="marker"></div>
+          <div class="strip" id="strip"><div>face 1</div><div>face 2</div><div>face 3</div><div>face 4</div><div>face 5</div><div>face 6</div></div>
+          <div class="strip-scale"><span style="left:0%">0</span><span style="left:16.667%">1</span><span style="left:33.333%">2</span><span style="left:50%">3</span><span style="left:66.667%">4</span><span style="left:83.333%">5</span><span style="left:100%">6</span></div>
+        </div>
+        <div class="machine-foot">
+          <button type="button" class="btn" id="machineBtn">Make a new number</button>
+          <span class="small">The orange line shows where <code>Math.random() * 6</code> landed.</span>
+        </div>
+      </div>
+      <p>The strip goes from 0 to 6, and every face owns a piece exactly 1 wide. <code>Math.random()</code> is spread evenly, so it is just as likely to land in any piece. Equal pieces mean equal chances: each face has a 1 in 6 chance. That is the whole reason your die is fair.</p>
+
+      <h3>Test it: roll thousands of times</h3>
+      <p>Here is your <code>getRandom()</code> next to a common mistake, both rolled the same number of times. The black line is a perfectly fair share.</p>
+      <div class="test-controls">
+        <button type="button" class="btn btn-small" data-n="600">Roll 600 times</button>
+        <button type="button" class="btn btn-small" data-n="6000">Roll 6,000 times</button>
+        <button type="button" class="btn btn-small" data-n="60000">Roll 60,000 times</button>
+      </div>
+      <div class="charts">
+        <figure class="chart" id="chartGood">
+          <h4>Your code</h4>
+          <p class="chart-sub">Math.floor(Math.random() * 6) + 1</p>
+          <p class="chart-key"><i></i><span class="key-text"></span></p>
+          <svg viewBox="0 0 320 196" role="img" aria-label="Column chart of how often each face came up with your code"></svg>
+          <div class="table-wrap"><table class="ctable"></table></div>
+          <div class="tip" hidden></div>
+        </figure>
+        <figure class="chart" id="chartBad">
+          <h4>A common mistake</h4>
+          <p class="chart-sub">Math.round(Math.random() * 5) + 1</p>
+          <p class="chart-key"><i></i><span class="key-text"></span></p>
+          <svg viewBox="0 0 320 196" role="img" aria-label="Column chart of how often each face came up with Math.round"></svg>
+          <div class="table-wrap"><table class="ctable"></table></div>
+          <div class="tip" hidden></div>
+        </figure>
+      </div>
+      <p>On the left, every bar stays close to the line. They are never exactly equal, because the rolls are random, but the more you roll, the closer they get. On the right, faces 1 and 6 come up only about <strong>half</strong> as often. <code>Math.round</code> gives 1 only for numbers from 0 to 0.5 and 6 only for 4.5 to 5: pieces half as wide as the others.</p>
+
+      <h3>Is it truly random?</h3>
+      <p>Not quite. <code>Math.random()</code> is <strong>pseudo-random</strong>: the browser calculates it with a formula. The numbers look random and are spread evenly, which is perfect for a dice game. For passwords or anything secret you would use <code>crypto.getRandomValues()</code> instead.</p>
+      <div class="callout">
+        <h3>For your README</h3>
+        <p>The PDF asks for "a short note in the README on how the randomness is generated." Write it in your own words using the four steps above: what <code>Math.random()</code> gives, why you multiply by 6, why <code>Math.floor</code> and not <code>Math.round</code>, and why you add 1. Add one sentence saying it is pseudo-random.</p>
+      </div>
+    </section>
+
+    <section id="questions" class="sec">
+      <p class="kicker">Say it out loud first</p>
+      <h2>Question bank</h2>
+      <p>Read the question, answer it out loud as if they asked you, then open the answer. Mark it <strong>I can answer this</strong> only when you could say it without peeking. "Often asked" marks the ones that come up in almost every project interview.</p>
+      <div class="q-tools">
+        <div class="chips" id="catChips"></div>
+        <div class="q-row2">
+          <input type="search" id="qSearch" placeholder="Search questions, e.g. setTimeout" aria-label="Search questions">
+          <select id="qStatus" aria-label="Show questions by status">
+            <option value="all">All questions</option>
+            <option value="todo">Not marked yet</option>
+            <option value="again">Revise again</option>
+            <option value="got">I can answer</option>
+          </select>
+          <span class="q-count" id="qCount"></span>
+        </div>
+      </div>
+      <div class="q-list" id="qList"></div>
+      <p class="q-empty" id="qEmpty" hidden>No questions match. Clear the search or pick another filter.</p>
+    </section>
+
+    <section id="mock" class="sec">
+      <p class="kicker">Practice under a little pressure</p>
+      <h2>Mock interview</h2>
+      <p>One random question at a time, picked from the ones you haven't marked yet. Start the timer, answer out loud, then check. Even better: ask someone to read the question to you.</p>
+      <div class="mock">
+        <div class="mock-top">
+          <span class="tag" id="mockCat"></span>
+          <label class="toggle"><input type="checkbox" id="mockOften"> Only "often asked"</label>
+        </div>
+        <p class="mock-q" id="mockQ"></p>
+        <div class="q-actions">
+          <button type="button" class="btn btn-ghost" id="mockTimer">Start 60 s timer</button>
+          <span class="timer" id="mockTime" hidden>60</span>
+          <button type="button" class="btn" id="mockShow">Show answer</button>
+        </div>
+        <div class="ans" id="mockAns" hidden></div>
+        <div class="q-actions" id="mockMark" hidden style="margin-top:14px">
+          <button type="button" class="btn" id="mockKnew">I knew it</button>
+          <button type="button" class="btn btn-ember" id="mockAgain">I need to revise this</button>
+        </div>
+        <div class="mock-top" style="margin-top:16px; margin-bottom:0">
+          <span class="mock-score" id="mockScore">This round: 0 asked</span>
+          <button type="button" class="btn btn-ghost btn-small" id="mockNext">Skip to next question</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="live" class="sec">
+      <p class="kicker">"Can you change it for us?"</p>
+      <h2>Live changes</h2>
+      <p>Interviewers often ask you to change something small, right there, to check the code is really yours. Practise these in a <strong>copy</strong> of your project folder. Read the task, try it, open the hint only if you're stuck, and open the answer last. Save, refresh the browser, and test after every change.</p>
+      <div id="liveList"></div>
+    </section>
+
+    <section id="github" class="sec">
+      <p class="kicker">The deliverables</p>
+      <h2>GitHub, README and hosting</h2>
+      <p>The PDF makes these compulsory: a <strong>public GitHub repository</strong> with <strong>regular, meaningful commits</strong> (not one big commit at the end), and a <strong>README.md</strong>. A live link is optional but recommended, and it makes a strong first impression.</p>
+
+      <h3>What your README needs</h3>
+      <p>The PDF asks for an overview, features, tech stack, setup steps, screenshots, the live link and the randomness note. Here is an outline. Copy it, then replace every line in brackets with your own words.</p>
+      <div class="readme">
+        <button type="button" class="btn btn-small btn-ember" id="copyReadme">Copy outline</button>
+<pre id="readmeText"># Dice Roll
+
+Live site: (your GitHub Pages link)
+
+## Overview
+(Two or three sentences: what the site does.)
+
+## Features
+- Roll one die or two dice
+- Shake animation before the result
+- Total shown for two dice
+- History of the last 10 rolls
+- Works on phones and laptops
+
+## Tech stack
+HTML, CSS and plain JavaScript. No libraries.
+
+## How to run
+1. Download or clone this repository.
+2. Open index.html in any browser.
+
+## How the randomness works
+(Your own words: Math.random(), times 6, Math.floor, plus 1,
+why every face is equally likely, and that it is pseudo-random.)
+
+## Screenshots
+![Laptop view](screenshots/laptop.png)
+![Phone view](screenshots/phone.png)</pre>
+      </div>
+      <p class="copy-msg" id="copyMsg" aria-live="polite"></p>
+
+      <h3>Commit messages</h3>
+      <p>Commit after each small step, and say what changed. Spread the commits over different days, the way you actually built it.</p>
+      <div class="two">
+        <div class="box">
+          <h4>Good</h4>
+          <ul>
+            <li><code>Add page layout and dice images</code></li>
+            <li><code>Roll one die on button click</code></li>
+            <li><code>Add two dice and show the total</code></li>
+            <li><code>Add shake animation</code></li>
+            <li><code>Keep history of last 10 rolls</code></li>
+            <li><code>Make layout work on phones</code></li>
+            <li><code>Add README with screenshots</code></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h4>Avoid</h4>
+          <ul>
+            <li><code>update</code></li>
+            <li><code>changes</code></li>
+            <li><code>final</code></li>
+            <li><code>final final 2</code></li>
+            <li><code>asdf</code></li>
+          </ul>
+          <p class="small" style="margin-bottom:0">These tell the reader nothing about what changed.</p>
+        </div>
+      </div>
+
+      <h3>Put the site online with GitHub Pages</h3>
+      <ol class="num-steps">
+        <li>Make sure <code>index.html</code> is in the main folder of the repository, not inside another folder.</li>
+        <li>On GitHub, open the repository and click <strong>Settings</strong>.</li>
+        <li>In the left menu, click <strong>Pages</strong>.</li>
+        <li>Under <strong>Build and deployment</strong>, set Source to <strong>Deploy from a branch</strong>.</li>
+        <li>Pick branch <strong>main</strong> and folder <strong>/ (root)</strong>, then click <strong>Save</strong>.</li>
+        <li>Wait a minute or two and refresh. The link appears at the top, like <code>https://your-username.github.io/repo-name/</code>.</li>
+        <li>Open the link on your phone too, and paste it at the top of the README.</li>
+      </ol>
+      <p class="small">GitHub Pages cares about capital letters: <code>Dice1.svg</code> and <code>dice1.svg</code> are different files there, even if they work on your laptop.</p>
+
+      <h3>Git commands to know</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>git status</code></td><td>Shows which files changed since the last commit.</td></tr>
+            <tr><td><code>git add .</code></td><td>Picks all changed files for the next commit.</td></tr>
+            <tr><td><code>git commit -m "Add shake animation"</code></td><td>Saves a snapshot with a message.</td></tr>
+            <tr><td><code>git push</code></td><td>Sends your commits to GitHub.</td></tr>
+            <tr><td><code>git log --oneline</code></td><td>Lists past commits, one per line.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="checklist" class="sec">
+      <p class="kicker">Get ready</p>
+      <h2>Before the interview</h2>
+      <p>Tick these off as you go. Each tick is saved in this browser.</p>
+      <div class="check-groups" id="checkGroups"></div>
+
+      <h3>In the room</h3>
+      <ul class="measure">
+        <li>Show the live site first, then open the code.</li>
+        <li>When asked to change code, say your plan first, then type. Save, refresh, test.</li>
+        <li>Taking a few seconds to think is fine. Say "Let me think for a second."</li>
+        <li>If something breaks during the demo, stay calm: open the Console (<kbd>F12</kbd>), read the error, and talk through it. That shows real skill.</li>
+      </ul>
+
+      <h3>My one-minute intro</h3>
+      <div class="intro-box">
+        <p>Write your intro here in your own words, then say it out loud until it feels natural. A simple shape: who you are, what you built, what it does, how you built it, one thing you learned, one thing you'd add next.</p>
+        <textarea id="introText" placeholder="Hi, I'm Vasavi, a first-year student at IIT Indore. I built a Dice Roll website using HTML, CSS and JavaScript. You can roll one die or two..."></textarea>
+        <p class="saved" id="introSaved" aria-live="polite"></p>
+      </div>
+    </section>
+
+    <section id="words" class="sec">
+      <p class="kicker">Plain meanings</p>
+      <h2>Words to know</h2>
+      <p>Interviewers use these words in their questions. Make sure each one makes sense to you.</p>
+      <div class="words-tools"><input type="search" id="wSearch" placeholder="Find a word, e.g. DOM" aria-label="Find a word"></div>
+      <dl class="words" id="wordList"></dl>
+      <p class="q-empty" id="wEmpty" hidden>No word matches that search.</p>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <p>Made for Vasavi's revision. The code on this page is copied from your real index.html, style.css and script.js. Practice tasks are in practice.md.</p>
+    <div class="reset-confirm">
+      <button type="button" class="btn btn-ghost btn-small" id="resetBtn">Reset my ticks</button>
+      <span id="resetAsk" hidden>Clear every tick and your saved intro?</span>
+      <button type="button" class="btn btn-small btn-ember" id="resetYes" hidden>Yes, clear</button>
+      <button type="button" class="btn btn-ghost btn-small" id="resetNo" hidden>Cancel</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY = "dice-roll-prep-v1";
+  var store = { q: {}, live: {}, check: {}, intro: "" };
+  try {
+    var raw = localStorage.getItem(KEY);
+    if (raw) {
+      var saved = JSON.parse(raw);
+      if (saved && typeof saved === "object") {
+        store.q = saved.q || {};
+        store.live = saved.live || {};
+        store.check = saved.check || {};
+        store.intro = saved.intro || "";
+      }
+    }
+  } catch (e) {}
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(store)); } catch (e) {}
+  }
+
+  function $(id) { return document.getElementById(id); }
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function fmt(n) { return Math.round(n).toLocaleString("en-US"); }
+
+  /* ---------- dice faces ---------- */
+  var PIPS = {
+    1: [[50, 50]],
+    2: [[28, 28], [72, 72]],
+    3: [[28, 28], [50, 50], [72, 72]],
+    4: [[28, 28], [72, 28], [28, 72], [72, 72]],
+    5: [[28, 28], [72, 28], [50, 50], [28, 72], [72, 72]],
+    6: [[28, 28], [72, 28], [28, 50], [72, 50], [28, 72], [72, 72]]
+  };
+  function face(n) {
+    var s = '<svg class="die" viewBox="0 0 100 100" role="img" aria-label="Die showing ' + n + '">' +
+      '<rect class="die-body" x="4" y="4" width="92" height="92" rx="16"/>';
+    PIPS[n].forEach(function (p) { s += '<circle class="die-pip" cx="' + p[0] + '" cy="' + p[1] + '" r="9"/>'; });
+    return s + "</svg>";
+  }
+  function getRandom() { return Math.floor(Math.random() * 6) + 1; }
+
+  /* ---------- syntax colouring ---------- */
+  function wrap(cls, text) { return '<span class="' + cls + '">' + esc(text) + "</span>"; }
+  function hlJs(s) {
+    var re = /(\/\/.*$)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|\b(const|let|var|function|return|if|else|true|false|null)\b|\b(\d+(?:\.\d+)?)\b|([A-Za-z_$][\w$]*)(?=\s*\()/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(s))) {
+      out += esc(s.slice(last, m.index));
+      if (m[1]) out += wrap("t-dim", m[0]);
+      else if (m[2]) out += wrap("t-str", m[0]);
+      else if (m[3]) out += wrap("t-key", m[0]);
+      else if (m[4]) out += wrap("t-num", m[0]);
+      else out += wrap("t-fn", m[0]);
+      last = re.lastIndex;
+    }
+    return out + esc(s.slice(last));
+  }
+  function hlHtml(s) {
+    var re = /(<!DOCTYPE[^>]*>)|(<\/?)([A-Za-z][\w-]*)|([\w-]+)(=)("[^"]*")|(\/?>)/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(s))) {
+      out += esc(s.slice(last, m.index));
+      if (m[1]) out += wrap("t-dim", m[1]);
+      else if (m[2]) out += wrap("t-dim", m[2]) + wrap("t-key", m[3]);
+      else if (m[4]) out += wrap("t-attr", m[4]) + esc(m[5]) + wrap("t-str", m[6]);
+      else out += wrap("t-dim", m[7]);
+      last = re.lastIndex;
+    }
+    return out + esc(s.slice(last));
+  }
+  function hlValue(v) {
+    var re = /(#[0-9a-fA-F]{3,8}\b)|(-?\d*\.?\d+(?:px|s|deg|%|em|rem)?)/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(v))) {
+      out += esc(v.slice(last, m.index));
+      out += wrap(m[1] ? "t-str" : "t-num", m[0]);
+      last = re.lastIndex;
+    }
+    return out + esc(v.slice(last));
+  }
+  function hlDecl(s) {
+    var re = /([\w-]+)(\s*:\s+)([^;{}]*)(;?)|([{}])/g;
+    var out = "", last = 0, m;
+    while ((m = re.exec(s))) {
+      out += esc(s.slice(last, m.index));
+      if (m[1]) out += wrap("t-attr", m[1]) + esc(m[2]) + hlValue(m[3]) + wrap("t-dim", m[4]);
+      else out += wrap("t-dim", m[5]);
+      last = re.lastIndex;
+    }
+    return out + esc(s.slice(last));
+  }
+  function hlCss(line) {
+    var i = line.indexOf("{");
+    if (i < 0) return hlDecl(line);
+    var sel = line.slice(0, i), rest = line.slice(i + 1);
+    var lead = sel.match(/^\s*/)[0], body = sel.slice(lead.length);
+    var selHtml;
+    if (body.charAt(0) === "@") {
+      var sp = body.indexOf(" ");
+      var word = sp < 0 ? body : body.slice(0, sp);
+      selHtml = wrap("t-key", word) + hlDecl(sp < 0 ? "" : body.slice(sp));
+    } else {
+      selHtml = wrap("t-key", body);
+    }
+    return esc(lead) + selHtml + wrap("t-dim", "{") + hlDecl(rest);
+  }
+  function hl(lang, s) {
+    if (lang === "html") return hlHtml(s);
+    if (lang === "css") return hlCss(s);
+    return hlJs(s);
+  }
+  function hlBlock(lang, code) {
+    return code.split("\n").map(function (l) { return hl(lang, l); }).join("\n");
+  }
+
+  /*CODE-START*/
+  var CODE = {
+    html: {
+      sum: "The structure: what is on the page. Two dice pictures, a result line, two buttons and an empty history list. Watch for the ids, because JavaScript uses them to find things.",
+      lines: [
+        ['<!DOCTYPE html>', "Tells the browser this is a modern HTML5 page. It is always the very first line."],
+        ['<html lang="en">', "The root element: everything else sits inside it. <code>lang=\"en\"</code> says the page is in English, which helps screen readers and search engines."],
+        ['<head>', "Start of the head: information <em>about</em> the page. Nothing in here shows up on the page itself."],
+        ['  <meta charset="UTF-8">', "Sets the character encoding to UTF-8, so every character (₹, é, emoji) shows correctly instead of turning into strange symbols."],
+        ['  <meta name="viewport" content="width=device-width, initial-scale=1.0">', "Makes phones use their real screen width and start at normal zoom. Without it, a phone pretends to be about 980px wide and shrinks everything, and your <code>@media</code> rule would never switch on. This line is step one of responsive design."],
+        ['  <title>Dice Roll</title>', "The text on the browser tab, also used as the name when someone bookmarks the page."],
+        ['  <link rel="stylesheet" href="style.css">', "Connects style.css to this page. <code>rel=\"stylesheet\"</code> says what kind of file it is, and <code>href</code> says where to find it."],
+        ['</head>', "End of the head."],
+        ['<body>', "Start of the body: everything the user can see goes in here."],
+        ['  <div class="container">', "A box around all the content. It has a <em>class</em> so CSS can style it with <code>.container</code>: white, rounded corners, centered, at most 500px wide."],
+        ['    <h1>Dice Roll</h1>', "The main heading of the page. A page should have only one <code>h1</code>."],
+        ['', ""],
+        ['    <div class="dice">', "A box that holds both dice. CSS uses it in <code>.dice img</code>, so the size rule only affects these two images."],
+        ['      <img id="dice1" src="images/dice1.svg" alt="Dice">', "The first die. <code>id=\"dice1\"</code> lets JavaScript find it. <code>src</code> is the picture to show, starting on face 1. <code>alt</code> is a text description: screen readers read it out, and it shows if the image fails to load."],
+        ['      <img id="dice2" src="images/dice1.svg" alt="Dice">', "The second die, the same as the first. JavaScript hides it when you roll only one die."],
+        ['    </div>', "Closes the dice box."],
+        ['', ""],
+        ['    <p id="result">Roll the dice!</p>', "The line where the result appears. It starts as \"Roll the dice!\", and JavaScript replaces the text after every roll."],
+        ['', ""],
+        ['    <button id="btn1">Roll 1 Die</button>', "The button for one die. JavaScript listens for clicks on the element with <code>id=\"btn1\"</code>."],
+        ['    <button id="btn2">Roll 2 Dice</button>', "The button for two dice."],
+        ['', ""],
+        ['    <h2>History</h2>', "A smaller heading for the history part."],
+        ['    <ul id="history"></ul>', "An unordered (bulleted) list that starts <strong>empty</strong>. JavaScript adds an <code>&lt;li&gt;</code> to it after each roll."],
+        ['  </div>', "Closes the container box."],
+        ['', ""],
+        ['  <script src="script.js"><\/script>', "Loads script.js. It sits at the <strong>end</strong> of the body on purpose: the browser reads HTML from top to bottom, so when the script runs, every element above already exists and <code>getElementById</code> can find it."],
+        ['</body>', "End of the visible part."],
+        ['</html>', "End of the page."]
+      ]
+    },
+    css: {
+      sum: "The looks: colours, sizes, centering, the shake animation and the phone rule. Nothing here moves on its own. The .shake rule only does something when JavaScript adds that class.",
+      lines: [
+        ['body {', "<code>body</code> is an <em>element selector</em>. These rules style the whole page."],
+        ['  font-family: Arial, sans-serif;', "Use Arial. If the computer doesn't have Arial, use any sans-serif font instead. The second one is a backup."],
+        ['  background-color: #eef2f7;', "A light grey-blue page background. <code>#eef2f7</code> is a hex colour: ee red, f2 green, f7 blue."],
+        ['  text-align: center;', "Centers the text. It also centers the images and buttons, because they sit in a line just like words do."],
+        ['  margin: 0;', "Browsers put about 8px of margin around the body by default. This removes it."],
+        ['  padding: 20px;', "20px of space inside the page edges, so the white box never touches the edge of the screen."],
+        ['}', ""],
+        ['', ""],
+        ['.container {', "The dot means <em>class selector</em>. This styles <code>&lt;div class=\"container\"&gt;</code>."],
+        ['  max-width: 500px;', "The box is never wider than 500px, but it can shrink on a small phone. <code>width: 500px</code> would not shrink, and the page would scroll sideways."],
+        ['  margin: 0 auto;', "0 on top and bottom, <code>auto</code> on left and right. The browser splits the leftover space equally on both sides, which centers the box."],
+        ['  padding: 20px;', "Space inside the white box, between its edge and the content."],
+        ['  background-color: white;', "Makes the box white so it stands out from the grey-blue page."],
+        ['  border-radius: 10px;', "Rounds the corners by 10px."],
+        ['}', ""],
+        ['', ""],
+        ['.dice img {', "A <em>descendant selector</em>: every <code>img</code> inside the <code>.dice</code> box. Images anywhere else are not affected."],
+        ['  width: 120px;', "Each die is 120px wide. The height follows automatically, so it stays square."],
+        ['  margin: 10px;', "Space around each die so they don't touch."],
+        ['}', ""],
+        ['', ""],
+        ['#result {', "The # means <em>id selector</em>. This styles the element with <code>id=\"result\"</code>."],
+        ['  font-size: 24px;', "Bigger text, so the result is easy to see."],
+        ['  font-weight: bold;', "Bold text."],
+        ['}', ""],
+        ['', ""],
+        ['button {', "Styles every <code>&lt;button&gt;</code> on the page, so both buttons look the same."],
+        ['  padding: 10px 20px;', "Two values: 10px top and bottom, 20px left and right. Makes the button bigger and easier to click."],
+        ['  margin: 5px;', "A little space between the two buttons."],
+        ['  font-size: 16px;', "The button text size. Buttons don't take the page's font size by default, so we set it."],
+        ['  color: white;', "<code>color</code> is the <em>text</em> colour. White text."],
+        ['  background-color: #2c3e50;', "A dark blue background for the button."],
+        ['  border: none;', "Removes the grey border browsers put on buttons by default."],
+        ['  border-radius: 5px;', "Slightly rounded corners."],
+        ['  cursor: pointer;', "The mouse turns into a hand over the button, which tells the user it can be clicked."],
+        ['}', ""],
+        ['', ""],
+        ['button:hover {', "<code>:hover</code> is a <em>pseudo-class</em>. This rule applies only while the mouse is over the button."],
+        ['  background-color: #4a6584;', "A lighter blue on hover, so the button reacts when you point at it."],
+        ['}', ""],
+        ['', ""],
+        ['#history {', "Styles the history list, the element with <code>id=\"history\"</code>."],
+        ['  list-style: none;', "Removes the bullet points."],
+        ['  padding: 0;', "Lists have padding on the left to make room for bullets. With no bullets we don't need it."],
+        ['}', ""],
+        ['', ""],
+        ['#history li {', "Every list item inside the history list."],
+        ['  padding: 6px;', "Space inside each row."],
+        ['  border-bottom: 1px solid #ddd;', "A thin light-grey line under each row: 1px thick, solid, colour #ddd."],
+        ['}', ""],
+        ['', ""],
+        ['.shake {', "A class that is <strong>not</strong> in the HTML. JavaScript adds it to the dice when you click, and removes it 0.5 s later."],
+        ['  animation: shake 0.5s;', "Play the animation named <code>shake</code> (defined just below) once, over 0.5 seconds. This 0.5 s matches the <code>500</code> in setTimeout in script.js."],
+        ['}', ""],
+        ['', ""],
+        ['@keyframes shake {', "Defines the animation named <code>shake</code>: how the element looks at each moment from start (0%) to end (100%)."],
+        ['  0% { transform: rotate(0deg); }', "At the start, the die is straight."],
+        ['  25% { transform: rotate(20deg); }', "A quarter of the way through, it is turned 20° clockwise."],
+        ['  50% { transform: rotate(-20deg); }', "Halfway, it is turned 20° the other way."],
+        ['  75% { transform: rotate(20deg); }', "Back to 20° clockwise."],
+        ['  100% { transform: rotate(0deg); }', "At the end, straight again. Going back and forth like this looks like a shake."],
+        ['}', ""],
+        ['', ""],
+        ['@media (max-width: 500px) {', "A <em>media query</em>. The rules inside only apply when the screen is 500px wide or less, which means phones."],
+        ['  .dice img {', "On phones, pick the dice images again…"],
+        ['    width: 90px;', "…and make them 90px instead of 120px, so two dice still fit side by side on a narrow screen."],
+        ['  }', ""],
+        ['}', ""]
+      ]
+    },
+    js: {
+      sum: "The behaviour: find the elements, wait for clicks, shake the dice, pick random numbers, show the faces and the total, and update the history.",
+      lines: [
+        ['const dice1 = document.getElementById("dice1");', "Finds the image with <code>id=\"dice1\"</code> and keeps it in a variable called <code>dice1</code>, so the code can change that image later. <code>const</code> because this variable always points to the same image."],
+        ['const dice2 = document.getElementById("dice2");', "The same for the second die."],
+        ['const result = document.getElementById("result");', "The paragraph where the result text goes."],
+        ['const list = document.getElementById("history");', "The empty history list. The variable is called <code>list</code> but the id is <code>history</code>: the variable name is our choice and doesn't have to match the id."],
+        ['const btn1 = document.getElementById("btn1");', "The Roll 1 Die button."],
+        ['const btn2 = document.getElementById("btn2");', "The Roll 2 Dice button."],
+        ['', ""],
+        ['function getRandom() {', "Defines a function called <code>getRandom</code>. Writing it once means every die can use it, instead of repeating the maths."],
+        ['  return Math.floor(Math.random() * 6) + 1;', "The heart of the project. <code>Math.random()</code> gives a decimal from 0 up to (not including) 1. Times 6 gives 0 up to 5.999…. <code>Math.floor</code> cuts off the decimal part, giving 0 to 5. Plus 1 gives 1 to 6. <code>return</code> sends that number back to whoever called the function. The Randomness section shows this step by step."],
+        ['}', ""],
+        ['', ""],
+        ['function addHistory(text) {', "Defines <code>addHistory</code>. <code>text</code> is a <em>parameter</em>: the text to add, handed in by whoever calls it, for example <code>addHistory(\"4 + 3 = 7\")</code>."],
+        ['  const item = document.createElement("li");', "Creates a brand-new <code>&lt;li&gt;</code> element. It only exists in memory for now. It is not on the page yet."],
+        ['  item.textContent = text;', "Puts the text inside the new list item."],
+        ['  list.prepend(item);', "Adds the item at the <strong>start</strong> of the list, so the newest roll is always on top. (<code>append</code> would add it at the bottom.) Now it appears on the page."],
+        ['', ""],
+        ['  if (list.children.length > 10) {', "<code>list.children</code> is all the <code>&lt;li&gt;</code> items inside the list, and <code>.length</code> is how many there are. Are there more than 10?"],
+        ['    list.lastElementChild.remove();', "If yes, remove the last item. The last one is the oldest, because new ones go on top. So the list never grows past 10."],
+        ['  }', ""],
+        ['}', ""],
+        ['', ""],
+        ['function roll(count) {', "Defines <code>roll</code>. The parameter <code>count</code> is how many dice to roll: 1 or 2. One function serves both buttons."],
+        ['  if (count === 1) {', "<code>===</code> checks if two values are exactly equal: same value and same type. Is this a one-die roll?"],
+        ['    dice2.style.display = "none";', "Hides the second die. <code>display: none</code> removes it from the page completely, so it takes no space."],
+        ['  } else {', "Otherwise (count is 2)…"],
+        ['    dice2.style.display = "inline";', "…show the second die again. Images are <code>inline</code> by default, so setting it back to inline makes it appear, even if the last roll hid it."],
+        ['  }', ""],
+        ['', ""],
+        ['  dice1.classList.add("shake");', "Adds the class <code>shake</code> to the first die. The CSS rule <code>.shake</code> now applies, so the animation starts."],
+        ['  dice2.classList.add("shake");', "The same for the second die. (For a one-die roll, dice2 gets the class too, but it is hidden, so you don't see it.)"],
+        ['  result.textContent = "Rolling...";', "Shows \"Rolling...\" while the dice shake."],
+        ['', ""],
+        ['  setTimeout(function () {', "<code>setTimeout</code> runs a function <strong>later</strong>. We give it a function with no name (an <em>anonymous function</em>) and a delay, which is the 500 on line 49. The code inside does not run now. It runs after 500 milliseconds."],
+        ['    dice1.classList.remove("shake");', "After 0.5 s, remove the shake class. If we didn't, the next click's <code>classList.add</code> would do nothing (the class would already be there), and the dice would not shake again."],
+        ['    dice2.classList.remove("shake");', "The same for the second die."],
+        ['', ""],
+        ['    const a = getRandom();', "Gets a random number from 1 to 6 for the first die and stores it in <code>a</code>."],
+        ['    dice1.src = "images/dice" + a + ".svg";', "Builds the image file name by joining text and the number. If a is 4: <code>\"images/dice\" + 4 + \".svg\"</code> gives <code>\"images/dice4.svg\"</code>. Changing <code>src</code> makes the browser show that picture."],
+        ['    let text = a;', "Stores the result text. It is <code>let</code>, not <code>const</code>, because for two dice we change it on line 44."],
+        ['', ""],
+        ['    if (count === 2) {', "Only for a two-dice roll:"],
+        ['      const b = getRandom();', "A second random number for the second die, stored in <code>b</code>."],
+        ['      dice2.src = "images/dice" + b + ".svg";', "Shows the matching picture on the second die."],
+        ['      text = a + " + " + b + " = " + (a + b);', "Builds text like <code>4 + 3 = 7</code>. The brackets around <code>(a + b)</code> make the numbers add first. Without them, JavaScript joins from left to right: \"4 + 3 = \" + 4 gives \"4 + 3 = 4\", then + 3 gives \"4 + 3 = 43\"."],
+        ['    }', ""],
+        ['', ""],
+        ['    result.textContent = text;', "Shows the result on the page: just the number for one die, or the sum for two."],
+        ['    addHistory(text);', "Calls addHistory with the same text, so it is added to the top of the history list."],
+        ['  }, 500);', "Closes the function we gave to setTimeout, then gives the delay: 500 milliseconds, which is 0.5 seconds. It matches the 0.5 s CSS animation, so the result appears exactly when the shaking stops."],
+        ['}', ""],
+        ['', ""],
+        ['btn1.addEventListener("click", function () {', "<code>addEventListener</code> tells btn1: \"when you are clicked, run this function.\" The function is written right here, without a name."],
+        ['  roll(1);', "On click, roll one die."],
+        ['});', "Closes the function and the addEventListener call."],
+        ['', ""],
+        ['btn2.addEventListener("click", function () {', "The same for btn2…"],
+        ['  roll(2);', "…but it rolls two dice."],
+        ['});', ""]
+      ]
+    }
+  };
+  /*CODE-END*/
+
+  /* ---------- hero mini roller ---------- */
+  var miniA = $("miniA"), miniB = $("miniB"), miniResult = $("miniResult"), miniBtn = $("miniRoll");
+  miniA.innerHTML = face(3);
+  miniB.innerHTML = face(5);
+  miniBtn.addEventListener("click", function () {
+    miniA.classList.add("shake");
+    miniB.classList.add("shake");
+    miniResult.textContent = "Rolling...";
+    miniBtn.disabled = true;
+    setTimeout(function () {
+      miniA.classList.remove("shake");
+      miniB.classList.remove("shake");
+      var a = getRandom(), b = getRandom();
+      miniA.innerHTML = face(a);
+      miniB.innerHTML = face(b);
+      miniResult.textContent = a + " + " + b + " = " + (a + b);
+      miniBtn.disabled = false;
+    }, 500);
+  });
+
+  /* ---------- code viewer ---------- */
+  var codeView = $("codeView"), fileSum = $("fileSum"), openCount = $("openCount");
+  var currentFile = "html";
+  function renderCode(key) {
+    currentFile = key;
+    var f = CODE[key];
+    fileSum.textContent = f.sum;
+    var html = "";
+    f.lines.forEach(function (pair, i) {
+      var n = i + 1, code = hl(key, pair[0]) || " ";
+      if (!pair[1]) {
+        html += '<div class="ln"><span class="ln-num">' + n + '</span><span class="ln-code">' + code + "</span></div>";
+      } else {
+        var id = "note-" + key + "-" + n;
+        html += '<button type="button" class="ln-tap" aria-expanded="false" aria-controls="' + id + '"><span class="ln-num">' + n +
+          '</span><span class="ln-code">' + code + '</span></button><div class="note" id="' + id + '" hidden>' + pair[1] + "</div>";
+      }
+    });
+    codeView.innerHTML = html;
+    updateOpenCount();
+    Array.prototype.forEach.call(document.querySelectorAll("#fileTabs button"), function (b) {
+      b.setAttribute("aria-pressed", b.getAttribute("data-file") === key ? "true" : "false");
+    });
+  }
+  function updateOpenCount() {
+    var all = codeView.querySelectorAll(".ln-tap").length;
+    var open = codeView.querySelectorAll('.ln-tap[aria-expanded="true"]').length;
+    openCount.textContent = open + " of " + all + " notes open";
+  }
+  function setLine(btn, open) {
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+    $(btn.getAttribute("aria-controls")).hidden = !open;
+  }
+  codeView.addEventListener("click", function (e) {
+    var btn = e.target.closest(".ln-tap");
+    if (!btn) return;
+    setLine(btn, btn.getAttribute("aria-expanded") !== "true");
+    updateOpenCount();
+  });
+  $("fileTabs").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (b) renderCode(b.getAttribute("data-file"));
+  });
+  $("openAll").addEventListener("click", function () {
+    Array.prototype.forEach.call(codeView.querySelectorAll(".ln-tap"), function (b) { setLine(b, true); });
+    updateOpenCount();
+  });
+  $("closeAll").addEventListener("click", function () {
+    Array.prototype.forEach.call(codeView.querySelectorAll(".ln-tap"), function (b) { setLine(b, false); });
+    updateOpenCount();
+  });
+  renderCode("html");
+
+  /* ---------- trace ---------- */
+  var START = { d1: 1, d2: 1, show2: true, shake: false, result: "Roll the dice!", hist: [] };
+  function st(changes) {
+    var o = {};
+    for (var k in START) o[k] = START[k];
+    for (var c in changes) o[c] = changes[c];
+    return o;
+  }
+  var STEPS = [
+    { lines: [56], title: 'You click "Roll 2 Dice"', text: "The browser notices a click on btn2. When the page loaded, line 56 told it: \"when btn2 is clicked, run this function.\" So it runs that function now.", vars: {}, page: st({}) },
+    { lines: [57], title: "roll(2) is called", text: "The function inside the listener has one job: call <code>roll</code> and hand it the number 2.", vars: {}, page: st({}) },
+    { lines: [22], title: "roll starts with count = 2", text: "The 2 is stored in the parameter <code>count</code>. For this click, <code>count</code> means 2 everywhere inside roll.", vars: { count: "2" }, page: st({}) },
+    { lines: [23], title: "Is count equal to 1?", text: "<code>2 === 1</code> is false, so line 24 is skipped and the browser goes to the <code>else</code> part.", vars: { count: "2" }, page: st({}) },
+    { lines: [25, 26], title: "Show the second die", text: "<code>display = \"inline\"</code> makes dice2 visible. If the last roll was a one-die roll, this brings it back.", vars: { count: "2" }, page: st({}) },
+    { lines: [29, 30], title: "Start shaking", text: "Adding the class <code>shake</code> switches on the CSS rule <code>.shake</code>, which plays the shake animation for 0.5 s.", vars: { count: "2" }, page: st({ shake: true }) },
+    { lines: [31], title: 'Show "Rolling..."', text: "The result line changes while the dice shake.", vars: { count: "2" }, page: st({ shake: true, result: "Rolling..." }) },
+    { lines: [33, 49], title: "Set a timer for 500 ms", text: "<code>setTimeout</code> does not run the function now. It hands it to the browser and says \"run this after 500 milliseconds\". <code>roll</code> ends here, and for half a second the dice just shake.", vars: { count: "2" }, page: st({ shake: true, result: "Rolling..." }) },
+    { lines: [34, 35], title: "500 ms later: stop shaking", text: "The timer fires and the function finally runs. Removing the class now means the next click can add it again, which replays the animation.", vars: { count: "2" }, page: st({ result: "Rolling..." }) },
+    { lines: [37, 38], title: "First die: a = 4", text: "<code>getRandom()</code> gives a number from 1 to 6. Pretend it gave 4. Then <code>\"images/dice\" + 4 + \".svg\"</code> builds <code>\"images/dice4.svg\"</code>, and setting <code>src</code> swaps the picture.", vars: { count: "2", a: "4" }, page: st({ d1: 4, result: "Rolling..." }) },
+    { lines: [39], title: "text = 4", text: "<code>let text = a;</code> stores 4 for now. It is <code>let</code> because it may change on line 44.", vars: { count: "2", a: "4", text: "4" }, page: st({ d1: 4, result: "Rolling..." }) },
+    { lines: [41], title: "Is count equal to 2?", text: "Yes, <code>2 === 2</code> is true, so we go inside the block.", vars: { count: "2", a: "4", text: "4" }, page: st({ d1: 4, result: "Rolling..." }) },
+    { lines: [42, 43], title: "Second die: b = 3", text: "Another random number. Pretend it gave 3, so dice2 now shows <code>images/dice3.svg</code>.", vars: { count: "2", a: "4", b: "3", text: "4" }, page: st({ d1: 4, d2: 3, result: "Rolling..." }) },
+    { lines: [44], title: "Build the full text", text: "<code>\"4 + 3 = \"</code> is joined with <code>(4 + 3)</code>. The brackets add first, giving 7. Without them you would get \"4 + 3 = 43\".", vars: { count: "2", a: "4", b: "3", text: '"4 + 3 = 7"' }, page: st({ d1: 4, d2: 3, result: "Rolling..." }) },
+    { lines: [47], title: "Show the result", text: "The result line now says 4 + 3 = 7.", vars: { count: "2", a: "4", b: "3", text: '"4 + 3 = 7"' }, page: st({ d1: 4, d2: 3, result: "4 + 3 = 7" }) },
+    { lines: [48], title: "Call addHistory(text)", text: "The code jumps up to the <code>addHistory</code> function on line 12, with <code>text</code> = \"4 + 3 = 7\".", vars: { count: "2", a: "4", b: "3", text: '"4 + 3 = 7"' }, page: st({ d1: 4, d2: 3, result: "4 + 3 = 7" }) },
+    { lines: [13, 14, 15], title: "Add a row at the top", text: "<code>createElement</code> makes a new <code>&lt;li&gt;</code> that is not on the page yet. <code>textContent</code> puts the text in it. <code>prepend</code> puts it at the start of the list, so the newest roll is on top.", vars: { count: "2", a: "4", b: "3", text: '"4 + 3 = 7"', items: "1" }, page: st({ d1: 4, d2: 3, result: "4 + 3 = 7", hist: ["4 + 3 = 7"] }) },
+    { lines: [17], title: "More than 10 rows?", text: "<code>list.children.length</code> is 1, and 1 &gt; 10 is false, so nothing is removed. The click is fully handled. Now try telling this whole story out loud.", vars: { count: "2", a: "4", b: "3", text: '"4 + 3 = 7"', items: "1" }, page: st({ d1: 4, d2: 3, result: "4 + 3 = 7", hist: ["4 + 3 = 7"] }) }
+  ];
+  var VAR_ROWS = [["count", "count"], ["a", "a"], ["b", "b"], ["text", "text"], ["items", "list.children.length"]];
+  var traceCode = $("traceCode"), step = 0;
+  (function () {
+    var html = "";
+    CODE.js.lines.forEach(function (pair, i) {
+      html += '<div class="ln" data-line="' + (i + 1) + '"><span class="ln-num">' + (i + 1) + '</span><span class="ln-code">' + (hlJs(pair[0]) || " ") + "</span></div>";
+    });
+    traceCode.innerHTML = html;
+  })();
+  function renderStep() {
+    var s = STEPS[step], prev = STEPS[step - 1];
+    $("traceCount").textContent = "Step " + (step + 1) + " of " + STEPS.length;
+    $("traceTitle").textContent = s.title;
+    $("traceText").innerHTML = s.text;
+    var first = null;
+    Array.prototype.forEach.call(traceCode.querySelectorAll(".ln"), function (el) {
+      var on = s.lines.indexOf(+el.getAttribute("data-line")) >= 0;
+      el.classList.toggle("hl", on);
+      if (on && !first) first = el;
+    });
+    if (first) {
+      var target = first.offsetTop - traceCode.clientHeight / 3;
+      traceCode.scrollTo({ top: Math.max(0, target), behavior: "smooth" });
+    }
+    var p = s.page;
+    $("tpD1").innerHTML = face(p.d1);
+    $("tpD2").innerHTML = face(p.d2);
+    $("tpD2").hidden = !p.show2;
+    $("tpD1").classList.toggle("shaking", p.shake);
+    $("tpD2").classList.toggle("shaking", p.shake);
+    $("tpResult").textContent = p.result;
+    $("tpHist").innerHTML = p.hist.length ? p.hist.map(function (h) { return "<li>" + esc(h) + "</li>"; }).join("") : '<li class="tp-empty">History is empty</li>';
+    $("traceVars").innerHTML = VAR_ROWS.map(function (r) {
+      var v = s.vars[r[0]];
+      var changed = prev && v !== undefined && prev.vars[r[0]] !== v;
+      return "<tr" + (changed ? ' class="changed"' : "") + "><td>" + r[1] + "</td><td>" + (v === undefined ? '<span class="none">not made yet</span>' : esc(v)) + "</td></tr>";
+    }).join("");
+    $("tPrev").disabled = step === 0;
+    $("tNext").disabled = step === STEPS.length - 1;
+  }
+  $("tPrev").addEventListener("click", function () { if (step > 0) { step--; renderStep(); } });
+  $("tNext").addEventListener("click", function () { if (step < STEPS.length - 1) { step++; renderStep(); } });
+  $("tReset").addEventListener("click", function () { step = 0; renderStep(); });
+  document.querySelector(".trace-nav").addEventListener("keydown", function (e) {
+    if (e.key === "ArrowRight" && step < STEPS.length - 1) { step++; renderStep(); e.preventDefault(); }
+    if (e.key === "ArrowLeft" && step > 0) { step--; renderStep(); e.preventDefault(); }
+  });
+  renderStep();
+
+  /* ---------- randomness: number machine ---------- */
+  $("oneLine").innerHTML = hlJs("return Math.floor(Math.random() * 6) + 1;");
+  function runMachine() {
+    var r = Math.random(), x6 = r * 6, fl = Math.floor(x6);
+    $("mv1").textContent = r.toFixed(4);
+    $("mv2").textContent = x6.toFixed(4);
+    $("mv3").textContent = fl;
+    $("mv4").textContent = fl + 1;
+    $("marker").style.left = (x6 / 6 * 100) + "%";
+    Array.prototype.forEach.call($("strip").children, function (c, i) { c.classList.toggle("on", i === fl); });
+  }
+  $("machineBtn").addEventListener("click", runMachine);
+  runMachine();
+
+  /* ---------- randomness: fairness charts ---------- */
+  function niceStep(v) {
+    var mag = Math.pow(10, Math.floor(Math.log10(v)));
+    var opts = [1, 2, 2.5, 5, 10];
+    for (var i = 0; i < opts.length; i++) if (opts[i] * mag >= v) return opts[i] * mag;
+    return 10 * mag;
+  }
+  function compact(v) {
+    if (v >= 1000) return (v / 1000).toFixed(v % 1000 === 0 ? 0 : 1) + "K";
+    return String(v);
+  }
+  function barPath(x, yTop, w, y0) {
+    var h = y0 - yTop;
+    if (h <= 0) return "";
+    var r = Math.min(4, h, w / 2);
+    return "M" + x + "," + y0 + "V" + (yTop + r) + "Q" + x + "," + yTop + " " + (x + r) + "," + yTop +
+      "H" + (x + w - r) + "Q" + (x + w) + "," + yTop + " " + (x + w) + "," + (yTop + r) + "V" + y0 + "Z";
+  }
+  var W = 320, H = 196, PL = 38, PR = 8, PT = 10, PB = 26;
+  function drawChart(fig, counts, total, top, step) {
+    var svg = fig.querySelector("svg");
+    var exp = total / 6;
+    var y = function (v) { return PT + (H - PT - PB) * (1 - v / top); };
+    var band = (W - PL - PR) / 6, bw = 22, y0 = y(0);
+    var s = "";
+    for (var t = 0; t <= top + 0.0001; t += step) {
+      s += '<line class="grid" x1="' + PL + '" x2="' + (W - PR) + '" y1="' + y(t) + '" y2="' + y(t) + '"/>';
+      s += '<text x="' + (PL - 6) + '" y="' + (y(t) + 4) + '" text-anchor="end">' + compact(t) + "</text>";
+    }
+    counts.forEach(function (c, i) {
+      var x = PL + band * i + (band - bw) / 2;
+      s += '<path class="bar" data-i="' + i + '" d="' + barPath(x, y(c), bw, y0) + '"/>';
+      s += '<text class="face-label" x="' + (PL + band * i + band / 2) + '" y="' + (H - 8) + '" text-anchor="middle">' + (i + 1) + "</text>";
+    });
+    s += '<line class="exp" x1="' + PL + '" x2="' + (W - PR) + '" y1="' + y(exp) + '" y2="' + y(exp) + '"/>';
+    counts.forEach(function (c, i) {
+      s += '<rect class="hit" tabindex="0" data-i="' + i + '" x="' + (PL + band * i) + '" y="' + PT + '" width="' + band + '" height="' + (H - PT - PB) +
+        '" aria-label="Face ' + (i + 1) + ": " + fmt(c) + ' rolls"/>';
+    });
+    svg.innerHTML = s;
+    fig.querySelector(".key-text").textContent = "fair share: " + fmt(exp) + " per face";
+    var head = "<tr><th>Face</th>", row = "<tr><td>Rolls</td>";
+    counts.forEach(function (c, i) { head += "<th>" + (i + 1) + "</th>"; row += "<td>" + fmt(c) + "</td>"; });
+    fig.querySelector(".ctable").innerHTML = "<thead>" + head + "</tr></thead><tbody>" + row + "</tr></tbody>";
+    fig._counts = counts;
+    fig._total = total;
+  }
+  function wireTips(fig) {
+    var tip = fig.querySelector(".tip");
+    function show(hit) {
+      var i = +hit.getAttribute("data-i");
+      var bar = fig.querySelector('.bar[data-i="' + i + '"]');
+      Array.prototype.forEach.call(fig.querySelectorAll(".bar"), function (b) { b.classList.toggle("on", b === bar); });
+      var c = fig._counts[i];
+      tip.innerHTML = "<strong>Face " + (i + 1) + "</strong>: " + fmt(c) + " rolls (" + (c / fig._total * 100).toFixed(1) + "%)";
+      tip.hidden = false;
+      var fr = fig.getBoundingClientRect(), hr = hit.getBoundingClientRect();
+      var br = bar && bar.getBoundingClientRect().height ? bar.getBoundingClientRect() : hr;
+      var half = tip.offsetWidth / 2;
+      var left = hr.left + hr.width / 2 - fr.left;
+      left = Math.max(half + 4, Math.min(fr.width - half - 4, left));
+      tip.style.left = left + "px";
+      tip.style.top = (br.top - fr.top - 8) + "px";
+    }
+    function hide() {
+      tip.hidden = true;
+      Array.prototype.forEach.call(fig.querySelectorAll(".bar"), function (b) { b.classList.remove("on"); });
+    }
+    fig.addEventListener("pointerover", function (e) { var h = e.target.closest(".hit"); if (h) show(h); });
+    fig.addEventListener("pointerout", function (e) { if (e.target.closest(".hit")) hide(); });
+    fig.addEventListener("focusin", function (e) { var h = e.target.closest(".hit"); if (h) show(h); });
+    fig.addEventListener("focusout", hide);
+  }
+  var figGood = $("chartGood"), figBad = $("chartBad");
+  wireTips(figGood);
+  wireTips(figBad);
+  function runTest(n) {
+    var good = [0, 0, 0, 0, 0, 0], bad = [0, 0, 0, 0, 0, 0];
+    for (var i = 0; i < n; i++) {
+      good[Math.floor(Math.random() * 6)]++;
+      bad[Math.round(Math.random() * 5)]++;
+    }
+    var maxV = Math.max(Math.max.apply(null, good), Math.max.apply(null, bad), n / 6) * 1.08;
+    var step = niceStep(maxV / 4);
+    var top = Math.ceil(maxV / step) * step;
+    drawChart(figGood, good, n, top, step);
+    drawChart(figBad, bad, n, top, step);
+    Array.prototype.forEach.call(document.querySelectorAll(".test-controls button"), function (b) {
+      b.classList.toggle("btn-ghost", +b.getAttribute("data-n") !== n);
+    });
+  }
+  document.querySelector(".test-controls").addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (b) runTest(+b.getAttribute("data-n"));
+  });
+  runTest(6000);
+
+  /* ---------- questions ---------- */
+  var CATS = { project: "Your project", html: "HTML", css: "CSS", js: "JavaScript", random: "Randomness", git: "Git & GitHub", debug: "Bugs & what-ifs", you: "About you" };
+  var QUESTIONS = [
+    { id: "p1", cat: "project", often: true, q: "Tell us about your project in one minute.",
+      a: "<p>Cover four things: what it is, what it does, how you built it, and what you'd add next. Keep it short. They will ask follow-up questions.</p>",
+      say: "I built a Dice Roll website with HTML, CSS and JavaScript. You can roll one die or two. When you click, the dice shake for half a second and then show a random face, and with two dice it also shows the total. The last 10 rolls stay in a history list, and the layout works on phones too. Next I'd like to add a statistics panel." },
+    { id: "p2", cat: "project", often: true, q: "What happens, step by step, when I click Roll 2 Dice?",
+      a: "<ol><li>The click listener on btn2 runs and calls <code>roll(2)</code>.</li><li>Since count is not 1, the second die is shown.</li><li>Both dice get the <code>shake</code> class, so the CSS animation plays, and the result says \"Rolling...\".</li><li><code>setTimeout</code> waits 500 ms.</li><li>Then the shake class is removed, two random numbers are made, the two images change, and the text becomes something like \"4 + 3 = 7\".</li><li>The text is shown and added to the top of the history. If there are more than 10 rows, the oldest is removed.</li></ol><p>Practise with the <a href=\"#trace\">Trace</a> section until you can say this without looking.</p>" },
+    { id: "p3", cat: "project", often: false, q: "Why did you use three separate files instead of putting everything in one?",
+      a: "<p>Each file has one job: HTML is the structure, CSS is the look, JavaScript is the behaviour. That makes the code easier to read, to find things in, and to change. The PDF even lists \"clean separation of HTML, CSS and JS\" as something they check.</p>" },
+    { id: "p4", cat: "project", often: false, q: "Why did you use SVG images for the dice faces?",
+      a: "<p>The PDF asks for the face to be shown as a picture, not only as a number. SVG pictures are made of shapes written as text, so they stay sharp at any size and the files are tiny. Naming them <code>dice1.svg</code> to <code>dice6.svg</code> lets JavaScript build the file name straight from the number.</p>" },
+    { id: "p5", cat: "project", often: false, q: "Which requirements from the problem statement does your project meet?",
+      a: "<p>All six core ones:</p><ul><li>Roll a die from 1 to 6 with a button: <code>getRandom</code> and the click listeners.</li><li>Show the face as a picture that updates: changing <code>src</code>.</li><li>An animation before the result: the <code>shake</code> class and setTimeout.</li><li>Two dice with a total: <code>roll(2)</code> and <code>(a + b)</code>.</li><li>A history of recent rolls: <code>addHistory</code>, last 10.</li><li>Works on mobile and desktop: viewport tag, max-width and the media query.</li></ul>" },
+    { id: "p6", cat: "project", often: false, q: "Which part was hardest, and how did you solve it?",
+      a: "<p>This one needs <strong>your own</strong> story. Tell it in three parts: the problem, what you tried, what worked. Two ideas from this project:</p><ul><li>The dice shook only on the first click, until the class was removed after each roll.</li><li>Two dice showed \"4 + 3 = 43\" until brackets were added around <code>(a + b)</code>.</li></ul>" },
+    { id: "p7", cat: "project", often: true, q: "What would you add if you had one more week?",
+      a: "<p>Pick one or two stretch goals from the PDF and say how you would start each one:</p><ul><li><strong>Statistics panel:</strong> an array of 6 counters, add 1 to the right one after every roll, show them as bars.</li><li><strong>History after refresh:</strong> save the rolls in localStorage and load them when the page opens.</li><li><strong>Choose 1 to 6 dice:</strong> a dropdown, and a loop that rolls that many.</li><li><strong>Sound with a mute button.</strong></li></ul><p>Showing that you know where to start is better than promising everything.</p>" },
+
+    { id: "h1", cat: "html", often: true, q: "Why is the <script> tag at the end of the body?",
+      a: "<p>The browser reads HTML from top to bottom. If the script ran in the <code>&lt;head&gt;</code>, <code>getElementById(\"dice1\")</code> would run before the image exists, get back <code>null</code>, and the code would break. At the end of the body, every element already exists.</p><p>Another way: put it in the head with the <code>defer</code> attribute, which waits for the HTML to finish loading.</p>" },
+    { id: "h2", cat: "html", often: true, q: "What is the difference between an id and a class?",
+      a: "<p>An <strong>id</strong> belongs to one element only and must be unique on the page. CSS uses <code>#</code> for it, and JavaScript finds it with <code>getElementById</code>. A <strong>class</strong> can be shared by many elements. CSS uses <code>.</code> for it.</p><p>In your project: ids for things JavaScript needs to find (<code>dice1</code>, <code>btn1</code>, <code>result</code>, <code>history</code>), classes for styling (<code>container</code>, <code>dice</code>, <code>shake</code>).</p>" },
+    { id: "h3", cat: "html", often: false, q: "What does the viewport meta tag do?",
+      a: "<p>It tells phones to use their real screen width and start at normal zoom. Without it, a phone pretends to be about 980px wide and shrinks the whole page, so your <code>@media (max-width: 500px)</code> rule would never switch on.</p>" },
+    { id: "h4", cat: "html", often: false, q: "What is the alt attribute on the images for?",
+      a: "<p>It is a text description of the image. Screen readers read it out for people who can't see the screen, and the browser shows it if the image fails to load.</p>" },
+    { id: "h5", cat: "html", often: false, q: "Why is the history list empty in the HTML?",
+      a: "<p>There is no history when the page opens. JavaScript creates an <code>&lt;li&gt;</code> and adds it to the list after every roll.</p>" },
+    { id: "h6", cat: "html", often: false, q: "What goes in the head and what goes in the body?",
+      a: "<p>The <strong>head</strong> holds information about the page that you don't see: the character set, the viewport, the title, and the link to the CSS. The <strong>body</strong> holds everything you see.</p>" },
+    { id: "h7", cat: "html", often: false, q: "What is the difference between block and inline elements?",
+      a: "<p>A <strong>block</strong> element starts on a new line and takes the full width: <code>div</code>, <code>p</code>, <code>h1</code>, <code>ul</code>, <code>li</code>. An <strong>inline</strong> element sits in a line with text and is only as wide as its content: <code>img</code>, <code>span</code>, <code>a</code>. Buttons behave like inline elements too.</p><p>That is why your two dice and two buttons sit side by side, and why <code>text-align: center</code> centers them.</p>" },
+
+    { id: "c1", cat: "css", often: true, q: "How did you make the page responsive?",
+      a: "<ol><li>The <strong>viewport meta tag</strong>, so phones use their real width.</li><li><code>.container</code> has <strong>max-width: 500px</strong>, so it shrinks on small screens, and <strong>margin: 0 auto</strong> centers it.</li><li>A <strong>media query</strong> makes the dice 90px wide on screens up to 500px.</li><li>Everything is centered and the images and buttons wrap onto the next line if there isn't room.</li></ol><p>To test: open DevTools with <kbd>F12</kbd> and press <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> for phone view.</p>" },
+    { id: "c2", cat: "css", often: true, q: "How does the shake animation work?",
+      a: "<p><code>@keyframes shake</code> lists how the die is rotated at 0%, 25%, 50%, 75% and 100% of the animation: straight, right, left, right, straight. The <code>.shake</code> class says \"play shake once over 0.5 s\". JavaScript adds the class when you click, which starts the animation, and removes it 500 ms later so it can play again next time.</p>" },
+    { id: "c3", cat: "css", often: false, q: "What does margin: 0 auto do?",
+      a: "<p>It sets 0 margin on top and bottom, and <code>auto</code> on left and right. The browser shares the leftover space equally between left and right, which puts the box in the middle. It works because the box has a <code>max-width</code>, so there is space left over.</p>" },
+    { id: "c4", cat: "css", often: true, q: "What is the difference between margin and padding?",
+      a: "<p>Every element is a box with layers, from inside to outside: <strong>content</strong>, <strong>padding</strong>, <strong>border</strong>, <strong>margin</strong>. This is called the <em>box model</em>.</p><ul><li><strong>Padding</strong> is space inside the border, between the content and the edge. It has the element's background colour.</li><li><strong>Margin</strong> is space outside the border, between this box and its neighbours. It is always see-through.</li></ul><p>In your CSS, <code>.container</code> uses padding so the content doesn't touch its white edges, and the buttons use margin to keep apart from each other.</p>" },
+    { id: "c5", cat: "css", often: false, q: "What is a media query?",
+      a: "<p>A block of CSS rules that only applies when a condition is true. Yours is <code>@media (max-width: 500px)</code>: the rules inside apply only on screens 500px wide or less.</p>" },
+    { id: "c6", cat: "css", often: false, q: "What does button:hover mean?",
+      a: "<p><code>:hover</code> is a <em>pseudo-class</em>. The rule applies only while the mouse is over the button, so it gets lighter when you point at it. That feedback tells the user it can be clicked. On phones there is no mouse, so hover mostly doesn't happen there.</p>" },
+    { id: "c7", cat: "css", often: false, q: "If an id rule and a class rule give the same element different colours, which one wins?",
+      a: "<p>The id rule. This is called <em>specificity</em>: an id selector is stronger than a class selector, and a class is stronger than an element name like <code>button</code>. If two rules are equally strong, the one written later wins.</p>" },
+    { id: "c8", cat: "css", often: false, q: "What does a hex colour like #2c3e50 mean?",
+      a: "<p>It is three pairs of base-16 digits: red <code>2c</code>, green <code>3e</code>, blue <code>50</code>. Each pair goes from <code>00</code> (none) to <code>ff</code> (full). So <code>#ffffff</code> is white, <code>#000000</code> is black, and <code>#2c3e50</code> is a dark blue.</p>" },
+    { id: "c9", cat: "css", often: false, q: "Why max-width instead of width for the container?",
+      a: "<p><code>width: 500px</code> stays 500px even on a 360px-wide phone, so the page would scroll sideways. <code>max-width: 500px</code> means \"up to 500px\": it shrinks to fit smaller screens.</p>" },
+
+    { id: "j1", cat: "js", often: true, q: "What is the DOM?",
+      a: "<p>DOM stands for Document Object Model. When the browser reads your HTML, it builds a tree of objects, one for each element. JavaScript can find these objects (<code>getElementById</code>) and change them (<code>textContent</code>, <code>src</code>, <code>classList</code>). When you change the DOM, the page changes straight away.</p>" },
+    { id: "j2", cat: "js", often: true, q: "What does document.getElementById do?",
+      a: "<p>It finds the element with that id and gives it back, so you can store it in a variable and change it. If no element has that id, it gives back <code>null</code>.</p>" },
+    { id: "j3", cat: "js", often: true, q: "What is addEventListener?",
+      a: "<p>It tells an element \"when this event happens, run this function.\" In your code, <code>btn1.addEventListener(\"click\", function () { roll(1); })</code> means every click on btn1 runs <code>roll(1)</code>.</p>" },
+    { id: "j4", cat: "js", often: true, q: "What does setTimeout do, and why 500?",
+      a: "<p>It runs a function once, after a delay in milliseconds. 500 ms is 0.5 seconds, the same length as the CSS shake animation, so the result appears exactly when the shaking stops. The page doesn't freeze while it waits.</p>" },
+    { id: "j5", cat: "js", often: true, q: "Why did you use const for most variables but let for text?",
+      a: "<p><code>const</code> can't be given a new value later, and <code>let</code> can. <code>dice1</code>, <code>a</code> and <code>b</code> never get a new value, so they are const. <code>text</code> starts as just <code>a</code>, and for two dice it changes to something like \"4 + 3 = 7\", so it must be let.</p><p>A const element can still be changed, as in <code>dice1.src = …</code>. You are changing the image, not the variable.</p>" },
+    { id: "j6", cat: "js", often: true, q: "Why are there brackets around (a + b)?",
+      a: "<p>With text, <code>+</code> joins things together. JavaScript works from left to right: <code>\"4 + 3 = \" + 4</code> gives <code>\"4 + 3 = 4\"</code>, then <code>+ 3</code> gives <code>\"4 + 3 = 43\"</code>. The brackets make <code>a + b</code> happen first, as normal number addition, giving 7.</p>" },
+    { id: "j7", cat: "js", often: false, q: "What does === mean? How is it different from ==?",
+      a: "<p><code>===</code> is strict equality: same value <strong>and</strong> same type. <code>==</code> converts types first, so <code>\"1\" == 1</code> is true, but <code>\"1\" === 1</code> is false. <code>===</code> is safer because there are no surprises.</p>" },
+    { id: "j8", cat: "js", often: false, q: "What is the difference between textContent and innerHTML?",
+      a: "<p><code>textContent</code> sets plain text: if the text contains <code>&lt;b&gt;</code>, it shows those characters as they are. <code>innerHTML</code> reads the string as HTML and builds elements from it. For showing a value, textContent is simpler and safer.</p>" },
+    { id: "j9", cat: "js", often: false, q: "What do classList.add and classList.remove do?",
+      a: "<p>They add or remove a class on an element. When the class is added, CSS rules for that class start applying, and when it is removed they stop. That is how your JavaScript switches the CSS animation on and off.</p>" },
+    { id: "j10", cat: "js", often: true, q: "Why do you remove the shake class inside setTimeout?",
+      a: "<p>If the class stayed on, the next <code>classList.add(\"shake\")</code> would do nothing, because the class is already there, and the animation would not play again. Removing it after 500 ms resets it for the next click.</p>" },
+    { id: "j11", cat: "js", often: false, q: "What is a parameter? What is count in roll(count)?",
+      a: "<p>A parameter is a named input to a function. When you call <code>roll(1)</code>, count is 1; with <code>roll(2)</code>, count is 2. The value you pass in (1 or 2) is called the <em>argument</em>. One function handles both buttons, so no code is repeated.</p>" },
+    { id: "j12", cat: "js", often: false, q: "What do createElement and prepend do in addHistory?",
+      a: "<p><code>createElement(\"li\")</code> makes a new list item in memory. It is not on the page yet. <code>textContent</code> fills it with the result. <code>prepend</code> adds it as the first item of the list, so the newest roll is at the top. <code>append</code> would put it at the bottom.</p>" },
+    { id: "j13", cat: "js", often: false, q: "How does your history keep only the last 10 rolls?",
+      a: "<p>After adding a row, it checks <code>list.children.length &gt; 10</code>. If there are more than 10 rows, <code>list.lastElementChild.remove()</code> deletes the bottom row, which is the oldest one.</p>" },
+    { id: "j14", cat: "js", often: false, q: "What is an anonymous function? What is a callback?",
+      a: "<p>An anonymous function is a function without a name, written right where it's needed, like <code>function () { roll(1); }</code>. When you pass a function to another function so it can be called later, it's called a <em>callback</em>. You do this twice: addEventListener calls yours on a click, and setTimeout calls yours after 500 ms.</p>" },
+    { id: "j15", cat: "js", often: false, q: "How does dice1.src = \"images/dice\" + a + \".svg\" work?",
+      a: "<p>It joins three pieces of text into one, which is called <em>string concatenation</em>. If a is 5, it becomes <code>\"images/dice5.svg\"</code>. Setting <code>src</code> to that makes the browser load and show that picture.</p>" },
+    { id: "j16", cat: "js", often: false, q: "What does dice2.style.display = \"none\" do?",
+      a: "<p>It hides the second die completely, and it takes up no space. Setting it back to <code>\"inline\"</code> shows it again. That is how a one-die roll shows only one die.</p>" },
+
+    { id: "r1", cat: "random", often: true, q: "How does your code make a random number from 1 to 6?",
+      a: "<ol><li><code>Math.random()</code> gives a decimal from 0 up to, but not including, 1.</li><li>Multiplying by 6 spreads it from 0 up to 5.999…</li><li><code>Math.floor</code> cuts off the decimal part, leaving 0, 1, 2, 3, 4 or 5.</li><li>Adding 1 gives 1 to 6.</li></ol>" },
+    { id: "r2", cat: "random", often: true, q: "Is your die fair? How do you know?",
+      a: "<p>Yes. <code>Math.random()</code> is spread evenly, and after multiplying by 6, <code>Math.floor</code> cuts the range 0 to 6 into six pieces that are each exactly 1 wide. Equal pieces mean each face has a 1 in 6 chance.</p><p>You can also test it: roll thousands of times and count. Each face comes up about one sixth of the time, just like the test in the <a href=\"#random\">Randomness</a> section.</p>" },
+    { id: "r3", cat: "random", often: true, q: "Why Math.floor and not Math.round?",
+      a: "<p><code>Math.round(Math.random() * 6)</code> gives 0 to 6, which is seven values, and 0 and 6 come up only half as often as the rest. Even <code>Math.round(Math.random() * 5) + 1</code>, which does give 1 to 6, makes 1 and 6 half as likely. <code>Math.floor</code> gives six equal pieces, so it is fair.</p>" },
+    { id: "r4", cat: "random", often: false, q: "Is Math.random() truly random?",
+      a: "<p>No, it is <strong>pseudo-random</strong>. The browser calculates the numbers with a formula. They look random and are spread evenly, which is fine for a game. For passwords or security you would use <code>crypto.getRandomValues()</code>.</p>" },
+    { id: "r5", cat: "random", often: false, q: "Why not Math.ceil(Math.random() * 6)?",
+      a: "<p>It almost works and gives 1 to 6. But <code>Math.random()</code> can return exactly 0, and <code>Math.ceil(0)</code> is 0, which is not a face on a die. It is very rare, but <code>Math.floor(...) + 1</code> never has that problem.</p>" },
+    { id: "r6", cat: "random", often: false, q: "How would you make a 20-sided die?",
+      a: "<p>Change the 6 to 20: <code>Math.floor(Math.random() * 20) + 1</code>. A cleaner way is to give getRandom a parameter, <code>getRandom(sides)</code>, so the same function works for any die. You would also need 20 face pictures, or show the number as text.</p>" },
+    { id: "r7", cat: "random", often: false, q: "How would you roll a die in C?",
+      a: "<p>Call <code>srand(time(NULL));</code> once at the start, then use <code>rand() % 6 + 1</code>. <code>% 6</code> gives the remainder after dividing by 6, which is 0 to 5, and +1 makes it 1 to 6. Without <code>srand</code>, you get the same numbers every time you run the program.</p>" },
+
+    { id: "g1", cat: "git", often: true, q: "What is the difference between Git and GitHub?",
+      a: "<p><strong>Git</strong> is a tool on your computer that saves versions of your project, called commits. <strong>GitHub</strong> is a website that stores Git projects online, so others can see them and work on them. It can also host your site with GitHub Pages.</p>" },
+    { id: "g2", cat: "git", often: true, q: "What is a commit, and why many small commits instead of one?",
+      a: "<p>A commit is a saved snapshot of your project, with a message saying what changed. Small commits show how you built the project step by step, and make it easy to undo one change. The PDF asks for \"regular, meaningful commits (not one single commit at the end).\"</p>" },
+    { id: "g3", cat: "git", often: false, q: "What is in your README?",
+      a: "<p>An overview, the features, the tech stack, how to run it, how the randomness works, screenshots, and the live link. See the outline in the <a href=\"#github\">GitHub</a> section.</p>" },
+    { id: "g4", cat: "git", often: false, q: "How did you put the site online?",
+      a: "<p>With GitHub Pages. In the repository: Settings, then Pages, then deploy from the main branch, root folder. The site is then at <code>your-username.github.io/repo-name</code>.</p>" },
+    { id: "g5", cat: "git", often: false, q: "Which Git commands do you use?",
+      a: "<p><code>git status</code> to see what changed, <code>git add .</code> to pick the changes, <code>git commit -m \"message\"</code> to save a snapshot, <code>git push</code> to send it to GitHub, and <code>git log --oneline</code> to see the history.</p>" },
+
+    { id: "d1", cat: "debug", often: true, q: "What happens if I click the button many times very quickly?",
+      a: "<p>Each click starts its own 500 ms timer, so several results get added to the history, one per click. The animation does not restart for the later clicks, because the shake class is already on.</p><p>A fix: disable the buttons while the dice are rolling. See the <a href=\"#live\">Live changes</a> section.</p>" },
+    { id: "d2", cat: "debug", often: false, q: "When you roll one die, does dice2 still shake?",
+      a: "<p>Technically yes: the shake class is added to dice2 as well. But dice2 is hidden with <code>display: none</code>, so you can't see it. It does no harm.</p>" },
+    { id: "d3", cat: "debug", often: true, q: "Your code stops working. How do you find the bug?",
+      a: "<ol><li>Open DevTools with <kbd>F12</kbd> and go to the <strong>Console</strong>. Read the red error and the line number it points to.</li><li>Add <code>console.log(a)</code> to print values and check they are what you expect.</li><li>Check the spelling of ids and file paths.</li><li>Change one thing at a time, save, refresh, test.</li></ol>" },
+    { id: "d4", cat: "debug", often: false, q: "What happens if you misspell the id in getElementById?",
+      a: "<p>It gives back <code>null</code>. Later, a line like <code>dice1.classList.add(\"shake\")</code> fails with an error like <em>Cannot read properties of null</em> in the Console, and the button stops working.</p>" },
+    { id: "d5", cat: "debug", often: false, q: "What happens if an image path is wrong?",
+      a: "<p>The browser shows a broken image and the alt text \"Dice\" instead. Check the folder name and spelling, including capital letters: on GitHub Pages, <code>Dice1.svg</code> and <code>dice1.svg</code> are different files.</p>" },
+    { id: "d6", cat: "debug", often: false, q: "What happens to the history when you refresh the page?",
+      a: "<p>It disappears. The history only lives in the page's elements, and a refresh reloads the original HTML, where the list is empty. To keep it, you would save it in <code>localStorage</code>.</p>" },
+    { id: "d7", cat: "debug", often: false, q: "Could you write onclick=\"roll(1)\" in the HTML instead?",
+      a: "<p>Yes, it would work. <code>addEventListener</code> keeps all the JavaScript in script.js, so HTML stays as structure only. It also lets you attach more than one function to the same click.</p>" },
+
+    { id: "y1", cat: "you", often: true, q: "Why do you want to join the Software Division?",
+      a: "<p>Answer in <strong>your own words</strong>. One real reason is better than three general ones. Ideas to build from:</p><ul><li>You liked seeing a page you made react to your clicks.</li><li>You want to build real projects with other people.</li><li>You want to learn from seniors faster than you could alone.</li><li>Your C classes taught you logic, and now you want to make things people can use.</li></ul>" },
+    { id: "y2", cat: "you", often: true, q: "Did you use AI? How?",
+      a: "<p>Be honest. The rules say AI is allowed as long as you understand your code. Say how you used it, for example to get started or to have concepts explained, and then prove you understand by explaining any line they point to. Never claim you wrote everything from scratch if you didn't.</p>" },
+    { id: "y3", cat: "you", often: false, q: "What do you do when you are stuck?",
+      a: "<p>Read the error message, print values with <code>console.log</code>, look things up on MDN (developer.mozilla.org), break the problem into smaller steps, and ask a friend or senior after trying it yourself first.</p>" },
+    { id: "y4", cat: "you", often: false, q: "What do you want to learn next?",
+      a: "<p>Pick something real and connect it to the club. For example: more JavaScript (arrays, loops, localStorage), using Git properly in a team, and later a framework like React.</p>" },
+    { id: "y5", cat: "you", often: false, q: "Do you have any questions for us?",
+      a: "<p>Always ask one. It shows interest. For example: \"What kind of projects do new volunteers work on?\" or \"How do juniors learn from seniors in the club?\"</p>" }
+  ];
+
+  var catFilter = "all";
+  var qList = $("qList");
+  function statusOf(id) { return store.q[id] || ""; }
+  function qCard(q) {
+    var s = statusOf(q.id);
+    return '<article class="q" data-id="' + q.id + '">' +
+      '<div class="q-head"><span class="tag">' + esc(CATS[q.cat]) + "</span>" +
+      (q.often ? '<span class="badge badge-often">Often asked</span>' : "") +
+      (s === "got" ? '<span class="badge badge-got">I can answer</span>' : "") +
+      (s === "again" ? '<span class="badge badge-again">Revise again</span>' : "") + "</div>" +
+      '<p class="q-text">' + esc(q.q) + "</p>" +
+      '<div class="q-actions">' +
+      '<button type="button" class="btn btn-small btn-ghost" data-act="show" aria-expanded="false">Show answer</button>' +
+      '<button type="button" class="btn btn-small btn-ghost btn-got" data-act="got" aria-pressed="' + (s === "got") + '">' + (s === "got" ? "✓ I can answer this" : "I can answer this") + "</button>" +
+      '<button type="button" class="btn btn-small btn-ghost btn-again" data-act="again" aria-pressed="' + (s === "again") + '">Revise again</button>' +
+      "</div>" +
+      '<div class="ans" hidden>' + q.a + (q.say ? '<div class="say"><b>Say it like this</b>' + esc(q.say) + "</div>" : "") + "</div>" +
+      "</article>";
+  }
+  function renderQuestions() {
+    qList.innerHTML = QUESTIONS.map(qCard).join("");
+    filterQuestions();
+  }
+  function refreshCard(id) {
+    var old = qList.querySelector('.q[data-id="' + id + '"]');
+    if (!old) return;
+    var wasOpen = !old.querySelector(".ans").hidden;
+    var q = QUESTIONS.filter(function (x) { return x.id === id; })[0];
+    var tmp = document.createElement("div");
+    tmp.innerHTML = qCard(q);
+    var fresh = tmp.firstChild;
+    if (wasOpen) {
+      fresh.querySelector(".ans").hidden = false;
+      var b = fresh.querySelector('[data-act="show"]');
+      b.textContent = "Hide answer";
+      b.setAttribute("aria-expanded", "true");
+    }
+    old.parentNode.replaceChild(fresh, old);
+    var focusBtn = fresh.querySelector('[data-act="' + (store.q[id] === "again" ? "again" : "got") + '"]');
+    if (focusBtn) focusBtn.focus({ preventScroll: true });
+  }
+  function filterQuestions() {
+    var term = $("qSearch").value.trim().toLowerCase();
+    var status = $("qStatus").value;
+    var shown = 0;
+    Array.prototype.forEach.call(qList.children, function (card) {
+      var q = QUESTIONS.filter(function (x) { return x.id === card.getAttribute("data-id"); })[0];
+      var s = statusOf(q.id);
+      var ok = (catFilter === "all" || (catFilter === "often" ? q.often : q.cat === catFilter)) &&
+        (status === "all" || (status === "todo" ? !s : s === status)) &&
+        (!term || (q.q + " " + q.a.replace(/<[^>]+>/g, " ")).toLowerCase().indexOf(term) >= 0);
+      card.hidden = !ok;
+      if (ok) shown++;
+    });
+    $("qCount").textContent = "Showing " + shown + " of " + QUESTIONS.length;
+    $("qEmpty").hidden = shown > 0;
+  }
+  function setStatus(id, value) {
+    if (store.q[id] === value) delete store.q[id];
+    else store.q[id] = value;
+    save();
+    updateProgress();
+  }
+  (function () {
+    var chips = '<button type="button" class="chip" data-cat="all" aria-pressed="true">All</button>' +
+      '<button type="button" class="chip" data-cat="often" aria-pressed="false">Often asked</button>';
+    Object.keys(CATS).forEach(function (k) {
+      chips += '<button type="button" class="chip" data-cat="' + k + '" aria-pressed="false">' + esc(CATS[k]) + "</button>";
+    });
+    $("catChips").innerHTML = chips;
+  })();
+  $("catChips").addEventListener("click", function (e) {
+    var c = e.target.closest(".chip");
+    if (!c) return;
+    catFilter = c.getAttribute("data-cat");
+    Array.prototype.forEach.call(this.children, function (b) { b.setAttribute("aria-pressed", b === c ? "true" : "false"); });
+    filterQuestions();
+  });
+  $("qSearch").addEventListener("input", filterQuestions);
+  $("qStatus").addEventListener("change", filterQuestions);
+  qList.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-act]");
+    if (!b) return;
+    var card = b.closest(".q"), id = card.getAttribute("data-id"), act = b.getAttribute("data-act");
+    if (act === "show") {
+      var ans = card.querySelector(".ans");
+      ans.hidden = !ans.hidden;
+      b.textContent = ans.hidden ? "Show answer" : "Hide answer";
+      b.setAttribute("aria-expanded", ans.hidden ? "false" : "true");
+      return;
+    }
+    setStatus(id, act);
+    refreshCard(id);
+  });
+  renderQuestions();
+
+  /* ---------- mock interview ---------- */
+  var mockCur = null, mockAsked = 0, mockKnew = 0, mockTimerId = null, mockLeft = 60;
+  function stopTimer() {
+    if (mockTimerId) clearInterval(mockTimerId);
+    mockTimerId = null;
+    $("mockTime").hidden = true;
+    $("mockTime").classList.remove("done");
+    $("mockTimer").textContent = "Start 60 s timer";
+  }
+  function pickMock() {
+    stopTimer();
+    var pool = QUESTIONS.filter(function (q) { return !$("mockOften").checked || q.often; });
+    var fresh = pool.filter(function (q) { return store.q[q.id] !== "got"; });
+    if (fresh.length) pool = fresh;
+    if (pool.length > 1 && mockCur) pool = pool.filter(function (q) { return q.id !== mockCur.id; });
+    mockCur = pool[Math.floor(Math.random() * pool.length)];
+    $("mockCat").textContent = CATS[mockCur.cat] + (mockCur.often ? " · often asked" : "") + (fresh.length ? "" : " · you've marked them all, here's a repeat");
+    $("mockQ").textContent = mockCur.q;
+    $("mockAns").innerHTML = mockCur.a + (mockCur.say ? '<div class="say"><b>Say it like this</b>' + esc(mockCur.say) + "</div>" : "");
+    $("mockAns").hidden = true;
+    $("mockMark").hidden = true;
+    $("mockShow").hidden = false;
+  }
+  function mockScore() {
+    $("mockScore").textContent = "This round: " + mockAsked + " asked" + (mockAsked ? ", knew " + mockKnew : "");
+  }
+  $("mockTimer").addEventListener("click", function () {
+    if (mockTimerId) { stopTimer(); return; }
+    mockLeft = 60;
+    var t = $("mockTime");
+    t.textContent = "60";
+    t.hidden = false;
+    t.classList.remove("done");
+    this.textContent = "Stop timer";
+    mockTimerId = setInterval(function () {
+      mockLeft--;
+      t.textContent = mockLeft > 0 ? String(mockLeft) : "Time!";
+      if (mockLeft <= 0) {
+        clearInterval(mockTimerId);
+        mockTimerId = null;
+        t.classList.add("done");
+        $("mockTimer").textContent = "Start 60 s timer";
+      }
+    }, 1000);
+  });
+  $("mockShow").addEventListener("click", function () {
+    $("mockAns").hidden = false;
+    $("mockMark").hidden = false;
+    this.hidden = true;
+    if (mockTimerId) { clearInterval(mockTimerId); mockTimerId = null; $("mockTimer").textContent = "Start 60 s timer"; }
+  });
+  function mockMark(value) {
+    store.q[mockCur.id] = value;
+    save();
+    updateProgress();
+    refreshCard(mockCur.id);
+    filterQuestions();
+    mockAsked++;
+    if (value === "got") mockKnew++;
+    mockScore();
+    pickMock();
+    $("mockShow").focus({ preventScroll: true });
+  }
+  $("mockKnew").addEventListener("click", function () { mockMark("got"); });
+  $("mockAgain").addEventListener("click", function () { mockMark("again"); });
+  $("mockNext").addEventListener("click", pickMock);
+  $("mockOften").addEventListener("change", pickMock);
+  pickMock();
+
+  /* ---------- live changes ---------- */
+  var LIVE = [
+    { id: "l1", lvl: "Easy", title: "Keep only the last 5 rolls in the history.",
+      hint: "Find the number <code>10</code> in script.js. Which line decides how many rows stay?",
+      ans: "<p>Line 17 of script.js. Change 10 to 5:</p>",
+      code: [{ lang: "js", label: "script.js, line 17", code: "  if (list.children.length > 5) {" }],
+      after: "Roll 7 times and count the rows to check it." },
+    { id: "l2", lvl: "Easy", title: "Make the shake last 1 second instead of half a second.",
+      hint: "Two files know how long the shake lasts. One counts in seconds, the other in milliseconds.",
+      ans: "<p>Change both, so they still match:</p>",
+      code: [{ lang: "css", label: "style.css", code: ".shake {\n  animation: shake 1s;\n}" }, { lang: "js", label: "script.js, line 49", code: "  }, 1000);" }],
+      after: "If you change only the CSS, the JavaScript still removes the class after 0.5 s, so the shake gets cut off halfway. If you change only the JavaScript, the dice stop shaking and then sit still for half a second before the result appears." },
+    { id: "l3", lvl: "Easy", title: "Make the buttons green.",
+      hint: "Look at the <code>button</code> rule in style.css. Don't forget the hover colour.",
+      ans: "<p>Change both background colours. Any greens will do:</p>",
+      code: [{ lang: "css", label: "style.css", code: "button {\n  ...\n  background-color: #034f46;\n}\n\nbutton:hover {\n  background-color: #0b7a69;\n}" }],
+      after: "" },
+    { id: "l4", lvl: "Medium", title: "Show \"Doubles!\" when both dice show the same number.",
+      hint: "It only matters for two dice, so it goes inside <code>if (count === 2)</code>. Compare <code>a</code> and <code>b</code> after the text is built.",
+      ans: "<p>Add this inside the <code>if (count === 2)</code> block, just after line 44:</p>",
+      code: [{ lang: "js", label: "script.js, after line 44", code: "      if (a === b) {\n        text = text + \" Doubles!\";\n      }" }],
+      after: "Because <code>text</code> also goes to addHistory, the history shows \"Doubles!\" too. Doubles are hard to get on purpose. To test quickly, change <code>const b = getRandom();</code> to <code>const b = a;</code> for a moment, then change it back." },
+    { id: "l5", lvl: "Medium", title: "Stop fast double-clicks from adding two results.",
+      hint: "Buttons have a <code>disabled</code> property. Switch it on when the roll starts, and off when the timer finishes.",
+      ans: "<p>Two small additions in roll():</p>",
+      code: [{ lang: "js", label: "script.js, before setTimeout (after line 31)", code: "  btn1.disabled = true;\n  btn2.disabled = true;" }, { lang: "js", label: "script.js, inside setTimeout, after addHistory(text);", code: "    btn1.disabled = false;\n    btn2.disabled = false;" }],
+      after: "A disabled button can't be clicked. You could add <code>button:disabled { opacity: 0.5; }</code> to the CSS so people can see it." },
+    { id: "l6", lvl: "Medium", title: "Add a \"Clear History\" button.",
+      hint: "Three small steps: a button in the HTML with a new id, find it in JavaScript with getElementById, then a click listener that empties the list.",
+      ans: "",
+      code: [{ lang: "html", label: "index.html, under the <ul>", code: "    <button id=\"clear\">Clear History</button>" }, { lang: "js", label: "script.js, with the other getElementById lines", code: "const clear = document.getElementById(\"clear\");" }, { lang: "js", label: "script.js, at the end", code: "clear.addEventListener(\"click\", function () {\n  list.innerHTML = \"\";\n});" }],
+      after: "<code>list.innerHTML = \"\"</code> replaces everything inside the list with nothing." },
+    { id: "l7", lvl: "Medium", title: "Number the history rows, like \"Roll 3: 4 + 2 = 6\".",
+      hint: "You need a variable <em>outside</em> roll() that remembers how many rolls have happened. Don't name it <code>count</code>: roll already has a parameter with that name, and inside roll the parameter would hide your variable. That's the same <em>shadowing</em> idea you met in C scope.",
+      ans: "",
+      code: [{ lang: "js", label: "script.js, at the top", code: "let rolls = 0;" }, { lang: "js", label: "script.js, inside setTimeout, replacing addHistory(text);", code: "    rolls = rolls + 1;\n    addHistory(\"Roll \" + rolls + \": \" + text);" }],
+      after: "It must be <code>let</code> because it changes. It must be outside the function, or it would start again from 0 on every click." },
+    { id: "l8", lvl: "Harder", title: "Make getRandom work for any die: d4, d8, d20.",
+      hint: "Give getRandom a parameter for the number of sides, and use it instead of 6.",
+      ans: "",
+      code: [{ lang: "js", label: "script.js, replace getRandom", code: "function getRandom(sides) {\n  return Math.floor(Math.random() * sides) + 1;\n}" }, { lang: "js", label: "script.js, pass 6 where it is called (lines 37 and 42)", code: "    const a = getRandom(6);" }],
+      after: "You only have six face pictures, so for a d20 you would show the number as text instead of changing <code>src</code>." },
+    { id: "l9", lvl: "Harder", title: "Add a third die with a \"Roll 3 Dice\" button.",
+      hint: "Copy the pattern of dice2: an image and a button in the HTML, getElementById in JavaScript, show or hide it in roll(), shake it, and a third random number.",
+      ans: "",
+      code: [
+        { lang: "html", label: "index.html, next to the other dice and buttons", code: "      <img id=\"dice3\" src=\"images/dice1.svg\" alt=\"Dice\">\n    <button id=\"btn3\">Roll 3 Dice</button>" },
+        { lang: "css", label: "style.css, so the third die starts hidden", code: "#dice3 {\n  display: none;\n}" },
+        { lang: "js", label: "script.js, at the top", code: "const dice3 = document.getElementById(\"dice3\");\nconst btn3 = document.getElementById(\"btn3\");" },
+        { lang: "js", label: "script.js, in roll(), after the first if/else", code: "  if (count === 3) {\n    dice3.style.display = \"inline\";\n  } else {\n    dice3.style.display = \"none\";\n  }\n\n  dice3.classList.add(\"shake\");" },
+        { lang: "js", label: "script.js, inside setTimeout: remove the shake, and replace the if (count === 2) block", code: "    dice3.classList.remove(\"shake\");\n\n    if (count >= 2) {\n      const b = getRandom();\n      dice2.src = \"images/dice\" + b + \".svg\";\n      text = a + \" + \" + b + \" = \" + (a + b);\n\n      if (count === 3) {\n        const c = getRandom();\n        dice3.src = \"images/dice\" + c + \".svg\";\n        text = a + \" + \" + b + \" + \" + c + \" = \" + (a + b + c);\n      }\n    }" },
+        { lang: "js", label: "script.js, at the end", code: "btn3.addEventListener(\"click\", function () {\n  roll(3);\n});" }
+      ],
+      after: "Look at the first if/else too: for count 3, dice2 must be visible, and it is, because 3 is not 1." },
+    { id: "l10", lvl: "Talk", title: "Talk it through: how would you keep the history after a refresh?",
+      hint: "Right now the history only lives in the page, and a refresh reloads the original HTML. Which browser feature can store text?",
+      ans: "<p>Use <strong>localStorage</strong>, which keeps text in the browser even after a refresh or restart.</p><ol><li>Keep the rolls in an array, for example <code>saved</code>, as well as on the page.</li><li>After each roll, save it: <code>localStorage.setItem(\"history\", JSON.stringify(saved))</code>.</li><li>When the page opens, read it back with <code>JSON.parse(localStorage.getItem(\"history\"))</code> and call addHistory for each item.</li></ol><p>If they ask this, explaining the plan clearly is already a good answer. It is also a stretch goal in the PDF.</p>",
+      code: [], after: "" }
+  ];
+  var LVL_TEXT = { Easy: "Easy", Medium: "Medium", Harder: "Harder", Talk: "Explain only" };
+  (function () {
+    $("liveList").innerHTML = LIVE.map(function (t) {
+      var snips = t.code.map(function (c) {
+        return '<p class="snip-label">' + esc(c.label) + '</p><pre class="snip"><code>' + hlBlock(c.lang, c.code) + "</code></pre>";
+      }).join("");
+      return '<div class="task" data-id="' + t.id + '">' +
+        '<div class="task-head"><label><input type="checkbox" data-live="' + t.id + '"' + (store.live[t.id] ? " checked" : "") + '>' +
+        '<span><span class="lvl lvl-' + t.lvl + '">' + LVL_TEXT[t.lvl] + '</span><span class="task-title">' + esc(t.title) + "</span></span></label></div>" +
+        '<div class="task-actions">' +
+        '<button type="button" class="btn btn-small btn-ghost" data-show="hint" aria-expanded="false">Hint</button>' +
+        '<button type="button" class="btn btn-small btn-ghost" data-show="ans" aria-expanded="false">Show answer</button>' +
+        "</div>" +
+        '<div class="hint" hidden>' + t.hint + "</div>" +
+        '<div class="ans" hidden>' + t.ans + snips + (t.after ? "<p style=\"margin-top:10px\">" + t.after + "</p>" : "") + "</div>" +
+        "</div>";
+    }).join("");
+  })();
+  $("liveList").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-show]");
+    if (!b) return;
+    var box = b.closest(".task").querySelector("." + b.getAttribute("data-show"));
+    box.hidden = !box.hidden;
+    b.setAttribute("aria-expanded", box.hidden ? "false" : "true");
+    if (b.getAttribute("data-show") === "ans") b.textContent = box.hidden ? "Show answer" : "Hide answer";
+    else b.textContent = box.hidden ? "Hint" : "Hide hint";
+  });
+  $("liveList").addEventListener("change", function (e) {
+    var id = e.target.getAttribute("data-live");
+    if (!id) return;
+    if (e.target.checked) store.live[id] = true; else delete store.live[id];
+    save();
+    updateProgress();
+  });
+
+  /* ---------- checklist ---------- */
+  var CHECKS = [
+    { title: "The week before", items: [
+      ["c1", "Finished practice tasks 1 to 10 in practice.md"],
+      ["c2", "Can explain every line in the Code section before opening its note"],
+      ["c3", "Can trace a Roll 2 Dice click from memory"],
+      ["c4", "Did at least three Live changes without opening the answer"],
+      ["c5", "README written in my own words, with screenshots and the randomness note"],
+      ["c6", "Site is live on GitHub Pages, and the link is in the README"],
+      ["c7", "Commits spread over several days, with clear messages"]
+    ] },
+    { title: "The day before", items: [
+      ["c8", "Did a Mock interview round of 10 questions, out loud"],
+      ["c9", "Wrote my one-minute intro and said it out loud three times"],
+      ["c10", "Laptop charged, and the project opens from index.html even without internet"],
+      ["c11", "Know F12 (Console) and Ctrl+Shift+M (phone view) in Chrome"],
+      ["c12", "Repo link and live link saved on my phone too"]
+    ] }
+  ];
+  var ALL_CHECKS = [];
+  (function () {
+    $("checkGroups").innerHTML = CHECKS.map(function (g) {
+      return "<div><h3>" + esc(g.title) + '</h3><ul class="check-list">' + g.items.map(function (it) {
+        ALL_CHECKS.push(it[0]);
+        return '<li><label><input type="checkbox" data-check="' + it[0] + '"' + (store.check[it[0]] ? " checked" : "") + "><span>" + esc(it[1]) + "</span></label></li>";
+      }).join("") + "</ul></div>";
+    }).join("");
+  })();
+  $("checkGroups").addEventListener("change", function (e) {
+    var id = e.target.getAttribute("data-check");
+    if (!id) return;
+    if (e.target.checked) store.check[id] = true; else delete store.check[id];
+    save();
+    updateProgress();
+  });
+  var intro = $("introText"), introTimer = null;
+  intro.value = store.intro;
+  intro.addEventListener("input", function () {
+    store.intro = intro.value;
+    save();
+    clearTimeout(introTimer);
+    $("introSaved").textContent = "Saved in this browser";
+    introTimer = setTimeout(function () { $("introSaved").textContent = ""; }, 1800);
+  });
+
+  /* ---------- glossary ---------- */
+  var WORDS = [
+    ["Alt text", "A text description of an image, read by screen readers and shown if the image fails to load."],
+    ["Anonymous function", "A function with no name, written right where it is used, like the ones you pass to addEventListener and setTimeout."],
+    ["Argument", "The actual value you pass into a function. In roll(2), the argument is 2."],
+    ["Attribute", "Extra information on an HTML tag, like id, src, alt or href."],
+    ["Block element", "An element that starts on a new line and takes the full width, like div, p or h1."],
+    ["Box model", "Every element is a box: content, then padding, then border, then margin."],
+    ["Callback", "A function you hand to another function so it can be called later, for example on a click or after a delay."],
+    ["Class (HTML)", "A name you can give to many elements so CSS can style them together. Written .name in CSS."],
+    ["classList", "The list of classes on an element. classList.add and classList.remove change it."],
+    ["Commit", "A saved snapshot of your project in Git, with a message saying what changed."],
+    ["Concatenation", "Joining text together with +. \"dice\" + 4 gives \"dice4\"."],
+    ["Console", "The DevTools tab that shows errors and anything you print with console.log."],
+    ["const", "Declares a variable that can't be given a new value later."],
+    ["CSS selector", "The part before { that says which elements a rule styles: body, .container, #result, .dice img."],
+    ["DevTools", "The browser's built-in tools for developers. Open them with F12."],
+    ["DOM", "Document Object Model: the tree of objects the browser builds from your HTML, which JavaScript can read and change."],
+    ["Element", "One piece of the page, like an img, a button or a p, made by an HTML tag."],
+    ["Event", "Something that happens on the page, like a click, a key press or the page finishing loading."],
+    ["Event listener", "A function that waits for an event on an element and runs when it happens."],
+    ["Function", "A named block of code you can run again and again, like getRandom, addHistory and roll."],
+    ["Git", "A tool that saves versions (commits) of your project on your computer."],
+    ["GitHub", "A website that stores Git projects online, so others can see them."],
+    ["GitHub Pages", "A free GitHub feature that puts a repository's website online."],
+    ["Hex colour", "A colour written as #rrggbb: amounts of red, green and blue from 00 to ff."],
+    ["id", "A unique name for one element. Written #name in CSS, found with getElementById in JavaScript."],
+    ["Inline element", "An element that sits in a line with text and is only as wide as its content, like img or span."],
+    ["Keyframes", "The steps of a CSS animation: how the element looks at 0%, 25%, 50% and so on."],
+    ["let", "Declares a variable that can be given a new value later."],
+    ["localStorage", "Browser storage that keeps text even after the page is refreshed."],
+    ["Media query", "CSS rules that only apply when a condition is true, such as the screen being 500px wide or less."],
+    ["Parameter", "The name a function uses for an input. In roll(count), the parameter is count."],
+    ["Pseudo-class", "A selector for a state of an element, such as :hover while the mouse is over it."],
+    ["Pseudo-random", "Numbers that come from a formula but look random. Math.random() is pseudo-random."],
+    ["README", "The front page of a GitHub repository, explaining what the project is and how to use it."],
+    ["Repository", "A project folder tracked by Git, often stored on GitHub. Called a repo for short."],
+    ["Responsive design", "Making a page work well on every screen size, from phones to laptops."],
+    ["return", "Sends a value back from a function to the code that called it."],
+    ["setTimeout", "Runs a function once, after a delay given in milliseconds."],
+    ["Shadowing", "When an inner variable has the same name as an outer one and hides it inside its scope. Same idea in C and JavaScript."],
+    ["SVG", "An image format made of shapes written as text. It stays sharp at any size."],
+    ["textContent", "The plain text inside an element. Setting it replaces the text."],
+    ["Viewport", "The visible area of the page on the screen. The viewport meta tag makes phones use their real width."]
+  ];
+  (function () {
+    $("wordList").innerHTML = WORDS.map(function (w) {
+      return '<div data-w="' + esc((w[0] + " " + w[1]).toLowerCase()) + '"><dt>' + esc(w[0]) + "</dt><dd>" + esc(w[1]) + "</dd></div>";
+    }).join("");
+  })();
+  $("wSearch").addEventListener("input", function () {
+    var t = this.value.trim().toLowerCase(), shown = 0;
+    Array.prototype.forEach.call($("wordList").children, function (d) {
+      var ok = !t || d.getAttribute("data-w").indexOf(t) >= 0;
+      d.hidden = !ok;
+      if (ok) shown++;
+    });
+    $("wEmpty").hidden = shown > 0;
+  });
+
+  /* ---------- README copy ---------- */
+  $("copyReadme").addEventListener("click", function () {
+    var pre = $("readmeText"), msg = $("copyMsg");
+    function selectIt() {
+      var r = document.createRange();
+      r.selectNodeContents(pre);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(r);
+      msg.textContent = "Copying is blocked here, so the outline is selected. Press Ctrl+C to copy it.";
+    }
+    try {
+      navigator.clipboard.writeText(pre.textContent).then(function () {
+        msg.textContent = "Copied. Paste it into README.md and fill in the brackets.";
+      }, selectIt);
+    } catch (e) { selectIt(); }
+  });
+
+  /* ---------- progress ---------- */
+  function counts() {
+    var qGot = QUESTIONS.filter(function (q) { return store.q[q.id] === "got"; }).length;
+    var lDone = LIVE.filter(function (t) { return store.live[t.id]; }).length;
+    var cDone = ALL_CHECKS.filter(function (c) { return store.check[c]; }).length;
+    return [["Questions I can answer", qGot, QUESTIONS.length], ["Live changes done", lDone, LIVE.length], ["Checklist", cDone, ALL_CHECKS.length]];
+  }
+  function updateProgress() {
+    $("heroStats").innerHTML = counts().map(function (c) {
+      var pct = c[2] ? Math.round(c[1] / c[2] * 100) : 0;
+      return '<div class="stat"><div class="stat-label">' + c[0] + '</div><div class="stat-val">' + c[1] + " / " + c[2] +
+        '</div><div class="meter" role="progressbar" aria-label="' + c[0] + '" aria-valuemin="0" aria-valuemax="' + c[2] + '" aria-valuenow="' + c[1] + '"><i style="width:' + pct + '%"></i></div></div>';
+    }).join("");
+  }
+  updateProgress();
+
+  /* ---------- reset ---------- */
+  function askReset(show) {
+    $("resetBtn").hidden = show;
+    $("resetAsk").hidden = !show;
+    $("resetYes").hidden = !show;
+    $("resetNo").hidden = !show;
+  }
+  $("resetBtn").addEventListener("click", function () { askReset(true); $("resetNo").focus(); });
+  $("resetNo").addEventListener("click", function () { askReset(false); $("resetBtn").focus(); });
+  $("resetYes").addEventListener("click", function () {
+    store = { q: {}, live: {}, check: {}, intro: "" };
+    save();
+    renderQuestions();
+    Array.prototype.forEach.call(document.querySelectorAll("[data-live], [data-check]"), function (c) { c.checked = false; });
+    intro.value = "";
+    updateProgress();
+    pickMock();
+    askReset(false);
+    $("resetBtn").focus();
+  });
+
+  /* ---------- rail highlight ---------- */
+  var links = {};
+  Array.prototype.forEach.call(document.querySelectorAll(".rail-list a"), function (a) { links[a.getAttribute("href").slice(1)] = a; });
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        for (var k in links) links[k].classList.toggle("on", k === en.target.id);
+        var a = links[en.target.id];
+        var list = a && a.parentNode.parentNode;
+        if (list && list.scrollWidth > list.clientWidth) {
+          list.scrollTo({ left: a.offsetLeft - 16, behavior: "smooth" });
+        }
+      });
+    }, { rootMargin: "-35% 0px -60% 0px" });
+    Array.prototype.forEach.call(document.querySelectorAll("main .sec"), function (s) { io.observe(s); });
+  }
+})();
+</script>
+
+</body>
+</html>
