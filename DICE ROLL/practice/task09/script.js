@@ -16,6 +16,13 @@ function getRandom() {
 
 rollBtn.addEventListener("click", function () {
   const n = getRandom();
-  message.textContent = "You rolled " + n;
   dice.src = "images/dice" + n + ".svg";
+
+  message.textContent = "Rolling..."
+  dice.classList.add("shake");
+
+  setTimeout(function () {
+    dice.classList.remove("shake");
+    message.textContent = "You rolled " + n;
+  }, 500);
 });

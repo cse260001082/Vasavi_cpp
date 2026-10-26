@@ -67,5 +67,38 @@ button {
 }
 
 button:hover {
-  background-color: #4a6584;
+  background-color: #33eaa1;
+}
+.spin {
+  animation: spin 4s;
+}
+.shake {
+  animation: shake 0.5s;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(20deg);
+  }
+  50% {
+    transform: rotate(-20deg);
+  }
+  75% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
