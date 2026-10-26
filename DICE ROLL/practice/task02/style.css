@@ -1,0 +1,14 @@
+body{
+    background-color: #eef2f7;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+
+}
+.note{
+    font-size:18px;
+    color: gray;
+
+}
+#title{
+    color: #2c3e50;
+}
