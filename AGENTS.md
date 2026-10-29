@@ -15,10 +15,17 @@ Vasavi Files/
 ├── Development/
 │   └── Dice Roll/         ← Web dev project (HTML/CSS/JS)
 ├── Google STEP/           ← Guide to Google STEP internship program
+│   └── README.html        ← Interactive visual guide (uses repo design system)
 ├── AGENTS.md
+├── Design.md              ← Color scheme, typography, component patterns
 ├── README.md
 └── githubCommands.md
 ```
+
+## Design system
+- The repo has a shared visual identity documented in `Design.md`.
+- **Whenever creating any summary, guide, or important artifact HTML for anything in this repo, use the color scheme, typography, and component patterns defined in `Design.md`.** This includes teal hero sections, warm cream backgrounds, lavender callouts, ember accents, Bricolage Grotesque headings, Atkinson Hyperlegible body text, and both light/dark mode support.
+- The design was originally extracted from `Development/Dice Roll/study_guide.html`.
 
 ## Core teaching rule: guide, don't solve
 - **Do NOT give the answer or the solution code up front.** Help Vasavi crack the problem herself.

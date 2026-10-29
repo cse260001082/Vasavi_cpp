@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google STEP — Your Roadmap from 1st Year to Google</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #FFFFEB;
+  --surface: #FFFFFF;
+  --border: #E4E4D0;
+  --ink: #1A1A1A;
+  --ink-2: #3D3D36;
+  --muted: #6E6E64;
+  --accent: #034F46;
+  --on-accent: #FFFFEB;
+  --accent-text: #034F46;
+  --lav: #F0D7FF;
+  --on-lav: #1A1A1A;
+  --ember: #FFA946;
+  --ember-soft: #FFEBCF;
+  --on-ember: #1A1A1A;
+  --hero-bg: #034F46;
+  --hero-fg: #FFFFEB;
+  --hero-fg-2: #CFE3DC;
+  --hero-chip: #0A5F55;
+  --hero-line: #2F7A70;
+  --code-bg: #222222;
+  --code-fg: #FFFFEB;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+    --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+    --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+    --hero-bg: #034F46; --hero-fg: #FFFFEB; --hero-fg-2: #CFE3DC; --hero-chip: #0A5F55; --hero-line: #2F7A70;
+    --code-bg: #121212; --code-fg: #FFFFEB;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+h1 { font-size: clamp(2.4rem, 6.4vw, 3.9rem); line-height: 1; letter-spacing: -0.025em; font-weight: 800; margin: .15em 0 .35em; }
+h2 { font-size: clamp(1.75rem, 3.6vw, 2.3rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .5em; }
+h3 { font-size: 1.28rem; line-height: 1.25; font-weight: 700; margin: 1.9em 0 .55em; }
+h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
+code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .06em .35em; border-radius: 5px; }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); }
+.hero-in {
+  max-width: 1200px; margin: 0 auto;
+  padding: 56px 24px 48px;
+  display: grid; grid-template-columns: minmax(0, 1.2fr) auto; gap: 40px; align-items: center;
+}
+.eyebrow { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--lav); margin: 0; }
+.hero h1 { color: var(--hero-fg); }
+.lede { max-width: 58ch; font-size: 1.1rem; color: var(--hero-fg-2); margin: 0 0 22px; }
+.hero-visual {
+  background: var(--hero-chip); border: 1px solid var(--hero-line);
+  border-radius: 18px; padding: 28px 32px; text-align: center; width: 300px;
+}
+.hero-visual .google-logo { font-size: 3.2rem; margin-bottom: 8px; font-weight: 800; letter-spacing: -0.04em; }
+.hero-visual .g-blue { color: #4285F4; }
+.hero-visual .g-red { color: #EA4335; }
+.hero-visual .g-yellow { color: #FBBC05; }
+.hero-visual .g-green { color: #34A853; }
+.hero-visual p { color: var(--hero-fg-2); margin: 8px 0 0; font-size: .9rem; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.stat {
+  background: var(--hero-chip); border: 1px solid var(--hero-line);
+  border-radius: 12px; padding: 10px 14px; min-width: 140px;
+}
+.stat-label { font-size: .78rem; color: var(--hero-fg-2); }
+.stat-val { font-weight: 700; font-size: 1.05rem; }
+
+/* Layout */
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.sec { padding-block: 44px; border-top: 1px solid var(--border); scroll-margin-top: 12px; }
+.sec:first-child { border-top: 0; padding-top: 32px; }
+.sec > p { max-width: 72ch; }
+.kicker {
+  font-size: .76rem; text-transform: uppercase; letter-spacing: .11em;
+  font-weight: 700; color: var(--accent-text); margin: 0 0 .6em;
+}
+
+/* Pipeline */
+.pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px 0; position: relative; }
+.pipe-stage {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 18px; position: relative; text-align: center;
+}
+.pipe-stage:not(:last-child)::after {
+  content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
+  font-size: 1.6rem; font-weight: 700; color: var(--accent-text); z-index: 2;
+}
+.pipe-icon { font-size: 2.2rem; margin-bottom: 8px; }
+.pipe-year { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; margin: 0; }
+.pipe-name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin: 4px 0; }
+.pipe-desc { font-size: .9rem; color: var(--ink-2); margin: 0; }
+
+/* Cards grid */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 22px;
+}
+.card-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.card h4 { margin: 0 0 6px; }
+.card p { margin: 0; color: var(--ink-2); font-size: .95rem; }
+
+/* Callout */
+.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 18px 24px; margin: 28px 0; }
+.callout h3 { margin-top: 0; }
+.callout ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+
+/* Hint */
+.hint-box { background: var(--ember-soft); color: var(--ink); border-radius: 12px; padding: 16px 20px; margin: 24px 0; }
+.hint-box h4 { margin: 0 0 8px; }
+.hint-box ul { margin: 0; padding-left: 1.2em; }
+
+/* Sprint Header & Progress Tracker */
+.sprint-header {
+  background: var(--surface); border: 2px solid var(--accent);
+  border-radius: 16px; padding: 24px 28px; margin: 28px 0 24px;
+}
+.sprint-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
+.sprint-title { margin: 0; font-size: 1.45rem; font-weight: 800; }
+.sprint-meta { font-size: .9rem; color: var(--muted); }
+.progress-bar-wrap { width: 100%; height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 12px; }
+.progress-bar-fill { height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; }
+.progress-stats { display: flex; justify-content: space-between; font-size: .88rem; font-weight: 700; color: var(--ink-2); }
+
+/* Filter Tabs */
+.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
+.filter-btn {
+  font-family: var(--font-body); font-weight: 700; font-size: .88rem;
+  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--ink-2); cursor: pointer; transition: all .15s;
+}
+.filter-btn:hover { background: var(--border); }
+.filter-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+/* Day Cards */
+.days-grid { display: grid; gap: 16px; margin-bottom: 32px; }
+.day-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 20px 22px; transition: border-color .2s;
+}
+.day-card:hover { border-color: var(--accent); }
+.day-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+.day-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--lav); color: var(--on-lav); font-family: var(--font-mono);
+  font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
+}
+.day-topic { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin: 0; }
+.day-concept { font-size: .88rem; color: var(--muted); font-style: italic; }
+.problem-list { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; }
+.problem-item { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; }
+.problem-item input[type="checkbox"] {
+  width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; margin-top: 3px; flex-shrink: 0;
+}
+.problem-item label { cursor: pointer; color: var(--ink); }
+.problem-item input[type="checkbox"]:checked + label {
+  text-decoration: line-through; color: var(--muted);
+}
+.day-tip {
+  background: var(--bg); border-left: 3px solid var(--ember);
+  padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .86rem; color: var(--ink-2);
+}
+
+/* Timeline */
+.timeline { margin: 24px 0; }
+.tl-row {
+  display: grid; grid-template-columns: 120px 24px minmax(0, 1fr);
+  gap: 16px; align-items: start; min-height: 64px;
+}
+.tl-when { font-weight: 700; font-size: .9rem; color: var(--accent-text); text-align: right; padding-top: 2px; }
+.tl-dot-col { display: flex; flex-direction: column; align-items: center; height: 100%; }
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--accent); border: 3px solid var(--bg); flex-shrink: 0;
+  box-shadow: 0 0 0 2px var(--accent);
+}
+.tl-line { width: 2px; flex: 1; background: var(--border); }
+.tl-row:last-child .tl-line { display: none; }
+.tl-what { padding-bottom: 20px; }
+.tl-what strong { display: block; margin-bottom: 2px; }
+.tl-what span { color: var(--ink-2); font-size: .95rem; }
+
+/* Table */
+.table-wrap { overflow-x: auto; max-width: 100%; margin: 16px 0; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; }
+
+/* Day schedule */
+.schedule { margin: 20px 0; }
+.sched-row { display: grid; grid-template-columns: 100px minmax(0, 1fr) auto; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: center; }
+.sched-time { font-family: var(--font-mono); font-weight: 600; font-size: .9rem; color: var(--accent-text); }
+.sched-activity { font-weight: 500; }
+.sched-emoji { font-size: 1.3rem; }
+
+/* Resources */
+.resources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+.resource {
+  display: flex; gap: 12px; align-items: center;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 14px 16px; text-decoration: none; color: var(--ink);
+  transition: border-color .15s;
+}
+.resource:hover { border-color: var(--accent); }
+.resource-icon { font-size: 1.5rem; flex-shrink: 0; }
+.resource-name { font-weight: 700; font-size: .95rem; display: block; }
+.resource-desc { font-size: .82rem; color: var(--muted); }
+
+/* Footer */
+.foot { border-top: 1px solid var(--border); margin-top: 30px; }
+.foot-in {
+  max-width: 960px; margin: 0 auto; padding: 26px 24px 40px;
+  display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;
+  font-size: .9rem; color: var(--muted);
+}
+.foot-in p { margin: 0; }
+
+/* Responsive */
+@media (max-width: 760px) {
+  .hero-in { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px 28px; }
+  .hero-visual { width: auto; }
+  .pipeline { grid-template-columns: 1fr; gap: 12px; }
+  .pipe-stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -18px; transform: translateX(-50%); }
+  .cards { grid-template-columns: 1fr; }
+  .tl-row { grid-template-columns: 80px 24px minmax(0, 1fr); gap: 10px; }
+  .resources { grid-template-columns: 1fr; }
+  .sched-row { grid-template-columns: 80px minmax(0, 1fr) auto; }
+  body { font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">Career Guide & Winter Sprint · IIT ISM Dhanbad</p>
+      <h1>Google STEP</h1>
+      <p class="lede">Your complete roadmap from 1st-semester CSE student to Google Software Engineer. With consistent 3–4 hours a day, the dream is entirely within your reach.</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-label">Eligibility</div>
+          <div class="stat-val">1st & 2nd Year</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Winter Sprint</div>
+          <div class="stat-val">24 Days · 4 Topics</div>
+        </div>
+        <div class="stat">
+          <div class="stat-label">Career Path</div>
+          <div class="stat-val">STEP → Intern → PPO</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="google-logo" aria-label="Google logo">
+        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+      </div>
+      <p style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--hero-fg); margin: 4px 0;">STEP</p>
+      <p>Student Training in<br>Engineering Program</p>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ═══════════════════ WHAT IS STEP ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">Start here</p>
+    <h2>📌 What is Google STEP?</h2>
+    <p><strong>STEP</strong> stands for <strong>Student Training in Engineering Program</strong>. It is Google's internship program designed specifically for <strong>1st-year and 2nd-year undergraduate students</strong> in Computer Science and related fields.</p>
+    <p>Google created STEP because they believe in investing early — finding talented students <em>before</em> the traditional internship cycle and giving them a head start in their engineering careers.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Detail</th><th>Info</th></tr></thead>
+        <tbody>
+          <tr><td>👩‍🎓 Who can apply?</td><td>1st & 2nd year university students (CSE / IT / related)</td></tr>
+          <tr><td>⏱️ Duration</td><td>~10–12 weeks (summer internship)</td></tr>
+          <tr><td>📍 Location</td><td>Google offices (Bangalore, Hyderabad for India)</td></tr>
+          <tr><td>💰 Stipend</td><td>Highly competitive (among the highest freshman internships globally)</td></tr>
+          <tr><td>📝 Selection</td><td>Resume screening → Online coding test → 2 Technical Interviews</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ THE PIPELINE ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">The golden path</p>
+    <h2>🛤️ STEP → Internship → PPO</h2>
+    <p>This is the full pipeline that many Googlers followed. Each stage feeds directly into the next.</p>
+
+    <div class="pipeline">
+      <div class="pipe-stage">
+        <div class="pipe-icon">📘</div>
+        <p class="pipe-year">1st / 2nd Year</p>
+        <p class="pipe-name">Google STEP</p>
+        <p class="pipe-desc">10-week summer internship. Real Google project with a host & co-intern.</p>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">📗</div>
+        <p class="pipe-year">Pre-final Year</p>
+        <p class="pipe-name">SWE Intern</p>
+        <p class="pipe-desc">Direct invite back! Full software engineering internship with bigger ownership.</p>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">📕</div>
+        <p class="pipe-year">Final Year</p>
+        <p class="pipe-name">PPO</p>
+        <p class="pipe-desc">Pre-Placement Offer. Walk into final year with a Google job in your pocket!</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <h3>🎉 Why getting in early changes everything</h3>
+      <ul>
+        <li><strong>Skip campus placement tension:</strong> You have a top-tier full-time offer before final year begins.</li>
+        <li><strong>Mentorship from L5/L6 Google Engineers:</strong> Learn production coding standards, code reviews, and system design early.</li>
+        <li><strong>The ultimate resume accelerator:</strong> Having Google on your profile opens doors to every fellowship, research group, and company worldwide.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ 24-DAY WINTER BREAK SPRINT ═══════════════════ -->
+  <section class="sec" id="winter-sprint">
+    <p class="kicker">Semester Break Masterplan</p>
+    <h2>❄️ Vasavi's 24-Day Winter Break DSA Sprint</h2>
+    <p>Designed for your semester break: <strong>3–4 focused hours every day</strong>. This sprint covers the 4 core pillars of technical interviews — <strong>Arrays, Strings, Linked Lists, and Stacks & Queues</strong> — using exact curated questions from <strong>Striver's A2Z DSA Sheet</strong>.</p>
+
+    <!-- Support Framework -->
+    <div class="cards" style="margin: 24px 0;">
+      <div class="card" style="border-left: 4px solid var(--accent);">
+        <div class="card-icon">🎯</div>
+        <h4>What Vasavi Needs to Have</h4>
+        <ul style="margin: 8px 0 0; padding-left: 1.2em; font-size: .92rem; color: var(--ink-2); display: grid; gap: 4px;">
+          <li>Dedicated 3–4 hour daily study window</li>
+          <li>A physical notebook for pointer tracing & diagrams</li>
+          <li>VS Code with C++ compiler ready</li>
+          <li>Free TakeUforward & LeetCode accounts</li>
+          <li>Mindset: <em>"Bugs are not failures, they are clues!"</em></li>
+        </ul>
+      </div>
+      <div class="card" style="border-left: 4px solid var(--ember);">
+        <div class="card-icon">🤝</div>
+        <h4>What We Will Provide</h4>
+        <ul style="margin: 8px 0 0; padding-left: 1.2em; font-size: .92rem; color: var(--ink-2); display: grid; gap: 4px;">
+          <li>Zero-judgment daily guidance & encouragement</li>
+          <li>Code reviews following AGENTS.md (guiding hints, never spoilers)</li>
+          <li>45-minute unblock rule (no staring at a wall stuck!)</li>
+          <li>Daily celebration of solved problems</li>
+          <li>Mock interview & whiteboarding practice</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Daily Flow Breakdown -->
+    <div class="hint-box">
+      <h4>⏱️ How to Spend Your 3–4 Hours Each Day</h4>
+      <div class="table-wrap" style="margin: 8px 0 0;">
+        <table style="font-size: .9rem;">
+          <thead><tr><th>Time</th><th>Block</th><th>Activity</th></tr></thead>
+          <tbody>
+            <tr><td><strong>45–60 min</strong></td><td>Pen & Paper Dry-Run</td><td>Draw small arrays or nodes. Trace loops and pointer movements by hand.</td></tr>
+            <tr><td><strong>90–120 min</strong></td><td>Code & Test in C++</td><td>Type solution in VS Code from scratch. Test edge cases (empty, single element, negative numbers).</td></tr>
+            <tr><td><strong>30–45 min</strong></td><td>Complexity & Notes</td><td>Determine Time ($O$) and Space ($O$) complexity. Write 1 key takeaway in notebook.</td></tr>
+            <tr><td><strong>15 min</strong></td><td>Evening Debrief</td><td>Explain 1 problem out loud to your brother like in a real interview!</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Live Progress Bar -->
+    <div class="sprint-header">
+      <div class="sprint-top">
+        <h3 class="sprint-title">Sprint Checklist Progress</h3>
+        <span class="sprint-meta" id="progressPct">0% Completed</span>
+      </div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-stats">
+        <span id="completedCount">0 problems solved</span>
+        <span>Goal: 70 Problems</span>
+      </div>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="filter-tabs" role="tablist">
+      <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All 24 Days</button>
+      <button class="filter-btn" type="button" data-filter="arrays" aria-pressed="false">Phase 1: Arrays (Day 1–7)</button>
+      <button class="filter-btn" type="button" data-filter="strings" aria-pressed="false">Phase 2: Strings (Day 8–12)</button>
+      <button class="filter-btn" type="button" data-filter="ll" aria-pressed="false">Phase 3: Linked Lists (Day 13–18)</button>
+      <button class="filter-btn" type="button" data-filter="sq" aria-pressed="false">Phase 4: Stacks & Queues (Day 19–23)</button>
+      <button class="filter-btn" type="button" data-filter="review" aria-pressed="false">Phase 5: Grand Review (Day 24)</button>
+    </div>
+
+    <!-- 24 Days Container -->
+    <div class="days-grid" id="daysGrid">
+
+      <!-- PHASE 1: ARRAYS -->
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 1</span> <span class="day-topic">Array Fundamentals & Traversals</span></div>
+          <span class="day-concept">Indexing, boundary checks, single-pass scans</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d1_1"><label for="d1_1">Largest Element in an Array (Linear scan $O(N)$)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d1_2"><label for="d1_2">Second Largest Element in an Array without sorting</label></li>
+          <li class="problem-item"><input type="checkbox" id="d1_3"><label for="d1_3">Check if the array is sorted (Adjacent comparison)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d1_4"><label for="d1_4">Remove duplicates from sorted array (Two-pointer in-place)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Avoid sorting when a single pass ($O(N)$) tracking two variables can find the 2nd largest.</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 2</span> <span class="day-topic">Array Rotation & Pointer Moves</span></div>
+          <span class="day-concept">In-place modifications without auxiliary vectors</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d2_1"><label for="d2_1">Left Rotate an array by one place</label></li>
+          <li class="problem-item"><input type="checkbox" id="d2_2"><label for="d2_2">Left rotate an array by D places (The 3-reverse trick!)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d2_3"><label for="d2_3">Move Zeros to the end (Two-pointer in-place swap)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d2_4"><label for="d2_4">Linear Search & boundary conditions</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> The 3-reverse algorithm rotates an array in $O(N)$ time and $O(1)$ space. Magic!</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 3</span> <span class="day-topic">Set Operations & Finding Unique</span></div>
+          <span class="day-concept">Two pointers on sorted arrays & Bitwise XOR trick</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d3_1"><label for="d3_1">Find the Union of two sorted arrays (Two-pointer merge)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d3_2"><label for="d3_2">Intersection of two sorted arrays</label></li>
+          <li class="problem-item"><input type="checkbox" id="d3_3"><label for="d3_3">Find the number that appears once, others twice (XOR: $a \oplus a = 0$)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d3_4"><label for="d3_4">Find missing number in an array ($N(N+1)/2$ vs XOR)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> XOR is your secret weapon: same numbers cancel out to 0!</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 4</span> <span class="day-topic">Subarrays & Two Sum Pattern</span></div>
+          <span class="day-concept">Sliding window vs Prefix Sum with Hash Map</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d4_1"><label for="d4_1">Two Sum (Variety 1: Yes/No check; Variety 2: Return indices)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d4_2"><label for="d4_2">Longest Subarray with given sum K (Positives & Zeros)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d4_3"><label for="d4_3">Longest Subarray with sum K (Positives + Negatives)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Sliding window works for positive numbers; Prefix sum handles negatives!</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 5</span> <span class="day-topic">The "Famous Three" Interview Algorithms</span></div>
+          <span class="day-concept">Classic algorithms asked in almost every tech round</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d5_1"><label for="d5_1">Sort an array of 0s, 1s and 2s (Dutch National Flag Algorithm)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d5_2"><label for="d5_2">Find the Majority Element (> N/2 times - Moore's Voting)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d5_3"><label for="d5_3">Kadane’s Algorithm (Maximum Subarray Sum in $O(N)$)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d5_4"><label for="d5_4">Print subarray with maximum subarray sum</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Dutch National Flag uses 3 pointers: `low`, `mid`, `high` to sort in 1 single pass!</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 6</span> <span class="day-topic">Array Logic & State Tracking</span></div>
+          <span class="day-concept">Peaks, valleys, and right-to-left scans</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d6_1"><label for="d6_1">Stock Buy and Sell (Track minimum price seen so far)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d6_2"><label for="d6_2">Rearrange array in alternating positive and negative items</label></li>
+          <li class="problem-item"><input type="checkbox" id="d6_3"><label for="d6_3">Leaders in an Array (Scan right to left tracking max)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d6_4"><label for="d6_4">Longest Consecutive Sequence in an Array ($O(N)$ using Set)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Scanning backwards from right to left often turns an $O(N^2)$ problem into $O(N)$.</div>
+      </div>
+
+      <div class="day-card" data-phase="arrays">
+        <div class="day-header">
+          <div><span class="day-badge">Day 7</span> <span class="day-topic">2D Matrices (Vasavi's Home Turf!)</span></div>
+          <span class="day-concept">Connects directly with your 02_MatrixTraversing practice!</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d7_1"><label for="d7_1">Set Matrix Zeroes (In-place marking)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d7_2"><label for="d7_2">Rotate Matrix by 90 degrees (Transpose + Reverse rows)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d7_3"><label for="d7_3">Print matrix in spiral manner (Four boundaries: top, bottom, left, right)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Transpose + Reverse = 90° clockwise rotation. You're already familiar with matrix loops!</div>
+      </div>
+
+      <!-- PHASE 2: STRINGS -->
+      <div class="day-card" data-phase="strings">
+        <div class="day-header">
+          <div><span class="day-badge">Day 8</span> <span class="day-topic">String Basics & Character Manipulation</span></div>
+          <span class="day-concept">ASCII arithmetic, tokenization, immutability</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d8_1"><label for="d8_1">Remove Outermost Parentheses (Nesting balance depth)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d8_2"><label for="d8_2">Reverse Words in a String (Two-pointer word extraction)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d8_3"><label for="d8_3">Largest Odd Number in a String (Scan from end)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Characters are numbers under the hood: `'7' - '0' == 7`.</div>
+      </div>
+
+      <div class="day-card" data-phase="strings">
+        <div class="day-header">
+          <div><span class="day-badge">Day 9</span> <span class="day-topic">Patterns & Comparisons</span></div>
+          <span class="day-concept">Prefix matching, rotation check, character maps</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d9_1"><label for="d9_1">Longest Common Prefix (Vertical scanning)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d9_2"><label for="d9_2">Isomorphic Strings (Dual character mapping)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d9_3"><label for="d9_3">Check if One String is a Rotation of Another ($s_1 + s_1$ trick)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Concatenating `s1 + s1` contains every possible rotation of `s1`. Brilliant shortcut!</div>
+      </div>
+
+      <div class="day-card" data-phase="strings">
+        <div class="day-header">
+          <div><span class="day-badge">Day 10</span> <span class="day-topic">Frequency Counting & Anagrams</span></div>
+          <span class="day-concept">Fixed-size frequency buckets of size 26</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d10_1"><label for="d10_1">Check if Two Strings are Anagram of Each Other</label></li>
+          <li class="problem-item"><input type="checkbox" id="d10_2"><label for="d10_2">Sort Characters by Frequency</label></li>
+          <li class="problem-item"><input type="checkbox" id="d10_3"><label for="d10_3">Maximum Nesting Depth of the Parentheses</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> An array of size 26 `int freq[26] = {0}` acts as a blazing fast $O(1)$ hash map.</div>
+      </div>
+
+      <div class="day-card" data-phase="strings">
+        <div class="day-header">
+          <div><span class="day-badge">Day 11</span> <span class="day-topic">Conversions & Numerical Strings</span></div>
+          <span class="day-concept">Handling signs, bounds, and roman numerals</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d11_1"><label for="d11_1">Roman Number to Integer</label></li>
+          <li class="problem-item"><input type="checkbox" id="d11_2"><label for="d11_2">Integer to Roman (Greedy lookup table)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d11_3"><label for="d11_3">Implement Atoi (String to Integer with overflow handling)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always check if adding the next digit will overflow `INT_MAX` before multiplying by 10!</div>
+      </div>
+
+      <div class="day-card" data-phase="strings">
+        <div class="day-header">
+          <div><span class="day-badge">Day 12</span> <span class="day-topic">Palindromes & Substrings</span></div>
+          <span class="day-concept">Expand around center technique</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d12_1"><label for="d12_1">Check if String is Palindrome (Two pointers / recursion)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d12_2"><label for="d12_2">Longest Palindromic Substring (Expand around center)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d12_3"><label for="d12_3">Count Number of Substrings with K distinct characters</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Expand around center checks both odd and even centers in $O(1)$ space.</div>
+      </div>
+
+      <!-- PHASE 3: LINKED LISTS -->
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 13</span> <span class="day-topic">Demystifying Pointers & The Linked Node</span></div>
+          <span class="day-concept">Struct Node, dynamic memory, arrow operator `->`</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d13_1"><label for="d13_1">Introduction to Linked List & Struct Node Creation in C++</label></li>
+          <li class="problem-item"><input type="checkbox" id="d13_2"><label for="d13_2">Traversal in a Linked List (Iterate until `temp == nullptr`)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d13_3"><label for="d13_3">Find the Length of a Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d13_4"><label for="d13_4">Search an Element in a Linked List</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A linked list node is simply a box with 2 parts: `data` and a `next` address pointing to another box!</div>
+      </div>
+
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 14</span> <span class="day-topic">Insertion & Deletion Operations</span></div>
+          <span class="day-concept">Rewiring pointers, handling empty lists and head deletions</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d14_1"><label for="d14_1">Insertion at Head of LL (New node points to head; update head)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d14_2"><label for="d14_2">Insertion at Tail & K-th Position of LL</label></li>
+          <li class="problem-item"><input type="checkbox" id="d14_3"><label for="d14_3">Deletion of Head & Tail of LL (Freeing memory cleanly)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d14_4"><label for="d14_4">Deletion of K-th Node & Node with Value X</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always check if deleting the head node first — it requires updating the `head` pointer!</div>
+      </div>
+
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 15</span> <span class="day-topic">Doubly Linked Lists (DLL)</span></div>
+          <span class="day-concept">Bi-directional pointers (`prev` and `next`)</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d15_1"><label for="d15_1">Introduction to Doubly Linked List & Representation</label></li>
+          <li class="problem-item"><input type="checkbox" id="d15_2"><label for="d15_2">Insert and Delete in Doubly Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d15_3"><label for="d15_3">Reverse a Doubly Linked List (Swap `prev` and `next`)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In DLL, whenever inserting or deleting, update 4 pointer links instead of 2.</div>
+      </div>
+
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 16</span> <span class="day-topic">The Tortoise & Hare (Fast & Slow Pointers)</span></div>
+          <span class="day-concept">Floyd's cycle-finding algorithm</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d16_1"><label for="d16_1">Middle of a Linked List (`slow` +1, `fast` +2)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d16_2"><label for="d16_2">Detect a Loop/Cycle in a Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d16_3"><label for="d16_3">Find the Starting Point of a Loop in LL</label></li>
+          <li class="problem-item"><input type="checkbox" id="d16_4"><label for="d16_4">Length of a Loop in Linked List</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> If fast and slow meet, there is a loop. Reset slow to head, move both by 1 — where they meet is the loop start!</div>
+      </div>
+
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 17</span> <span class="day-topic">Structural Reversals & Reordering</span></div>
+          <span class="day-concept">Three-pointer reversal and two-halves comparison</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d17_1"><label for="d17_1">Reverse a Linked List (Iterative with `prev`, `curr`, `next`)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d17_2"><label for="d17_2">Check if a Linked List is a Palindrome</label></li>
+          <li class="problem-item"><input type="checkbox" id="d17_3"><label for="d17_3">Odd Even Linked List (Group odd indices, then even)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d17_4"><label for="d17_4">Remove the Nth Node from End of List</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always save `next = curr->next` before breaking `curr->next = prev`!</div>
+      </div>
+
+      <div class="day-card" data-phase="ll">
+        <div class="day-header">
+          <div><span class="day-badge">Day 18</span> <span class="day-topic">List Arithmetic & Merge Operations</span></div>
+          <span class="day-concept">Dummy head pattern and carry accumulation</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d18_1"><label for="d18_1">Add 1 to a number represented as a Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d18_2"><label for="d18_2">Add two numbers represented as Linked Lists</label></li>
+          <li class="problem-item"><input type="checkbox" id="d18_3"><label for="d18_3">Intersection point of two Y-shaped Linked Lists</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A `dummyNode` eliminates edge case `if (head == null)` when constructing new lists.</div>
+      </div>
+
+      <!-- PHASE 4: STACKS & QUEUES -->
+      <div class="day-card" data-phase="sq">
+        <div class="day-header">
+          <div><span class="day-badge">Day 19</span> <span class="day-topic">LIFO & FIFO Foundations</span></div>
+          <span class="day-concept">Stack and Queue mechanics, circular buffers</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d19_1"><label for="d19_1">Implement Stack using Arrays (`top` index pointer)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d19_2"><label for="d19_2">Implement Queue using Arrays (Circular buffer with `% N`)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d19_3"><label for="d19_3">Implement Stack using Queue (Rotation technique)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d19_4"><label for="d19_4">Implement Queue using Stack (Amortized $O(1)$ dual stacks)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Stack = pile of plates (LIFO); Queue = ticket counter line (FIFO).</div>
+      </div>
+
+      <div class="day-card" data-phase="sq">
+        <div class="day-header">
+          <div><span class="day-badge">Day 20</span> <span class="day-topic">Real-world Applications & Memory</span></div>
+          <span class="day-concept">Parentheses parsing and $O(1)$ minimum tracking</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d20_1"><label for="d20_1">Implement Stack using Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d20_2"><label for="d20_2">Implement Queue using Linked List</label></li>
+          <li class="problem-item"><input type="checkbox" id="d20_3"><label for="d20_3">Check for Balanced Parentheses (Valid Parentheses)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d20_4"><label for="d20_4">Implement Min Stack ($O(1)$ getMin operation)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Balanced parentheses is Google's all-time favorite screening question!</div>
+      </div>
+
+      <div class="day-card" data-phase="sq">
+        <div class="day-header">
+          <div><span class="day-badge">Day 21</span> <span class="day-topic">Monotonic Stack — The Secret Superpower</span></div>
+          <span class="day-concept">Maintaining monotonic order to find nearest extrema</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d21_1"><label for="d21_1">Next Greater Element I (NGE - Decreasing monotonic stack)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d21_2"><label for="d21_2">Next Greater Element II (Circular Array via $2N$ traversal)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d21_3"><label for="d21_3">Next Smaller Element</label></li>
+          <li class="problem-item"><input type="checkbox" id="d21_4"><label for="d21_4">Number of NGEs to the right</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Monotonic stacks eliminate nested $O(N^2)$ loops and solve queries in clean $O(N)$.</div>
+      </div>
+
+      <div class="day-card" data-phase="sq">
+        <div class="day-header">
+          <div><span class="day-badge">Day 22</span> <span class="day-topic">Problem Solving with Monotonic Stack</span></div>
+          <span class="day-concept">Physical simulations and elevation boundaries</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d22_1"><label for="d22_1">Trapping Rain Water (Two pointer OR monotonic stack)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d22_2"><label for="d22_2">Asteroid Collision (Positive/negative rock simulation)</label></li>
+          <li class="problem-item"><input type="checkbox" id="d22_3"><label for="d22_3">Stock Span Problem</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Trapping water at column $i$ is determined by $\min(\text{leftMax}, \text{rightMax}) - \text{height}[i]$.</div>
+      </div>
+
+      <div class="day-card" data-phase="sq">
+        <div class="day-header">
+          <div><span class="day-badge">Day 23</span> <span class="day-topic">Grand Challenges of Stacks</span></div>
+          <span class="day-concept">Histogram calculations & Sliding Window Deque</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d23_1"><label for="d23_1">Largest Rectangle in a Histogram</label></li>
+          <li class="problem-item"><input type="checkbox" id="d23_2"><label for="d23_2">Maximal Rectangles in Binary Matrix</label></li>
+          <li class="problem-item"><input type="checkbox" id="d23_3"><label for="d23_3">Sliding Window Maximum (Monotonic deque)</label></li>
+        </ul>
+        <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Maximal rectangle in a matrix is just the histogram algorithm run on every row!</div>
+      </div>
+
+      <!-- PHASE 5: GRAND REVIEW -->
+      <div class="day-card" data-phase="review" style="border: 2px solid var(--accent); background: var(--bg);">
+        <div class="day-header">
+          <div><span class="day-badge" style="background: var(--accent); color: var(--on-accent);">Day 24</span> <span class="day-topic">Grand Review & Think-Out-Loud Simulation</span></div>
+          <span class="day-concept">Consolidation, mock interview, and celebrating success!</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-item"><input type="checkbox" id="d24_1"><label for="d24_1">Signature Solve 1 (Array): Kadane's Algorithm without looking at notes</label></li>
+          <li class="problem-item"><input type="checkbox" id="d24_2"><label for="d24_2">Signature Solve 2 (String): Longest Palindromic Substring</label></li>
+          <li class="problem-item"><input type="checkbox" id="d24_3"><label for="d24_3">Signature Solve 3 (Linked List): Reverse LL & Detect Cycle</label></li>
+          <li class="problem-item"><input type="checkbox" id="d24_4"><label for="d24_4">Signature Solve 4 (Stack): Valid Parentheses & Next Greater Element</label></li>
+          <li class="problem-item"><input type="checkbox" id="d24_5"><label for="d24_5">Think-Out-Loud Simulation: Explain 1 complete problem to your brother!</label></li>
+        </ul>
+        <div class="day-tip">🎓 <strong>Celebration:</strong> You just completed what 95% of students only attempt in 3rd year. Stand proud, Vasavi!</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════ THE INTERVIEW PROCESS ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">What to expect</p>
+    <h2>📝 The Interview Process</h2>
+
+    <div class="pipeline" style="margin-bottom: 32px;">
+      <div class="pipe-stage">
+        <div class="pipe-icon">📋</div>
+        <p class="pipe-name">Online Application</p>
+        <p class="pipe-desc">Resume + university details</p>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">💻</div>
+        <p class="pipe-name">Coding Assessment</p>
+        <p class="pipe-desc">1–2 coding problems on Google's platform</p>
+      </div>
+      <div class="pipe-stage">
+        <div class="pipe-icon">🎤</div>
+        <p class="pipe-name">2 Tech Interviews</p>
+        <p class="pipe-desc">~45 min each, 1 coding problem per round</p>
+      </div>
+    </div>
+
+    <div class="hint-box">
+      <h4>💡 5 Golden Interview Tips</h4>
+      <ul>
+        <li><strong>Think out loud:</strong> Share your thoughts before typing any code. Interviewers want to see how you think.</li>
+        <li><strong>Start with brute force:</strong> State the obvious solution first, then analyze and optimize.</li>
+        <li><strong>Test your code manually:</strong> Trace a small example on paper or in comments before saying "I'm done".</li>
+        <li><strong>Ask clarifying questions:</strong> "Can the input be empty?" "Are numbers negative?" Shows engineering maturity.</li>
+        <li><strong>Be honest and calm:</strong> If stuck, say "I'm reasoning through this..." and break down what you know.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ LIFE AT GOOGLE ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">What it's actually like</p>
+    <h2>🏢 A Day in the Life of a STEP Intern</h2>
+
+    <div class="schedule">
+      <div class="sched-row"><span class="sched-time">9:30 AM</span><span class="sched-activity">Arrive at Google office, free breakfast buffet</span><span class="sched-emoji">🥐</span></div>
+      <div class="sched-row"><span class="sched-time">10:00 AM</span><span class="sched-activity">Stand-up meeting with your engineering team</span><span class="sched-emoji">🗣️</span></div>
+      <div class="sched-row"><span class="sched-time">10:30 AM</span><span class="sched-activity">Pair coding session with your co-intern</span><span class="sched-emoji">👩‍💻</span></div>
+      <div class="sched-row"><span class="sched-time">12:30 PM</span><span class="sched-activity">Lunch at the Google cafeteria (free & delicious)</span><span class="sched-emoji">🍕</span></div>
+      <div class="sched-row"><span class="sched-time">1:30 PM</span><span class="sched-activity">1:1 with your host (senior mentor session)</span><span class="sched-emoji">🧑‍🏫</span></div>
+      <div class="sched-row"><span class="sched-time">2:30 PM</span><span class="sched-activity">Project feature implementation & debugging</span><span class="sched-emoji">⌨️</span></div>
+      <div class="sched-row"><span class="sched-time">4:00 PM</span><span class="sched-activity">Tech talk by Google leaders or intern social</span><span class="sched-emoji">🎓</span></div>
+      <div class="sched-row"><span class="sched-time">5:30 PM</span><span class="sched-activity">Wrap up, head to gym, nap pod, or game room</span><span class="sched-emoji">🎮</span></div>
+    </div>
+
+    <h3>Intern Perks</h3>
+    <div class="cards">
+      <div class="card">
+        <div class="card-icon">🍽️</div>
+        <h4>Gourmet Free Meals</h4>
+        <p>Breakfast, lunch, dinner, micro-kitchens with snacks and drinks on every floor.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🏋️</div>
+        <h4>Recreation & Wellness</h4>
+        <p>Full campus gym, pool tables, board games, nap pods, and wellness spaces.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚌</div>
+        <h4>Transport & Housing</h4>
+        <p>Google shuttle buses, transport allowance, and intern accommodation assistance.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎒</div>
+        <h4>Google Swag</h4>
+        <p>Personalized laptop, Google backpack, hoodie, water bottle, and desk setup.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ TIMELINE ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">Mark your calendar</p>
+    <h2>📅 Application Timeline</h2>
+    <p>Applications for STEP open around August–September each year. Here's the typical flow:</p>
+
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-when">Aug – Sep</div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-what"><strong>Applications Open</strong><span>Submit your resume and academic details on Google Careers.</span></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Oct – Nov</div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-what"><strong>Online Assessments</strong><span>1–2 coding problems testing logic, arrays, and strings.</span></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Nov – Dec</div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-what"><strong>Technical Interviews</strong><span>2 rounds, ~45 min each. Code live in a shared Google Doc.</span></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Dec – Jan</div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-what"><strong>Offers Roll Out</strong><span>If selected, you receive your official Google offer letter! 🎉</span></div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">May – Jul</div>
+        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
+        <div class="tl-what"><strong>Internship Begins</strong><span>10–12 weeks of high-impact engineering at Google.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ RESOURCES ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">Curated learning</p>
+    <h2>🔗 Essential Resources</h2>
+
+    <div class="resources">
+      <a class="resource" href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2" target="_blank" rel="noopener">
+        <span class="resource-icon">⚡</span>
+        <div>
+          <span class="resource-name">Striver's A2Z DSA Sheet</span>
+          <span class="resource-desc">The exact syllabus behind your 24-day sprint</span>
+        </div>
+      </a>
+      <a class="resource" href="https://buildyourfuture.withgoogle.com/programs/step" target="_blank" rel="noopener">
+        <span class="resource-icon">🌐</span>
+        <div>
+          <span class="resource-name">Google STEP Program</span>
+          <span class="resource-desc">Official Google student programs page</span>
+        </div>
+      </a>
+      <a class="resource" href="https://leetcode.com/" target="_blank" rel="noopener">
+        <span class="resource-icon">🧠</span>
+        <div>
+          <span class="resource-name">LeetCode</span>
+          <span class="resource-desc">Coding problem practice platform</span>
+        </div>
+      </a>
+      <a class="resource" href="https://www.youtube.com/@NeetCode" target="_blank" rel="noopener">
+        <span class="resource-icon">📹</span>
+        <div>
+          <span class="resource-name">NeetCode on YouTube</span>
+          <span class="resource-desc">Clear, visual DSA problem walkthroughs</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ FINAL WORDS ═══════════════════ -->
+  <section class="sec">
+    <p class="kicker">Believe in yourself</p>
+    <h2>💬 A Note for Vasavi</h2>
+    <p>Vasavi, being in <strong>1st semester</strong> at an <strong>IIT</strong> means you already have the analytical power and grit to excel. What separates students who land Google internships from everyone else is simply <strong>starting early with curiosity, joy, and consistency</strong>.</p>
+    <p>Don't rush to memorize code. Savor the process of understanding how algorithms work. When a bug appears, treat it like an exciting puzzle to unlock. You have full mentorship, a complete roadmap, and the time on your side.</p>
+
+    <div class="callout" style="text-align: center;">
+      <p style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin: 0;">
+        You are here → 24-Day Sprint → Sem 2-3 DSA → Apply to STEP → Google Intern → Google Engineer
+      </p>
+      <p style="font-size: .92rem; margin: 8px 0 0; color: var(--on-lav);">
+        (Sem 1) &nbsp;&nbsp;&nbsp; (Winter Break) &nbsp;&nbsp;&nbsp; (Next Sem) &nbsp;&nbsp;&nbsp; (Sem 3-4) &nbsp;&nbsp;&nbsp; (Summer) &nbsp;&nbsp;&nbsp; (Full Time)
+      </p>
+    </div>
+
+    <p style="text-align: center; font-size: 1.25rem; font-weight: 700; margin-top: 24px;">You've got this, Vasavi. Keep coding and keep shining! 💪🌸</p>
+  </section>
+
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <p>Curated with pride for Vasavi · CSE 1st Year · IIT ISM Dhanbad</p>
+    <p>Design system from <a href="../Development/Dice Roll/study_guide.html">Dice Roll Study Guide</a></p>
+  </div>
+</footer>
+
+<script>
+// Interactive checkbox tracker with localStorage
+(function() {
+  const checkboxes = document.querySelectorAll('.problem-item input[type="checkbox"]');
+  const progressFill = document.getElementById('progressFill');
+  const progressPct = document.getElementById('progressPct');
+  const completedCount = document.getElementById('completedCount');
+  const total = checkboxes.length;
+
+  function updateProgress() {
+    let checked = 0;
+    checkboxes.forEach(cb => {
+      if (cb.checked) checked++;
+    });
+    const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+    progressFill.style.width = pct + '%';
+    progressPct.textContent = pct + '% Completed';
+    completedCount.textContent = checked + ' of ' + total + ' problems solved';
+  }
+
+  // Restore saved state
+  checkboxes.forEach(cb => {
+    const saved = localStorage.getItem('step_cb_' + cb.id);
+    if (saved === '1') cb.checked = true;
+    cb.addEventListener('change', () => {
+      localStorage.setItem('step_cb_' + cb.id, cb.checked ? '1' : '0');
+      updateProgress();
+    });
+  });
+
+  updateProgress();
+
+  // Tab filtering
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const dayCards = document.querySelectorAll('.day-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true');
+      const filter = btn.getAttribute('data-filter');
+
+      dayCards.forEach(card => {
+        if (filter === 'all' || card.getAttribute('data-phase') === filter) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
