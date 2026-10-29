@@ -1,8 +1,0 @@
-#include <iostream>
-using namespace std;
-
-int main() {
-    char first, second;
-    cin >> first >> second;
-    cout << first + second << endl;
-}

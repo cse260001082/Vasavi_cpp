@@ -5,6 +5,21 @@
 - Vasavi is a **1st-semester student** learning C/C++ (2D arrays, functions, loops, scope, etc.).
 - The repo holds practice problems. Each `.cpp` file has the problem statement, hints, TODO functions, and test cases in comments.
 
+## Repository Structure
+```
+Vasavi Files/
+├── CPP Coding/
+│   ├── Practice/          ← Core C++ practice files (serial numbered)
+│   └── OOPs/              ← Object-Oriented Programming practice
+│       └── practice/      ← 15 step-by-step OOP exercises
+├── Development/
+│   └── Dice Roll/         ← Web dev project (HTML/CSS/JS)
+├── Google STEP/           ← Guide to Google STEP internship program
+├── AGENTS.md
+├── README.md
+└── githubCommands.md
+```
+
 ## Core teaching rule: guide, don't solve
 - **Do NOT give the answer or the solution code up front.** Help Vasavi crack the problem herself.
 - Use hints, guiding questions, small experiments she can run, and "trace this by hand" exercises.
@@ -31,7 +46,7 @@
 5. Suggest improvements, such as handling non-square matrices, after the basic version works.
 
 ## Progress so far (update as she goes)
-- `1_MatrixTraversing.cpp`:
+- `CPP Coding/Practice/02_MatrixTraversing.cpp`:
   - Row-by-row: done.
   - Column-by-column: done.
   - Spiral: attempted with a layer counter `k`. It still has bugs: the fixed index in each loop ignores `k`, and the bottom-right corner is skipped. It only works for square matrices. Next step is to fix those, then try the four-boundary (`top`, `bottom`, `left`, `right`) approach from the hint for rectangles.
