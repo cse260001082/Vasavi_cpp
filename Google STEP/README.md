@@ -1,6 +1,10 @@
 # 🚀 Google STEP — Your Roadmap from 1st Year to Google
 
-> **This guide is for you, Vasavi.** As a 1st-semester CSE student at IIT ISM, you're at the perfect starting point to aim for one of the most prestigious early-career programs in tech.
+> **This guide is for you, Vasavi.** As a 1st-semester CSE student at **IIT Indore**, you're at the perfect starting point to aim for one of the most prestigious early-career programs in tech.
+>
+> 💡 *Interactive Tools:*
+> - 🌟 **[sprint_tracker.html](sprint_tracker.html)** — Dedicated interactive 24-day winter sprint tracker with local progress saving, search, timers, and personal notes.
+> - 🌐 **[README.html](README.html)** — Full visual guide to Google STEP, the internship pipeline, and day-in-the-life walkthroughs.
 
 ---
 

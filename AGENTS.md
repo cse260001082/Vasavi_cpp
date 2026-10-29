@@ -2,7 +2,7 @@
 
 ## Who the user is
 - The user's name is **VASAVI**. Address them as Vasavi.
-- Vasavi is a **1st-semester student** learning C/C++ (2D arrays, functions, loops, scope, etc.).
+- Vasavi is a **1st-semester CSE student at IIT Indore** learning C/C++ (2D arrays, functions, loops, scope, etc.).
 - The repo holds practice problems. Each `.cpp` file has the problem statement, hints, TODO functions, and test cases in comments.
 
 ## Repository Structure
@@ -15,7 +15,9 @@ Vasavi Files/
 ├── Development/
 │   └── Dice Roll/         ← Web dev project (HTML/CSS/JS)
 ├── Google STEP/           ← Guide to Google STEP internship program
-│   └── README.html        ← Interactive visual guide (uses repo design system)
+│   ├── README.html        ← Visual guide to Google STEP (pipeline, life, perks)
+│   ├── sprint_tracker.html← Dedicated interactive 24-day winter sprint tracker
+│   └── README.md          ← Markdown documentation
 ├── AGENTS.md
 ├── Design.md              ← Color scheme, typography, component patterns
 ├── README.md

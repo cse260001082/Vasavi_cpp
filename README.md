@@ -1,6 +1,6 @@
 # 🌸 Vasavi's C++ Practice Space
 
-Welcome Vasavi! This is your practice space to learn C++ step-by-step and save your work on GitHub.
+Welcome Vasavi! (CSE 1st Year, **IIT Indore**) This is your personal coding and practice space to learn C++ step-by-step, build strong DSA foundations, and prepare for prestigious programs like **Google STEP**.
 
 ---
 
@@ -24,8 +24,10 @@ Welcome Vasavi! This is your practice space to learn C++ step-by-step and save y
 📂 Development/
 │   📂 Dice Roll/             ← Web development project (HTML/CSS/JS)
 │
-📂 Google STEP/               ← 🚀 Your guide to the Google STEP program
-│   README.md
+📂 Google STEP/               ← 🚀 Guide to Google STEP & 24-Day Winter Sprint
+│   ├── README.html           ← Visual interactive guide to Google STEP
+│   ├── sprint_tracker.html   ← Dedicated 24-day winter DSA sprint tracker app
+│   └── README.md             ← Full syllabus & roadmap in markdown
 ```
 
 ---
@@ -86,7 +88,8 @@ Folder: [Dice Roll/](Development/Dice%20Roll/)
 ### 🚀 Google STEP Guide & 24-Day Winter Sprint
 Folder: [Google STEP/](Google%20STEP/)
 *Everything you need to know about the Google STEP internship program — the path from 1st year to a Google engineer, plus a complete 24-Day Winter Break DSA Sprint from Striver's A2Z Sheet (Arrays, Strings, Linked Lists, Stacks & Queues).*
-- 🌐 **Interactive Guide & Tracker:** [README.html](Google%20STEP/README.html) — Open in your browser for the full visual experience with live checkbox progress tracking!
+- 🌟 **Dedicated Winter Sprint Tracker:** [sprint_tracker.html](Google%20STEP/sprint_tracker.html) — Interactive app with timer, search, local progress saving, and notes
+- 🌐 **Interactive Google STEP Guide:** [README.html](Google%20STEP/README.html) — Full visual overview of the STEP program, pipeline, and interview process
 - 📄 **Plain text & Syllabus:** [README.md](Google%20STEP/README.md) — Detailed day-by-day markdown version for GitHub
 
 ---

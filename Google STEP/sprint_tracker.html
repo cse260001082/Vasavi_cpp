@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Vasavi's 24-Day Winter DSA Sprint Tracker · IIT Indore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root {
+  --bg: #FFFFEB;
+  --surface: #FFFFFF;
+  --border: #E4E4D0;
+  --ink: #1A1A1A;
+  --ink-2: #3D3D36;
+  --muted: #6E6E64;
+  --accent: #034F46;
+  --on-accent: #FFFFEB;
+  --accent-text: #034F46;
+  --lav: #F0D7FF;
+  --on-lav: #1A1A1A;
+  --ember: #FFA946;
+  --ember-soft: #FFEBCF;
+  --on-ember: #1A1A1A;
+  --hero-bg: #034F46;
+  --hero-fg: #FFFFEB;
+  --hero-fg-2: #CFE3DC;
+  --hero-chip: #0A5F55;
+  --hero-line: #2F7A70;
+  --code-bg: #222222;
+  --code-fg: #FFFFEB;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+    --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+    --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+    --hero-bg: #034F46; --hero-fg: #FFFFEB; --hero-fg-2: #CFE3DC; --hero-chip: #0A5F55; --hero-line: #2F7A70;
+    --code-bg: #121212; --code-fg: #FFFFEB;
+    color-scheme: dark;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+h1 { font-size: clamp(2.2rem, 5.5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.025em; font-weight: 800; margin: .15em 0 .35em; }
+h2 { font-size: clamp(1.6rem, 3.2vw, 2.1rem); line-height: 1.15; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .5em; }
+h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; margin: 1.8em 0 .55em; }
+h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
+code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .06em .35em; border-radius: 5px; }
+
+/* Buttons */
+.btn {
+  font: 700 .92rem/1.2 var(--font-body);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 8px 18px;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--on-accent);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all .15s ease;
+}
+.btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
+.btn-ember { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+.btn-ghost { background: transparent; color: var(--accent-text); border-color: var(--border); }
+.btn-ghost:hover { background: var(--surface); }
+.btn-small { padding: 5px 12px; font-size: .82rem; }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); }
+.hero-in {
+  max-width: 1240px; margin: 0 auto;
+  padding: 44px 24px 38px;
+  display: grid; grid-template-columns: minmax(0, 1.2fr) auto; gap: 36px; align-items: center;
+}
+.eyebrow { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--lav); margin: 0; }
+.hero h1 { color: var(--hero-fg); }
+.lede { max-width: 58ch; font-size: 1.08rem; color: var(--hero-fg-2); margin: 0 0 20px; }
+.hero-nav { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.hero-nav a {
+  background: var(--hero-chip); color: var(--hero-fg); border: 1px solid var(--hero-line);
+  padding: 7px 16px; border-radius: 999px; text-decoration: none; font-size: .86rem; font-weight: 700;
+  transition: all .15s;
+}
+.hero-nav a:hover { background: var(--hero-line); }
+
+/* Live Tracker Box inside Hero */
+.hero-tracker {
+  background: var(--hero-chip); border: 1px solid var(--hero-line);
+  border-radius: 18px; padding: 22px 26px; text-align: center; width: 310px;
+}
+.hero-pct {
+  font-family: var(--font-display); font-size: 3rem; font-weight: 800;
+  line-height: 1; color: var(--hero-fg); margin: 4px 0 6px; font-variant-numeric: tabular-nums;
+}
+.hero-sub { font-size: .88rem; color: var(--hero-fg-2); margin: 0 0 14px; }
+.hero-bar-bg { width: 100%; height: 8px; background: var(--hero-line); border-radius: 999px; overflow: hidden; margin-bottom: 14px; }
+.hero-bar-fill { height: 100%; width: 0%; background: var(--ember); transition: width .3s ease; }
+.hero-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; border-top: 1px solid var(--hero-line); padding-top: 12px; }
+.h-stat { font-size: .8rem; color: var(--hero-fg-2); }
+.h-val { font-weight: 700; font-size: 1.05rem; color: var(--hero-fg); }
+
+/* Two Column Layout */
+.layout {
+  max-width: 1240px; margin: 0 auto;
+  padding: 0 24px;
+  display: grid; grid-template-columns: 240px minmax(0, 1fr);
+  gap: 40px; align-items: start;
+}
+
+/* Sidebar Rail */
+.rail {
+  position: sticky; top: 20px;
+  padding-block: 30px 24px; max-height: calc(100vh - 40px); overflow-y: auto;
+  scrollbar-width: thin;
+}
+.rail-title { font-size: .74rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--muted); margin: 0 0 10px 10px; }
+.rail-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.rail-item a {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 12px; border-radius: 10px; text-decoration: none;
+  color: var(--ink-2); font-weight: 700; font-size: .9rem; transition: all .15s;
+}
+.rail-item a:hover { background: var(--surface); color: var(--accent-text); }
+.rail-item a.active { background: var(--lav); color: var(--on-lav); }
+.rail-badge { font-size: .75rem; font-family: var(--font-mono); font-weight: 600; padding: 1px 7px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); }
+.rail-divider { height: 1px; background: var(--border); margin: 18px 10px; }
+
+/* Main Content Area */
+main { padding-block: 28px 48px; min-width: 0; }
+.sec { padding-block: 32px; border-top: 1px solid var(--border); scroll-margin-top: 20px; }
+.sec:first-child { border-top: 0; padding-top: 10px; }
+.kicker { font-size: .75rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--accent-text); margin: 0 0 .5em; }
+
+/* Focus Timer Widget */
+.timer-widget {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 20px 24px; margin-bottom: 28px;
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px;
+}
+.timer-left { display: flex; align-items: center; gap: 16px; }
+.timer-icon { font-size: 2rem; }
+.timer-display { font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.timer-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+.timer-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+
+/* Search & Filter Toolbar */
+.toolbar {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
+  display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
+}
+.search-input-wrap { flex: 1 1 260px; position: relative; }
+.search-input {
+  width: 100%; font: inherit; font-size: .92rem; padding: 8px 12px 8px 34px;
+  border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--ink);
+}
+.search-icon { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: .95rem; }
+.filter-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  border: 1px solid var(--border); background: var(--bg); color: var(--ink-2);
+  border-radius: 999px; padding: 5px 12px; font: 700 .82rem var(--font-body); cursor: pointer; transition: all .15s;
+}
+.chip:hover { background: var(--surface); }
+.chip[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+/* Day Cards */
+.day-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 16px; padding: 22px 24px; margin-bottom: 20px; transition: border-color .15s, box-shadow .15s;
+}
+.day-card:hover { border-color: var(--accent); }
+.day-card.completed { border-color: var(--accent); background: linear-gradient(to right, rgba(3, 79, 70, 0.03), transparent); }
+.day-top {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;
+  gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px;
+}
+.day-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--lav); color: var(--on-lav); font-family: var(--font-mono);
+  font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-bottom: 6px;
+}
+.day-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 750; margin: 0; }
+.day-concept { font-size: .88rem; color: var(--muted); margin: 2px 0 0; }
+.day-status { font-size: .82rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; }
+.status-pending { background: var(--bg); border: 1px solid var(--border); color: var(--muted); }
+.status-done { background: var(--accent); color: var(--on-accent); }
+
+/* Problem List */
+.problem-list { list-style: none; padding: 0; margin: 0 0 16px; display: grid; gap: 10px; }
+.problem-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 8px 12px; border-radius: 10px; background: var(--bg); transition: background .15s;
+}
+.problem-row:hover { background: rgba(3, 79, 70, 0.05); }
+.problem-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.problem-row input[type="checkbox"] {
+  width: 20px; height: 20px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; margin: 0;
+}
+.problem-title { font-size: .95rem; font-weight: 600; cursor: pointer; }
+.problem-row input[type="checkbox"]:checked ~ .problem-title {
+  text-decoration: line-through; color: var(--muted); font-weight: 400;
+}
+.problem-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.lvl { font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; font-family: var(--font-mono); }
+.lvl-easy { background: var(--lav); color: var(--on-lav); }
+.lvl-med { background: var(--ember-soft); color: var(--ink); border: 1px solid var(--ember); }
+.lvl-hard { background: var(--ink); color: var(--bg); }
+.solve-link {
+  font-size: .82rem; font-weight: 700; color: var(--accent-text);
+  text-decoration: none; border-bottom: 1px dashed var(--accent-text);
+}
+.solve-link:hover { border-bottom-style: solid; }
+
+/* Day Footer Notes & Tip */
+.day-footer { display: grid; gap: 10px; margin-top: 14px; }
+.day-tip {
+  background: var(--ember-soft); color: var(--ink); border-radius: 10px;
+  padding: 10px 14px; font-size: .88rem; line-height: 1.5;
+}
+.notes-toggle {
+  background: none; border: none; padding: 0; font: 700 .84rem var(--font-body);
+  color: var(--accent-text); cursor: pointer; display: inline-flex; align-items: center; gap: 4px;
+}
+.notes-drawer { display: none; margin-top: 8px; }
+.notes-drawer.open { display: block; }
+.notes-textarea {
+  width: 100%; min-height: 80px; padding: 10px 12px; font-family: var(--font-body);
+  font-size: .9rem; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); color: var(--ink);
+  line-height: 1.5; resize: vertical;
+}
+
+/* Callouts */
+.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 18px 22px; margin: 24px 0; }
+.callout h4 { margin-top: 0; }
+
+/* Footer */
+.foot { border-top: 1px solid var(--border); margin-top: 36px; }
+.foot-in {
+  max-width: 1240px; margin: 0 auto; padding: 26px 24px 44px;
+  display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;
+  font-size: .9rem; color: var(--muted);
+}
+
+/* Responsive */
+@media (max-width: 980px) {
+  .layout { grid-template-columns: 1fr; gap: 0; }
+  .rail {
+    position: sticky; top: 0; z-index: 20; background: var(--bg);
+    padding-block: 10px; max-height: none; overflow: visible;
+    border-bottom: 1px solid var(--border);
+    margin-left: -24px; margin-right: -24px; padding-left: 24px; padding-right: 24px;
+  }
+  .rail-title, .rail-divider { display: none; }
+  .rail-list { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+  .rail-list::-webkit-scrollbar { display: none; }
+  .rail-item a { white-space: nowrap; background: var(--surface); border: 1px solid var(--border); padding: 6px 12px; border-radius: 999px; }
+  .sec { scroll-margin-top: 64px; }
+}
+@media (max-width: 760px) {
+  .hero-in { grid-template-columns: 1fr; gap: 24px; padding: 32px 18px 28px; }
+  .hero-tracker { width: 100%; }
+  .timer-widget { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .problem-row { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .problem-right { width: 100%; justify-content: space-between; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<header class="hero">
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">Winter Break Masterplan · Vasavi · CSE 1st Year · IIT Indore</p>
+      <h1>24-Day DSA Sprint Tracker</h1>
+      <p class="lede">Every day is a stepping stone to your Google dream. Commit 3–4 focused hours, solve with curiosity, and track your progress in real time.</p>
+      <div class="hero-nav">
+        <a href="README.html">← Google STEP Program Guide</a>
+        <a href="#phase1">Phase 1: Arrays</a>
+        <a href="#phase2">Phase 2: Strings</a>
+        <a href="#phase3">Phase 3: Linked Lists</a>
+        <a href="#phase4">Phase 4: Stacks & Queues</a>
+        <a href="#phase5">Phase 5: Grand Review</a>
+      </div>
+    </div>
+    <div class="hero-tracker">
+      <div class="hero-sub">Overall Sprint Completion</div>
+      <div class="hero-pct" id="heroPct">0%</div>
+      <div class="hero-bar-bg"><div class="hero-bar-fill" id="heroBar"></div></div>
+      <div class="hero-metrics">
+        <div><div class="h-stat">Problems Solved</div><div class="h-val" id="heroSolvedCount">0 / 70</div></div>
+        <div><div class="h-stat">Days Finished</div><div class="h-val" id="heroDaysCount">0 / 24</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+  <!-- ═══════════════════ SIDEBAR RAIL ═══════════════════ -->
+  <aside class="rail" aria-label="Sprint Phases">
+    <p class="rail-title">Sprint Roadmap</p>
+    <ul class="rail-list">
+      <li class="rail-item"><a href="#phase1" id="nav-p1"><span>📦 Phase 1: Arrays</span> <span class="rail-badge" id="badge-p1">0/24</span></a></li>
+      <li class="rail-item"><a href="#phase2" id="nav-p2"><span>🔤 Phase 2: Strings</span> <span class="rail-badge" id="badge-p2">0/15</span></a></li>
+      <li class="rail-item"><a href="#phase3" id="nav-p3"><span>🔗 Phase 3: Linked Lists</span> <span class="rail-badge" id="badge-p3">0/18</span></a></li>
+      <li class="rail-item"><a href="#phase4" id="nav-p4"><span>🥞 Phase 4: Stacks & Queues</span> <span class="rail-badge" id="badge-p4">0/18</span></a></li>
+      <li class="rail-item"><a href="#phase5" id="nav-p5"><span>🎓 Phase 5: Grand Review</span> <span class="rail-badge" id="badge-p5">0/5</span></a></li>
+    </ul>
+
+    <div class="rail-divider"></div>
+
+    <p class="rail-title">Daily Tools</p>
+    <ul class="rail-list">
+      <li class="rail-item"><a href="#study-timer">⏱️ Focus Study Timer</a></li>
+      <li class="rail-item"><a href="#daily-flow">💡 3–4 Hr Study Flow</a></li>
+      <li class="rail-item"><a href="README.html">🌐 Google STEP Guide</a></li>
+    </ul>
+
+    <div class="rail-divider"></div>
+
+    <div style="padding: 0 10px;">
+      <button type="button" class="btn btn-ghost btn-small" id="resetBtn" style="width: 100%; justify-content: center; font-size: .8rem;">🔄 Reset Progress</button>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+  <main>
+
+    <!-- Focus Study Timer -->
+    <div class="timer-widget" id="study-timer">
+      <div class="timer-left">
+        <div class="timer-icon">⏳</div>
+        <div>
+          <div class="timer-label">Daily Focus Timer</div>
+          <div class="timer-display" id="timerDisplay">45:00</div>
+        </div>
+      </div>
+      <div class="timer-controls">
+        <button type="button" class="btn btn-small" id="startTimerBtn">▶ Start</button>
+        <button type="button" class="btn btn-ghost btn-small" id="pauseTimerBtn">⏸ Pause</button>
+        <button type="button" class="btn btn-ghost btn-small" id="resetTimerBtn">↺ Reset</button>
+        <span style="border-left: 1px solid var(--border); height: 20px; margin: 0 4px;"></span>
+        <button type="button" class="btn btn-ghost btn-small" data-mins="45">45 min</button>
+        <button type="button" class="btn btn-ghost btn-small" data-mins="90">90 min</button>
+      </div>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="toolbar">
+      <div class="search-input-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="search" class="search-input" id="searchInput" placeholder="Search questions (e.g. Kadane, Zero, Spiral, Loop)...">
+      </div>
+      <div class="filter-chips">
+        <button type="button" class="chip" data-status="all" aria-pressed="true">All (70)</button>
+        <button type="button" class="chip" data-status="pending" aria-pressed="false">Pending</button>
+        <button type="button" class="chip" data-status="done" aria-pressed="false">Done</button>
+      </div>
+    </div>
+
+    <!-- ═══════════════════ PHASE 1: ARRAYS ═══════════════════ -->
+    <section class="sec" id="phase1">
+      <p class="kicker">Day 1 to Day 7 · 24 Problems</p>
+      <h2>📦 Phase 1: Arrays Mastery</h2>
+      <p>Arrays form the backbone of memory and indexing. Master two-pointer moves, prefix sums, and in-place transformations.</p>
+
+      <!-- Day 1 -->
+      <div class="day-card" data-day="1" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 1</span>
+            <h3 class="day-title">Array Fundamentals & Traversals</h3>
+            <p class="day-concept">Indexing, boundary checks, and single-pass scans</p>
+          </div>
+          <span class="day-status status-pending" id="status-d1">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_1_1"><span class="problem-title">Largest Element in an Array</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-the-largest-element-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_1_2"><span class="problem-title">Second Largest Element in an Array without sorting</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-second-smallest-and-second-largest-element-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_1_3"><span class="problem-title">Check if the array is sorted</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-if-an-array-is-sorted/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_1_4"><span class="problem-title">Remove duplicates from sorted array</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/remove-duplicates-in-place-from-sorted-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Avoid sorting ($O(N \log N)$) when a single pass ($O(N)$) tracking two variables finds the 2nd largest.</div>
+          <button type="button" class="notes-toggle" data-target="notes-1">✍️ My Day 1 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-1"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 1..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card" data-day="2" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 2</span>
+            <h3 class="day-title">Array Rotation & Pointer Moves</h3>
+            <p class="day-concept">In-place modifications without auxiliary vectors</p>
+          </div>
+          <span class="day-status status-pending" id="status-d2">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_2_1"><span class="problem-title">Left Rotate an array by one place</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/left-rotate-the-array-by-one/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_2_2"><span class="problem-title">Left rotate an array by D places (The 3-reverse trick!)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/rotate-array-by-k-elements/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_2_3"><span class="problem-title">Move Zeros to the end (In-place two-pointer swap)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/move-all-zeros-to-the-end-of-the-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_2_4"><span class="problem-title">Linear Search</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/linear-search-in-c/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> The 3-reverse algorithm rotates an array in $O(N)$ time and $O(1)$ space. Reverse(0, d-1), Reverse(d, n-1), Reverse(0, n-1)!</div>
+          <button type="button" class="notes-toggle" data-target="notes-2">✍️ My Day 2 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-2"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 2..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card" data-day="3" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 3</span>
+            <h3 class="day-title">Set Operations & Finding Unique</h3>
+            <p class="day-concept">Two pointers on sorted arrays & Bitwise XOR trick</p>
+          </div>
+          <span class="day-status status-pending" id="status-d3">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_3_1"><span class="problem-title">Find the Union of two sorted arrays</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/union-of-two-sorted-arrays/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_3_2"><span class="problem-title">Intersection of two sorted arrays</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/intersection-of-two-sorted-arrays/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_3_3"><span class="problem-title">Find the number that appears once, others twice</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-the-number-that-appears-once-and-the-other-numbers-twice/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_3_4"><span class="problem-title">Find missing number in an array</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-the-missing-number-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> XOR is your secret superpower: identical numbers cancel out to zero ($a \oplus a = 0$).</div>
+          <button type="button" class="notes-toggle" data-target="notes-3">✍️ My Day 3 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-3"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 3..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card" data-day="4" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 4</span>
+            <h3 class="day-title">Subarrays & Two Sum Pattern</h3>
+            <p class="day-concept">Sliding window vs Prefix Sum with Hash Map</p>
+          </div>
+          <span class="day-status status-pending" id="status-d4">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_4_1"><span class="problem-title">Two Sum (Check pair exists & return indices)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/two-sum-check-if-a-pair-with-given-sum-exists-in-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_4_2"><span class="problem-title">Longest Subarray with given sum K (Positives & Zeros)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/longest-subarray-with-given-sum-k/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_4_3"><span class="problem-title">Longest Subarray with sum K (Positives + Negatives)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/arrays/longest-subarray-with-sum-k-postives-and-negatives/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Two pointers sliding window works for positive numbers. When negatives exist, Prefix Sum with Hash Map is mandatory!</div>
+          <button type="button" class="notes-toggle" data-target="notes-4">✍️ My Day 4 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-4"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 4..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card" data-day="5" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 5</span>
+            <h3 class="day-title">The "Famous Three" Interview Algorithms</h3>
+            <p class="day-concept">Classic algorithms asked in almost every tech round</p>
+          </div>
+          <span class="day-status status-pending" id="status-d5">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_5_1"><span class="problem-title">Sort an array of 0s, 1s and 2s (Dutch National Flag)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/sort-an-array-of-0s-1s-and-2s/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_5_2"><span class="problem-title">Find the Majority Element (> N/2 times - Moore's Voting)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-the-majority-element-that-occurs-more-than-n-2-times/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_5_3"><span class="problem-title">Kadane’s Algorithm (Maximum Subarray Sum in $O(N)$)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/kadanes-algorithm-maximum-subarray-sum-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_5_4"><span class="problem-title">Print subarray with maximum subarray sum</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/kadanes-algorithm-maximum-subarray-sum-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In Kadane's algorithm, whenever `sum < 0`, reset `sum = 0`. To print the subarray, remember where `sum` was reset!</div>
+          <button type="button" class="notes-toggle" data-target="notes-5">✍️ My Day 5 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-5"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 5..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-card" data-day="6" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 6</span>
+            <h3 class="day-title">Array Logic & State Tracking</h3>
+            <p class="day-concept">Peaks, valleys, and right-to-left scans</p>
+          </div>
+          <span class="day-status status-pending" id="status-d6">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_6_1"><span class="problem-title">Stock Buy and Sell</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/stock-buy-and-sell/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_6_2"><span class="problem-title">Rearrange array in alternating positive and negative items</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/rearrange-array-elements-by-sign/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_6_3"><span class="problem-title">Leaders in an Array (Scan right to left)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/leaders-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_6_4"><span class="problem-title">Longest Consecutive Sequence in an Array ($O(N)$ with Set)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/longest-consecutive-sequence-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Scanning from right to left often turns an $O(N^2)$ problem into clean $O(N)$!</div>
+          <button type="button" class="notes-toggle" data-target="notes-6">✍️ My Day 6 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-6"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 6..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-card" data-day="7" data-phase="1">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 7</span>
+            <h3 class="day-title">2D Matrices (Vasavi's Home Turf!)</h3>
+            <p class="day-concept">Connects directly with your 02_MatrixTraversing practice</p>
+          </div>
+          <span class="day-status status-pending" id="status-d7">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_7_1"><span class="problem-title">Set Matrix Zeroes</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/set-matrix-zero/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_7_2"><span class="problem-title">Rotate Matrix by 90 degrees (Transpose + Reverse)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/rotate-image-by-90-degree/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_7_3"><span class="problem-title">Print matrix in spiral manner (Four boundaries)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/spiral-traversal-of-matrix/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> You already completed row, col, and diagonal! Now transpose + reverse rows = 90° clockwise rotation.</div>
+          <button type="button" class="notes-toggle" data-target="notes-7">✍️ My Day 7 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-7"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 7..."></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motivational Callout 1 -->
+    <div class="callout">
+      <h4>🎉 Phase 1 Milestone Check!</h4>
+      <p>Vasavi, when you finish Day 7, you've conquered 24 fundamental array problems! You are already ahead of 90% of 1st-year students nationwide. Take a deep breath and step boldly into Strings.</p>
+    </div>
+
+    <!-- ═══════════════════ PHASE 2: STRINGS ═══════════════════ -->
+    <section class="sec" id="phase2">
+      <p class="kicker">Day 8 to Day 12 · 15 Problems</p>
+      <h2>🔤 Phase 2: Strings Mastery</h2>
+      <p>Strings are simply arrays of characters with ASCII values. Master tokenization, frequency tables of size 26, and center-expansion palindromes.</p>
+
+      <!-- Day 8 -->
+      <div class="day-card" data-day="8" data-phase="2">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 8</span>
+            <h3 class="day-title">String Basics & Character Manipulation</h3>
+            <p class="day-concept">ASCII arithmetic, tokenization, immutability</p>
+          </div>
+          <span class="day-status status-pending" id="status-d8">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_8_1"><span class="problem-title">Remove Outermost Parentheses</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/remove-outermost-parentheses/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_8_2"><span class="problem-title">Reverse Words in a String</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/reverse-words-in-a-string/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_8_3"><span class="problem-title">Largest Odd Number in a String</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/strings/largest-odd-number-in-a-string/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Characters are integers under the hood: `'9' - '0' == 9`!</div>
+          <button type="button" class="notes-toggle" data-target="notes-8">✍️ My Day 8 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-8"><textarea class="notes-textarea" placeholder="Notes for Day 8..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 9 -->
+      <div class="day-card" data-day="9" data-phase="2">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 9</span>
+            <h3 class="day-title">Patterns & Comparisons</h3>
+            <p class="day-concept">Prefix matching, rotation checks, character maps</p>
+          </div>
+          <span class="day-status status-pending" id="status-d9">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_9_1"><span class="problem-title">Longest Common Prefix</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/longest-common-prefix/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_9_2"><span class="problem-title">Isomorphic Strings (Dual character mapping)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/isomorphic-string/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_9_3"><span class="problem-title">Check if One String is a Rotation of Another ($s_1 + s_1$ trick)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-if-one-string-is-a-rotation-of-another/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Concatenating `s1 + s1` contains every possible circular rotation of `s1`. Brilliant shortcut!</div>
+          <button type="button" class="notes-toggle" data-target="notes-9">✍️ My Day 9 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-9"><textarea class="notes-textarea" placeholder="Notes for Day 9..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 10 -->
+      <div class="day-card" data-day="10" data-phase="2">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 10</span>
+            <h3 class="day-title">Frequency Counting & Anagrams</h3>
+            <p class="day-concept">Fixed-size frequency buckets of size 26</p>
+          </div>
+          <span class="day-status status-pending" id="status-d10">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_10_1"><span class="problem-title">Check if Two Strings are Anagram of Each Other</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-if-two-strings-are-anagrams-of-each-other/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_10_2"><span class="problem-title">Sort Characters by Frequency</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/sort-characters-by-frequency/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_10_3"><span class="problem-title">Maximum Nesting Depth of the Parentheses</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/maximum-nesting-depth-of-the-parentheses/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> An array of size 26 `int freq[26] = {0}` acts as a blazing fast $O(1)$ space hash map for lowercase English letters.</div>
+          <button type="button" class="notes-toggle" data-target="notes-10">✍️ My Day 10 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-10"><textarea class="notes-textarea" placeholder="Notes for Day 10..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 11 -->
+      <div class="day-card" data-day="11" data-phase="2">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 11</span>
+            <h3 class="day-title">Conversions & Numerical Strings</h3>
+            <p class="day-concept">Handling signs, bounds, and roman numerals</p>
+          </div>
+          <span class="day-status status-pending" id="status-d11">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_11_1"><span class="problem-title">Roman Number to Integer</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/roman-to-integer/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_11_2"><span class="problem-title">Integer to Roman (Greedy lookup table)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/integer-to-roman/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_11_3"><span class="problem-title">Implement Atoi (String to Integer with overflow handling)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-atoi/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In Atoi, always check if `ans > (INT_MAX - digit) / 10` before multiplying to avoid runtime overflow errors!</div>
+          <button type="button" class="notes-toggle" data-target="notes-11">✍️ My Day 11 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-11"><textarea class="notes-textarea" placeholder="Notes for Day 11..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 12 -->
+      <div class="day-card" data-day="12" data-phase="2">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 12</span>
+            <h3 class="day-title">Palindromes & Substrings</h3>
+            <p class="day-concept">Expand around center technique</p>
+          </div>
+          <span class="day-status status-pending" id="status-d12">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_12_1"><span class="problem-title">Check if String is Palindrome</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-if-a-given-string-is-palindrome-or-not/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_12_2"><span class="problem-title">Longest Palindromic Substring</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/longest-palindromic-substring/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_12_3"><span class="problem-title">Count Number of Substrings with K distinct characters</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/count-number-of-substrings-with-exactly-k-distinct-characters/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Expand around center avoids DP table overhead and runs in $O(1)$ auxiliary space. Check both odd centers `(i, i)` and even centers `(i, i+1)`.</div>
+          <button type="button" class="notes-toggle" data-target="notes-12">✍️ My Day 12 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-12"><textarea class="notes-textarea" placeholder="Notes for Day 12..."></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ PHASE 3: LINKED LISTS ═══════════════════ -->
+    <section class="sec" id="phase3">
+      <p class="kicker">Day 13 to Day 18 · 18 Problems</p>
+      <h2>🔗 Phase 3: Linked Lists</h2>
+      <p>Transition from contiguous arrays to dynamic pointer chains in heap memory. Draw every node and pointer on paper first!</p>
+
+      <!-- Day 13 -->
+      <div class="day-card" data-day="13" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 13</span>
+            <h3 class="day-title">Demystifying Pointers & The Linked Node</h3>
+            <p class="day-concept">Struct Node, dynamic memory, arrow operator `->`</p>
+          </div>
+          <span class="day-status status-pending" id="status-d13">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_13_1"><span class="problem-title">Introduction to Linked List & Struct Node Creation in C++</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/introduction-to-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_13_2"><span class="problem-title">Traversal in a Linked List (Iterate until `temp == nullptr`)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/traversal-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_13_3"><span class="problem-title">Find the Length of a Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/find-the-length-of-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_13_4"><span class="problem-title">Search an Element in a Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/search-an-element-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A linked list node is simply a box with 2 compartments: `data` and a `next` address pointing to another box!</div>
+          <button type="button" class="notes-toggle" data-target="notes-13">✍️ My Day 13 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-13"><textarea class="notes-textarea" placeholder="Notes for Day 13..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 14 -->
+      <div class="day-card" data-day="14" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 14</span>
+            <h3 class="day-title">Insertion & Deletion Operations</h3>
+            <p class="day-concept">Rewiring pointers, handling empty lists and head deletions</p>
+          </div>
+          <span class="day-status status-pending" id="status-d14">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_14_1"><span class="problem-title">Insertion at Head of LL</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/insert-node-at-the-head-of-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_14_2"><span class="problem-title">Insertion at Tail & K-th Position of LL</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/insert-node-at-the-end-of-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_14_3"><span class="problem-title">Deletion of Head & Tail of LL</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/delete-last-node-of-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_14_4"><span class="problem-title">Deletion of K-th Node & Node with Value X</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/delete-k-th-node-of-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always check if deleting the head node first — it requires updating the `head` pointer itself!</div>
+          <button type="button" class="notes-toggle" data-target="notes-14">✍️ My Day 14 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-14"><textarea class="notes-textarea" placeholder="Notes for Day 14..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 15 -->
+      <div class="day-card" data-day="15" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 15</span>
+            <h3 class="day-title">Doubly Linked Lists (DLL)</h3>
+            <p class="day-concept">Bi-directional pointers (`prev` and `next`)</p>
+          </div>
+          <span class="day-status status-pending" id="status-d15">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_15_1"><span class="problem-title">Introduction to Doubly Linked List & Representation</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/linked-list/introduction-to-doubly-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_15_2"><span class="problem-title">Insert and Delete in Doubly Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/linked-list/insert-a-node-in-doubly-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_15_3"><span class="problem-title">Reverse a Doubly Linked List (Swap `prev` and `next`)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/reverse-a-doubly-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In DLL, whenever inserting or deleting, update 4 pointer links instead of 2.</div>
+          <button type="button" class="notes-toggle" data-target="notes-15">✍️ My Day 15 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-15"><textarea class="notes-textarea" placeholder="Notes for Day 15..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 16 -->
+      <div class="day-card" data-day="16" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 16</span>
+            <h3 class="day-title">The Tortoise & Hare (Fast & Slow Pointers)</h3>
+            <p class="day-concept">Floyd's cycle-finding algorithm</p>
+          </div>
+          <span class="day-status status-pending" id="status-d16">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_16_1"><span class="problem-title">Middle of a Linked List (`slow` +1, `fast` +2)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-middle-element-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_16_2"><span class="problem-title">Detect a Loop/Cycle in a Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/detect-a-cycle-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_16_3"><span class="problem-title">Find the Starting Point of a Loop in LL</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/starting-point-of-loop-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_16_4"><span class="problem-title">Length of a Loop in Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-length-of-loop-in-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> If fast and slow meet, there is a cycle. Reset slow to head, move both by 1 — the node where they meet is the start of the loop!</div>
+          <button type="button" class="notes-toggle" data-target="notes-16">✍️ My Day 16 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-16"><textarea class="notes-textarea" placeholder="Notes for Day 16..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 17 -->
+      <div class="day-card" data-day="17" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 17</span>
+            <h3 class="day-title">Structural Reversals & Reordering</h3>
+            <p class="day-concept">Three-pointer reversal and two-halves comparison</p>
+          </div>
+          <span class="day-status status-pending" id="status-d17">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_17_1"><span class="problem-title">Reverse a Linked List (Iterative with `prev`, `curr`, `next`)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/reverse-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_17_2"><span class="problem-title">Check if a Linked List is a Palindrome</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-if-given-linked-list-is-palindrome/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_17_3"><span class="problem-title">Odd Even Linked List (Group odd indices, then even)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/segregate-even-and-odd-nodes-in-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_17_4"><span class="problem-title">Remove the Nth Node from End of List</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/delete-nth-node-from-the-end-of-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always store `next = curr->next` before severing the link `curr->next = prev`!</div>
+          <button type="button" class="notes-toggle" data-target="notes-17">✍️ My Day 17 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-17"><textarea class="notes-textarea" placeholder="Notes for Day 17..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 18 -->
+      <div class="day-card" data-day="18" data-phase="3">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 18</span>
+            <h3 class="day-title">List Arithmetic & Merge Operations</h3>
+            <p class="day-concept">Dummy head pattern and carry accumulation</p>
+          </div>
+          <span class="day-status status-pending" id="status-d18">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_18_1"><span class="problem-title">Add 1 to a number represented as a Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/add-1-to-a-number-represented-by-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_18_2"><span class="problem-title">Add two numbers represented as Linked Lists</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/add-two-numbers-represented-as-linked-lists/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_18_3"><span class="problem-title">Intersection point of two Y-shaped Linked Lists</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/find-intersection-of-two-linked-lists/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A `dummyNode` completely eliminates edge case `if (head == nullptr)` when creating new result lists.</div>
+          <button type="button" class="notes-toggle" data-target="notes-18">✍️ My Day 18 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-18"><textarea class="notes-textarea" placeholder="Notes for Day 18..."></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motivational Callout 2 -->
+    <div class="callout">
+      <h4>🔥 Over Halfway There!</h4>
+      <p>Vasavi, completing Linked Lists is a huge watershed moment. Pointers intimidate most engineers, but you have wrestled with memory directly. Stacks & Queues will feel natural and intuitive now.</p>
+    </div>
+
+    <!-- ═══════════════════ PHASE 4: STACKS & QUEUES ═══════════════════ -->
+    <section class="sec" id="phase4">
+      <p class="kicker">Day 19 to Day 23 · 18 Problems</p>
+      <h2>🥞 Phase 4: Stacks & Queues</h2>
+      <p>LIFO (Last-In-First-Out) and FIFO (First-In-First-Out) power expression parsers, browser history, and the famous Monotonic Stack pattern.</p>
+
+      <!-- Day 19 -->
+      <div class="day-card" data-day="19" data-phase="4">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 19</span>
+            <h3 class="day-title">LIFO & FIFO Foundations</h3>
+            <p class="day-concept">Stack and Queue mechanics, circular buffers</p>
+          </div>
+          <span class="day-status status-pending" id="status-d19">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_19_1"><span class="problem-title">Implement Stack using Arrays (`top` index pointer)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-stack-using-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_19_2"><span class="problem-title">Implement Queue using Arrays (Circular buffer with `% N`)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-queue-using-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_19_3"><span class="problem-title">Implement Stack using Queue (Rotation technique)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-stack-using-single-queue/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_19_4"><span class="problem-title">Implement Queue using Stack (Amortized $O(1)$ dual stacks)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-queue-using-stack/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Stack = pile of plates (LIFO); Queue = ticket line (FIFO). Implementing one with the other tests data structure mechanics!</div>
+          <button type="button" class="notes-toggle" data-target="notes-19">✍️ My Day 19 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-19"><textarea class="notes-textarea" placeholder="Notes for Day 19..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 20 -->
+      <div class="day-card" data-day="20" data-phase="4">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 20</span>
+            <h3 class="day-title">Real-World Applications & Memory</h3>
+            <p class="day-concept">Parentheses parsing and $O(1)$ minimum tracking</p>
+          </div>
+          <span class="day-status status-pending" id="status-d20">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_20_1"><span class="problem-title">Implement Stack using Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-stack-using-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_20_2"><span class="problem-title">Implement Queue using Linked List</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-queue-using-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_20_3"><span class="problem-title">Check for Balanced Parentheses (Valid Parentheses)</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/check-for-balanced-parentheses/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_20_4"><span class="problem-title">Implement Min Stack ($O(1)$ getMin operation)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/implement-min-stack-o2n-and-on-space-complexity/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Balanced parentheses is Google's all-time favorite screening question! Push opens, match and pop closings.</div>
+          <button type="button" class="notes-toggle" data-target="notes-20">✍️ My Day 20 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-20"><textarea class="notes-textarea" placeholder="Notes for Day 20..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 21 -->
+      <div class="day-card" data-day="21" data-phase="4">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 21</span>
+            <h3 class="day-title">Monotonic Stack — The Secret Superpower</h3>
+            <p class="day-concept">Maintaining monotonic order to find nearest extrema</p>
+          </div>
+          <span class="day-status status-pending" id="status-d21">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_21_1"><span class="problem-title">Next Greater Element I (NGE - Decreasing monotonic stack)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/next-greater-element-using-stack/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_21_2"><span class="problem-title">Next Greater Element II (Circular Array via $2N$ traversal)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/next-greater-element-ii/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_21_3"><span class="problem-title">Next Smaller Element</span></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/data-structure/next-smaller-element/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_21_4"><span class="problem-title">Number of NGEs to the right</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/count-of-greater-elements-to-the-right/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Monotonic stacks collapse $O(N^2)$ brute forces into clean $O(N)$ linear scans. Remember: each element is pushed and popped at most once!</div>
+          <button type="button" class="notes-toggle" data-target="notes-21">✍️ My Day 21 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-21"><textarea class="notes-textarea" placeholder="Notes for Day 21..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 22 -->
+      <div class="day-card" data-day="22" data-phase="4">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 22</span>
+            <h3 class="day-title">Problem Solving with Monotonic Stack</h3>
+            <p class="day-concept">Physical simulations and elevation boundaries</p>
+          </div>
+          <span class="day-status status-pending" id="status-d22">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_22_1"><span class="problem-title">Trapping Rain Water (Two pointer OR monotonic stack)</span></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/data-structure/trapping-rainwater/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_22_2"><span class="problem-title">Asteroid Collision (Positive/negative rock simulation)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/asteroid-collision/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_22_3"><span class="problem-title">Stock Span Problem</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/stock-span-problem/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Trapping water at column $i$ is determined by $\min(\text{leftMax}, \text{rightMax}) - \text{height}[i]$. Master this classic!</div>
+          <button type="button" class="notes-toggle" data-target="notes-22">✍️ My Day 22 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-22"><textarea class="notes-textarea" placeholder="Notes for Day 22..."></textarea></div>
+        </div>
+      </div>
+
+      <!-- Day 23 -->
+      <div class="day-card" data-day="23" data-phase="4">
+        <div class="day-top">
+          <div>
+            <span class="day-badge">Day 23</span>
+            <h3 class="day-title">Grand Challenges of Stacks</h3>
+            <p class="day-concept">Histogram calculations & Sliding Window Deque</p>
+          </div>
+          <span class="day-status status-pending" id="status-d23">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_23_1"><span class="problem-title">Largest Rectangle in a Histogram</span></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/data-structure/area-of-largest-rectangle-in-histogram/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_23_2"><span class="problem-title">Maximal Rectangles in Binary Matrix</span></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/data-structure/maximum-rectangle-area-with-all-1s/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_23_3"><span class="problem-title">Sliding Window Maximum (Monotonic deque)</span></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/data-structure/sliding-window-maximum/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Maximal rectangle in a matrix is just the histogram algorithm run on every row of accumulating heights!</div>
+          <button type="button" class="notes-toggle" data-target="notes-23">✍️ My Day 23 Notes <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-23"><textarea class="notes-textarea" placeholder="Notes for Day 23..."></textarea></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ PHASE 5: GRAND REVIEW ═══════════════════ -->
+    <section class="sec" id="phase5">
+      <p class="kicker">Day 24 · 5 Milestones</p>
+      <h2>🎓 Phase 5: Grand Review & Mock Simulation</h2>
+      <p>You have laid a foundation that few freshmen in the country possess. Consolidate your confidence, simulate a live interview, and celebrate your victory!</p>
+
+      <div class="day-card" data-day="24" data-phase="5" style="border: 2px solid var(--accent); background: var(--bg);">
+        <div class="day-top">
+          <div>
+            <span class="day-badge" style="background: var(--accent); color: var(--on-accent);">Day 24</span>
+            <h3 class="day-title">The Grand Review & Think-Out-Loud Session</h3>
+            <p class="day-concept">Re-solve signature algorithms without notes & present out loud</p>
+          </div>
+          <span class="day-status status-pending" id="status-d24">Pending</span>
+        </div>
+        <ul class="problem-list">
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_24_1"><span class="problem-title">Signature Solve 1 (Array): Kadane's Algorithm from scratch</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/kadanes-algorithm-maximum-subarray-sum-in-an-array/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_24_2"><span class="problem-title">Signature Solve 2 (String): Longest Palindromic Substring</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/longest-palindromic-substring/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_24_3"><span class="problem-title">Signature Solve 3 (Linked List): Reverse LL & Detect Cycle</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/reverse-a-linked-list/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_24_4"><span class="problem-title">Signature Solve 4 (Stack): Valid Parentheses & Next Greater Element</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/data-structure/next-greater-element-using-stack/" target="_blank" rel="noopener">Solve ↗</a></div>
+          </li>
+          <li class="problem-row">
+            <div class="problem-left"><input type="checkbox" id="q_24_5"><span class="problem-title">Think-Out-Loud Simulation: Explain 1 complete problem to your brother!</span></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Mock</span><a class="solve-link" href="README.html#interview" target="_blank">Interview Guide ↗</a></div>
+          </li>
+        </ul>
+        <div class="day-footer">
+          <div class="day-tip" style="background: var(--lav); color: var(--on-lav); border-left-color: var(--accent);">
+            🎓 <strong>A Brother's Proud Note:</strong> Vasavi, you completed 70 interview-grade problems across 4 major data structures during your 1st-year winter break. Keep this grit and consistency alive in Semester 2. Google is waiting for you!
+          </div>
+          <button type="button" class="notes-toggle" data-target="notes-24">✍️ My Final Reflections <span class="arr">▾</span></button>
+          <div class="notes-drawer" id="notes-24"><textarea class="notes-textarea" placeholder="How did this sprint transform your confidence? Write your thoughts here..."></textarea></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer class="foot">
+  <div class="foot-in">
+    <p>Curated with pride for Vasavi · CSE 1st Year · IIT Indore</p>
+    <p><a href="README.html">Google STEP Guide</a> · Design system from <a href="../Development/Dice Roll/study_guide.html">Dice Roll Study Guide</a></p>
+  </div>
+</footer>
+
+<!-- ═══════════════════ INTERACTIVE JS ═══════════════════ -->
+<script>
+(function() {
+  const checkboxes = document.querySelectorAll('.problem-row input[type="checkbox"]');
+  const heroPct = document.getElementById('heroPct');
+  const heroBar = document.getElementById('heroBar');
+  const heroSolvedCount = document.getElementById('heroSolvedCount');
+  const heroDaysCount = document.getElementById('heroDaysCount');
+  const dayCards = document.querySelectorAll('.day-card');
+  const totalQuestions = checkboxes.length;
+
+  // Phase badges in rail
+  const badgeMap = {
+    '1': document.getElementById('badge-p1'),
+    '2': document.getElementById('badge-p2'),
+    '3': document.getElementById('badge-p3'),
+    '4': document.getElementById('badge-p4'),
+    '5': document.getElementById('badge-p5'),
+  };
+
+  function updateMetrics() {
+    let totalSolved = 0;
+    const phaseCounts = { '1': { solved: 0, total: 0 }, '2': { solved: 0, total: 0 }, '3': { solved: 0, total: 0 }, '4': { solved: 0, total: 0 }, '5': { solved: 0, total: 0 } };
+    let completedDays = 0;
+
+    dayCards.forEach(card => {
+      const day = card.getAttribute('data-day');
+      const phase = card.getAttribute('data-phase');
+      const dayCbs = card.querySelectorAll('input[type="checkbox"]');
+      let daySolved = 0;
+
+      dayCbs.forEach(cb => {
+        phaseCounts[phase].total++;
+        if (cb.checked) {
+          totalSolved++;
+          daySolved++;
+          phaseCounts[phase].solved++;
+        }
+      });
+
+      const dayStatus = document.getElementById('status-d' + day);
+      if (daySolved === dayCbs.length && dayCbs.length > 0) {
+        card.classList.add('completed');
+        if (dayStatus) {
+          dayStatus.textContent = 'Completed 🎉';
+          dayStatus.className = 'day-status status-done';
+        }
+        completedDays++;
+      } else {
+        card.classList.remove('completed');
+        if (dayStatus) {
+          dayStatus.textContent = daySolved > 0 ? `${daySolved}/${dayCbs.length} Done` : 'Pending';
+          dayStatus.className = 'day-status status-pending';
+        }
+      }
+    });
+
+    const pct = totalQuestions > 0 ? Math.round((totalSolved / totalQuestions) * 100) : 0;
+    heroPct.textContent = pct + '%';
+    heroBar.style.width = pct + '%';
+    heroSolvedCount.textContent = `${totalSolved} / ${totalQuestions}`;
+    heroDaysCount.textContent = `${completedDays} / 24`;
+
+    // Update phase rail badges
+    for (let p in phaseCounts) {
+      if (badgeMap[p]) {
+        badgeMap[p].textContent = `${phaseCounts[p].solved}/${phaseCounts[p].total}`;
+        if (phaseCounts[p].solved === phaseCounts[p].total && phaseCounts[p].total > 0) {
+          badgeMap[p].style.background = 'var(--accent)';
+          badgeMap[p].style.color = 'var(--on-accent)';
+        } else {
+          badgeMap[p].style.background = 'var(--surface)';
+          badgeMap[p].style.color = 'inherit';
+        }
+      }
+    }
+  }
+
+  // Load checkboxes from localStorage
+  checkboxes.forEach(cb => {
+    const saved = localStorage.getItem('v_sprint_' + cb.id);
+    if (saved === '1') cb.checked = true;
+    cb.addEventListener('change', () => {
+      localStorage.setItem('v_sprint_' + cb.id, cb.checked ? '1' : '0');
+      updateMetrics();
+    });
+  });
+
+  // Notes drawer & persistence
+  document.querySelectorAll('.notes-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-target');
+      const drawer = document.getElementById(targetId);
+      drawer.classList.toggle('open');
+      const arr = btn.querySelector('.arr');
+      if (arr) arr.textContent = drawer.classList.contains('open') ? '▴' : '▾';
+    });
+  });
+
+  document.querySelectorAll('.notes-textarea').forEach(ta => {
+    const drawerId = ta.parentElement.id;
+    const saved = localStorage.getItem('v_notes_' + drawerId);
+    if (saved) ta.value = saved;
+    ta.addEventListener('input', () => {
+      localStorage.setItem('v_notes_' + drawerId, ta.value);
+    });
+  });
+
+  // Search & Status Filters
+  const searchInput = document.getElementById('searchInput');
+  const statusChips = document.querySelectorAll('.filter-chips .chip');
+  let currentStatus = 'all';
+
+  function applyFilters() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    dayCards.forEach(card => {
+      const rows = card.querySelectorAll('.problem-row');
+      let visibleRows = 0;
+
+      rows.forEach(row => {
+        const title = row.querySelector('.problem-title').textContent.toLowerCase();
+        const cb = row.querySelector('input[type="checkbox"]');
+        const matchesQuery = !query || title.includes(query);
+        const matchesStatus = currentStatus === 'all' || (currentStatus === 'done' && cb.checked) || (currentStatus === 'pending' && !cb.checked);
+
+        if (matchesQuery && matchesStatus) {
+          row.style.display = 'flex';
+          visibleRows++;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      card.style.display = visibleRows > 0 ? 'block' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', applyFilters);
+
+  statusChips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      statusChips.forEach(c => c.setAttribute('aria-pressed', 'false'));
+      chip.setAttribute('aria-pressed', 'true');
+      currentStatus = chip.getAttribute('data-status');
+      applyFilters();
+    });
+  });
+
+  // Reset Progress
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    if (confirm("Vasavi, do you want to reset your checkboxes and start fresh?")) {
+      checkboxes.forEach(cb => {
+        cb.checked = false;
+        localStorage.removeItem('v_sprint_' + cb.id);
+      });
+      updateMetrics();
+      applyFilters();
+    }
+  });
+
+  // Study Focus Timer
+  let timerInterval = null;
+  let remainingSeconds = 45 * 60;
+  const timerDisplay = document.getElementById('timerDisplay');
+  const startBtn = document.getElementById('startTimerBtn');
+  const pauseBtn = document.getElementById('pauseTimerBtn');
+  const resetTimerBtn = document.getElementById('resetTimerBtn');
+
+  function renderTimer() {
+    const m = Math.floor(remainingSeconds / 60);
+    const s = remainingSeconds % 60;
+    timerDisplay.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+  }
+
+  startBtn.addEventListener('click', () => {
+    if (timerInterval) return;
+    timerInterval = setInterval(() => {
+      if (remainingSeconds > 0) {
+        remainingSeconds--;
+        renderTimer();
+      } else {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        alert("🎉 Focus session completed! Great work, Vasavi! Take a 5-minute stretch break.");
+      }
+    }, 1000);
+  });
+
+  pauseBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+  });
+
+  resetTimerBtn.addEventListener('click', () => {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    remainingSeconds = 45 * 60;
+    renderTimer();
+  });
+
+  document.querySelectorAll('[data-mins]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      const mins = parseInt(btn.getAttribute('data-mins'), 10);
+      remainingSeconds = mins * 60;
+      renderTimer();
+    });
+  });
+
+  // Highlight active rail link on scroll
+  const sections = document.querySelectorAll('section.sec');
+  const navLinks = document.querySelectorAll('.rail-item a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 100;
+      if (window.scrollY >= top) {
+        current = sec.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) {
+        link.classList.add('active');
+      }
+    });
+  });
+
+  // Initial calculation
+  updateMetrics();
+  renderTimer();
+})();
+</script>
+
+</body>
+</html>
