@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <style>
 :root {
   --bg: #FFFFEB;
@@ -64,6 +67,7 @@ h2 { font-size: clamp(1.75rem, 3.6vw, 2.3rem); line-height: 1.1; letter-spacing:
 h3 { font-size: 1.28rem; line-height: 1.25; font-weight: 700; margin: 1.9em 0 .55em; }
 h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
 code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .06em .35em; border-radius: 5px; }
+.katex { font-size: 1.02em; }
 
 /* Hero */
 .hero { background: var(--hero-bg); color: var(--hero-fg); }
@@ -496,7 +500,7 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
           <tbody>
             <tr><td><strong>45–60 min</strong></td><td>Pen & Paper Dry-Run</td><td>Draw small arrays or nodes. Trace loops and pointer movements by hand.</td></tr>
             <tr><td><strong>90–120 min</strong></td><td>Code & Test in C++</td><td>Type solution in VS Code from scratch. Test edge cases (empty, single element, negative numbers).</td></tr>
-            <tr><td><strong>30–45 min</strong></td><td>Complexity & Notes</td><td>Determine Time ($O$) and Space ($O$) complexity. Write 1 key takeaway in notebook.</td></tr>
+            <tr><td><strong>30–45 min</strong></td><td>Complexity & Notes</td><td>Determine Big-O Time & Space complexity: $O(1)$, $O(N)$, $O(N \log N)$. Write 1 key takeaway in notebook.</td></tr>
             <tr><td><strong>15 min</strong></td><td>Evening Debrief</td><td>Explain 1 problem out loud to your brother like in a real interview!</td></tr>
           </tbody>
         </table>
@@ -685,6 +689,23 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
     <p>Design system from <a href="../Development/Dice Roll/study_guide.html">Dice Roll Study Guide</a></p>
   </div>
 </footer>
+
+<script>
+function renderLatex() {
+  if (typeof renderMathInElement === 'function') {
+    renderMathInElement(document.body, {
+      delimiters: [
+        {left: '$$', right: '$$', display: true},
+        {left: '$', right: '$', display: false}
+      ],
+      throwOnError: false,
+      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
+    });
+  }
+}
+window.addEventListener('DOMContentLoaded', renderLatex);
+window.addEventListener('load', renderLatex);
+</script>
 
 </body>
 </html>
