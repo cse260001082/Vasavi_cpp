@@ -23,6 +23,8 @@ Welcome Vasavi! (CSE 1st Year, **IIT Indore**) This is your personal coding and 
 │
 📂 Development/
 │   📂 Dice Roll/             ← Web development project (HTML/CSS/JS)
+│   │   📂 prep/              ← Practice tasks, study guide, induction PDF
+│   📂 Playground/            ← Your own small experiments
 │
 📂 Google STEP/               ← 🚀 Guide to Google STEP & 24-Day Winter Sprint
 │   ├── README.html           ← Visual interactive guide to Google STEP

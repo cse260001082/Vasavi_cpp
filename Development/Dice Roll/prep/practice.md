@@ -29,6 +29,8 @@ practice/
 
 Each task folder starts where the previous task ends. If task 4 went badly, task 5 still starts clean.
 
+The finished dice project (`index.html`, `style.css`, `script.js`, `images/`) is one folder up, in `Dice Roll/`, next to this `prep/` folder.
+
 1. Open `practice/task01/index.html` in Chrome by double-clicking it.
 2. Edit the files in VS Code. After every change, save and press F5 in Chrome.
 3. A "Task 1 check" panel sits in the bottom-right corner of the page. Each step gets a ✓ when it's right, or a ✗ with a hint. The Hide button folds it away.
