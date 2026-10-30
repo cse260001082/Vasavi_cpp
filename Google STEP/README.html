@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Google STEP — Your Roadmap from 1st Year to Google</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Google STEP Roadmap</title>
+<meta name="description" content="Vasavi's roadmap to Google STEP: the 24-day winter DSA sprint, the daily routine, how selection works and the application timeline.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
 <style>
 :root {
   --bg: #FFFFEB;
@@ -31,8 +30,13 @@
   --hero-fg-2: #CFE3DC;
   --hero-chip: #0A5F55;
   --hero-line: #2F7A70;
-  --code-bg: #222222;
-  --code-fg: #FFFFEB;
+  --hero-lav: #F0D7FF;
+  --p1: #034F46; --p1-on: #FFFFEB;
+  --p2: #0F7A69; --p2-on: #FFFFFF;
+  --p3: #A777D6; --p3-on: #1A1A1A;
+  --p4: #FFA946; --p4-on: #1A1A1A;
+  --p5: #3D3D36; --p5-on: #FFFFEB;
+  --shadow: 0 1px 2px rgba(26, 26, 20, .05), 0 12px 32px -14px rgba(26, 26, 20, .22);
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
@@ -42,14 +46,25 @@
     --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
     --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
     --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
-    --hero-bg: #034F46; --hero-fg: #FFFFEB; --hero-fg-2: #CFE3DC; --hero-chip: #0A5F55; --hero-line: #2F7A70;
-    --code-bg: #121212; --code-fg: #FFFFEB;
+    --p1: #8FD9C9; --p1-on: #1A1A1A; --p2: #C9E6DF; --p2-on: #1A1A1A; --p3: #F0D7FF; --p3-on: #1A1A1A;
+    --p4: #FFA946; --p4-on: #1A1A1A; --p5: #FFFFEB; --p5-on: #1A1A1A;
+    --shadow: 0 12px 32px -14px rgba(0, 0, 0, .7);
     color-scheme: dark;
   }
 }
+:root[data-theme="dark"] {
+  --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+  --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+  --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+  --p1: #8FD9C9; --p1-on: #1A1A1A; --p2: #C9E6DF; --p2-on: #1A1A1A; --p3: #F0D7FF; --p3-on: #1A1A1A;
+  --p4: #FFA946; --p4-on: #1A1A1A; --p5: #FFFFEB; --p5-on: #1A1A1A;
+  --shadow: 0 12px 32px -14px rgba(0, 0, 0, .7);
+  color-scheme: dark;
+}
+@property --pct { syntax: "<number>"; inherits: false; initial-value: 0; }
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
 body {
   margin: 0;
   background: var(--bg);
@@ -58,226 +73,364 @@ body {
   font-size: 17px;
   line-height: 1.6;
 }
-img, svg { max-width: 100%; }
 a { color: var(--accent-text); text-underline-offset: 3px; }
-:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; border-radius: 6px; }
 h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
-h1 { font-size: clamp(2.4rem, 6.4vw, 3.9rem); line-height: 1; letter-spacing: -0.025em; font-weight: 800; margin: .15em 0 .35em; }
-h2 { font-size: clamp(1.75rem, 3.6vw, 2.3rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .5em; }
-h3 { font-size: 1.28rem; line-height: 1.25; font-weight: 700; margin: 1.9em 0 .55em; }
-h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
-code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .06em .35em; border-radius: 5px; }
-.katex { font-size: 1.02em; }
+h2 { font-size: clamp(1.8rem, 3.8vw, 2.4rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .45em; }
+h3 { font-size: 1.25rem; line-height: 1.25; font-weight: 700; margin: 0 0 .4em; }
+p { margin: 0 0 1em; }
+code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .06em .35em; border-radius: 5px; white-space: nowrap; }
+.icon { width: 1em; height: 1em; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.sub-h { margin-top: 40px; }
 
-/* Hero */
-.hero { background: var(--hero-bg); color: var(--hero-fg); }
-.hero-in {
-  max-width: 1200px; margin: 0 auto;
-  padding: 56px 24px 48px;
-  display: grid; grid-template-columns: minmax(0, 1.2fr) auto; gap: 40px; align-items: center;
+.skip {
+  position: absolute; left: 12px; top: -60px; z-index: 50;
+  background: var(--ember); color: var(--on-ember); font-weight: 700;
+  padding: 8px 16px; border-radius: 999px; text-decoration: none;
 }
-.eyebrow { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--lav); margin: 0; }
-.hero h1 { color: var(--hero-fg); }
-.lede { max-width: 58ch; font-size: 1.1rem; color: var(--hero-fg-2); margin: 0 0 22px; }
-.hero-visual {
-  background: var(--hero-chip); border: 1px solid var(--hero-line);
-  border-radius: 18px; padding: 28px 32px; text-align: center; width: 300px;
-}
-.hero-visual .google-logo { font-size: 3.2rem; margin-bottom: 8px; font-weight: 800; letter-spacing: -0.04em; }
-.hero-visual .g-blue { color: #4285F4; }
-.hero-visual .g-red { color: #EA4335; }
-.hero-visual .g-yellow { color: #FBBC05; }
-.hero-visual .g-green { color: #34A853; }
-.hero-visual p { color: var(--hero-fg-2); margin: 8px 0 0; font-size: .9rem; }
-.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; }
-.stat {
-  background: var(--hero-chip); border: 1px solid var(--hero-line);
-  border-radius: 12px; padding: 10px 14px; min-width: 140px;
-}
-.stat-label { font-size: .78rem; color: var(--hero-fg-2); }
-.stat-val { font-weight: 700; font-size: 1.05rem; }
+.skip:focus { top: 12px; }
 
+/* Buttons */
 .btn {
   font: 700 .95rem/1.2 var(--font-body);
-  border: 1px solid var(--accent);
-  border-radius: 999px;
-  padding: 10px 20px;
-  cursor: pointer;
-  background: var(--accent);
-  color: var(--on-accent);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all .15s ease;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 11px 20px; border-radius: 999px; border: 1.5px solid var(--accent);
+  background: var(--accent); color: var(--on-accent); text-decoration: none; cursor: pointer;
+  transition: transform .15s ease, filter .15s ease, background-color .15s ease;
 }
-.btn:hover { filter: brightness(1.12); transform: translateY(-1px); }
-.btn-ember { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
-.btn-ghost { background: transparent; color: var(--accent-text); border-color: var(--border); }
-.btn-ghost:hover { background: var(--surface); }
+.btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+.btn .icon { font-size: 1.1em; transition: transform .15s ease; }
+.btn:hover .icon { transform: translateX(3px); }
+.btn-lg { font-size: 1.05rem; padding: 14px 26px; }
+.btn-sm { font-size: .85rem; padding: 7px 14px; gap: 6px; }
+.btn-ember { background: var(--ember); border-color: var(--ember); color: var(--on-ember); box-shadow: 0 8px 22px -10px rgba(255, 169, 70, .9); }
+.btn-hero-ghost { background: transparent; border-color: var(--hero-line); color: var(--hero-fg); }
+.btn-hero-ghost:hover { background: var(--hero-chip); filter: none; }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; position: relative; }
+.hero::before {
+  content: ""; position: absolute; inset: auto -120px -160px auto; width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 169, 70, .22), transparent 65%); pointer-events: none;
+}
+.hero-in {
+  position: relative; max-width: 1120px; margin: 0 auto;
+  padding: max(56px, env(safe-area-inset-top)) max(24px, env(safe-area-inset-right)) 56px max(24px, env(safe-area-inset-left));
+  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 48px; align-items: center;
+}
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 0 14px;
+  font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--hero-lav);
+}
+.hero h1 {
+  font-size: clamp(2.5rem, 6.2vw, 4.1rem); line-height: 1.02; letter-spacing: -0.03em; font-weight: 800;
+  margin: 0 0 .4em; color: var(--hero-fg);
+}
+.hero h1 .hl { color: var(--ember); }
+.lede { max-width: 56ch; font-size: 1.12rem; color: var(--hero-fg-2); margin: 0 0 26px; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 30px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; }
+.stat { background: var(--hero-chip); border: 1px solid var(--hero-line); border-radius: 12px; padding: 10px 14px; min-width: 138px; }
+.stat dt { font-size: .78rem; color: var(--hero-fg-2); }
+.stat dd { margin: 0; font-weight: 700; font-size: 1.05rem; }
+
+.pcard {
+  background: var(--hero-chip); border: 1px solid var(--hero-line); border-radius: 20px;
+  padding: 24px 24px 20px; text-align: center;
+}
+.pcard-kicker { font-size: .78rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--hero-lav); margin: 0; }
+.ring {
+  --pct: 0;
+  width: 150px; height: 150px; border-radius: 50%; margin: 14px auto 14px;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(closest-side, var(--hero-chip) 78%, transparent 79% 100%),
+    conic-gradient(var(--ember) calc(var(--pct) * 1%), var(--hero-line) 0);
+  transition: --pct 1s ease;
+}
+.ring-num { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -0.03em; }
+.ring-num small { font-size: .45em; font-weight: 700; margin-left: 2px; color: var(--hero-fg-2); }
+.pcard-day { font-family: var(--font-display); font-weight: 750; font-size: 1.3rem; margin: 0 0 4px; }
+.pcard-sub { font-size: .92rem; color: var(--hero-fg-2); margin: 0 0 14px; }
+.pcard-meta {
+  display: flex; justify-content: center; gap: 18px; padding-top: 12px; border-top: 1px solid var(--hero-line);
+  font-size: .85rem; color: var(--hero-fg-2);
+}
+.pcard-meta strong { color: var(--hero-fg); font-size: 1rem; }
+
+/* Sticky section nav */
+.topnav {
+  position: sticky; top: 0; z-index: 30;
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+.topnav-in { max-width: 1120px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; }
+.brand {
+  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  font-family: var(--font-display); font-weight: 800; color: var(--ink); text-decoration: none;
+}
+.brand-dot { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--on-accent); }
+.navlinks {
+  position: relative; display: flex; gap: 4px; flex: 1; min-width: 0;
+  overflow-x: auto; scrollbar-width: none;
+}
+.navlinks::-webkit-scrollbar { display: none; }
+.navlinks a {
+  flex-shrink: 0; padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+  font-size: .88rem; font-weight: 700; color: var(--ink-2); text-decoration: none;
+}
+.navlinks a:hover { background: var(--border); }
+.navlinks a[aria-current="true"] { background: var(--lav); color: var(--on-lav); }
 
 /* Layout */
-.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
-.sec { padding-block: 44px; border-top: 1px solid var(--border); scroll-margin-top: 12px; }
-.sec:first-child { border-top: 0; padding-top: 32px; }
-.sec > p { max-width: 72ch; }
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+.sec { padding-block: 64px; border-top: 1px solid var(--border); scroll-margin-top: 60px; }
+.sec:first-child { border-top: 0; }
 .kicker {
-  font-size: .76rem; text-transform: uppercase; letter-spacing: .11em;
-  font-weight: 700; color: var(--accent-text); margin: 0 0 .6em;
+  display: inline-flex; align-items: center; gap: 8px; margin: 0 0 .7em;
+  font-size: .78rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--accent-text);
+}
+.kicker .icon { font-size: 1.15em; }
+.intro { max-width: 66ch; font-size: 1.05rem; color: var(--ink-2); }
+.note { display: flex; gap: 8px; align-items: flex-start; font-size: .88rem; color: var(--muted); max-width: 70ch; margin-top: 18px; }
+.note .icon { margin-top: .3em; }
+
+.tile {
+  display: grid; place-items: center; flex-shrink: 0;
+  width: 44px; height: 44px; border-radius: 12px; font-size: 1.3rem;
+  background: var(--c, var(--accent)); color: var(--on, var(--on-accent));
+}
+.tile-soft { background: var(--lav); color: var(--on-lav); }
+
+/* Journey */
+.journey { background: var(--surface); border-bottom: 1px solid var(--border); }
+.journey .wrap { padding-top: 40px; padding-bottom: 40px; }
+.journey-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 6px 24px; }
+.journey-head h2 { font-size: 1.4rem; margin: 0; }
+.journey-head p { margin: 0; color: var(--muted); font-size: .95rem; }
+.steps { list-style: none; margin: 28px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.step { position: relative; text-align: center; padding: 0 6px; display: flex; flex-direction: column; align-items: center; }
+.step:not(:first-child)::before {
+  content: ""; position: absolute; top: 22px; left: -50%; right: 50%; height: 2px; background: var(--border);
+}
+.step.is-next::before { background: repeating-linear-gradient(90deg, var(--ember) 0 6px, transparent 6px 11px); }
+.step-dot {
+  position: relative; z-index: 1; display: grid; place-items: center;
+  width: 46px; height: 46px; border-radius: 50%; font-size: 1.2rem;
+  background: var(--bg); border: 2px solid var(--border); color: var(--muted);
+}
+.step-when { display: block; margin-top: 10px; font-size: .74rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.step-name { display: block; font-family: var(--font-display); font-weight: 700; font-size: 1rem; line-height: 1.25; margin-top: 2px; }
+.step-tag { display: inline-block; margin-top: 8px; font-size: .74rem; font-weight: 700; padding: 2px 10px; border-radius: 999px; }
+.step.is-here .step-dot { background: var(--accent); border-color: var(--accent); color: var(--on-accent); animation: pulse 2.4s ease-out infinite; }
+.step.is-here .step-tag { background: var(--ember); color: var(--on-ember); }
+.step.is-next .step-dot { border-color: var(--ember); color: var(--ink); background: var(--ember-soft); }
+.step.is-next .step-tag { background: var(--ember-soft); color: var(--ink); border: 1px solid var(--ember); }
+.step.is-done .step-dot { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(255, 169, 70, .6); }
+  70% { box-shadow: 0 0 0 12px rgba(255, 169, 70, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 169, 70, 0); }
 }
 
-/* Pipeline */
-.pipeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 32px 0; position: relative; }
-.pipe-stage {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px 18px; position: relative; text-align: center;
+/* Sprint: 24-day grid */
+.days { list-style: none; margin: 30px 0 12px; padding: 0; display: grid; grid-template-columns: repeat(24, minmax(0, 1fr)); gap: 6px; }
+.day {
+  aspect-ratio: 1; border-radius: 9px; display: grid; place-items: center;
+  font-family: var(--font-mono); font-size: .78rem; font-weight: 600; color: var(--ink-2);
+  background: color-mix(in srgb, var(--c) 12%, var(--surface));
+  border: 1.5px solid color-mix(in srgb, var(--c) 45%, var(--border));
 }
-.pipe-stage:not(:last-child)::after {
-  content: "→"; position: absolute; right: -14px; top: 50%; transform: translateY(-50%);
-  font-size: 1.6rem; font-weight: 700; color: var(--accent-text); z-index: 2;
-}
-.pipe-icon { font-size: 2.2rem; margin-bottom: 8px; }
-.pipe-year { font-size: .72rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; margin: 0; }
-.pipe-name { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin: 4px 0; }
-.pipe-desc { font-size: .9rem; color: var(--ink-2); margin: 0; }
+.day.is-partial { border-color: var(--c); border-width: 2.5px; }
+.day.is-done { background: var(--c); border-color: var(--c); color: var(--on); }
+.day.is-today { outline: 3px solid var(--ember); outline-offset: 2px; }
+.legend { list-style: none; margin: 0 0 34px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .86rem; color: var(--ink-2); }
+.legend li { display: inline-flex; align-items: center; gap: 7px; }
+.legend i { width: 12px; height: 12px; border-radius: 4px; background: var(--c); }
 
-/* Cards grid */
-.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 24px 0; }
-.card {
-  background: var(--surface); border: 1px solid var(--border);
+/* Sprint: phase cards */
+.phases { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.phase {
+  display: flex; gap: 18px; align-items: flex-start;
+  background: var(--surface); border: 1px solid var(--border); border-left: 5px solid var(--c);
   border-radius: 14px; padding: 20px 22px;
+  transition: box-shadow .2s ease, transform .2s ease;
 }
-.card-icon { font-size: 1.8rem; margin-bottom: 8px; }
-.card h4 { margin: 0 0 6px; }
-.card p { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.phase:hover { box-shadow: var(--shadow); transform: translateY(-1px); }
+.phase.is-current { border-color: var(--c); box-shadow: var(--shadow); }
+.phase-body { flex: 1; min-width: 0; }
+.phase-top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.phase-top h3 { margin: 0; }
+.here-badge {
+  display: none; align-items: center; gap: 6px; font-size: .75rem; font-weight: 700;
+  padding: 2px 10px; border-radius: 999px; background: var(--ember); color: var(--on-ember);
+}
+.phase.is-current .here-badge { display: inline-flex; }
+.phase-meta { margin: 2px 0 10px; font-family: var(--font-mono); font-size: .8rem; font-weight: 600; color: var(--muted); }
+.chips { list-style: none; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.chips li { font-size: .84rem; padding: 3px 10px; border-radius: 999px; background: var(--bg); border: 1px solid var(--border); color: var(--ink-2); }
+.phase-tip { font-size: .92rem; color: var(--ink-2); margin: 0 0 14px; }
+.phase-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.mini-bar { flex: 1; min-width: 120px; height: 8px; border-radius: 999px; background: var(--border); overflow: hidden; }
+.mini-bar span { display: block; height: 100%; width: 0; border-radius: inherit; background: var(--c); transition: width .8s ease; }
+.phase-count { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); }
+.phase-count b { color: var(--ink); }
+.phase-open { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: .9rem; text-decoration: none; }
+.phase-open:hover { text-decoration: underline; }
 
-/* Callout */
-.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 18px 24px; margin: 28px 0; }
-.callout h3 { margin-top: 0; }
-.callout ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
-.callout p:last-child { margin-bottom: 0; }
+/* Routine */
+.tbar { display: flex; gap: 4px; height: 14px; margin: 30px 0 18px; }
+.tbar span { border-radius: 999px; background: var(--c); }
+.blocks { list-style: none; margin: 0 0 30px; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.block { background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--c); border-radius: 14px; padding: 18px 18px 16px; }
+.block-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.block-time { font-family: var(--font-mono); font-weight: 600; font-size: .82rem; color: var(--muted); }
+.block h3 { font-size: 1.08rem; }
+.block p { margin: 0; font-size: .93rem; color: var(--ink-2); }
 
-/* Hint */
-.hint-box { background: var(--ember-soft); color: var(--ink); border-radius: 12px; padding: 16px 20px; margin: 24px 0; }
-.hint-box h4 { margin: 0 0 8px; }
-.hint-box ul { margin: 0; padding-left: 1.2em; }
+.rule {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--ember-soft); color: var(--ink); border-radius: 14px; padding: 18px 22px; margin: 0 0 30px;
+}
+.rule h3 { margin: 0 0 4px; font-size: 1.1rem; }
+.rule p { margin: 0; color: var(--ink-2); }
 
-/* Sprint Header & Progress Tracker */
-.sprint-header {
-  background: var(--surface); border: 2px solid var(--accent);
-  border-radius: 16px; padding: 24px 28px; margin: 28px 0 24px;
-}
-.sprint-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 16px; }
-.sprint-title { margin: 0; font-size: 1.45rem; font-weight: 800; }
-.sprint-meta { font-size: .9rem; color: var(--muted); }
-.progress-bar-wrap { width: 100%; height: 10px; background: var(--border); border-radius: 999px; overflow: hidden; margin-bottom: 12px; }
-.progress-bar-fill { height: 100%; width: 0%; background: var(--accent); transition: width .3s ease; }
-.progress-stats { display: flex; justify-content: space-between; font-size: .88rem; font-weight: 700; color: var(--ink-2); }
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 22px; }
+.card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.card-head h3 { margin: 0; font-size: 1.12rem; }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.ticks li { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; color: var(--ink-2); }
+.ticks .icon { margin-top: .3em; color: var(--accent-text); }
 
-/* Filter Tabs */
-.filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 28px; }
-.filter-btn {
-  font-family: var(--font-body); font-weight: 700; font-size: .88rem;
-  padding: 8px 16px; border-radius: 999px; border: 1px solid var(--border);
-  background: var(--surface); color: var(--ink-2); cursor: pointer; transition: all .15s;
-}
-.filter-btn:hover { background: var(--border); }
-.filter-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+/* STEP facts */
+.facts { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; margin: 26px 0 0; }
+.fact { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+.fact-label { display: block; font-size: .76rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: var(--muted); }
+.fact-val { display: block; margin-top: 2px; font-size: .95rem; }
 
-/* Day Cards */
-.days-grid { display: grid; gap: 16px; margin-bottom: 32px; }
-.day-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px 22px; transition: border-color .2s;
+/* Pipelines */
+.pipeline { list-style: none; margin: 28px 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.pipe { position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 22px 20px; }
+.pipe .tile { margin-bottom: 14px; }
+.pipe-join {
+  position: absolute; right: -24px; top: 50%; transform: translateY(-50%); z-index: 2;
+  display: grid; place-items: center; width: 20px; height: 20px; color: var(--accent-text); font-size: 1.25rem;
 }
-.day-card:hover { border-color: var(--accent); }
-.day-header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
-.day-badge {
-  display: inline-flex; align-items: center; gap: 6px;
-  background: var(--lav); color: var(--on-lav); font-family: var(--font-mono);
-  font-size: .78rem; font-weight: 700; padding: 3px 10px; border-radius: 999px;
-}
-.day-topic { font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; margin: 0; }
-.day-concept { font-size: .88rem; color: var(--muted); font-style: italic; }
-.problem-list { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 8px; }
-.problem-item { display: flex; align-items: flex-start; gap: 10px; font-size: .95rem; }
-.problem-item input[type="checkbox"] {
-  width: 18px; height: 18px; accent-color: var(--accent); cursor: pointer; margin-top: 3px; flex-shrink: 0;
-}
-.problem-item label { cursor: pointer; color: var(--ink); }
-.problem-item input[type="checkbox"]:checked + label {
-  text-decoration: line-through; color: var(--muted);
-}
-.day-tip {
-  background: var(--bg); border-left: 3px solid var(--ember);
-  padding: 8px 12px; border-radius: 0 8px 8px 0; font-size: .86rem; color: var(--ink-2);
-}
+.pipe-when { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; margin: 0; }
+.pipe h3 { margin: 2px 0 6px; font-size: 1.15rem; }
+.pipe p { font-size: .93rem; color: var(--ink-2); margin: 0; }
+
+.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 20px 24px; }
+.callout h3 { margin: 0 0 10px; }
+.callout .ticks li { color: var(--on-lav); }
+.callout .ticks .icon { color: var(--on-lav); }
+
+.tips { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 12px; }
+.tip { display: flex; gap: 14px; align-items: flex-start; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; }
+.tip-num { font-family: var(--font-display); font-weight: 800; font-size: 1.6rem; line-height: 1; color: var(--accent-text); min-width: 1.1em; }
+.tip h4 { margin: 0 0 4px; font-size: 1rem; }
+.tip p { margin: 0; font-size: .92rem; color: var(--ink-2); }
+
+/* Life */
+.schedule { list-style: none; margin: 24px 0 36px; padding: 0; border-top: 1px solid var(--border); }
+.sched { display: grid; grid-template-columns: 92px 36px minmax(0, 1fr); gap: 14px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.sched-time { font-family: var(--font-mono); font-weight: 600; font-size: .88rem; color: var(--accent-text); }
+.sched .tile { width: 36px; height: 36px; border-radius: 10px; font-size: 1.05rem; }
+.perks { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 14px; }
+.perk { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.perk .tile { margin-bottom: 12px; }
+.perk h4 { margin: 0 0 4px; }
+.perk p { margin: 0; font-size: .9rem; color: var(--ink-2); }
 
 /* Timeline */
-.timeline { margin: 24px 0; }
-.tl-row {
-  display: grid; grid-template-columns: 120px 24px minmax(0, 1fr);
-  gap: 16px; align-items: start; min-height: 64px;
-}
-.tl-when { font-weight: 700; font-size: .9rem; color: var(--accent-text); text-align: right; padding-top: 2px; }
-.tl-dot-col { display: flex; flex-direction: column; align-items: center; height: 100%; }
-.tl-dot {
-  width: 14px; height: 14px; border-radius: 50%;
-  background: var(--accent); border: 3px solid var(--bg); flex-shrink: 0;
-  box-shadow: 0 0 0 2px var(--accent);
-}
+.timeline { list-style: none; margin: 26px 0 0; padding: 0; }
+.tl { display: grid; grid-template-columns: 110px 24px minmax(0, 1fr); gap: 16px; }
+.tl-when { font-weight: 700; font-size: .9rem; color: var(--accent-text); text-align: right; padding-top: 1px; }
+.tl-rail { display: flex; flex-direction: column; align-items: center; }
+.tl-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--accent); border: 3px solid var(--bg); box-shadow: 0 0 0 2px var(--accent); flex-shrink: 0; margin-top: 5px; }
 .tl-line { width: 2px; flex: 1; background: var(--border); }
-.tl-row:last-child .tl-line { display: none; }
-.tl-what { padding-bottom: 20px; }
-.tl-what strong { display: block; margin-bottom: 2px; }
+.tl:last-child .tl-line { display: none; }
+.tl-what { padding-bottom: 22px; }
+.tl-what strong { display: block; }
 .tl-what span { color: var(--ink-2); font-size: .95rem; }
-
-/* Table */
-.table-wrap { overflow-x: auto; max-width: 100%; margin: 16px 0; }
-table { border-collapse: collapse; width: 100%; font-size: .95rem; }
-th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
-th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; }
-
-/* Day schedule */
-.schedule { margin: 20px 0; }
-.sched-row { display: grid; grid-template-columns: 100px minmax(0, 1fr) auto; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: center; }
-.sched-time { font-family: var(--font-mono); font-weight: 600; font-size: .9rem; color: var(--accent-text); }
-.sched-activity { font-weight: 500; }
-.sched-emoji { font-size: 1.3rem; }
+.target {
+  display: flex; gap: 16px; align-items: flex-start; margin-top: 10px;
+  background: var(--ember-soft); border: 1px solid var(--ember); border-radius: 14px; padding: 18px 22px;
+}
+.target h3 { margin: 0 0 4px; font-size: 1.1rem; }
+.target p { margin: 0; color: var(--ink-2); }
 
 /* Resources */
-.resources { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 20px 0; }
+.resources { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 22px; }
 .resource {
-  display: flex; gap: 12px; align-items: center;
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: 12px; padding: 14px 16px; text-decoration: none; color: var(--ink);
-  transition: border-color .15s;
+  display: flex; gap: 14px; align-items: center; text-decoration: none; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px;
+  transition: border-color .15s ease, box-shadow .15s ease;
 }
-.resource:hover { border-color: var(--accent); }
-.resource-icon { font-size: 1.5rem; flex-shrink: 0; }
-.resource-name { font-weight: 700; font-size: .95rem; display: block; }
-.resource-desc { font-size: .82rem; color: var(--muted); }
+.resource:hover { border-color: var(--accent); box-shadow: var(--shadow); }
+.resource-text { flex: 1; min-width: 0; }
+.resource-name { display: block; font-weight: 700; }
+.resource-desc { display: block; font-size: .86rem; color: var(--muted); }
+.resource > .icon { color: var(--muted); }
+
+/* Closing note */
+.closing { max-width: 68ch; }
+.closing p { font-size: 1.06rem; color: var(--ink-2); }
+.finale {
+  margin-top: 30px; padding: 28px; border-radius: 18px; text-align: center;
+  background: var(--hero-bg); color: var(--hero-fg);
+}
+.finale p { margin: 0 0 18px; font-family: var(--font-display); font-weight: 750; font-size: clamp(1.3rem, 3vw, 1.7rem); line-height: 1.2; }
+.signoff { margin-top: 26px; font-family: var(--font-display); font-weight: 800; font-size: 1.35rem; color: var(--ink); }
 
 /* Footer */
-.foot { border-top: 1px solid var(--border); margin-top: 30px; }
+.foot { border-top: 1px solid var(--border); }
 .foot-in {
-  max-width: 960px; margin: 0 auto; padding: 26px 24px 40px;
-  display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between;
-  font-size: .9rem; color: var(--muted);
+  max-width: 1120px; margin: 0 auto; padding: 26px 24px max(40px, env(safe-area-inset-bottom));
+  display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; font-size: .9rem; color: var(--muted);
 }
 .foot-in p { margin: 0; }
 
 /* Responsive */
-@media (max-width: 760px) {
-  .hero-in { grid-template-columns: 1fr; gap: 24px; padding: 32px 20px 28px; }
-  .hero-visual { width: auto; }
-  .pipeline { grid-template-columns: 1fr; gap: 12px; }
-  .pipe-stage:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -18px; transform: translateX(-50%); }
-  .cards { grid-template-columns: 1fr; }
-  .tl-row { grid-template-columns: 80px 24px minmax(0, 1fr); gap: 10px; }
-  .resources { grid-template-columns: 1fr; }
-  .sched-row { grid-template-columns: 80px minmax(0, 1fr) auto; }
+@media (max-width: 980px) {
+  .blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 980px) {
+  .navlinks { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
+}
+@media (max-width: 860px) {
+  .days { grid-template-columns: repeat(12, minmax(0, 1fr)); }
+  .hero-in { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; padding-bottom: 40px; }
+  .pcard { max-width: 420px; }
+  .steps { grid-template-columns: 1fr; gap: 0; }
+  .step { display: grid; grid-template-columns: 46px minmax(0, 1fr); column-gap: 14px; align-items: center; text-align: left; padding: 8px 0; }
+  .step-dot { grid-row: span 3; }
+  .step-when { margin-top: 0; }
+  .step-tag { justify-self: start; margin-top: 4px; }
+  .step:not(:first-child)::before { top: -50%; bottom: 50%; left: 22px; right: auto; width: 2px; height: auto; }
+  .step.is-next::before { background: repeating-linear-gradient(180deg, var(--ember) 0 6px, transparent 6px 11px); }
+  .pipeline { grid-template-columns: 1fr; gap: 24px; }
+  .pipe-join { right: auto; left: 50%; top: auto; bottom: -24px; transform: translateX(-50%) rotate(90deg); }
+}
+@media (max-width: 720px) {
   body { font-size: 16px; }
+  .wrap, .topnav-in, .foot-in { padding-left: 16px; padding-right: 16px; }
+  .hero-in { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+  .sec { padding-block: 48px; }
+  .brand-text { display: none; }
+  .cols, .resources, .blocks { grid-template-columns: 1fr; }
+  .phase { flex-direction: column; gap: 12px; padding: 18px; }
+  .tl { grid-template-columns: 78px 24px minmax(0, 1fr); gap: 10px; }
+  .sched { grid-template-columns: 74px 36px minmax(0, 1fr); gap: 10px; }
+}
+@media (max-width: 420px) {
+  .days { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  .perks { grid-template-columns: 1fr; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .stat { flex: 1 1 140px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
@@ -287,424 +440,646 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
 </head>
 <body>
 
-<!-- ═══════════════════ HERO ═══════════════════ -->
-<header class="hero">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+  <symbol id="i-map-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-trending-up" viewBox="0 0 24 24"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></symbol>
+  <symbol id="i-file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+  <symbol id="i-array" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="8" rx="1.5"/><path d="M7 8v8"/><path d="M12 8v8"/><path d="M17 8v8"/></symbol>
+  <symbol id="i-type" viewBox="0 0 24 24"><path d="M4 7V4h16v3"/><path d="M9 20h6"/><path d="M12 4v16"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></symbol>
+  <symbol id="i-stack" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="5" rx="1"/><rect x="4" y="10" width="16" height="5" rx="1"/><rect x="4" y="17" width="16" height="4" rx="1"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-list-checks" viewBox="0 0 24 24"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></symbol>
+  <symbol id="i-life-buoy" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10v6"/><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01"/><path d="M18 12h.01"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></symbol>
+  <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m16.24 7.76-2.12 6.36-6.36 2.12 2.12-6.36z"/></symbol>
+  <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><path d="M6 2v2"/><path d="M10 2v2"/><path d="M14 2v2"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-utensils" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M2 20h20"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4"/><path d="M8 2v4"/><path d="M3 10h18"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+</svg>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- HERO -->
+<header class="hero" id="top">
   <div class="hero-in">
     <div>
-      <p class="eyebrow">Career Guide & Winter Sprint · IIT Indore</p>
-      <h1>Google STEP</h1>
-      <p class="lede">Your complete roadmap from 1st-semester CSE student at IIT Indore to Google Software Engineer. With consistent 3–4 hours a day, the dream is entirely within your reach.</p>
-      <div class="hero-stats">
-        <div class="stat">
-          <div class="stat-label">Eligibility</div>
-          <div class="stat-val">1st & 2nd Year</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Winter Sprint</div>
-          <div class="stat-val">24 Days · 4 Topics</div>
-        </div>
-        <div class="stat">
-          <div class="stat-label">Career Path</div>
-          <div class="stat-val">STEP → Intern → PPO</div>
-        </div>
+      <p class="eyebrow"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg>Google STEP · Winter plan for Vasavi</p>
+      <h1>Your road to Google starts <span class="hl">this winter.</span></h1>
+      <p class="lede">Google STEP is a paid summer internship for 1st and 2nd-year students. You're in semester 1, so you're early. Spend 24 days of the winter break on arrays, strings, linked lists, stacks and queues, 3 to 4 hours a day. Every STEP coding round builds on those four.</p>
+      <div class="hero-actions">
+        <a class="btn btn-ember btn-lg" id="ctaMain" href="sprint_tracker.html#phase1"><span id="ctaText">Start Day 1</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+        <a class="btn btn-hero-ghost btn-lg" href="#sprint">See the 24-day plan</a>
       </div>
+      <dl class="hero-stats">
+        <div class="stat"><dt>Who can apply</dt><dd>1st &amp; 2nd year</dd></div>
+        <div class="stat"><dt>Winter sprint</dt><dd>24 days · 4 topics</dd></div>
+        <div class="stat"><dt>Practice set</dt><dd>81 problems</dd></div>
+      </dl>
     </div>
-    <div class="hero-visual">
-      <div class="google-logo" aria-label="Google logo">
-        <span class="g-blue">G</span><span class="g-red">o</span><span class="g-yellow">o</span><span class="g-blue">g</span><span class="g-green">l</span><span class="g-red">e</span>
+
+    <aside class="pcard" aria-labelledby="pcardTitle">
+      <p class="pcard-kicker" id="pcardTitle">Your sprint</p>
+      <div class="ring" id="ring" role="img" aria-label="0 percent of the sprint done">
+        <span class="ring-num" aria-hidden="true"><span id="pctNum">0</span><small>%</small></span>
       </div>
-      <p style="font-family: var(--font-display); font-size: 1.6rem; font-weight: 700; color: var(--hero-fg); margin: 4px 0;">STEP</p>
-      <p>Student Training in<br>Engineering Program</p>
-    </div>
+      <p class="pcard-day" id="pcardDay">Day 1 of 24</p>
+      <p class="pcard-sub" id="pcardSub">Not started yet. Day 1 is four warm-up array problems.</p>
+      <div class="pcard-meta">
+        <span><strong id="doneNum">0</strong> / 86 ticked</span>
+        <span><strong id="daysNum">0</strong> / 24 days</span>
+      </div>
+    </aside>
   </div>
 </header>
 
-<div class="wrap">
+<nav class="topnav" aria-label="Sections">
+  <div class="topnav-in">
+    <a class="brand" href="#top"><span class="brand-dot"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="brand-text">STEP roadmap</span></a>
+    <div class="navlinks" id="navlinks">
+      <a href="#sprint">Sprint</a>
+      <a href="#routine">Daily plan</a>
+      <a href="#step">What is STEP</a>
+      <a href="#path">The path</a>
+      <a href="#selection">Selection</a>
+      <a href="#life">Intern life</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#resources">Resources</a>
+    </div>
+    <a class="btn btn-sm" href="sprint_tracker.html">Tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+  </div>
+</nav>
 
-  <!-- ═══════════════════ WHAT IS STEP ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">Start here</p>
-    <h2>📌 What is Google STEP?</h2>
-    <p><strong>STEP</strong> stands for <strong>Student Training in Engineering Program</strong>. It is Google's internship program designed specifically for <strong>1st-year and 2nd-year undergraduate students</strong> in Computer Science and related fields.</p>
-    <p>Google created STEP because they believe in investing early — finding talented students <em>before</em> the traditional internship cycle and giving them a head start in their engineering careers.</p>
+<!-- JOURNEY -->
+<section class="journey" aria-labelledby="journeyTitle">
+  <div class="wrap">
+    <div class="journey-head">
+      <h2 id="journeyTitle">Where you are on the road</h2>
+      <p>Six steps from semester 1 to a full-time offer. Step two starts in December.</p>
+    </div>
+    <ol class="steps">
+      <li class="step is-here" id="stepNow">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span>
+        <span class="step-when">Sem 1 · now</span>
+        <span class="step-name">C++ basics</span>
+        <span class="step-tag" id="stepNowTag">You are here</span>
+      </li>
+      <li class="step is-next" id="stepSprint">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span>
+        <span class="step-when">Winter break</span>
+        <span class="step-name">24-day DSA sprint</span>
+        <span class="step-tag" id="stepSprintTag">Up next</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg></span>
+        <span class="step-when">Sem 2 and 3</span>
+        <span class="step-name">Keep solving DSA</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-file-text"/></svg></span>
+        <span class="step-when">Aug–Sep 2027</span>
+        <span class="step-name">Apply to STEP</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+        <span class="step-when">Summer 2028</span>
+        <span class="step-name">STEP intern</span>
+      </li>
+      <li class="step">
+        <span class="step-dot"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg></span>
+        <span class="step-when">Later years</span>
+        <span class="step-name">SWE intern, then full-time</span>
+      </li>
+    </ol>
+  </div>
+</section>
 
-    <div class="table-wrap">
-      <table>
-        <thead><tr><th>Detail</th><th>Info</th></tr></thead>
-        <tbody>
-          <tr><td>👩‍🎓 Who can apply?</td><td>1st & 2nd year university students (CSE / IT / related)</td></tr>
-          <tr><td>⏱️ Duration</td><td>~10–12 weeks (summer internship)</td></tr>
-          <tr><td>📍 Location</td><td>Google offices (Bangalore, Hyderabad for India)</td></tr>
-          <tr><td>💰 Stipend</td><td>Highly competitive (among the highest freshman internships globally)</td></tr>
-          <tr><td>📝 Selection</td><td>Resume screening → Online coding test → 2 Technical Interviews</td></tr>
-        </tbody>
-      </table>
+<main class="wrap" id="main">
+
+  <!-- SPRINT -->
+  <section class="sec" id="sprint">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg>This winter</p>
+    <h2>The 24-day DSA sprint</h2>
+    <p class="intro">Four topics, one after the other, with problems picked from Striver's A2Z DSA Sheet. Each day has 3 or 4 problems. Day 24 is a review day: no new problems, you re-solve your favourites from scratch.</p>
+
+    <ol class="days" id="days" aria-label="The 24 days, coloured by phase">
+      <li class="day" data-day="1" style="--c:var(--p1);--on:var(--p1-on)">1</li>
+      <li class="day" data-day="2" style="--c:var(--p1);--on:var(--p1-on)">2</li>
+      <li class="day" data-day="3" style="--c:var(--p1);--on:var(--p1-on)">3</li>
+      <li class="day" data-day="4" style="--c:var(--p1);--on:var(--p1-on)">4</li>
+      <li class="day" data-day="5" style="--c:var(--p1);--on:var(--p1-on)">5</li>
+      <li class="day" data-day="6" style="--c:var(--p1);--on:var(--p1-on)">6</li>
+      <li class="day" data-day="7" style="--c:var(--p1);--on:var(--p1-on)">7</li>
+      <li class="day" data-day="8" style="--c:var(--p2);--on:var(--p2-on)">8</li>
+      <li class="day" data-day="9" style="--c:var(--p2);--on:var(--p2-on)">9</li>
+      <li class="day" data-day="10" style="--c:var(--p2);--on:var(--p2-on)">10</li>
+      <li class="day" data-day="11" style="--c:var(--p2);--on:var(--p2-on)">11</li>
+      <li class="day" data-day="12" style="--c:var(--p2);--on:var(--p2-on)">12</li>
+      <li class="day" data-day="13" style="--c:var(--p3);--on:var(--p3-on)">13</li>
+      <li class="day" data-day="14" style="--c:var(--p3);--on:var(--p3-on)">14</li>
+      <li class="day" data-day="15" style="--c:var(--p3);--on:var(--p3-on)">15</li>
+      <li class="day" data-day="16" style="--c:var(--p3);--on:var(--p3-on)">16</li>
+      <li class="day" data-day="17" style="--c:var(--p3);--on:var(--p3-on)">17</li>
+      <li class="day" data-day="18" style="--c:var(--p3);--on:var(--p3-on)">18</li>
+      <li class="day" data-day="19" style="--c:var(--p4);--on:var(--p4-on)">19</li>
+      <li class="day" data-day="20" style="--c:var(--p4);--on:var(--p4-on)">20</li>
+      <li class="day" data-day="21" style="--c:var(--p4);--on:var(--p4-on)">21</li>
+      <li class="day" data-day="22" style="--c:var(--p4);--on:var(--p4-on)">22</li>
+      <li class="day" data-day="23" style="--c:var(--p4);--on:var(--p4-on)">23</li>
+      <li class="day" data-day="24" style="--c:var(--p5);--on:var(--p5-on)">24</li>
+    </ol>
+    <ul class="legend">
+      <li><i style="--c:var(--p1)"></i>Arrays</li>
+      <li><i style="--c:var(--p2)"></i>Strings</li>
+      <li><i style="--c:var(--p3)"></i>Linked lists</li>
+      <li><i style="--c:var(--p4)"></i>Stacks &amp; queues</li>
+      <li><i style="--c:var(--p5)"></i>Review</li>
+    </ul>
+
+    <ol class="phases">
+      <li class="phase" data-phase="1" style="--c:var(--p1);--on:var(--p1-on)">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-array"/></svg></span>
+        <div class="phase-body">
+          <div class="phase-top"><h3>Arrays</h3><span class="here-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>You're here</span></div>
+          <p class="phase-meta">Phase 1 · Days 1–7 · 26 problems</p>
+          <ul class="chips">
+            <li>Largest and second largest</li><li>Rotate by D places</li><li>Two pointers</li><li>Two Sum</li>
+            <li>Dutch National Flag</li><li>Moore's voting</li><li>Kadane's algorithm</li><li>Spiral and rotate a matrix</li>
+          </ul>
+          <p class="phase-tip">Day 7 ends with the spiral matrix. You've already started that one in <code>02_MatrixTraversing.cpp</code>, so you're ahead.</p>
+          <div class="phase-foot">
+            <div class="mini-bar"><span></span></div>
+            <span class="phase-count"><b>0</b> / 26</span>
+            <a class="phase-open" href="sprint_tracker.html#phase1">Open in tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="2" style="--c:var(--p2);--on:var(--p2-on)">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-type"/></svg></span>
+        <div class="phase-body">
+          <div class="phase-top"><h3>Strings</h3><span class="here-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>You're here</span></div>
+          <p class="phase-meta">Phase 2 · Days 8–12 · 15 problems</p>
+          <ul class="chips">
+            <li>Reverse words</li><li>Longest common prefix</li><li>Isomorphic strings</li><li>Anagrams</li>
+            <li>Roman numerals</li><li>String to integer</li><li>Longest palindromic substring</li>
+          </ul>
+          <p class="phase-tip">The shortest phase, 3 problems a day. If arrays ran long, this is where you catch up.</p>
+          <div class="phase-foot">
+            <div class="mini-bar"><span></span></div>
+            <span class="phase-count"><b>0</b> / 15</span>
+            <a class="phase-open" href="sprint_tracker.html#phase2">Open in tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="3" style="--c:var(--p3);--on:var(--p3-on)">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-link"/></svg></span>
+        <div class="phase-body">
+          <div class="phase-top"><h3>Linked lists</h3><span class="here-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>You're here</span></div>
+          <p class="phase-meta">Phase 3 · Days 13–18 · 22 problems</p>
+          <ul class="chips">
+            <li>Node struct and traversal</li><li>Insert and delete</li><li>Doubly linked list</li><li>Slow and fast pointers</li>
+            <li>Detect a cycle</li><li>Reverse a list</li><li>Add two numbers</li>
+          </ul>
+          <p class="phase-tip">Pointers get real here. Keep your notebook open and draw boxes and arrows for every line you write.</p>
+          <div class="phase-foot">
+            <div class="mini-bar"><span></span></div>
+            <span class="phase-count"><b>0</b> / 22</span>
+            <a class="phase-open" href="sprint_tracker.html#phase3">Open in tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="4" style="--c:var(--p4);--on:var(--p4-on)">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-stack"/></svg></span>
+        <div class="phase-body">
+          <div class="phase-top"><h3>Stacks &amp; queues</h3><span class="here-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>You're here</span></div>
+          <p class="phase-meta">Phase 4 · Days 19–23 · 18 problems</p>
+          <ul class="chips">
+            <li>Stack and queue from arrays</li><li>Valid parentheses</li><li>Min stack in <code>O(1)</code></li><li>Next greater element</li>
+            <li>Trapping rain water</li><li>Largest rectangle in a histogram</li><li>Sliding window maximum</li>
+          </ul>
+          <p class="phase-tip">The hardest phase. Trapping rain water and the histogram can take two sittings each, and that's normal.</p>
+          <div class="phase-foot">
+            <div class="mini-bar"><span></span></div>
+            <span class="phase-count"><b>0</b> / 18</span>
+            <a class="phase-open" href="sprint_tracker.html#phase4">Open in tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </li>
+      <li class="phase" data-phase="5" style="--c:var(--p5);--on:var(--p5-on)">
+        <span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></span>
+        <div class="phase-body">
+          <div class="phase-top"><h3>Review and mock interview</h3><span class="here-badge"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg>You're here</span></div>
+          <p class="phase-meta">Phase 5 · Day 24 · 5 milestones</p>
+          <ul class="chips">
+            <li>Kadane's from memory</li><li>Longest palindromic substring</li><li>Reverse a list and find a cycle</li>
+            <li>Valid parentheses and next greater element</li><li>Think-out-loud mock</li>
+          </ul>
+          <p class="phase-tip">No new problems. One signature problem from each phase, solved without notes, then one explained out loud like a real interview.</p>
+          <div class="phase-foot">
+            <div class="mini-bar"><span></span></div>
+            <span class="phase-count"><b>0</b> / 5</span>
+            <a class="phase-open" href="sprint_tracker.html#phase5">Open in tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+          </div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- DAILY ROUTINE -->
+  <section class="sec" id="routine">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg>Every sprint day</p>
+    <h2>One day, four blocks</h2>
+    <p class="intro">About 4 hours. Paper first, keyboard second. Keep the order; the minutes can bend.</p>
+
+    <div class="tbar" aria-hidden="true">
+      <span style="flex:60;--c:var(--p1)"></span>
+      <span style="flex:120;--c:var(--p2)"></span>
+      <span style="flex:45;--c:var(--p3)"></span>
+      <span style="flex:15;--c:var(--ember)"></span>
+    </div>
+    <ol class="blocks">
+      <li class="block" style="--c:var(--p1);--on:var(--p1-on)">
+        <div class="block-top"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-pencil"/></svg></span><span class="block-time">45–60 min</span></div>
+        <h3>Dry-run on paper</h3>
+        <p>Draw a small array or a few nodes. Trace each loop and pointer move by hand before you write any code.</p>
+      </li>
+      <li class="block" style="--c:var(--p2);--on:var(--p2-on)">
+        <div class="block-top"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span><span class="block-time">90–120 min</span></div>
+        <h3>Code and test in C++</h3>
+        <p>Type the solution in VS Code from scratch. Test the edge cases: an empty input, one element, negative numbers.</p>
+      </li>
+      <li class="block" style="--c:var(--p3);--on:var(--p3-on)">
+        <div class="block-top"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg></span><span class="block-time">30–45 min</span></div>
+        <h3>Complexity and notes</h3>
+        <p>Work out the time and space cost, like <code>O(1)</code>, <code>O(N)</code> or <code>O(N log N)</code>. Write one takeaway in your notebook.</p>
+      </li>
+      <li class="block" style="--c:var(--ember);--on:var(--on-ember)">
+        <div class="block-top"><span class="tile"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span><span class="block-time">15 min</span></div>
+        <h3>Explain it out loud</h3>
+        <p>Pick one problem and explain it to your brother as if it were the real interview.</p>
+      </li>
+    </ol>
+
+    <div class="rule">
+      <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span>
+      <div>
+        <h3>The 45-minute rule</h3>
+        <p>Stuck on one problem for 45 minutes? Stop and ask for a hint. A hint plus 20 more minutes of your own work teaches more than two hours of staring at the screen.</p>
+      </div>
+    </div>
+
+    <div class="cols">
+      <div class="card">
+        <div class="card-head"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-list-checks"/></svg></span><h3>What you bring</h3></div>
+        <ul class="ticks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A fixed 3 to 4 hour slot every day</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A paper notebook for traces and diagrams</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>VS Code with a working C++ compiler</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Free TakeUforward and LeetCode accounts</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>The habit of reading a bug as a clue, not a failure</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-head"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-life-buoy"/></svg></span><h3>What we bring</h3></div>
+        <ul class="ticks">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A daily check-in, with no judgement</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Code reviews with hints, never the full answer</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A quick unblock whenever the 45-minute rule kicks in</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>A cheer for every problem you solve</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Mock interviews and whiteboard practice</li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ THE PIPELINE ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">The golden path</p>
-    <h2>🛤️ STEP → Internship → PPO</h2>
-    <p>This is the full pipeline that many Googlers followed. Each stage feeds directly into the next.</p>
+  <!-- WHAT IS STEP -->
+  <section class="sec" id="step">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-compass"/></svg>The big picture</p>
+    <h2>What is Google STEP?</h2>
+    <p class="intro">STEP stands for Student Training in Engineering Program. It's Google's internship for 1st and 2nd-year undergraduates in computer science and related branches. Google runs it to find students early, a year or two before the usual internship season.</p>
+    <ul class="facts">
+      <li class="fact"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-cap"/></svg></span><div><span class="fact-label">Who can apply</span><span class="fact-val">1st and 2nd-year students in CSE, IT or a related branch</span></div></li>
+      <li class="fact"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-clock"/></svg></span><div><span class="fact-label">Length</span><span class="fact-val">About 10 to 12 weeks over the summer</span></div></li>
+      <li class="fact"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-map-pin"/></svg></span><div><span class="fact-label">Where in India</span><span class="fact-val">Google offices in Bangalore and Hyderabad</span></div></li>
+      <li class="fact"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span><div><span class="fact-label">Stipend</span><span class="fact-val">Paid, and one of the best for 1st and 2nd-year interns</span></div></li>
+      <li class="fact"><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-file-text"/></svg></span><div><span class="fact-label">Selection</span><span class="fact-val">Resume, an online coding test, then 2 technical interviews</span></div></li>
+    </ul>
+    <p class="note"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg>Eligibility and dates change a little every year. Check the official STEP page before you apply.</p>
+  </section>
 
-    <div class="pipeline">
-      <div class="pipe-stage">
-        <div class="pipe-icon">📘</div>
-        <p class="pipe-year">1st / 2nd Year</p>
-        <p class="pipe-name">Google STEP</p>
-        <p class="pipe-desc">10-week summer internship. Real Google project with a host & co-intern.</p>
-      </div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">📗</div>
-        <p class="pipe-year">Pre-final Year</p>
-        <p class="pipe-name">SWE Intern</p>
-        <p class="pipe-desc">Direct invite back! Full software engineering internship with bigger ownership.</p>
-      </div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">📕</div>
-        <p class="pipe-year">Final Year</p>
-        <p class="pipe-name">PPO</p>
-        <p class="pipe-desc">Pre-Placement Offer. Walk into final year with a Google job in your pocket!</p>
-      </div>
-    </div>
-
+  <!-- THE PATH -->
+  <section class="sec" id="path">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-trending-up"/></svg>Why it matters</p>
+    <h2>STEP, then SWE intern, then a job offer</h2>
+    <p class="intro">Each stage gives you a real shot at the next one. None of it is automatic, but STEP is the earliest way in.</p>
+    <ol class="pipeline">
+      <li class="pipe">
+        <span class="tile" style="--c:var(--p1);--on:var(--p1-on)"><svg class="icon" aria-hidden="true"><use href="#i-flag"/></svg></span>
+        <p class="pipe-when">1st or 2nd year</p>
+        <h3>Google STEP</h3>
+        <p>A 10 to 12 week summer project on a real Google team, with a host engineer and a co-intern.</p>
+        <span class="pipe-join" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </li>
+      <li class="pipe">
+        <span class="tile" style="--c:var(--p2);--on:var(--p2-on)"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>
+        <p class="pipe-when">Pre-final year</p>
+        <h3>SWE intern</h3>
+        <p>STEP interns who do well are often invited back for a full software engineering internship, with a bigger piece of the project.</p>
+        <span class="pipe-join" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </li>
+      <li class="pipe">
+        <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-award"/></svg></span>
+        <p class="pipe-when">Final year</p>
+        <h3>Pre-placement offer</h3>
+        <p>A strong SWE internship can end with a full-time offer before final-year placements even begin.</p>
+      </li>
+    </ol>
     <div class="callout">
-      <h3>🎉 Why getting in early changes everything</h3>
-      <ul>
-        <li><strong>Skip campus placement tension:</strong> You have a top-tier full-time offer before final year begins.</li>
-        <li><strong>Mentorship from L5/L6 Google Engineers:</strong> Learn production coding standards, code reviews, and system design early.</li>
-        <li><strong>The ultimate resume accelerator:</strong> Having Google on your profile opens doors to every fellowship, research group, and company worldwide.</li>
+      <h3>Why starting in semester 1 helps</h3>
+      <ul class="ticks">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>If a pre-placement offer comes through, you skip the placement-season scramble.</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Senior engineers review your code, so you learn how real production code gets written and reviewed.</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>Google on your resume helps with every internship, research group and fellowship after it.</li>
       </ul>
     </div>
   </section>
 
-  <!-- ═══════════════════ 24-DAY WINTER BREAK SPRINT LAUNCHPAD ═══════════════════ -->
-  <section class="sec" id="winter-sprint">
-    <p class="kicker">Semester Break Masterplan</p>
-    <h2>❄️ Vasavi's 24-Day Winter Break DSA Sprint</h2>
-    <p>Designed specifically for your winter vacation: <strong>3–4 focused hours every day</strong>. This sprint systematically covers the 4 foundational pillars of Google interviews — <strong>Arrays, Strings, Linked Lists, and Stacks & Queues</strong> — using exact curated questions from <strong>Striver's A2Z DSA Sheet</strong>.</p>
+  <!-- SELECTION -->
+  <section class="sec" id="selection">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg>What to expect</p>
+    <h2>How selection works</h2>
+    <ol class="pipeline">
+      <li class="pipe">
+        <span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-file-text"/></svg></span>
+        <p class="pipe-when">Step 1</p>
+        <h3>Apply online</h3>
+        <p>Your resume and college details.</p>
+        <span class="pipe-join" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </li>
+      <li class="pipe">
+        <span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span>
+        <p class="pipe-when">Step 2</p>
+        <h3>Online coding test</h3>
+        <p>1 or 2 problems on Google's own platform.</p>
+        <span class="pipe-join" aria-hidden="true"><svg class="icon"><use href="#i-arrow-right"/></svg></span>
+      </li>
+      <li class="pipe">
+        <span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg></span>
+        <p class="pipe-when">Step 3</p>
+        <h3>2 technical interviews</h3>
+        <p>About 45 minutes each, usually one problem per round.</p>
+      </li>
+    </ol>
 
-    <!-- Master Launchpad Hero Card -->
-    <div style="background: var(--surface); border: 2px solid var(--accent); border-radius: 18px; padding: 28px 32px; margin: 28px 0; box-shadow: 0 4px 20px rgba(3, 79, 70, 0.08);">
-      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px;">
-        <div>
-          <span style="background: var(--lav); color: var(--on-lav); font-family: var(--font-mono); font-size: .8rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; text-transform: uppercase; letter-spacing: .08em;">Dedicated Interactive Tool</span>
-          <h3 style="margin: 10px 0 6px; font-size: 1.6rem;">Winter Break Sprint Tracker</h3>
-          <p style="margin: 0; color: var(--ink-2); max-width: 54ch;">Open the dedicated tracker app with study timers, search & filters, problem direct links, and a personal note-taking journal.</p>
-        </div>
-        <div>
-          <a href="sprint_tracker.html" class="btn btn-ember" style="font-size: 1.05rem; padding: 14px 28px; box-shadow: 0 4px 12px rgba(255, 169, 70, 0.35);">
-            🚀 Launch 24-Day Sprint Tracker &rarr;
-          </a>
-        </div>
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; border-top: 1px solid var(--border); padding-top: 18px;">
-        <div style="font-size: .9rem;"><span style="color: var(--muted); display: block; font-size: .8rem;">Target Questions</span><strong>70 Curated Problems</strong></div>
-        <div style="font-size: .9rem;"><span style="color: var(--muted); display: block; font-size: .8rem;">Daily Commitment</span><strong>3–4 Hours / Day</strong></div>
-        <div style="font-size: .9rem;"><span style="color: var(--muted); display: block; font-size: .8rem;">Progress Saving</span><strong>Local Browser Storage</strong></div>
-        <div style="font-size: .9rem;"><span style="color: var(--muted); display: block; font-size: .8rem;">Curriculum</span><strong>Striver's A2Z Sheet</strong></div>
-      </div>
-    </div>
+    <h3 class="sub-h">Five habits interviewers look for</h3>
+    <ol class="tips">
+      <li class="tip"><span class="tip-num">1</span><div><h4>Think out loud</h4><p>Say your idea before you type. They're judging how you think, not only the final code. Your daily 15-minute explain block trains this.</p></div></li>
+      <li class="tip"><span class="tip-num">2</span><div><h4>Brute force first</h4><p>State the simple solution and its cost, then improve it step by step.</p></div></li>
+      <li class="tip"><span class="tip-num">3</span><div><h4>Ask about the input</h4><p>"Can the array be empty? Can numbers be negative?" Questions like these show you think like an engineer.</p></div></li>
+      <li class="tip"><span class="tip-num">4</span><div><h4>Test by hand</h4><p>Trace a small example through your code before you say you're done.</p></div></li>
+      <li class="tip"><span class="tip-num">5</span><div><h4>Stay calm when stuck</h4><p>Say "Let me reason through this" and write down what you already know. Silence worries interviewers more than slow progress.</p></div></li>
+    </ol>
+  </section>
 
-    <!-- 5 Phase Breakdown Overview -->
-    <h3>🗺️ The 5 Sprint Phases</h3>
-    <div class="cards" style="grid-template-columns: 1fr; gap: 14px; margin: 20px 0;">
-      <div class="card" style="display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid var(--accent);">
-        <div class="card-icon" style="margin: 0;">📦</div>
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Phase 1: Arrays Mastery (Day 1 – Day 7)</h4>
-            <span style="font-size: .82rem; font-weight: 700; color: var(--muted); font-family: var(--font-mono);">7 Days · 24 Problems</span>
-          </div>
-          <p style="margin: 6px 0 0; font-size: .92rem; color: var(--ink-2);">Traversals, in-place rotations, 3-reverse trick, Two Sum, Dutch National Flag, Moore's Voting, Kadane's algorithm, and 2D matrix spiral & rotate.</p>
-        </div>
-      </div>
+  <!-- LIFE AT GOOGLE -->
+  <section class="sec" id="life">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>The reward</p>
+    <h2>A day as a STEP intern</h2>
+    <p class="intro">A typical day. Every office and team runs a little differently.</p>
+    <ol class="schedule">
+      <li class="sched"><span class="sched-time">9:30 AM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-coffee"/></svg></span><span>Reach the office, breakfast in the cafeteria</span></li>
+      <li class="sched"><span class="sched-time">10:00 AM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg></span><span>Stand-up with your team</span></li>
+      <li class="sched"><span class="sched-time">10:30 AM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span><span>Pair programming with your co-intern</span></li>
+      <li class="sched"><span class="sched-time">12:30 PM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-utensils"/></svg></span><span>Lunch with the team</span></li>
+      <li class="sched"><span class="sched-time">1:30 PM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-message"/></svg></span><span>One-on-one with your host engineer</span></li>
+      <li class="sched"><span class="sched-time">2:30 PM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><span>Build and debug your project feature</span></li>
+      <li class="sched"><span class="sched-time">4:00 PM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-mic"/></svg></span><span>A tech talk or an intern social</span></li>
+      <li class="sched"><span class="sched-time">5:30 PM</span><span class="tile tile-soft"><svg class="icon" aria-hidden="true"><use href="#i-moon"/></svg></span><span>Wrap up, then the gym, the game room or home</span></li>
+    </ol>
 
-      <div class="card" style="display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid #138A77;">
-        <div class="card-icon" style="margin: 0;">🔤</div>
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Phase 2: Strings Mastery (Day 8 – Day 12)</h4>
-            <span style="font-size: .82rem; font-weight: 700; color: var(--muted); font-family: var(--font-mono);">5 Days · 15 Problems</span>
-          </div>
-          <p style="margin: 6px 0 0; font-size: .92rem; color: var(--ink-2);">Character manipulation, tokenization, prefix matching, isomorphic mappings, frequency arrays of size 26, Roman numerals, and center-expansion palindromes.</p>
-        </div>
-      </div>
-
-      <div class="card" style="display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid #A777D6;">
-        <div class="card-icon" style="margin: 0;">🔗</div>
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Phase 3: Linked Lists (Day 13 – Day 18)</h4>
-            <span style="font-size: .82rem; font-weight: 700; color: var(--muted); font-family: var(--font-mono);">6 Days · 18 Problems</span>
-          </div>
-          <p style="margin: 6px 0 0; font-size: .92rem; color: var(--ink-2);">Demystifying pointers, struct Node creation, DLL two-way rewiring, Floyd's Tortoise-Hare cycle detection, 3-pointer list reversal, and dummy head arithmetic.</p>
-        </div>
-      </div>
-
-      <div class="card" style="display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid var(--ember);">
-        <div class="card-icon" style="margin: 0;">🥞</div>
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Phase 4: Stacks & Queues (Day 19 – Day 23)</h4>
-            <span style="font-size: .82rem; font-weight: 700; color: var(--muted); font-family: var(--font-mono);">5 Days · 18 Problems</span>
-          </div>
-          <p style="margin: 6px 0 0; font-size: .92rem; color: var(--ink-2);">LIFO/FIFO circular arrays, Valid Parentheses, $O(1)$ Min Stack, Monotonic Stacks (Next Greater Element), Trapping Rain Water, and Histogram maximal rectangles.</p>
-        </div>
-      </div>
-
-      <div class="card" style="display: flex; gap: 16px; align-items: flex-start; border-left: 4px solid #2F7A70;">
-        <div class="card-icon" style="margin: 0;">🎓</div>
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
-            <h4 style="margin: 0;">Phase 5: Grand Review & Mock Simulation (Day 24)</h4>
-            <span style="font-size: .82rem; font-weight: 700; color: var(--muted); font-family: var(--font-mono);">1 Day · 5 Milestones</span>
-          </div>
-          <p style="margin: 6px 0 0; font-size: .92rem; color: var(--ink-2);">Re-solving signature problems without notes, doing a live Think-Out-Loud interview simulation, and celebrating an extraordinary milestone.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Daily Flow & Support Framework -->
-    <div class="cards" style="margin: 24px 0;">
-      <div class="card" style="border-left: 4px solid var(--accent);">
-        <div class="card-icon">🎯</div>
-        <h4>What Vasavi Needs to Have</h4>
-        <ul style="margin: 8px 0 0; padding-left: 1.2em; font-size: .92rem; color: var(--ink-2); display: grid; gap: 4px;">
-          <li>Dedicated 3–4 hour daily study window</li>
-          <li>A physical notebook for pointer tracing & diagrams</li>
-          <li>VS Code with C++ compiler ready</li>
-          <li>Free TakeUforward & LeetCode accounts</li>
-          <li>Mindset: <em>"Bugs are not failures, they are clues!"</em></li>
-        </ul>
-      </div>
-      <div class="card" style="border-left: 4px solid var(--ember);">
-        <div class="card-icon">🤝</div>
-        <h4>What We Will Provide</h4>
-        <ul style="margin: 8px 0 0; padding-left: 1.2em; font-size: .92rem; color: var(--ink-2); display: grid; gap: 4px;">
-          <li>Zero-judgment daily guidance & encouragement</li>
-          <li>Code reviews following AGENTS.md (guiding hints, never spoilers)</li>
-          <li>45-minute unblock rule (no staring at a wall stuck!)</li>
-          <li>Daily celebration of solved problems</li>
-          <li>Mock interview & whiteboarding practice</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="hint-box">
-      <h4>⏱️ Daily 3–4 Hour Time-Box</h4>
-      <div class="table-wrap" style="margin: 8px 0 0;">
-        <table style="font-size: .9rem;">
-          <thead><tr><th>Time</th><th>Block</th><th>Activity</th></tr></thead>
-          <tbody>
-            <tr><td><strong>45–60 min</strong></td><td>Pen & Paper Dry-Run</td><td>Draw small arrays or nodes. Trace loops and pointer movements by hand.</td></tr>
-            <tr><td><strong>90–120 min</strong></td><td>Code & Test in C++</td><td>Type solution in VS Code from scratch. Test edge cases (empty, single element, negative numbers).</td></tr>
-            <tr><td><strong>30–45 min</strong></td><td>Complexity & Notes</td><td>Determine Big-O Time & Space complexity: $O(1)$, $O(N)$, $O(N \log N)$. Write 1 key takeaway in notebook.</td></tr>
-            <tr><td><strong>15 min</strong></td><td>Evening Debrief</td><td>Explain 1 problem out loud to your brother like in a real interview!</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-    <div style="text-align: center; margin: 32px 0 10px;">
-      <a href="sprint_tracker.html" class="btn btn-ember" style="font-size: 1.1rem; padding: 14px 32px;">
-        🚀 Open Sprint Tracker with Live Checklists & Timers &rarr;
-      </a>
+    <h3 class="sub-h">Intern perks</h3>
+    <div class="perks">
+      <div class="perk"><span class="tile" style="--c:var(--p1);--on:var(--p1-on)"><svg class="icon" aria-hidden="true"><use href="#i-utensils"/></svg></span><h4>Free meals</h4><p>Breakfast, lunch and snack kitchens on most floors.</p></div>
+      <div class="perk"><span class="tile" style="--c:var(--p2);--on:var(--p2-on)"><svg class="icon" aria-hidden="true"><use href="#i-activity"/></svg></span><h4>Gym and wellness</h4><p>An on-site gym, games and quiet rooms, depending on the office.</p></div>
+      <div class="perk"><span class="tile" style="--c:var(--p3);--on:var(--p3-on)"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span><h4>Travel and stay</h4><p>Help with getting to the office and finding a place to stay.</p></div>
+      <div class="perk"><span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-gift"/></svg></span><h4>Swag</h4><p>A welcome kit, often a hoodie, a bottle and a backpack.</p></div>
     </div>
   </section>
 
-  <!-- ═══════════════════ THE INTERVIEW PROCESS ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">What to expect</p>
-    <h2>📝 The Interview Process</h2>
-
-    <div class="pipeline" style="margin-bottom: 32px;">
-      <div class="pipe-stage">
-        <div class="pipe-icon">📋</div>
-        <p class="pipe-name">Online Application</p>
-        <p class="pipe-desc">Resume + university details</p>
-      </div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">💻</div>
-        <p class="pipe-name">Coding Assessment</p>
-        <p class="pipe-desc">1–2 coding problems on Google's platform</p>
-      </div>
-      <div class="pipe-stage">
-        <div class="pipe-icon">🎤</div>
-        <p class="pipe-name">2 Tech Interviews</p>
-        <p class="pipe-desc">~45 min each, 1 coding problem per round</p>
-      </div>
-    </div>
-
-    <div class="hint-box">
-      <h4>💡 5 Golden Interview Tips</h4>
-      <ul>
-        <li><strong>Think out loud:</strong> Share your thoughts before typing any code. Interviewers want to see how you think.</li>
-        <li><strong>Start with brute force:</strong> State the obvious solution first, then analyze and optimize.</li>
-        <li><strong>Test your code manually:</strong> Trace a small example on paper or in comments before saying "I'm done".</li>
-        <li><strong>Ask clarifying questions:</strong> "Can the input be empty?" "Are numbers negative?" Shows engineering maturity.</li>
-        <li><strong>Be honest and calm:</strong> If stuck, say "I'm reasoning through this..." and break down what you know.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ LIFE AT GOOGLE ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">What it's actually like</p>
-    <h2>🏢 A Day in the Life of a STEP Intern</h2>
-
-    <div class="schedule">
-      <div class="sched-row"><span class="sched-time">9:30 AM</span><span class="sched-activity">Arrive at Google office, free breakfast buffet</span><span class="sched-emoji">🥐</span></div>
-      <div class="sched-row"><span class="sched-time">10:00 AM</span><span class="sched-activity">Stand-up meeting with your engineering team</span><span class="sched-emoji">🗣️</span></div>
-      <div class="sched-row"><span class="sched-time">10:30 AM</span><span class="sched-activity">Pair coding session with your co-intern</span><span class="sched-emoji">👩‍💻</span></div>
-      <div class="sched-row"><span class="sched-time">12:30 PM</span><span class="sched-activity">Lunch at the Google cafeteria (free & delicious)</span><span class="sched-emoji">🍕</span></div>
-      <div class="sched-row"><span class="sched-time">1:30 PM</span><span class="sched-activity">1:1 with your host (senior mentor session)</span><span class="sched-emoji">🧑‍🏫</span></div>
-      <div class="sched-row"><span class="sched-time">2:30 PM</span><span class="sched-activity">Project feature implementation & debugging</span><span class="sched-emoji">⌨️</span></div>
-      <div class="sched-row"><span class="sched-time">4:00 PM</span><span class="sched-activity">Tech talk by Google leaders or intern social</span><span class="sched-emoji">🎓</span></div>
-      <div class="sched-row"><span class="sched-time">5:30 PM</span><span class="sched-activity">Wrap up, head to gym, nap pod, or game room</span><span class="sched-emoji">🎮</span></div>
-    </div>
-
-    <h3>Intern Perks</h3>
-    <div class="cards">
-      <div class="card">
-        <div class="card-icon">🍽️</div>
-        <h4>Gourmet Free Meals</h4>
-        <p>Breakfast, lunch, dinner, micro-kitchens with snacks and drinks on every floor.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🏋️</div>
-        <h4>Recreation & Wellness</h4>
-        <p>Full campus gym, pool tables, board games, nap pods, and wellness spaces.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🚌</div>
-        <h4>Transport & Housing</h4>
-        <p>Google shuttle buses, transport allowance, and intern accommodation assistance.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎒</div>
-        <h4>Google Swag</h4>
-        <p>Personalized laptop, Google backpack, hoodie, water bottle, and desk setup.</p>
+  <!-- TIMELINE -->
+  <section class="sec" id="timeline">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg>Mark your calendar</p>
+    <h2>Application timeline</h2>
+    <p class="intro">Applications usually open in August or September. The rough flow after that:</p>
+    <ol class="timeline">
+      <li class="tl"><span class="tl-when">Aug–Sep</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-line"></span></span><div class="tl-what"><strong>Applications open</strong><span>Send your resume and college details through Google Careers.</span></div></li>
+      <li class="tl"><span class="tl-when">Oct–Nov</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-line"></span></span><div class="tl-what"><strong>Online assessment</strong><span>1 or 2 coding problems, mostly on arrays and strings.</span></div></li>
+      <li class="tl"><span class="tl-when">Nov–Dec</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-line"></span></span><div class="tl-what"><strong>Technical interviews</strong><span>2 rounds of about 45 minutes. You code live in a shared doc or editor.</span></div></li>
+      <li class="tl"><span class="tl-when">Dec–Jan</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-line"></span></span><div class="tl-what"><strong>Offers</strong><span>Selected students get an offer letter.</span></div></li>
+      <li class="tl"><span class="tl-when">May–Jul</span><span class="tl-rail"><span class="tl-dot"></span><span class="tl-line"></span></span><div class="tl-what"><strong>Internship</strong><span>10 to 12 weeks at a Google office.</span></div></li>
+    </ol>
+    <div class="target">
+      <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-target"/></svg></span>
+      <div>
+        <h3>Your target: August 2027</h3>
+        <p>Applications for your cycle should open around August or September 2027, in your 3rd semester. That leaves this sprint plus two more semesters of practice. Plenty, if you keep going.</p>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ TIMELINE ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">Mark your calendar</p>
-    <h2>📅 Application Timeline</h2>
-    <p>Applications for STEP open around August–September each year. Here's the typical flow:</p>
-
-    <div class="timeline">
-      <div class="tl-row">
-        <div class="tl-when">Aug – Sep</div>
-        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-what"><strong>Applications Open</strong><span>Submit your resume and academic details on Google Careers.</span></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-when">Oct – Nov</div>
-        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-what"><strong>Online Assessments</strong><span>1–2 coding problems testing logic, arrays, and strings.</span></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-when">Nov – Dec</div>
-        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-what"><strong>Technical Interviews</strong><span>2 rounds, ~45 min each. Code live in a shared Google Doc.</span></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-when">Dec – Jan</div>
-        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-what"><strong>Offers Roll Out</strong><span>If selected, you receive your official Google offer letter! 🎉</span></div>
-      </div>
-      <div class="tl-row">
-        <div class="tl-when">May – Jul</div>
-        <div class="tl-dot-col"><div class="tl-dot"></div><div class="tl-line"></div></div>
-        <div class="tl-what"><strong>Internship Begins</strong><span>10–12 weeks of high-impact engineering at Google.</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══════════════════ RESOURCES ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">Curated learning</p>
-    <h2>🔗 Essential Resources</h2>
-
+  <!-- RESOURCES -->
+  <section class="sec" id="resources">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-book"/></svg>Bookmark these</p>
+    <h2>Resources</h2>
     <div class="resources">
       <a class="resource" href="https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2" target="_blank" rel="noopener">
-        <span class="resource-icon">⚡</span>
-        <div>
-          <span class="resource-name">Striver's A2Z DSA Sheet</span>
-          <span class="resource-desc">The exact syllabus behind your 24-day sprint</span>
-        </div>
+        <span class="tile" style="--c:var(--p1);--on:var(--p1-on)"><svg class="icon" aria-hidden="true"><use href="#i-zap"/></svg></span>
+        <span class="resource-text"><span class="resource-name">Striver's A2Z DSA Sheet</span><span class="resource-desc">Where the sprint's problems come from</span></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
       <a class="resource" href="https://buildyourfuture.withgoogle.com/programs/step" target="_blank" rel="noopener">
-        <span class="resource-icon">🌐</span>
-        <div>
-          <span class="resource-name">Google STEP Program</span>
-          <span class="resource-desc">Official Google student programs page</span>
-        </div>
+        <span class="tile" style="--c:var(--p2);--on:var(--p2-on)"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></span>
+        <span class="resource-text"><span class="resource-name">Google STEP program page</span><span class="resource-desc">Official details, eligibility and dates</span></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
       <a class="resource" href="https://leetcode.com/" target="_blank" rel="noopener">
-        <span class="resource-icon">🧠</span>
-        <div>
-          <span class="resource-name">LeetCode</span>
-          <span class="resource-desc">Coding problem practice platform</span>
-        </div>
+        <span class="tile" style="--c:var(--p3);--on:var(--p3-on)"><svg class="icon" aria-hidden="true"><use href="#i-code"/></svg></span>
+        <span class="resource-text"><span class="resource-name">LeetCode</span><span class="resource-desc">More practice once the sprint is done</span></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
       <a class="resource" href="https://www.youtube.com/@NeetCode" target="_blank" rel="noopener">
-        <span class="resource-icon">📹</span>
-        <div>
-          <span class="resource-name">NeetCode on YouTube</span>
-          <span class="resource-desc">Clear, visual DSA problem walkthroughs</span>
-        </div>
+        <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
+        <span class="resource-text"><span class="resource-name">NeetCode on YouTube</span><span class="resource-desc">Clear video walkthroughs of classic problems</span></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
     </div>
   </section>
 
-  <!-- ═══════════════════ FINAL WORDS ═══════════════════ -->
-  <section class="sec">
-    <p class="kicker">Believe in yourself</p>
-    <h2>💬 A Note for Vasavi</h2>
-    <p>Vasavi, being in <strong>1st semester</strong> at an <strong>IIT</strong> means you already have the analytical power and grit to excel. What separates students who land Google internships from everyone else is simply <strong>starting early with curiosity, joy, and consistency</strong>.</p>
-    <p>Don't rush to memorize code. Savor the process of understanding how algorithms work. When a bug appears, treat it like an exciting puzzle to unlock. You have full mentorship, a complete roadmap, and the time on your side.</p>
-
-    <div class="callout" style="text-align: center;">
-      <p style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin: 0;">
-        You are here → 24-Day Sprint → Sem 2-3 DSA → Apply to STEP → Google Intern → Google Engineer
-      </p>
-      <p style="font-size: .92rem; margin: 8px 0 0; color: var(--on-lav);">
-        (Sem 1) &nbsp;&nbsp;&nbsp; (Winter Break) &nbsp;&nbsp;&nbsp; (Next Sem) &nbsp;&nbsp;&nbsp; (Sem 3-4) &nbsp;&nbsp;&nbsp; (Summer) &nbsp;&nbsp;&nbsp; (Full Time)
-      </p>
+  <!-- NOTE -->
+  <section class="sec" id="note">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg>Before you start</p>
+    <h2>A note for you, Vasavi</h2>
+    <div class="closing">
+      <p>Getting into an IIT already shows you can work hard and think clearly. What gets students into STEP is less about talent and more about starting early and showing up every day.</p>
+      <p>Don't memorise code. Understand why each step works and the code will follow. When a bug shows up, treat it as a puzzle. You have a plan, people in your corner, and time on your side.</p>
     </div>
-
-    <p style="text-align: center; font-size: 1.25rem; font-weight: 700; margin-top: 24px;">You've got this, Vasavi. Keep coding and keep shining! 💪🌸</p>
+    <div class="finale">
+      <p id="finaleText">Day 1 is four array problems. Start with the first one.</p>
+      <a class="btn btn-ember btn-lg" id="ctaFinale" href="sprint_tracker.html#phase1"><span id="ctaFinaleText">Start Day 1</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    </div>
+    <p class="signoff">You've got this, Vasavi.</p>
   </section>
 
-</div>
+</main>
 
 <footer class="foot">
   <div class="foot-in">
-    <p>Curated with pride for Vasavi · CSE 1st Year · IIT Indore</p>
-    <p>Design system from <a href="../Development/Dice Roll/prep/study_guide.html">Dice Roll Study Guide</a></p>
+    <p>Made for Vasavi · CSE 1st year · IIT Indore</p>
+    <p><a href="sprint_tracker.html">Sprint tracker</a> · Design from the <a href="../Development/Dice Roll/prep/study_guide.html">Dice Roll study guide</a></p>
   </div>
 </footer>
 
 <script>
-function renderLatex() {
-  if (typeof renderMathInElement === 'function') {
-    renderMathInElement(document.body, {
-      delimiters: [
-        {left: '$$', right: '$$', display: true},
-        {left: '$', right: '$', display: false}
-      ],
-      throwOnError: false,
-      ignoredTags: ["script", "noscript", "style", "textarea", "pre", "code"]
-    });
+(function () {
+  var DAYS = [4, 4, 4, 3, 4, 4, 3, 3, 3, 3, 3, 3, 4, 4, 3, 4, 4, 3, 4, 4, 4, 3, 3, 5];
+  var PHASES = [
+    { name: "Arrays", from: 1, to: 7 },
+    { name: "Strings", from: 8, to: 12 },
+    { name: "Linked lists", from: 13, to: 18 },
+    { name: "Stacks & queues", from: 19, to: 23 },
+    { name: "Review", from: 24, to: 24 }
+  ];
+  var TOTAL = 86;
+
+  function ticked(day, n) {
+    try { return localStorage.getItem("v_sprint_q_" + day + "_" + n) === "1"; } catch (e) { return false; }
   }
-}
-window.addEventListener('DOMContentLoaded', renderLatex);
-window.addEventListener('load', renderLatex);
+  function phaseOf(day) {
+    for (var i = 0; i < PHASES.length; i++) if (day >= PHASES[i].from && day <= PHASES[i].to) return i;
+    return 0;
+  }
+  function $(id) { return document.getElementById(id); }
+
+  var perDay = [], done = 0, daysDone = 0, current = 0;
+  for (var d = 1; d <= 24; d++) {
+    var c = 0;
+    for (var n = 1; n <= DAYS[d - 1]; n++) if (ticked(d, n)) c++;
+    perDay.push(c);
+    done += c;
+    if (c === DAYS[d - 1]) daysDone++;
+    else if (!current) current = d;
+  }
+  var finished = current === 0;
+  if (finished) current = 24;
+  var started = done > 0;
+  var phase = phaseOf(current);
+  var pct = Math.round(done / TOTAL * 100);
+  var link = "sprint_tracker.html#phase" + (phase + 1);
+
+  var ring = $("ring");
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () { ring.style.setProperty("--pct", pct); });
+  });
+  ring.setAttribute("aria-label", pct + " percent of the sprint done");
+  $("pctNum").textContent = pct;
+  $("doneNum").textContent = done;
+  $("daysNum").textContent = daysDone;
+
+  var cta, sub, finale;
+  if (finished) {
+    $("pcardDay").textContent = "Sprint complete";
+    sub = "All 24 days done. Re-solve one favourite from memory this week.";
+    cta = "Review in the tracker";
+    finale = "You finished all 24 days. Keep one problem a day going until the semester starts.";
+  } else if (!started) {
+    $("pcardDay").textContent = "Day 1 of 24";
+    sub = "Not started yet. Day 1 is four warm-up array problems.";
+    cta = "Start Day 1";
+    finale = "Day 1 is four array problems. Start with the first one.";
+  } else {
+    $("pcardDay").textContent = "Day " + current + " of 24";
+    sub = perDay[current - 1] + " of " + DAYS[current - 1] + " done today · " + PHASES[phase].name;
+    cta = "Continue Day " + current;
+    finale = done + " ticked so far. Day " + current + " is waiting.";
+  }
+  $("pcardSub").textContent = sub;
+  $("ctaText").textContent = cta;
+  $("ctaFinaleText").textContent = cta;
+  $("finaleText").textContent = finale;
+  $("ctaMain").href = link;
+  $("ctaFinale").href = link;
+
+  if (started) {
+    $("stepNow").className = "step is-done";
+    $("stepNowTag").remove();
+    $("stepSprint").className = finished ? "step is-done" : "step is-here";
+    $("stepSprintTag").textContent = finished ? "Done" : "Day " + current + " of 24";
+  }
+
+  document.querySelectorAll("#days .day").forEach(function (el) {
+    var day = +el.getAttribute("data-day");
+    var got = perDay[day - 1], need = DAYS[day - 1];
+    var state = got === need ? "done" : got > 0 ? got + " of " + need + " done" : "not started";
+    if (got === need) el.classList.add("is-done");
+    else if (got > 0) el.classList.add("is-partial");
+    if (!finished && day === current) { el.classList.add("is-today"); state += ", you are here"; }
+    el.setAttribute("aria-label", "Day " + day + ", " + PHASES[phaseOf(day)].name + ": " + state);
+    el.title = "Day " + day + " · " + state;
+  });
+
+  document.querySelectorAll(".phase").forEach(function (el) {
+    var p = +el.getAttribute("data-phase") - 1;
+    var got = 0, need = 0;
+    for (var day = PHASES[p].from; day <= PHASES[p].to; day++) { got += perDay[day - 1]; need += DAYS[day - 1]; }
+    el.querySelector(".phase-count b").textContent = got;
+    el.querySelector(".mini-bar span").style.width = Math.round(got / need * 100) + "%";
+    if (!finished && p === phase) el.classList.add("is-current");
+  });
+
+  var nav = $("navlinks");
+  var links = nav.querySelectorAll("a");
+  if ("IntersectionObserver" in window) {
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var a = byId[e.target.id];
+        if (!a) return;
+        links.forEach(function (l) { l.removeAttribute("aria-current"); });
+        a.setAttribute("aria-current", "true");
+        nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2 });
+      });
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    Object.keys(byId).forEach(function (id) { var s = $(id); if (s) io.observe(s); });
+  }
+})();
 </script>
 
 </body>
