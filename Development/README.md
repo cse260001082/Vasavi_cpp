@@ -30,7 +30,7 @@ Suggested order:
 It is being built one part at a time:
 
 1. How the web works: client and server, URLs, DNS, HTTP, HTTPS, how the browser draws a page, and opening your page three ways. Ready.
-2. HTML. Coming next.
+2. HTML: tags, the page skeleton, links and paths, images, lists, tables, forms, semantic layout, id and class, and the Elements panel. Live editors and 8 challenges. Ready.
 3. CSS. Coming next.
 4. Wrap-up: cheat sheets and glossary. Coming next.
 

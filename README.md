@@ -92,7 +92,8 @@ Folder: [Dice Roll/](Development/Dice%20Roll/)
 File: [html_css_guide.html](Development/Web%20Guide/html_css_guide.html) (double-click to open in Chrome)
 *Concepts: how the web works (URLs, DNS, HTTP, HTTPS, rendering), then HTML and CSS*
 - [ ] **Part 1:** How the web works
-- Parts 2 (HTML), 3 (CSS) and 4 (wrap-up) are on the way
+- [ ] **Part 2:** HTML, with live editors and 8 challenges
+- Parts 3 (CSS) and 4 (wrap-up) are on the way
 
 ---
 

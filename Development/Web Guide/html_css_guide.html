@@ -91,7 +91,7 @@ body {
 img, svg { max-width: 100%; }
 a { color: var(--accent-text); text-underline-offset: 3px; }
 :focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
-code, pre, kbd { font-family: var(--font-mono); }
+code, pre, kbd, output { font-family: var(--font-mono); font-variant-ligatures: none; }
 p code, li code, dd code, td code, .why code, .say code, .callout code, .hint code, .real code, .demo-sub code, .status code {
   font-size: .86em;
   background: var(--lav);
@@ -101,6 +101,7 @@ p code, li code, dd code, td code, .why code, .say code, .callout code, .hint co
   overflow-wrap: anywhere;
 }
 .callout code, .say code { background: var(--surface); color: var(--ink); }
+.table-wrap td code { white-space: nowrap; overflow-wrap: normal; }
 kbd {
   font-size: .82em;
   border: 1px solid var(--border);
@@ -493,7 +494,7 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
 .msg h4 { font-family: var(--font-body); font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; color: var(--syn-dim); margin: 0 16px 8px; }
 .mrow { display: grid; grid-template-columns: minmax(0, 1fr); padding: 3px 16px; border-left: 3px solid transparent; }
 .mrow code { font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; min-height: 1.3em; }
-.mrow span { font-size: .8rem; color: var(--syn-attr); font-family: var(--font-body); }
+.mrow > span { font-size: .8rem; color: var(--syn-attr); font-family: var(--font-body); }
 .mrow.m1 { border-left-color: var(--syn-str); }
 .mrow.m2 { border-left-color: var(--syn-key); }
 .mrow.m3 { border-left-color: var(--syn-dim); }
@@ -721,6 +722,251 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
 }
 .foot-in p { margin: 0; max-width: 70ch; }
 
+/* ===== Part 2 ===== */
+select {
+  font: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  max-width: 100%;
+}
+.layers .fb-view { height: 270px; }
+.layer-say { font-weight: 700; min-height: 3em; margin: 12px 0 0; max-width: 70ch; }
+.ok-bad { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 760px; margin: 14px 0; }
+.ok-bad p { margin: 0 0 4px; font-weight: 700; font-size: .9rem; }
+.ok-bad .snip { white-space: pre-wrap; overflow-wrap: anywhere; }
+.tasks { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 10px 16px 12px; margin: 18px 0 0; max-width: 760px; }
+.tasks b { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--accent-text); }
+.tasks ul { margin: 4px 0 0; padding-left: 1.2em; display: grid; gap: 3px; }
+
+/* anatomy */
+.anat {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: 14px;
+  padding: 26px 18px;
+  font: 600 clamp(13px, 2.1vw, 19px)/1.5 var(--font-mono);
+  overflow-x: auto;
+  white-space: nowrap;
+  text-align: center;
+}
+.anat span { border-radius: 4px; transition: opacity .2s, background .2s; cursor: pointer; }
+.anat.dim span { opacity: .3; }
+.anat.dim span.lit { opacity: 1; background: var(--code-chip); box-shadow: 0 0 0 2px var(--code-chip); }
+.anat-keys { margin: 12px 0 0; }
+.anat-say { min-height: 3.2em; margin: 10px 0 0; max-width: 70ch; }
+
+/* annotated code */
+.anno { background: var(--code-bg); color: var(--code-fg); border-radius: 14px; padding: 12px 0; max-width: 860px; margin: 18px 0; }
+.anno .mrow { grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 4px 18px; padding: 4px 16px; align-items: baseline; }
+.anno .mrow code { font-size: 13px; }
+.anno .mrow > span { font-size: .84rem; line-height: 1.4; }
+.elp-tree { position: relative; }
+
+/* live editor */
+.ed { --ed-h: 260px; margin: 16px 0 26px; border: 1px solid var(--border); border-radius: 16px; overflow: hidden; background: var(--surface); }
+.ed > textarea { display: none; }
+.ed-head { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; padding: 10px 12px 10px 16px; border-bottom: 1px solid var(--border); }
+.ed-tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--accent-text); margin: 0; }
+.ed-name { font-family: var(--font-display); font-weight: 700; font-size: 1.08rem; margin: 0; line-height: 1.25; }
+.ed-tools { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.ed-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.ed-left { background: var(--code-bg); min-width: 0; display: flex; flex-direction: column; }
+.ed-tabs { display: flex; gap: 2px; padding: 6px 8px 0; background: rgba(0,0,0,.28); }
+.ed-tabs button { font: 600 12.5px var(--font-mono); color: var(--syn-dim); background: transparent; border: 0; border-radius: 8px 8px 0 0; padding: 6px 12px; cursor: pointer; }
+.ed-tabs button[aria-selected="true"] { color: var(--code-fg); background: var(--code-bg); }
+.ed-code { position: relative; height: var(--ed-h); }
+.ed-hl, .ed-ta {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  padding: 12px 14px 16px;
+  font: 13px/1.6 var(--font-mono);
+  font-variant-ligatures: none;
+  letter-spacing: 0;
+  white-space: pre;
+  word-wrap: normal;
+  overflow-wrap: normal;
+  tab-size: 2;
+  overflow: auto;
+  max-width: none;
+}
+.ed-hl { color: var(--code-fg); pointer-events: none; overflow: hidden; }
+.ed-ta {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  caret-color: #FFFFEB;
+  background: transparent;
+  resize: none;
+  outline: none;
+  z-index: 1;
+}
+.ed-ta::selection { background: rgba(240,215,255,.32); }
+.ed-ta:focus-visible { box-shadow: inset 0 0 0 2px var(--ember); }
+.ed-right { min-width: 0; display: flex; flex-direction: column; border-left: 1px solid var(--border); background: #FFFFFF; }
+.ed-bar { display: flex; align-items: flex-end; gap: 6px; padding: 6px 10px 0; background: #E4E4D0; min-height: 33px; }
+.ed-bar i { width: 9px; height: 9px; border-radius: 50%; background: #B8B8A4; flex: none; align-self: center; margin-bottom: 4px; }
+.ed-tt { margin-left: 6px; background: #FFFFFF; color: #1A1A1A; border-radius: 8px 8px 0 0; padding: 4px 14px 5px; font: 600 12px var(--font-body); max-width: 75%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ed-tt.none { color: #8A8A80; font-style: italic; }
+.ed-out { position: relative; flex: 1; display: flex; min-height: var(--ed-h); }
+.ed-frame { flex: 1; width: 100%; border: 0; display: block; background: #FFFFFF; min-height: var(--ed-h); }
+.ed-toast { position: absolute; left: 10px; right: 10px; bottom: 10px; background: #1A1A1A; color: #FFFFEB; font-size: .86rem; line-height: 1.4; padding: 8px 12px; border-radius: 8px; z-index: 2; }
+.ed-extra { border-top: 1px solid var(--border); padding: 12px 16px; }
+.ed-extra .snip { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12.5px; }
+.ed-legend { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; font-size: .82rem; color: var(--muted); margin: 0; }
+.ed-legend i { display: inline-block; width: 26px; height: 12px; margin-right: 6px; vertical-align: -1px; border-radius: 2px; }
+.lg-block { border: 2px solid rgba(3,79,70,.7); }
+.lg-inline { border: 2px dashed rgba(230,120,0,.95); }
+.ed-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 14px; padding: 7px 16px; font-size: .79rem; color: var(--muted); border-top: 1px solid var(--border); }
+.ol-h { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--muted); margin: 0 0 4px; }
+.ol { list-style: none; margin: 0; padding: 0; font-size: .92rem; }
+.ol li { padding: 1px 0; }
+.ol code { font-size: .8em; background: var(--lav); color: var(--on-lav); padding: .02em .35em; border-radius: 4px; margin-right: 4px; }
+.ol-warn { color: #B45309; font-weight: 700; font-size: .86rem; }
+:root[data-theme="dark"] .ol-warn { color: var(--ember); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ol-warn { color: var(--ember); } }
+.sent-table { font-size: .88rem; margin-top: 8px; width: auto; }
+.sent-table td { padding: 4px 14px 4px 0; font-family: var(--font-mono); }
+.sent-table td:first-child { font-weight: 700; }
+
+/* challenge */
+.ch { border: 1.5px solid var(--ember); border-radius: 18px; background: var(--surface); margin: 28px 0; overflow: hidden; }
+.ch-head { background: var(--ember-soft); padding: 14px 18px; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; justify-content: space-between; }
+.ch-tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; margin: 0; }
+.ch-title { font-family: var(--font-display); font-weight: 750; font-size: 1.25rem; margin: 0; line-height: 1.2; }
+.ch-badge { font-weight: 700; font-size: .86rem; border-radius: 999px; padding: 3px 12px; background: var(--surface); border: 1px solid var(--ember); white-space: nowrap; }
+.ch.done { border-color: var(--accent-text); }
+.ch.done .ch-head { background: var(--ok-soft); }
+.ch.done .ch-badge { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.ch-in { padding: 12px 18px 16px; }
+.ch-in > p { max-width: 70ch; margin: 0 0 8px; }
+.ch .ed { margin: 12px 0 14px; }
+.ch-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 5px; }
+.ch-list li { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; color: var(--ink-2); }
+.ch-list li::before { content: ""; flex: none; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--muted); margin-top: 3px; box-sizing: border-box; }
+.ch-list li.ok { color: var(--ink); }
+.ch-list li.ok::before { content: "\2713"; background: var(--accent); color: var(--on-accent); border-color: var(--accent); display: grid; place-items: center; font-size: 11px; font-weight: 700; line-height: 1; }
+.ch-hints { margin-top: 12px; display: grid; gap: 8px; justify-items: start; }
+.ch-hint { background: var(--ember-soft); border-radius: 10px; padding: 8px 12px; margin: 0; max-width: 70ch; }
+.ch-win { margin: 12px 0 0; font-weight: 700; color: var(--accent-text); }
+
+/* path finder */
+.pf { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 18px; align-items: start; }
+.pf-tree { font: 600 .84rem/1.75 var(--font-mono); background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; overflow-x: auto; margin: 0; }
+.pf-row { display: block; white-space: pre; border-radius: 4px; padding: 0 4px; }
+.pf-row.via { color: var(--accent-text); }
+.pf-row.from { background: var(--u-host); }
+.pf-row.to { background: var(--u-path); }
+.pf-row small { font-family: var(--font-body); font-weight: 700; font-size: .76rem; color: var(--ink-2); }
+.pf-pick { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 8px 12px; align-items: center; font-size: .92rem; font-weight: 700; }
+.pf-out { font: 700 1.2rem var(--font-mono); background: var(--code-bg); color: var(--syn-str); border-radius: 10px; padding: 10px 14px; margin: 14px 0 8px; overflow-wrap: anywhere; }
+.pf-steps { margin: 0; padding-left: 1.3em; display: grid; gap: 3px; font-size: .94rem; }
+.pf-note { font-size: .88rem; color: var(--muted); margin: 10px 0 0; }
+
+/* viewport and charset demos */
+.phones { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.phone-wrap { text-align: center; }
+.phone { width: 230px; height: 400px; border: 10px solid #1A1A1A; border-radius: 28px; overflow: hidden; background: #FFFFFF; position: relative; }
+.phone iframe { border: 0; display: block; background: #FFFFFF; transform-origin: 0 0; }
+.phone-cap { font-weight: 700; margin: 8px 0 0; font-size: .92rem; }
+.phone-cap small { display: block; font-weight: 400; color: var(--muted); }
+.enc { display: grid; gap: 10px; margin-top: 12px; }
+.enc div { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.enc b { font-size: .9rem; }
+.enc output { font: 600 1.05rem var(--font-mono); background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; overflow-wrap: anywhere; min-height: 2.2em; }
+.enc .bad output { background: var(--ember-soft); }
+
+/* input gallery */
+.gal { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.gi { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--surface); display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.gi-live { min-height: 32px; display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: center; }
+.gi-live input, .gi-live select, .gi-live textarea { all: revert; max-width: 100%; box-sizing: border-box; }
+.gi-live textarea { width: 100%; }
+.gi-live label { font-size: .92rem; display: inline-flex; gap: 4px; align-items: center; }
+.gi > code { font-size: .8rem; background: var(--lav); color: var(--on-lav); padding: .1em .4em; border-radius: 5px; align-self: flex-start; overflow-wrap: anywhere; }
+.gi-val { font: .8rem var(--font-mono); color: var(--accent-text); min-height: 1.2em; overflow-wrap: anywhere; }
+.gi p { margin: 0; font-size: .86rem; color: var(--ink-2); line-height: 1.4; }
+
+/* semantic demo */
+.sem { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; margin-top: 12px; }
+.sem .snip { font-size: 12.5px; min-height: 100%; }
+.wmap { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); grid-template-areas: "h h" "n n" "m a" "f f"; gap: 6px; }
+.wm { border: 2px dashed var(--wire); border-radius: 8px; padding: 6px 10px; font: 700 .8rem var(--font-mono); color: var(--muted); min-height: 38px; display: flex; align-items: center; gap: 6px; }
+.wm-h { grid-area: h; } .wm-n { grid-area: n; } .wm-a { grid-area: a; } .wm-f { grid-area: f; }
+.wm-m { grid-area: m; flex-direction: column; align-items: stretch; gap: 6px; min-height: 120px; }
+.wm-m > span { display: block; }
+.wm-m .wm { min-height: 40px; }
+.sem-on .wm { border-style: solid; color: var(--ink); }
+.sem-on .wm-h { border-color: #8FD9C9; background: rgba(143,217,201,.18); }
+.sem-on .wm-n { border-color: #A777D6; background: rgba(167,119,214,.14); }
+.sem-on .wm-m { border-color: var(--accent-text); }
+.sem-on .wm-m .wm { border-color: var(--ember); background: var(--ember-soft); }
+.sem-on .wm-a { border-color: #6FA8DC; background: rgba(111,168,220,.16); }
+.sem-on .wm-f { border-color: var(--muted); background: rgba(110,110,100,.12); }
+.sr { margin-top: 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; font-size: .92rem; }
+.sr b { display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 2px; }
+.sr ul { margin: 0; padding-left: 1.2em; }
+
+/* spot the bug */
+.bugs { display: grid; gap: 14px; }
+.bug { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); padding: 12px 16px 14px; }
+.bug.solved { border-color: var(--accent-text); }
+.bug-n { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--muted); margin: 0 0 8px; }
+.bug-code { background: var(--code-bg); border-radius: 10px; padding: 8px 0; }
+.bug-line { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 1px 14px; font: 13px/1.65 var(--font-mono); color: var(--code-fg); white-space: pre-wrap; overflow-wrap: anywhere; cursor: pointer; min-height: 1.65em; }
+.bug-line:hover { background: rgba(255,255,255,.07); }
+.bug-line:focus-visible { outline: 2px solid var(--ember); outline-offset: -2px; }
+.bug-line.miss { background: rgba(255,169,70,.16); text-decoration: line-through rgba(255,169,70,.6); }
+.bug-line.hit { background: #3A2D47; box-shadow: inset 4px 0 0 var(--ember); }
+.bug-line:disabled { cursor: default; }
+.bug-msg { margin: 8px 0 0; font-size: .93rem; min-height: 1.4em; color: var(--ink-2); }
+.bug-ans .snip { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12.5px; }
+.bug-ans p.bug-why { margin: 8px 0 10px; }
+.bug-score { font-weight: 700; margin: 12px 0 0; }
+
+/* elements panel */
+.elp { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.elp-left { background: var(--code-bg); color: var(--code-fg); min-width: 0; display: flex; flex-direction: column; }
+.elp-bar { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px; border-bottom: 1px solid rgba(255,255,255,.1); }
+.elp-bar button { font: 700 .8rem var(--font-body); color: var(--code-fg); background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.elp-bar button[aria-pressed="true"] { background: var(--ember); color: #1A1A1A; border-color: var(--ember); }
+.elp-bar button:disabled { opacity: .4; cursor: default; }
+.elp-tree { font: 12.5px/1.75 var(--font-mono); padding: 6px 0; height: 330px; overflow: auto; }
+.elp-row { white-space: nowrap; padding-right: 12px; cursor: default; }
+.elp-row:hover { background: rgba(255,255,255,.07); }
+.elp-row.sel { background: #3A2D47; box-shadow: inset 3px 0 0 var(--ember); }
+.elp-row.head { color: var(--syn-dim); font-style: italic; }
+.elp-txt { color: var(--code-fg); border-radius: 3px; padding: 0 2px; outline: none; cursor: text; }
+.elp-txt:hover { box-shadow: 0 0 0 1px rgba(255,255,255,.3); }
+.elp-txt:focus { background: #FFFFEB; color: #1A1A1A; }
+.elp-info { font: .8rem var(--font-mono); color: var(--syn-attr); padding: 8px 12px; border-top: 1px solid rgba(255,255,255,.1); min-height: 2.6em; }
+.elp-right { position: relative; background: #FFFFFF; min-width: 0; }
+.elp-right iframe { width: 100%; height: 100%; min-height: 390px; border: 0; display: block; }
+.elp-hl { position: absolute; pointer-events: none; background: rgba(111,168,220,.38); outline: 1px solid rgba(40,110,190,.9); z-index: 2; }
+.elp-hl span { position: absolute; left: 0; bottom: 100%; margin-bottom: 3px; background: #1A1A1A; color: #FFFFEB; font: 600 11px var(--font-mono); padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+.elp-hl.below span { bottom: auto; top: 100%; margin: 3px 0 0; }
+
+/* name that tag */
+.game { max-width: 760px; }
+.game-q { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin: 6px 0 14px; min-height: 1.6em; }
+.game-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.game-opts button { font: 700 1rem var(--font-mono); padding: 12px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--ink); cursor: pointer; }
+.game-opts button:hover:not(:disabled) { border-color: var(--accent-text); }
+.game-opts button.right { background: var(--ok-soft); border-color: var(--accent-text); }
+.game-opts button.wrong { background: var(--ember-soft); border-color: var(--ember); }
+.game-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--muted); font-weight: 700; }
+
+@media (max-width: 860px) {
+  .ed-body, .elp, .sem, .pf { grid-template-columns: minmax(0, 1fr); }
+  .ed-right { border-left: 0; border-top: 1px solid var(--border); }
+  .elp-tree { height: 260px; }
+  .enc div, .ok-bad, .anno .mrow { grid-template-columns: minmax(0, 1fr); }
+}
 @media (max-width: 1100px) {
   .netsim { grid-template-columns: minmax(0, 1fr); }
   .journey { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -787,9 +1033,10 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
       <h1>HTML and CSS from the ground up</h1>
       <p class="lede">Hi Vasavi! Before you write a single tag, this guide shows what happens when anyone opens a website. Then it teaches HTML and CSS with demos you can click, drag and edit. Go top to bottom, and tick each section once you can explain it out loud.</p>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Part 1 · How the web works</div></div>
-        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">HTML, CSS, wrap-up</div></div>
-        <div class="stat"><div class="stat-label">Your progress</div><div class="stat-val" id="progVal">0 of 8</div><div class="meter"><i id="progBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Part 1 · Web, Part 2 · HTML</div></div>
+        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">CSS, wrap-up</div></div>
+        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 21</div><div class="meter"><i id="progBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 8</div><div class="meter"><i id="chBar"></i></div></div>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -826,8 +1073,23 @@ th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color:
       <li><a href="#hosting" data-sec="hosting">1.7 Opening your page</a></li>
       <li><a href="#recap1" data-sec="recap1">Recap</a></li>
     </ul>
+    <p class="rail-group">Part 2 · HTML</p>
+    <ul class="rail-list">
+      <li><a href="#anatomy" data-sec="anatomy">2.1 An element</a></li>
+      <li><a href="#skeleton" data-sec="skeleton">2.2 The skeleton</a></li>
+      <li><a href="#text" data-sec="text">2.3 Text and meaning</a></li>
+      <li><a href="#links" data-sec="links">2.4 Links and paths</a></li>
+      <li><a href="#images" data-sec="images">2.5 Images</a></li>
+      <li><a href="#lists" data-sec="lists">2.6 Lists and tables</a></li>
+      <li><a href="#forms" data-sec="forms">2.7 Forms</a></li>
+      <li><a href="#semantic" data-sec="semantic">2.8 Semantic layout</a></li>
+      <li><a href="#blockinline" data-sec="blockinline">2.9 Block and inline</a></li>
+      <li><a href="#attributes" data-sec="attributes">2.10 id and class</a></li>
+      <li><a href="#rules" data-sec="rules">2.11 Rules and bugs</a></li>
+      <li><a href="#devtools" data-sec="devtools">2.12 Elements panel</a></li>
+      <li><a href="#recap2" data-sec="recap2">Recap</a></li>
+    </ul>
     <p class="rail-group">Coming next</p>
-    <span class="rail-soon">Part 2 · HTML <small>soon</small></span>
     <span class="rail-soon">Part 3 · CSS <small>soon</small></span>
     <span class="rail-soon">Part 4 · Wrap-up <small>soon</small></span>
   </nav>
@@ -1492,8 +1754,1175 @@ button { color: white; background-color: #2c3e50; }</code></pre>
           <p>I type the URL and press Enter. The browser needs the server's IP address, so it checks its cache, and if the address isn't there it asks DNS, which finds the IP for the domain. The browser connects to that IP over HTTPS, so the connection is encrypted, and sends an HTTP GET request for the page. The server replies with status 200 and the HTML. While reading the HTML, the browser sends more requests for the CSS, JS and images it links to. It builds the DOM from the HTML and the CSSOM from the CSS, combines them into a render tree, works out the layout, and paints the pixels on screen.</p>
         </div>
       </div>
-      <p>Part 2 is HTML. The guide will grow one part at a time, and you'll find it in the menu when it's ready.</p>
+      <p>Next up is <a href="#part2">Part 2, HTML</a>, the language your browser reads first.</p>
       <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap1" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- ============ PART 2 ============ -->
+    <section id="part2" class="part">
+      <p class="part-num">Part 2</p>
+      <h2>HTML: what each piece is</h2>
+      <p>Every web page is three languages working together. <strong>HTML</strong> says what each piece is: this is a heading, this is a picture, this is a button. <strong>CSS</strong> decides how it looks. <strong>JavaScript</strong> decides what it does.</p>
+      <p>Think of a house. HTML is the walls and rooms, CSS is the paint and furniture, and JavaScript is the electricity. Switch the layers on one at a time, and click the buttons each time.</p>
+      <div class="layers">
+        <div class="seg" id="layerSeg" role="group" aria-label="Layers">
+          <button type="button" data-mode="html" aria-pressed="true">HTML only</button>
+          <button type="button" data-mode="css" aria-pressed="false">+ CSS</button>
+          <button type="button" data-mode="js" aria-pressed="false">+ JavaScript</button>
+        </div>
+        <div class="fake-browser" style="margin-top:12px">
+          <div class="fb-bar"><i></i><i></i><i></i><div class="fb-url">index.html</div></div>
+          <div class="fb-view"><div class="mini" id="layerMini"></div></div>
+        </div>
+        <p class="layer-say" id="layerSay" aria-live="polite"></p>
+      </div>
+      <p>HTML stands for <strong>HyperText Markup Language</strong>. Hypertext is text with links in it. Markup means you mark up your content with tags that say what each part is. HTML is not a programming language. It has no loops, no conditions and no maths. It only describes. That's also why an HTML mistake never crashes anything. The browser just guesses what you meant, as you'll see in 2.11.</p>
+    </section>
+
+    <!-- 2.1 -->
+    <section id="anatomy" class="sec">
+      <p class="kicker">2.1</p>
+      <h2>Anatomy of an element</h2>
+      <p class="hook">Every page, from your Dice Roll to YouTube, is built from one small pattern repeated thousands of times. Learn it once and you can read any page.</p>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Take a link apart</p>
+          <p class="demo-sub">Click a part name below, or click any piece of the code.</p>
+        </div>
+        <div class="anat" id="anat"><span data-p="open">&lt;</span><span data-p="open name" class="t-key">a</span><span data-p="open"> </span><span data-p="open attr" class="t-attr">href</span><span data-p="open">=</span><span data-p="open value" class="t-str">"https://github.com"</span><span data-p="open"> </span><span data-p="open attr" class="t-attr">target</span><span data-p="open">=</span><span data-p="open value" class="t-str">"_blank"</span><span data-p="open">&gt;</span><span data-p="content">My GitHub</span><span data-p="close">&lt;/</span><span data-p="close name" class="t-key">a</span><span data-p="close">&gt;</span></div>
+        <div class="seg anat-keys" id="anatKeys" role="group" aria-label="Parts">
+          <button type="button" data-p="element" aria-pressed="false">Element</button>
+          <button type="button" data-p="open" aria-pressed="false">Opening tag</button>
+          <button type="button" data-p="name" aria-pressed="false">Tag name</button>
+          <button type="button" data-p="attr" aria-pressed="false">Attribute</button>
+          <button type="button" data-p="value" aria-pressed="false">Value</button>
+          <button type="button" data-p="content" aria-pressed="false">Content</button>
+          <button type="button" data-p="close" aria-pressed="false">Closing tag</button>
+        </div>
+        <p class="anat-say" id="anatSay" aria-live="polite">Click a part name, or a piece of the code.</p>
+      </div>
+
+      <h3>Boxes inside boxes</h3>
+      <p>Elements go inside other elements. The outer one is the <strong>parent</strong> and the inner one is its <strong>child</strong>. Close them in reverse order: last opened, first closed.</p>
+      <div class="ok-bad">
+        <div><p>Right: closes in reverse order</p><pre class="snip" data-lang="html"><code>&lt;p&gt;I am &lt;strong&gt;very&lt;/strong&gt; happy&lt;/p&gt;</code></pre></div>
+        <div><p>Wrong: the tags cross</p><pre class="snip" data-lang="html"><code>&lt;p&gt;I am &lt;strong&gt;very&lt;/p&gt;&lt;/strong&gt; happy</code></pre></div>
+      </div>
+
+      <h3>Elements with no closing tag</h3>
+      <p>A few elements never have content inside them, so they have no closing tag. They're called <strong>void elements</strong>. The ones you'll use most are <code>&lt;img&gt;</code>, <code>&lt;br&gt;</code>, <code>&lt;hr&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;meta&gt;</code> and <code>&lt;link&gt;</code>. Older code sometimes writes <code>&lt;br /&gt;</code>. In HTML that slash is optional and does nothing.</p>
+
+      <h3>Spaces and line breaks</h3>
+      <p>Here's a surprise. The browser squashes every run of spaces, tabs and line breaks in your code into one single space. Pressing Enter in your code does not start a new line on the page. To show structure you use tags: a new <code>&lt;p&gt;</code> for a new paragraph, or <code>&lt;br&gt;</code> for a line break inside one.</p>
+      <p>Text between <code>&lt;!--</code> and <code>--&gt;</code> is a <strong>comment</strong>, a note for humans. The browser skips it.</p>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Add five spaces between two words. Does the page change?</li>
+          <li>Press Enter in the middle of the first paragraph. Then put a <code>&lt;br&gt;</code> there instead.</li>
+          <li>Change <code>&lt;h1&gt;</code> to <code>&lt;h3&gt;</code>. Remember the closing tag too.</li>
+          <li>Delete <code>&lt;/strong&gt;</code> and watch how much text turns bold.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-first" data-title="Your first tags" data-height="250">
+        <textarea data-lang="html">
+<h1>Hello, I'm Vasavi</h1>
+<p>I study CSE at     IIT Indore.
+This line break in my code does not show.</p>
+<!-- A comment. The browser skips it. -->
+<p>I am <strong>very</strong> happy to learn HTML.</p>
+<hr>
+<p>Find me on <a href="https://github.com" target="_blank">GitHub</a>.</p>
+</textarea>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which of these is a void element, with no closing tag?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>&lt;p&gt;</code></button><p class="why">A paragraph holds text, so it needs <code>&lt;/p&gt;</code> to say where the text ends.</p></li>
+          <li><button type="button"><code>&lt;img&gt;</code></button><p class="why">An image has nothing inside it. Everything it needs goes in its attributes.</p></li>
+          <li><button type="button"><code>&lt;strong&gt;</code></button><p class="why">It wraps words, so it needs a closing tag to know where the bold stops.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">In your code, you press Enter three times between two sentences of one paragraph. What does the page show?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Three empty lines between them</button><p class="why">The browser ignores line breaks in your code. Only tags create new lines.</p></li>
+          <li><button type="button">Both sentences on one line, with one space between</button><p class="why">All whitespace collapses into one space. Use <code>&lt;br&gt;</code> or a new <code>&lt;p&gt;</code> to break the line.</p></li>
+          <li><button type="button">An error message</button><p class="why">HTML never shows errors. Extra spaces are simply squashed.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>An HTML element is usually an opening tag, some content and a closing tag, like a p tag around a sentence. Attributes go in the opening tag as name and value pairs, like href on a link. Elements nest inside each other and close in reverse order. Void elements like img, br and input have no closing tag. The browser collapses extra spaces and line breaks, so structure comes from tags, not from how the code is laid out.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="anatomy" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.2 -->
+    <section id="skeleton" class="sec">
+      <p class="kicker">2.2</p>
+      <h2>The page skeleton</h2>
+      <p class="hook">Every page you've ever opened starts with the same dozen lines. Most beginners copy them without knowing why. Here's what each one does.</p>
+      <div class="anno msg">
+        <div class="mrow m1"><code data-hl>&lt;!DOCTYPE html&gt;</code><span>This is a modern HTML page. Without it, browsers switch to "quirks mode" and copy bugs from 1990s browsers.</span></div>
+        <div class="mrow m2"><code data-hl>&lt;html lang="en"&gt;</code><span>The root. Everything goes inside. <b>lang</b> tells screen readers and translators which language the page is in.</span></div>
+        <div class="mrow m2"><code data-hl>&lt;head&gt;</code><span>Information about the page. Nothing in here shows up on the page itself.</span></div>
+        <div class="mrow m2"><code data-hl>  &lt;meta charset="UTF-8"&gt;</code><span>How to turn the file's bytes into letters. UTF-8 covers every language and emoji. Keep it first: the browser only looks for it in the first 1024 bytes.</span></div>
+        <div class="mrow m2"><code data-hl>  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code><span>Tells phones to use their real width. Without it, a phone pretends to be a 980px-wide screen and shrinks everything.</span></div>
+        <div class="mrow m2"><code data-hl>  &lt;title&gt;Dice Roll&lt;/title&gt;</code><span>The text on the browser tab, in bookmarks and in Google results.</span></div>
+        <div class="mrow m2"><code data-hl>  &lt;link rel="stylesheet" href="style.css"&gt;</code><span>Loads your CSS file.</span></div>
+        <div class="mrow m2"><code data-hl>  &lt;link rel="icon" href="images/dice1.svg"&gt;</code><span>The small tab icon, called a favicon. Optional, but a nice touch.</span></div>
+        <div class="mrow m2"><code data-hl>&lt;/head&gt;</code><span></span></div>
+        <div class="mrow m4"><code data-hl>&lt;body&gt;</code><span>Everything the visitor sees goes in here.</span></div>
+        <div class="mrow m4"><code data-hl>  &lt;h1&gt;Dice Roll&lt;/h1&gt;</code><span></span></div>
+        <div class="mrow m4"><code data-hl>  &lt;script src="script.js"&gt;&lt;/script&gt;</code><span>JavaScript goes last, so the elements above it already exist (1.6).</span></div>
+        <div class="mrow m4"><code data-hl>&lt;/body&gt;</code><span></span></div>
+        <div class="mrow m1"><code data-hl>&lt;/html&gt;</code><span></span></div>
+      </div>
+
+      <h3>What the viewport line changes</h3>
+      <p>Same page, same phone. The only difference is one <code>&lt;meta&gt;</code> tag.</p>
+      <div class="demo">
+        <div class="phones">
+          <div class="phone-wrap"><div class="phone" id="phoneNo"></div><p class="phone-cap">Without the viewport tag<small>The phone fakes a 980px screen and shrinks it</small></p></div>
+          <div class="phone-wrap"><div class="phone" id="phoneYes"></div><p class="phone-cap">With the viewport tag<small>The page uses the phone's real width</small></p></div>
+        </div>
+      </div>
+
+      <h3>What the charset line changes</h3>
+      <p>A file is just bytes. The charset tells the browser how to turn those bytes back into letters. Type anything below, in any language, and see what happens when the browser guesses the wrong charset.</p>
+      <div class="demo">
+        <label for="encIn" class="small">Type here</label>
+        <input type="text" id="encIn" value="₹500 · café · నమస్తే · 🎲" style="width:100%">
+        <div class="enc">
+          <div><b>Read as UTF-8 (correct)</b><output id="encOk"></output></div>
+          <div class="bad"><b>Read with a wrong guess (Windows-1252)</b><output id="encBad"></output></div>
+        </div>
+      </div>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Change the text inside <code>&lt;title&gt;</code> and watch the tab above the preview.</li>
+          <li>Delete the whole <code>&lt;title&gt;</code> line. What does the tab show now?</li>
+          <li>Move the <code>&lt;h1&gt;</code> into the <code>&lt;head&gt;</code>. Does it still show? (Browsers move it back into the body for you.)</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-skel-try" data-title="A complete page" data-height="300" data-tab>
+        <textarea data-lang="html">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dice Roll</title>
+</head>
+<body>
+  <h1>Dice Roll</h1>
+  <p>Roll one die or two.</p>
+</body>
+</html>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-skel">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 1</p><p class="ch-title">Write the skeleton from memory</p></div><span class="ch-badge">0 of 7</span></div>
+        <div class="ch-in">
+          <p>The editor is empty. Type a complete page skeleton without scrolling up. Put an <code>&lt;h1&gt;</code> with your name in the body. The checklist ticks itself as you type.</p>
+          <div class="ed" id="ch-skel" data-label="Challenge" data-title="Empty page" data-height="300" data-tab>
+            <textarea data-lang="html">
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Start with the first line every page has, then <code>&lt;html&gt;</code> with its language.</p>
+            <p class="ch-hint" hidden>Inside the head: charset first, then the viewport, then the title.</p>
+            <p class="ch-hint" hidden>The viewport tag is <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</code>.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Where does <code>&lt;title&gt;</code> go, and where does it show?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">In the head. It shows on the browser tab.</button><p class="why">It's information about the page, so it lives in the head and shows on the tab, in bookmarks and in search results.</p></li>
+          <li><button type="button">In the body. It's the big heading on the page.</button><p class="why">That's <code>&lt;h1&gt;</code>. The title never appears inside the page.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Your page looks tiny on a phone, like a zoomed-out laptop page. What's most likely missing?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>&lt;!DOCTYPE html&gt;</code></button><p class="why">A missing doctype causes quirks mode, which changes some layout rules, but it doesn't shrink the page on phones.</p></li>
+          <li><button type="button"><code>&lt;meta charset="UTF-8"&gt;</code></button><p class="why">That one affects how letters are read, not the size of the page.</p></li>
+          <li><button type="button">The viewport <code>&lt;meta&gt;</code> tag</button><p class="why">Without it, the phone pretends to be 980px wide and shrinks everything to fit.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>Every page starts with the doctype, so the browser uses standards mode. Inside the html tag, with a lang attribute, there's the head and the body. The head holds information about the page: the charset meta tag for UTF-8, the viewport meta tag so phones use their real width, the title for the tab, and links to CSS. The body holds everything visible, with the script at the end.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="skeleton" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.3 -->
+    <section id="text" class="sec">
+      <p class="kicker">2.3</p>
+      <h2>Text: headings, paragraphs and meaning</h2>
+      <p class="hook">Why are there six heading tags? And why do <code>&lt;strong&gt;</code> and <code>&lt;b&gt;</code> both make text bold? Because HTML is about what your text means, not how it looks.</p>
+      <p>Headings <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> build an <strong>outline</strong> of your page, like the chapters and sub-chapters of a textbook. Use one <code>&lt;h1&gt;</code> for the page's main title, <code>&lt;h2&gt;</code> for its sections, <code>&lt;h3&gt;</code> inside those, and don't skip levels. Never pick a heading for its size. Size is CSS's job.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Tag</th><th>Means</th><th>Example use</th></tr></thead>
+          <tbody>
+            <tr><td><code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code></td><td>Headings, levels 1 to 6</td><td>Page title, section titles</td></tr>
+            <tr><td><code>&lt;p&gt;</code></td><td>A paragraph</td><td>Any block of running text</td></tr>
+            <tr><td><code>&lt;br&gt;</code></td><td>A line break inside text</td><td>Lines of an address or a poem</td></tr>
+            <tr><td><code>&lt;hr&gt;</code></td><td>A change of topic</td><td>Between two parts of a story</td></tr>
+            <tr><td><code>&lt;strong&gt;</code></td><td>This is important</td><td>Warnings, key facts</td></tr>
+            <tr><td><code>&lt;em&gt;</code></td><td>Say this with stress</td><td>"I <em>did</em> finish it"</td></tr>
+            <tr><td><code>&lt;b&gt;</code> / <code>&lt;i&gt;</code></td><td>Bold or italic look, no extra meaning</td><td>Keywords, a word from another language</td></tr>
+            <tr><td><code>&lt;mark&gt;</code></td><td>Highlighted</td><td>Search matches</td></tr>
+            <tr><td><code>&lt;small&gt;</code></td><td>Side comment, fine print</td><td>Copyright lines</td></tr>
+            <tr><td><code>&lt;sub&gt;</code> / <code>&lt;sup&gt;</code></td><td>Below or above the line</td><td>H<sub>2</sub>O, x<sup>2</sup></td></tr>
+            <tr><td><code>&lt;blockquote&gt;</code></td><td>A long quote</td><td>A quote from a book or a talk</td></tr>
+            <tr><td><code>&lt;code&gt;</code> / <code>&lt;pre&gt;</code></td><td>Code, and text that keeps its spaces</td><td>Code samples</td></tr>
+            <tr><td><code>&lt;kbd&gt;</code></td><td>A key to press</td><td><kbd>Ctrl</kbd> + <kbd>S</kbd></td></tr>
+            <tr><td><code>&lt;span&gt;</code></td><td>No meaning at all</td><td>A hook for CSS or JavaScript</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout">
+        <h4>Meaning, not looks</h4>
+        <p><code>&lt;strong&gt;</code> and <code>&lt;b&gt;</code> look the same. But <code>&lt;strong&gt;</code> says "this is important", and a screen reader may say it with more stress, while <code>&lt;b&gt;</code> only draws the eye. The same goes for <code>&lt;em&gt;</code>, which is stress, and <code>&lt;i&gt;</code>, which is a different voice, like a technical term. When in doubt, pick the tag that says what you mean.</p>
+      </div>
+
+      <h3>Showing &lt; and &gt; on the page</h3>
+      <p>The browser reads <code>&lt;</code> as the start of a tag. To show these characters as text, write an <strong>entity</strong>: a code that starts with <code>&amp;</code> and ends with <code>;</code>.</p>
+      <div class="table-wrap" style="max-width:560px">
+        <table>
+          <thead><tr><th>You write</th><th>The page shows</th></tr></thead>
+          <tbody>
+            <tr><td><code>&amp;lt;</code></td><td>&lt;</td></tr>
+            <tr><td><code>&amp;gt;</code></td><td>&gt;</td></tr>
+            <tr><td><code>&amp;amp;</code></td><td>&amp;</td></tr>
+            <tr><td><code>&amp;quot;</code></td><td>"</td></tr>
+            <tr><td><code>&amp;nbsp;</code></td><td>a space that never breaks the line</td></tr>
+            <tr><td><code>&amp;copy;</code></td><td>&copy;</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small" style="max-width:68ch">With UTF-8 you can also type most symbols directly, like ₹ or ©. Only <code>&lt;</code> and <code>&amp;</code> really need entities.</p>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>The outline under the preview warns that a level is skipped. Fix it.</li>
+          <li>Wrap one word in <code>&lt;mark&gt;</code>.</li>
+          <li>Add a second <code>&lt;h1&gt;</code> and read what the outline says.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-text" data-title="A blog post" data-height="320" data-outline>
+        <textarea data-lang="html">
+<h1>My first week of coding</h1>
+<p>This week I learned <strong>three</strong> things.</p>
+
+<h2>1. Loops</h2>
+<p>A loop repeats code. Water is H<sub>2</sub>O
+and the area of a circle is &amp;pi;r<sup>2</sup>.</p>
+
+<h4>2. Arrays</h4>
+<p>I wrote <code>int a[5];</code> in C++ and saved it
+with <kbd>Ctrl</kbd> + <kbd>S</kbd>.</p>
+
+<blockquote>Programs must be written for people to read.</blockquote>
+
+<p><small>&amp;copy; 2026 Vasavi</small></p>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-escape">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 2</p><p class="ch-title">Show code on the page</p></div><span class="ch-badge">0 of 3</span></div>
+        <div class="ch-in">
+          <p>A friend asks how to show a dice image. Make the page display this exact text: <code>&lt;img src="dice1.svg"&gt;</code>. Right now the browser treats it as a real tag and shows a broken image instead.</p>
+          <div class="ed" id="ch-escape" data-label="Challenge" data-title="Show the tag as text" data-height="150">
+            <textarea data-lang="html">
+<p>To show a dice image, write this:</p>
+<p><code><img src="dice1.svg"></code></p>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>The browser reads <code>&lt;</code> as "a tag starts here". Look at the entity table above.</p>
+            <p class="ch-hint" hidden>Swap only the two angle brackets. Leave the rest of the text alone.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A small side box needs a big, bold title. Should you use <code>&lt;h1&gt;</code> because it's big?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Yes, h1 is the biggest heading</button><p class="why">Size is CSS's job. An extra h1 tells screen readers and Google that this is the page's main title.</p></li>
+          <li><button type="button">No. Pick the level that fits the outline, then size it with CSS</button><p class="why">Headings describe the structure. CSS can make any heading any size.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which tag says "this text is important"?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>&lt;b&gt;</code></button><p class="why">It looks bold, but carries no meaning of importance.</p></li>
+          <li><button type="button"><code>&lt;strong&gt;</code></button><p class="why">It means strong importance. It also happens to be bold by default.</p></li>
+          <li><button type="button"><code>&lt;span&gt;</code></button><p class="why">A span means nothing at all. It's only a hook for CSS or JavaScript.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>Headings h1 to h6 form the outline of the page. I use one h1 and don't skip levels. Tags describe meaning, not looks. strong means important while b is only bold, and em means stress while i is only italic. Screen readers and search engines use that meaning, and CSS handles the looks. To show characters like the less-than sign as text, I use entities like &amp;lt;.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="text" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.4 -->
+    <section id="links" class="sec">
+      <p class="kicker">2.4</p>
+      <h2>Links and paths</h2>
+      <p class="hook">Links are the "hypertext" in HTML. Writing one is easy. Getting the path right is where most broken links come from.</p>
+      <p>A link is an <code>&lt;a&gt;</code> element, short for anchor. Its <code>href</code> says where it goes. The value can be a full web address, or a path to a file in your own project.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>href</th><th>Goes to</th></tr></thead>
+          <tbody>
+            <tr><td><code>https://github.com</code></td><td>Another website. This is an <strong>absolute</strong> URL, the full address.</td></tr>
+            <tr><td><code>about.html</code></td><td>A file in the same folder as this page. This is a <strong>relative</strong> path.</td></tr>
+            <tr><td><code>images/logo.svg</code></td><td>Into the images folder, then the file</td></tr>
+            <tr><td><code>../index.html</code></td><td>Up one folder first, then the file</td></tr>
+            <tr><td><code>/images/logo.svg</code></td><td>From the top folder of the site. Careful on GitHub Pages (1.7).</td></tr>
+            <tr><td><code>#contact</code></td><td>The element with <code>id="contact"</code> on this page</td></tr>
+            <tr><td><code>about.html#team</code></td><td>Opens about.html and jumps to <code>id="team"</code></td></tr>
+            <tr><td><code>mailto:vasavi@example.com</code></td><td>Opens the email app</td></tr>
+            <tr><td><code>tel:+911234567890</code></td><td>Starts a call, on a phone</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p><code>target="_blank"</code> opens the link in a new tab. Use it for other websites, so your page stays open, and let your own pages open in the same tab. Older tutorials also add <code>rel="noopener"</code> for safety. Modern browsers now do that automatically for <code>target="_blank"</code>, and adding it does no harm.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Path finder</p>
+          <p class="demo-sub">Pick the page that has the link, and the file it wants. The demo walks the folders for you.</p>
+        </div>
+        <div class="pf">
+          <pre class="pf-tree" id="pfTree"></pre>
+          <div>
+            <div class="pf-pick">
+              <label for="pfFrom">This page</label><select id="pfFrom"></select>
+              <label for="pfTo">wants</label><select id="pfTo"></select>
+            </div>
+            <div class="pf-out" id="pfOut" aria-live="polite"></div>
+            <ol class="pf-steps" id="pfSteps"></ol>
+            <p class="pf-note" id="pfNote"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Click every link in the preview and read the message at the bottom.</li>
+          <li>Change <code>id="contact"</code> to <code>id="contacts"</code> and click Contact again.</li>
+          <li>Add a link at the bottom that jumps back to the top. The <code>&lt;h1&gt;</code> needs an id first.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-links" data-title="A one-page site" data-height="330">
+        <textarea data-lang="html">
+<h1>Vasavi</h1>
+<nav>
+  <a href="#about">About</a> |
+  <a href="#projects">Projects</a> |
+  <a href="#contact">Contact</a>
+</nav>
+
+<h2 id="about">About</h2>
+<p>CSE student at IIT Indore.</p>
+<p>I like C++, cricket and building small websites.</p>
+<p>Scroll down. The links above jump to each part.</p>
+
+<h2 id="projects">Projects</h2>
+<p><a href="dice-roll/index.html">Dice Roll</a>, my first website.</p>
+<p>Code on <a href="https://github.com" target="_blank">GitHub</a>.</p>
+<p>More coming soon.</p>
+
+<h2 id="contact">Contact</h2>
+<p><a href="mailto:vasavi@example.com">Email me</a></p>
+<p>(Add a "back to top" link here.)</p>
+<p style="height:200px"></p>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-menu">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 3</p><p class="ch-title">Build a jump menu</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>This page has three parts but no way to jump between them. Add a <code>&lt;nav&gt;</code> at the top with three links that jump to each part. Then add one link to any real website that opens in a new tab.</p>
+          <div class="ed" id="ch-menu" data-label="Challenge" data-title="Add a menu" data-height="300">
+            <textarea data-lang="html">
+<h1>Programming Club</h1>
+
+<h2>Events</h2>
+<p>Hackathon in March. Git workshop every Friday.</p>
+<p style="height:120px"></p>
+
+<h2>Team</h2>
+<p>Ten students from first to fourth year.</p>
+<p style="height:120px"></p>
+
+<h2>Join us</h2>
+<p>Inductions open in December.</p>
+<p style="height:200px"></p>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>A link can only jump to an element that has an <code>id</code>. Give each <code>&lt;h2&gt;</code> one first.</p>
+            <p class="ch-hint" hidden>An id can't contain spaces. Use something like <code>id="join"</code>, then <code>href="#join"</code>.</p>
+            <p class="ch-hint" hidden>For the website link, you need two attributes: where it goes, and where to open it.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Your page is <code>projects/dice-roll/index.html</code>. Which path reaches <code>images/logo.svg</code> in the site's top folder?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>images/logo.svg</code></button><p class="why">That looks inside <code>projects/dice-roll/images/</code>, next to the page.</p></li>
+          <li><button type="button"><code>../images/logo.svg</code></button><p class="why">One <code>../</code> only reaches <code>projects/</code>. You need to go up once more.</p></li>
+          <li><button type="button"><code>../../images/logo.svg</code></button><p class="why">Up to <code>projects/</code>, up to the top folder, then into <code>images/</code>.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">What does <code>&lt;a href="#contact"&gt;Contact&lt;/a&gt;</code> do?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Opens a file called contact.html</button><p class="why">That would be <code>href="contact.html"</code>. The <code>#</code> means "on this page".</p></li>
+          <li><button type="button">Scrolls to the element with <code>id="contact"</code></button><p class="why">A <code>#</code> link is a fragment. It jumps within the page, and never reaches the server (1.2).</p></li>
+          <li><button type="button">Sends an email</button><p class="why">That needs <code>href="mailto:..."</code>.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>The a tag makes a link, and href says where it goes. An absolute URL like https://github.com points to another site. A relative path like images/dice1.svg starts from the current file's folder, and ../ goes up one folder. An href starting with a hash jumps to the element with that id on the same page. target="_blank" opens a new tab, which I use for external sites.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="links" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.5 -->
+    <section id="images" class="sec">
+      <p class="kicker">2.5</p>
+      <h2>Images and media</h2>
+      <p class="hook">What does a blind visitor "see" on your Dice Roll page? Exactly what you write in <code>alt</code>.</p>
+      <pre class="snip" data-lang="html" style="max-width:760px"><code>&lt;img src="images/dice1.svg" alt="Dice showing 1" width="120" height="120"&gt;</code></pre>
+      <ul style="margin-top:14px">
+        <li><code>src</code> is the path to the image file, following the same rules as links.</li>
+        <li><code>alt</code> is the text alternative. Screen readers read it aloud, Google reads it, and it shows on the page if the image fails to load.</li>
+        <li><code>width</code> and <code>height</code> let the browser reserve the space before the image arrives, so the page doesn't jump around while loading.</li>
+      </ul>
+      <div class="callout">
+        <h4>Writing good alt text</h4>
+        <ul>
+          <li>Say what the image shows or does: "Dice showing 4", not "image".</li>
+          <li>Don't start with "image of". Screen readers already say "image".</li>
+          <li>A purely decorative image gets an empty <code>alt=""</code>, so screen readers skip it.</li>
+        </ul>
+      </div>
+      <div class="table-wrap" style="max-width:760px">
+        <table>
+          <thead><tr><th>Format</th><th>Best for</th></tr></thead>
+          <tbody>
+            <tr><td>JPG</td><td>Photos</td></tr>
+            <tr><td>PNG</td><td>Screenshots, and images that need a see-through background</td></tr>
+            <tr><td>SVG</td><td>Icons, logos and drawings. Stays sharp at any size. Your dice are SVGs.</td></tr>
+            <tr><td>WebP</td><td>Photos at a smaller file size</td></tr>
+            <tr><td>GIF</td><td>Short looping animations</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>To add a caption, wrap the image in <code>&lt;figure&gt;</code> and put the caption in <code>&lt;figcaption&gt;</code>. Video and audio work much like images. The <code>controls</code> attribute adds the play button. Without it, there's no way to start them.</p>
+      <pre class="snip" data-lang="html" style="max-width:760px"><code>&lt;figure&gt;
+  &lt;img src="images/campus.svg" alt="The main academic building"&gt;
+  &lt;figcaption&gt;My campus&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;video src="roll.mp4" controls width="320"&gt;&lt;/video&gt;
+&lt;audio src="click.mp3" controls&gt;&lt;/audio&gt;</code></pre>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>The files in this preview are <code>images/dice1.svg</code> to <code>images/dice6.svg</code>, <code>images/logo.svg</code> and <code>images/campus.svg</code>.</li>
+          <li>Change <code>dice1</code> to <code>dice5</code>. Then to <code>dice7</code>, which doesn't exist. What shows instead?</li>
+          <li>Delete the <code>alt</code> of the broken image. What's left?</li>
+          <li>Change the <code>width</code> of the campus image.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-img" data-title="Pictures" data-height="300">
+        <textarea data-lang="html">
+<img src="images/dice1.svg" alt="Dice showing 1" width="80" height="80">
+<img src="images/dice9.svg" alt="Dice showing 9" width="80" height="80">
+
+<figure>
+  <img src="images/campus.svg" alt="The main academic building" width="240">
+  <figcaption>My campus, drawn in SVG</figcaption>
+</figure>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-gallery">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 4</p><p class="ch-title">Dice gallery</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>Make a gallery of at least three different dice. Each image needs useful alt text and a caption.</p>
+          <div class="ed" id="ch-gallery" data-label="Challenge" data-title="Dice gallery" data-height="260">
+            <textarea data-lang="html">
+<h2>My dice</h2>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>The files are <code>images/dice1.svg</code> to <code>images/dice6.svg</code>. A typo in the path shows a broken image.</p>
+            <p class="ch-hint" hidden>One gallery item is a <code>&lt;figure&gt;</code> holding an <code>&lt;img&gt;</code> and a <code>&lt;figcaption&gt;</code>. Make three.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A purely decorative swirl sits next to your heading. What alt should it have?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">No alt attribute at all</button><p class="why">Without alt, a screen reader may read out the file name, like "swirl underscore 2 dot png".</p></li>
+          <li><button type="button"><code>alt=""</code></button><p class="why">An empty alt tells screen readers to skip the image, because it carries no information.</p></li>
+          <li><button type="button"><code>alt="image of a swirl"</code></button><p class="why">That adds noise for screen reader users, and "image of" is said already.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Why give an image <code>width</code> and <code>height</code> in the HTML?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">So the browser reserves its space and the page doesn't jump when it loads</button><p class="why">The browser knows the shape before the file arrives, so text below doesn't suddenly move.</p></li>
+          <li><button type="button">Because images don't show without them</button><p class="why">They show fine without. They just make the page jump as they load.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>img is a void element. src is the path to the file, and alt is the text alternative. Screen readers read the alt aloud, and it shows if the image fails to load, so it should describe what the image shows. A decorative image gets an empty alt. I also give width and height, so the browser reserves the space and the page doesn't jump. My dice are SVGs, which stay sharp at any size.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="images" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.6 -->
+    <section id="lists" class="sec">
+      <p class="kicker">2.6</p>
+      <h2>Lists and tables</h2>
+      <p class="hook">Your Dice Roll history is a list. Your timetable is a table. Each has its own tags, and a strict rule about what goes directly inside.</p>
+      <h3>Lists</h3>
+      <ul>
+        <li><code>&lt;ul&gt;</code>, an unordered list, is for items where order doesn't matter. It shows bullets.</li>
+        <li><code>&lt;ol&gt;</code>, an ordered list, is for steps or rankings. It shows numbers.</li>
+        <li>Each item is an <code>&lt;li&gt;</code>, and only <code>&lt;li&gt;</code> may sit directly inside <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>.</li>
+        <li>For a list inside a list, put the inner list inside an <code>&lt;li&gt;</code>.</li>
+        <li><code>&lt;ol&gt;</code> has a few handy attributes: <code>start="5"</code>, <code>reversed</code>, and <code>type="a"</code> for letters.</li>
+      </ul>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Add <code>reversed</code> to the <code>&lt;ol&gt;</code>. Then try <code>start="5"</code>, then <code>type="a"</code>.</li>
+          <li>Add a nested list of spices under "Vegetables".</li>
+          <li>Change the <code>&lt;ul&gt;</code> to an <code>&lt;ol&gt;</code>. Does a shopping list need numbers?</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-lists" data-title="Hostel Maggi" data-height="330">
+        <textarea data-lang="html">
+<h2>Maggi, the hostel way</h2>
+<h3>You need</h3>
+<ul>
+  <li>1 packet of Maggi</li>
+  <li>1.5 cups of water</li>
+  <li>Vegetables
+    <ul>
+      <li>Onion</li>
+      <li>Tomato</li>
+    </ul>
+  </li>
+</ul>
+<h3>Steps</h3>
+<ol>
+  <li>Boil the water.</li>
+  <li>Add the noodles and the tastemaker.</li>
+  <li>Cook for 2 minutes. Eat.</li>
+</ol>
+</textarea>
+      </div>
+
+      <h3>Tables</h3>
+      <p>Tables are for data with rows and columns, like marks or a timetable. A table is built row by row:</p>
+      <ul>
+        <li><code>&lt;table&gt;</code> wraps everything, and <code>&lt;caption&gt;</code> gives it a title.</li>
+        <li><code>&lt;tr&gt;</code> is one row. Inside it, <code>&lt;th&gt;</code> is a header cell and <code>&lt;td&gt;</code> is a normal data cell.</li>
+        <li><code>&lt;thead&gt;</code> groups the header rows and <code>&lt;tbody&gt;</code> groups the data rows.</li>
+        <li><code>colspan="2"</code> stretches a cell across two columns. <code>rowspan="2"</code> stretches it down two rows.</li>
+      </ul>
+      <div class="hint"><b>Watch out</b>Never use a table to arrange a page into columns. That was common in the early 2000s. Today, layout is CSS's job, which you'll learn in Part 3.</div>
+
+      <div class="ch" data-ed="ch-table">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 5</p><p class="ch-title">Your timetable</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>Turn this into a proper timetable: a caption, a header row inside <code>&lt;thead&gt;</code>, at least three rows of classes, and one merged cell, like a lunch break across both days. The style.css tab only adds borders, so leave it.</p>
+          <div class="ed" id="ch-table" data-label="Challenge" data-title="Timetable" data-height="300">
+            <textarea data-lang="html">
+<table>
+  <tr>
+    <th>Time</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+  </tr>
+  <tr>
+    <td>9:00</td>
+    <td>Maths</td>
+    <td>C++ lab</td>
+  </tr>
+</table>
+</textarea>
+            <textarea data-lang="css">
+table { border-collapse: collapse; }
+th, td { border: 1px solid #999; padding: 6px 12px; }
+caption { font-weight: bold; padding: 6px; }
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>The caption goes right after <code>&lt;table&gt;</code>, before any row.</p>
+            <p class="ch-hint" hidden>Wrap the first row in <code>&lt;thead&gt;</code> and all the other rows in <code>&lt;tbody&gt;</code>.</p>
+            <p class="ch-hint" hidden>A lunch row could be a time cell plus one cell with <code>colspan="2"</code>.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">What can go directly inside a <code>&lt;ul&gt;</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Only <code>&lt;li&gt;</code> elements</button><p class="why">Anything else, even a heading or plain text, goes inside an li, or outside the list.</p></li>
+          <li><button type="button">Any text or tags</button><p class="why">The browser won't complain, but it's invalid, and screen readers count the items wrong.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A cell should stretch across three columns. Which attribute does that?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>rowspan="3"</code></button><p class="why">rowspan stretches downwards, across rows.</p></li>
+          <li><button type="button"><code>colspan="3"</code></button><p class="why">colspan stretches sideways, across columns.</p></li>
+          <li><button type="button"><code>width="3"</code></button><p class="why">That doesn't merge anything. Merging needs colspan or rowspan.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>ul is an unordered list and ol is an ordered one, and only li elements go directly inside them. A nested list goes inside an li. Tables are for data: tr is a row, th is a header cell and td is a data cell, grouped into thead and tbody, with a caption for the title. colspan and rowspan merge cells. I never use tables for page layout. That's CSS's job.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="lists" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.7 -->
+    <section id="forms" class="sec">
+      <p class="kicker">2.7</p>
+      <h2>Forms</h2>
+      <p class="hook">Every login box, search bar and sign-up page is a form. It's the only part of HTML that sends your data somewhere.</p>
+      <p>A <code>&lt;form&gt;</code> wraps the fields. Its <code>action</code> is the URL the data goes to, and its <code>method</code> is GET or POST, the same methods as in 1.4. Every field needs a <code>name</code>, because the name becomes the key in the data that gets sent.</p>
+
+      <h3>Labels, the most skipped tag</h3>
+      <pre class="snip" data-lang="html" style="max-width:760px"><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input type="email" id="email" name="email" placeholder="you@example.com"&gt;</code></pre>
+      <p style="margin-top:12px">The label's <code>for</code> matches the input's <code>id</code>. That link does two things. Clicking the label puts the cursor in the box, and screen readers read the label when the box is focused. A <code>placeholder</code> is not a label. It disappears as soon as you start typing.</p>
+
+      <h3>Input types</h3>
+      <p>One tag, <code>&lt;input&gt;</code>, becomes many different controls depending on its <code>type</code>. Try each one. The green line shows what the browser would send.</p>
+      <div class="gal" id="gal">
+        <div class="gi"><div class="gi-live"><input type="text" value="Vasavi"></div><code>type="text"</code><span class="gi-val"></span><p>One line of any text.</p></div>
+        <div class="gi"><div class="gi-live"><input type="email" value="vasavi@"></div><code>type="email"</code><span class="gi-val"></span><p>Phones show an @ key. The browser checks the format before sending.</p></div>
+        <div class="gi"><div class="gi-live"><input type="password" value="dice123"></div><code>type="password"</code><span class="gi-val"></span><p>Hides it on screen only. It's sent as typed, so the page needs HTTPS.</p></div>
+        <div class="gi"><div class="gi-live"><input type="number" min="1" max="6" value="3"></div><code>type="number" min="1" max="6"</code><span class="gi-val"></span><p>Numbers only, with up and down arrows.</p></div>
+        <div class="gi"><div class="gi-live"><input type="range" min="1" max="6" value="4"></div><code>type="range" min="1" max="6"</code><span class="gi-val"></span><p>A slider, here from 1 to 6, like a die.</p></div>
+        <div class="gi"><div class="gi-live"><input type="date" value="2026-12-01"></div><code>type="date"</code><span class="gi-val"></span><p>A calendar picker. The value is always year-month-day.</p></div>
+        <div class="gi"><div class="gi-live"><input type="color" value="#034f46"></div><code>type="color"</code><span class="gi-val"></span><p>A colour picker. The value is a hex code.</p></div>
+        <div class="gi"><div class="gi-live"><label><input type="checkbox" checked> Send me updates</label></div><code>type="checkbox"</code><span class="gi-val"></span><p>On or off. Each checkbox is separate.</p></div>
+        <div class="gi"><div class="gi-live"><label><input type="radio" name="g-year" value="1" checked> 1st year</label><label><input type="radio" name="g-year" value="2"> 2nd year</label></div><code>type="radio" name="year"</code><span class="gi-val"></span><p>Pick one. Radios with the same name form one group.</p></div>
+        <div class="gi"><div class="gi-live"><input type="file"></div><code>type="file"</code><span class="gi-val"></span><p>Choose a file from your laptop.</p></div>
+        <div class="gi"><div class="gi-live"><select><option>CSE</option><option>ECE</option><option>ME</option></select></div><code>&lt;select&gt; + &lt;option&gt;</code><span class="gi-val"></span><p>A dropdown. Not an input type, but its own tag.</p></div>
+        <div class="gi"><div class="gi-live"><textarea rows="2">Many lines
+of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span><p>Several lines. Unlike input, it has a closing tag.</p></div>
+      </div>
+
+      <h3>Buttons and how forms send</h3>
+      <ul>
+        <li><code>&lt;button type="submit"&gt;</code> sends the form. <code>type="reset"</code> clears it. <code>type="button"</code> does nothing on its own, and is meant for JavaScript.</li>
+        <li>A <code>&lt;button&gt;</code> inside a form with no type is a submit button. That's why a button in a form sometimes reloads the page by surprise.</li>
+        <li><code>required</code> stops the form from sending while the field is empty. Types like <code>email</code> and <code>number</code> add checks of their own.</li>
+        <li><strong>GET</strong> puts the data in the URL, like <code>?q=dice</code>. Good for searches you might bookmark. <strong>POST</strong> puts it in the request body. Use it for logins and anything that changes data. POST doesn't encrypt anything by itself. Only HTTPS does (1.5).</li>
+      </ul>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Type a word and press Search. Read what the browser would send, below the preview.</li>
+          <li>Tick the checkbox and search again. Then delete <code>name="exact"</code> and search once more.</li>
+          <li>Change <code>method="get"</code> to <code>method="post"</code>. Where did the data move?</li>
+          <li>Add <code>required</code> to the search box, empty it, and press Search.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-form" data-title="A search form" data-height="200" data-sent>
+        <textarea data-lang="html">
+<form action="/search" method="get">
+  <label for="q">Search</label>
+  <input type="search" id="q" name="q" placeholder="e.g. dice">
+  <label><input type="checkbox" name="exact"> Exact</label>
+  <button type="submit">Search</button>
+</form>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-form">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 6</p><p class="ch-title">Club sign-up form</p></div><span class="ch-badge">0 of 9</span></div>
+        <div class="ch-in">
+          <p>Build the Programming Club's sign-up form. It needs a name, an email, a branch dropdown, a year choice with radio buttons, a "why do you want to join?" box and a submit button. Then fill it in and send it to check what arrives.</p>
+          <div class="ed" id="ch-form" data-label="Challenge" data-title="Sign-up form" data-height="340" data-sent>
+            <textarea data-lang="html">
+<h2>Join the Programming Club</h2>
+<form action="/join" method="post">
+
+</form>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Build one field at a time: a label, then its input, with the label's <code>for</code> matching the input's <code>id</code>.</p>
+            <p class="ch-hint" hidden>For the year, make four radio inputs with the same <code>name</code> but different <code>value</code>s, each inside its own label.</p>
+            <p class="ch-hint" hidden>Check the last item: every field, including the select and the textarea, needs a <code>name</code>.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">What happens when you click <code>&lt;label for="email"&gt;Email&lt;/label&gt;</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Nothing, labels are just text</button><p class="why">A label linked with <code>for</code> is connected to its input. Try it in the gallery above.</p></li>
+          <li><button type="button">The cursor jumps into the input with <code>id="email"</code></button><p class="why">That makes small boxes and checkboxes much easier to hit, especially on phones.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A field has an id and a label but no <code>name</code>. What happens when the form is sent?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">It's sent, using the id as the key</button><p class="why">The id is for labels, CSS and JavaScript. Sending only looks at name.</p></li>
+          <li><button type="button">The form refuses to send</button><p class="why">The form sends fine. It just quietly leaves that field out.</p></li>
+          <li><button type="button">That field is left out of the data</button><p class="why">No name, no key, so the browser skips it. You saw this in the editor.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>A form sends its fields to the URL in action, using the method: GET puts the data in the URL and POST puts it in the request body. Each field needs a name, because that's the key in the sent data. Each input needs a label linked with for and id, so clicking the label focuses the field and screen readers announce it. Input types like email and number, and the required attribute, give validation for free.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="forms" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.8 -->
+    <section id="semantic" class="sec">
+      <p class="kicker">2.8</p>
+      <h2>Semantic layout</h2>
+      <p class="hook">You could build a whole page out of <code>&lt;div&gt;</code>s and it would look exactly the same. So why do <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code> and <code>&lt;footer&gt;</code> exist?</p>
+      <p>A <code>&lt;div&gt;</code> means nothing. It's an empty box. <strong>Semantic</strong> tags are boxes with a meaning:</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <tbody>
+            <tr><td><code>&lt;header&gt;</code></td><td>The top of the page or of a section: logo, title</td></tr>
+            <tr><td><code>&lt;nav&gt;</code></td><td>The main menu links</td></tr>
+            <tr><td><code>&lt;main&gt;</code></td><td>The main content. One per page.</td></tr>
+            <tr><td><code>&lt;section&gt;</code></td><td>A group of content about one topic, with its own heading</td></tr>
+            <tr><td><code>&lt;article&gt;</code></td><td>Something that makes sense on its own: a post, a news story, an event card</td></tr>
+            <tr><td><code>&lt;aside&gt;</code></td><td>Side content: related links, an about-me box</td></tr>
+            <tr><td><code>&lt;footer&gt;</code></td><td>The bottom: copyright, contact links</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The page looks the same either way. The difference is who can understand it. Screen reader users can jump straight to the menu or the main content. Search engines know which part matters. And you, or a teammate, can read the code months later and still see the structure.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Same blog, two ways</p>
+          <p class="demo-sub">Switch between the versions. On screen they'd look identical. Watch the map and the screen reader's list.</p>
+        </div>
+        <div class="seg" id="semSeg" role="group" aria-label="Version">
+          <button type="button" data-mode="div" aria-pressed="true">Only divs</button>
+          <button type="button" data-mode="sem" aria-pressed="false">Semantic tags</button>
+        </div>
+        <div class="sem">
+          <pre class="snip" id="semCode"></pre>
+          <div>
+            <div class="wmap" id="semMap"></div>
+            <div class="sr" id="semSr" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch" data-ed="ch-semantic">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 7</p><p class="ch-title">Clean up the div soup</p></div><span class="ch-badge">0 of 7</span></div>
+        <div class="ch-in">
+          <p>The club's page is all divs. Replace every div with the right semantic tag, and turn the fake titles into real headings. The page should look almost the same when you're done.</p>
+          <div class="ed" id="ch-semantic" data-label="Challenge" data-title="Club page" data-height="360">
+            <textarea data-lang="html">
+<div class="top">
+  <div class="name">Programming Club</div>
+  <div class="menu">
+    <a href="#">Home</a>
+    <a href="#">Events</a>
+    <a href="#">Join</a>
+  </div>
+</div>
+<div class="content">
+  <div class="event">
+    <div class="event-title">Hackathon</div>
+    <p>24 hours, teams of three, pizza included.</p>
+  </div>
+  <div class="event">
+    <div class="event-title">Git workshop</div>
+    <p>Every Friday at 6 pm in the lab.</p>
+  </div>
+</div>
+<div class="side">Inductions open in December.</div>
+<div class="bottom">Programming Club, IIT Indore</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Work from the top: the top bar becomes a header, the club name inside it becomes the h1, and the menu becomes a nav.</p>
+            <p class="ch-hint" hidden>Each event makes sense on its own, so it's an article. Its title becomes an h2.</p>
+            <p class="ch-hint" hidden>The side note is an aside and the bottom line is a footer. The content wrapper is main.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which tag is for the site's main menu of links?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>&lt;header&gt;</code></button><p class="why">The header often contains the menu, but the menu itself is a nav.</p></li>
+          <li><button type="button"><code>&lt;menu&gt;</code></button><p class="why">That tag exists, but it's for lists of commands, like toolbar buttons. Site navigation uses nav.</p></li>
+          <li><button type="button"><code>&lt;nav&gt;</code></button><p class="why">nav marks a block of navigation links, and screen readers can jump straight to it.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">How many visible <code>&lt;main&gt;</code> elements should a page have?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">One</button><p class="why">main is the page's main content, and there's only one of that.</p></li>
+          <li><button type="button">One per section</button><p class="why">Sections go inside main. Each one doesn't get its own.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>Semantic HTML means using tags that describe their content, like header, nav, main, section, article, aside and footer, instead of divs everywhere. The page looks the same, but screen readers can jump between these landmarks, search engines understand the page better, and the code is easier to read. div and span have no meaning, so I use them only when I need a box for styling.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="semantic" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.9 -->
+    <section id="blockinline" class="sec">
+      <p class="kicker">2.9</p>
+      <h2>Block and inline</h2>
+      <p class="hook">Why does every <code>&lt;p&gt;</code> start on a new line, while <code>&lt;strong&gt;</code> stays inside the sentence? And why do your two dice sit side by side?</p>
+      <p><strong>Block</strong> elements start on a new line and stretch across the full width available: <code>div</code>, <code>p</code>, <code>h1</code> to <code>h6</code>, <code>ul</code>, <code>ol</code>, <code>li</code>, <code>section</code>, <code>header</code>, <code>form</code>, <code>table</code>.</p>
+      <p><strong>Inline</strong> elements sit inside a line of text and are only as wide as their content: <code>span</code>, <code>a</code>, <code>strong</code>, <code>em</code>, <code>code</code>, <code>img</code>, <code>label</code>, <code>input</code>, <code>button</code>.</p>
+      <p>Inline elements go inside block elements, not the other way round. A <code>&lt;p&gt;</code> can hold a <code>&lt;strong&gt;</code>, but never a <code>&lt;div&gt;</code>. One exception: an <code>&lt;a&gt;</code> may wrap block elements, like a whole clickable card.</p>
+      <p class="small" style="max-width:68ch">Strictly speaking, block and inline come from CSS, through the <code>display</code> property. Every element has a default, and CSS can change it. You'll do that in Part 3.</p>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Tick "Show boxes". Solid boxes are block, dashed ones are inline.</li>
+          <li>Change the <code>&lt;div&gt;</code> into a <code>&lt;span&gt;</code>. What happens to its box?</li>
+          <li>Put <code>&lt;div&gt;inside&lt;/div&gt;</code> in the middle of the first paragraph. Count the paragraph boxes now.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-boxes" data-title="Boxes everywhere" data-height="300" data-boxes>
+        <textarea data-lang="html">
+<h2>Block and inline</h2>
+<p>This paragraph is a block. It holds <strong>strong</strong>,
+<a href="#">a link</a> and <span>a span</span>, which are inline.</p>
+<div>A div is a block too, even with little text.</div>
+<span>Two spans</span> <span>share one line.</span>
+<p>
+  <img src="images/dice3.svg" alt="Dice showing 3" width="40">
+  <img src="images/dice5.svg" alt="Dice showing 5" width="40">
+  <button>Button</button> <input placeholder="input">
+</p>
+<ul><li>List items are blocks</li><li>Each gets its own line</li></ul>
+</textarea>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which of these starts on a new line by default?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>&lt;p&gt;</code></button><p class="why">p is a block, so it takes its own line and the full width.</p></li>
+          <li><button type="button"><code>&lt;span&gt;</code></button><p class="why">span is inline, so it stays in the line of text.</p></li>
+          <li><button type="button"><code>&lt;a&gt;</code></button><p class="why">a is inline. Links sit inside sentences.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You put a <code>&lt;div&gt;</code> inside a <code>&lt;p&gt;</code>. What does the browser build?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">A paragraph with a div inside it</button><p class="why">A p can't hold a div, so the browser won't build that. Check with Show boxes in the editor.</p></li>
+          <li><button type="button">It closes the paragraph early, puts the div after it, and adds an empty paragraph</button><p class="why">The browser fixes your HTML silently. You'll see more of these fixes in 2.11.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>Block elements like div, p and h1 start on a new line and take the full width. Inline elements like span, a, strong and img sit inside a line and are only as wide as their content. Inline elements go inside block ones, not the other way round, so a p can't contain a div. It really comes from CSS's display property, so CSS can change it.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="blockinline" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.10 -->
+    <section id="attributes" class="sec">
+      <p class="kicker">2.10</p>
+      <h2>id, class and other attributes</h2>
+      <p class="hook">Your script finds each button with <code>getElementById</code>. Your CSS styles both dice with one rule. One uses an id, the other a class. What's the difference?</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th></th><th>id</th><th>class</th></tr></thead>
+          <tbody>
+            <tr><td>How many elements can share it?</td><td>One. It must be unique on the page.</td><td>As many as you like</td></tr>
+            <tr><td>How many can one element have?</td><td>One</td><td>Several, separated by spaces: <code>class="btn big"</code></td></tr>
+            <tr><td>In CSS</td><td><code>#result</code></td><td><code>.container</code></td></tr>
+            <tr><td>In JavaScript</td><td><code>getElementById("result")</code></td><td><code>classList</code>, <code>querySelectorAll(".dice")</code></td></tr>
+            <tr><td>In a link</td><td><code>href="#result"</code> jumps to it</td><td>Not used</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>A rule of thumb: an id names <strong>one specific thing</strong>, and a class names <strong>a kind of thing</strong>.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">id or class?</p>
+          <p class="demo-sub">For each one, pick what you'd use.</p>
+        </div>
+        <div class="oc" id="idClass">
+          <div class="oc-item" data-ok="id"><div class="oc-row"><span>The "Roll 2 Dice" button your JavaScript needs to find</span><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="id">id</button><button class="btn btn-ghost btn-small" type="button" data-pick="class">class</button></span></div><p class="oc-why" hidden>There's exactly one of it, and getElementById needs an id.</p></div>
+          <div class="oc-item" data-ok="class"><div class="oc-row"><span>Both dice images, which should be the same size</span><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="id">id</button><button class="btn btn-ghost btn-small" type="button" data-pick="class">class</button></span></div><p class="oc-why" hidden>Two elements share one style, so it's a class. An id can't be on both.</p></div>
+          <div class="oc-item" data-ok="class"><div class="oc-row"><span>The "Join" button on each of five event cards</span><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="id">id</button><button class="btn btn-ghost btn-small" type="button" data-pick="class">class</button></span></div><p class="oc-why" hidden>Five of the same kind of thing. That's what a class is for.</p></div>
+          <div class="oc-item" data-ok="id"><div class="oc-row"><span>The History heading that a menu link jumps to</span><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="id">id</button><button class="btn btn-ghost btn-small" type="button" data-pick="class">class</button></span></div><p class="oc-why" hidden>A <code>#history</code> link can only jump to an id.</p></div>
+          <div class="oc-item" data-ok="class"><div class="oc-row"><span>A button that should look both "primary" and "big"</span><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="id">id</button><button class="btn btn-ghost btn-small" type="button" data-pick="class">class</button></span></div><p class="oc-why" hidden>One element can have many classes, like <code>class="primary big"</code>, but only one id.</p></div>
+        </div>
+        <p class="oc-score" id="idClassScore" aria-live="polite"></p>
+      </div>
+
+      <h3>Other attributes worth knowing</h3>
+      <ul>
+        <li><code>title</code> shows a small tooltip when you hover.</li>
+        <li><code>hidden</code> hides the element completely.</li>
+        <li><code>data-</code> anything stores your own information for JavaScript, like <code>data-face="3"</code>. JavaScript reads it as <code>element.dataset.face</code>.</li>
+        <li><code>style</code> puts CSS straight on one element. Avoid it, and keep your CSS in style.css.</li>
+      </ul>
+      <div class="hint"><b>Watch out: boolean attributes</b><code>disabled</code>, <code>required</code>, <code>checked</code>, <code>hidden</code> and <code>readonly</code> are switched on just by being there. <code>disabled="false"</code> still disables the button, because the attribute is present. To switch it off, delete the attribute.</div>
+
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Hover over the first paragraph.</li>
+          <li>Make the hidden paragraph appear.</li>
+          <li>Make the first button clickable. Changing <code>"false"</code> won't help.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-attr" data-title="Attributes" data-height="230">
+        <textarea data-lang="html">
+<p title="I'm a tooltip!">Hover over this paragraph.</p>
+<p hidden>You found me! I was hidden.</p>
+<button disabled="false">Am I disabled?</button>
+<button>A normal button</button>
+<p><input type="checkbox" checked> Ticked from the start</p>
+<p id="profile" class="card big" data-branch="CSE">
+  One id, two classes and a data attribute.
+</p>
+</textarea>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">By mistake, two elements have <code>id="result"</code>. What does <code>getElementById("result")</code> return?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Only the first one</button><p class="why">It returns one element, the first match. The second is silently ignored, which makes this bug hard to find.</p></li>
+          <li><button type="button">Both of them</button><p class="why">getElementById always returns a single element, never a list.</p></li>
+          <li><button type="button">An error</button><p class="why">No error at all. That's what makes duplicate ids dangerous.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Is <code>&lt;input required="no"&gt;</code> required?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">No, it says "no"</button><p class="why">The browser ignores the value of a boolean attribute. Only whether it's there matters.</p></li>
+          <li><button type="button">Yes</button><p class="why">The attribute is present, so it's on. To make it optional, remove it.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>An id must be unique, so it names one specific element. JavaScript finds it with getElementById, and a link can jump to it with a hash. A class can be shared by many elements, and one element can have several classes, so classes are for styling groups. data attributes store custom data for JavaScript. Boolean attributes like disabled and required are on whenever they're present, whatever their value.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="attributes" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.11 -->
+    <section id="rules" class="sec">
+      <p class="kicker">2.11</p>
+      <h2>The rules, and spotting bugs</h2>
+      <p class="hook">C++ refuses to compile when you forget a semicolon. HTML never refuses anything. Is that good news?</p>
+      <p>Not really. When the browser meets broken HTML, it quietly guesses what you meant and builds the DOM from its guess. There's no error and no warning. The page may look fine today and break tomorrow, when you add CSS or JavaScript that expects the structure you wrote. So the rules are yours to keep:</p>
+      <ul>
+        <li>Close every element you open, except void elements.</li>
+        <li>Close in reverse order: last opened, first closed.</li>
+        <li>Put attribute values in quotes.</li>
+        <li>Write tags and attributes in lowercase.</li>
+        <li>Use each id only once per page.</li>
+        <li>Give every <code>&lt;img&gt;</code> an <code>alt</code>.</li>
+        <li>Put only <code>&lt;li&gt;</code> directly inside <code>&lt;ul&gt;</code> and <code>&lt;ol&gt;</code>.</li>
+        <li>Never put a block element, like a div or a list, inside a <code>&lt;p&gt;</code>.</li>
+        <li>Use one <code>&lt;main&gt;</code>, and keep headings in order.</li>
+        <li>Give every form field a label.</li>
+      </ul>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Spot the bug</p>
+          <p class="demo-sub">Each snippet breaks one rule. Click the line with the bug. Then look at what the browser actually built from it.</p>
+        </div>
+        <div class="bugs" id="bugs"></div>
+        <p class="bug-score" id="bugScore" aria-live="polite"></p>
+      </div>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open <code>validator.w3.org</code> and choose "Validate by Direct Input".</li>
+          <li>Paste all of your Dice Roll <code>index.html</code> and press Check.</li>
+          <li>It lists every broken rule with its line number. Aim for zero errors before the interview.</li>
+        </ol>
+      </div>
+
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You forget the <code>&lt;/h1&gt;</code> after your page title. What happens?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The browser shows an error</button><p class="why">HTML never shows errors. It guesses instead.</p></li>
+          <li><button type="button">The browser closes the h1 at the end of the line</button><p class="why">Line ends mean nothing in HTML. The browser doesn't know where you meant to stop.</p></li>
+          <li><button type="button">Everything after it becomes part of the heading</button><p class="why">The h1 stays open, so following paragraphs end up inside it. Bug 7 above shows exactly this.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>HTML doesn't throw errors. The browser silently fixes broken markup, and its fix may not be what I meant. An unclosed tag can swallow the rest of the page, and a div inside a p splits the paragraph. So I close tags in reverse order, keep ids unique, give images alt text, and check my pages with the W3C validator.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="rules" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 2.12 -->
+    <section id="devtools" class="sec">
+      <p class="kicker">2.12</p>
+      <h2>The Elements panel</h2>
+      <p class="hook">Want to see the real HTML of any website, and even change it? Your browser has an X-ray built in.</p>
+      <p>Right-click anything on a page and choose <strong>Inspect</strong>. The Elements panel shows the DOM, the live tree from 1.6. Your changes there are instant and temporary: reload, and they're gone. That makes it the safest place to experiment.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">A mini Elements panel</p>
+          <p class="demo-sub">Hover a line to highlight that element on the page. Click a line to select it. Click any text in the tree to edit it. Or press Pick, then click something on the page.</p>
+        </div>
+        <div class="elp">
+          <div class="elp-left">
+            <div class="elp-bar">
+              <button type="button" id="elpPick" aria-pressed="false">Pick an element</button>
+              <button type="button" id="elpDel" disabled>Delete it</button>
+              <button type="button" id="elpReset">Reset page</button>
+            </div>
+            <div class="elp-tree" id="elpTree" aria-label="DOM tree"></div>
+            <div class="elp-info" id="elpInfo" aria-live="polite">Nothing selected.</div>
+          </div>
+          <div class="elp-right" id="elpRight">
+            <iframe id="elpFrame" sandbox="allow-same-origin" title="The page being inspected"></iframe>
+            <div class="elp-hl" id="elpHl" hidden><span></span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="table-wrap" style="max-width:760px">
+        <table>
+          <thead><tr><th>In Chrome</th><th>Does</th></tr></thead>
+          <tbody>
+            <tr><td><kbd>F12</kbd></td><td>Opens or closes DevTools</td></tr>
+            <tr><td><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd></td><td>Pick an element by clicking it on the page</td></tr>
+            <tr><td><kbd>Ctrl</kbd> + <kbd>U</kbd></td><td>Shows the page source, the original text</td></tr>
+            <tr><td>Double-click</td><td>Edits text or an attribute in the tree</td></tr>
+            <tr><td><kbd>H</kbd></td><td>Hides the selected element</td></tr>
+            <tr><td><kbd>Delete</kbd></td><td>Deletes the selected element</td></tr>
+            <tr><td><kbd>Ctrl</kbd> + <kbd>Z</kbd></td><td>Undoes your last change in the panel</td></tr>
+            <tr><td>Right-click, Edit as HTML</td><td>Edits a whole element as text</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open your Dice Roll page and press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd>. Click the heading.</li>
+          <li>Double-click the text "Dice Roll" in the tree and type your name.</li>
+          <li>Select the first dice image and change its <code>src</code> to <code>images/dice6.svg</code>.</li>
+          <li>Delete one button. Then reload the page. Everything is back.</li>
+        </ol>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You delete a button in the Elements panel, then reload the page. Is the button gone?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Yes, DevTools saved the change to index.html</button><p class="why">DevTools only changes the copy in the browser's memory. Your file is untouched.</p></li>
+          <li><button type="button">No, it's back</button><p class="why">Reloading rebuilds the DOM from your file. To keep a change, edit the file in VS Code.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>The Elements panel in DevTools shows the live DOM. I use it to inspect any element, to check what HTML the browser actually built, and to try changes instantly. Those changes are temporary. Reloading rebuilds the page from my files, so I make the real change in my code.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="devtools" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- recap 2 -->
+    <section id="recap2" class="sec">
+      <p class="kicker">Part 2 recap</p>
+      <h2>Build your About me page</h2>
+      <p class="hook">Time to use everything from Part 2 on one page, starting from nothing.</p>
+      <p>Your Playground has a first About me page, <code>vasavi.html</code>. Build a much better one here. The checklist ticks itself as you go, and the hints only give a nudge.</p>
+
+      <div class="ch" data-ed="ch-about">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 8</p><p class="ch-title">About me, from scratch</p></div><span class="ch-badge">0 of 8</span></div>
+        <div class="ch-in">
+          <div class="ed" id="ch-about" data-label="Challenge" data-title="about-me.html" data-height="440" data-tab>
+            <textarea data-lang="html">
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Start with the skeleton from Challenge 1. Everything else goes in the body.</p>
+            <p class="ch-hint" hidden>Plan the body first: header (with the nav inside), then main with two or three sections, then footer.</p>
+            <p class="ch-hint" hidden>Give each section an id, then point the nav's links at those ids.</p>
+            <p class="ch-hint" hidden>Images you can use here: <code>images/logo.svg</code>, <code>images/campus.svg</code> and the six dice.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+          <p class="ch-win" hidden>All green. Now copy your code into <code>Playground/vasavi.html</code> in VS Code, open it in Chrome, and commit it with a message in your own words.</p>
+        </div>
+      </div>
+
+      <h3>Name that tag</h3>
+      <p>One last round: ten descriptions, pick the tag. Try to beat your best score.</p>
+      <div class="demo game" id="game">
+        <div class="game-meta"><span id="gameStep"></span><span id="gameScore"></span><span id="gameBest"></span></div>
+        <p class="game-q" id="gameQ" aria-live="polite"></p>
+        <div class="game-opts" id="gameOpts"></div>
+        <div class="nav-row"><button class="btn" id="gameStart" type="button">Start</button></div>
+      </div>
+
+      <p>Part 3 is CSS, where all these boxes finally get their colours, sizes and layouts.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap2" aria-pressed="false">I can explain this</button></div>
     </section>
 
   </main>
@@ -1501,7 +2930,7 @@ button { color: white; background-color: #2c3e50; }</code></pre>
 
 <footer class="foot">
   <div class="foot-in">
-    <p>Part 1 of 4. Ticks, theme and your recap answer are saved only in this browser.</p>
+    <p>Parts 1 and 2 of 4. Ticks, challenges, your code and the theme are saved only in this browser.</p>
     <button class="btn btn-ghost btn-small" id="resetBtn" type="button">Clear my ticks</button>
   </div>
 </footer>
@@ -1549,16 +2978,19 @@ button { color: white; background-color: #2c3e50; }</code></pre>
     }
     return out + esc(s.slice(last));
   }
+  function hlText(s) {
+    return esc(s).replace(/&amp;(#?\w+;)/g, '<span class="t-num">&amp;$1</span>');
+  }
   function hlHTML(src) {
     var out = "", last = 0, m;
     var re = /<!\-\-[\s\S]*?\-\->|<(\/?)([a-zA-Z!][\w-]*)([^>]*?)(\/?)>/g;
     while ((m = re.exec(src))) {
-      out += esc(src.slice(last, m.index));
+      out += hlText(src.slice(last, m.index));
       if (/^<!-/.test(m[0])) out += '<span class="t-dim">' + esc(m[0]) + "</span>";
       else out += '<span class="t-dim">&lt;' + m[1] + '</span><span class="t-key">' + esc(m[2]) + "</span>" + hlAttrs(m[3]) + '<span class="t-dim">' + m[4] + "&gt;</span>";
       last = re.lastIndex;
     }
-    return out + esc(src.slice(last));
+    return out + hlText(src.slice(last));
   }
   function hlCSS(src) {
     var out = "", m, stack = [], inVal = false, sawAt = false;
@@ -1591,7 +3023,8 @@ button { color: white; background-color: #2c3e50; }</code></pre>
   });
 
   /* ---------- progress ---------- */
-  var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1"];
+  var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1",
+    "anatomy", "skeleton", "text", "links", "images", "lists", "forms", "semantic", "blockinline", "attributes", "rules", "devtools", "recap2"];
   var done = store.get("wg-done", {});
   function paintDone() {
     $$(".done-btn").forEach(function (b) {
@@ -2314,6 +3747,765 @@ button { color: white; background-color: #2c3e50; }</code></pre>
       if (v.trim()) modelBtn.hidden = false;
     });
     modelBtn.addEventListener("click", function () { model.hidden = !model.hidden; modelBtn.textContent = model.hidden ? "Compare with a sample answer" : "Hide the sample answer"; });
+  })();
+
+  /* ================= Part 2 ================= */
+  $$("[data-hl]").forEach(function (c) { c.innerHTML = hlHTML(c.textContent); });
+  var VOID_RE = /^(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)$/i;
+
+  /* ---------- files the previews can load ---------- */
+  function svgURI(inner, w, h) {
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h + '" viewBox="0 0 ' + w + " " + h + '">' + inner + "</svg>");
+  }
+  var VFS = {}, VFSR = {};
+  for (var dn = 1; dn <= 6; dn++) {
+    VFS["images/dice" + dn + ".svg"] = svgURI('<rect x="4" y="4" width="92" height="92" rx="16" fill="#ffffff" stroke="#2c3e50" stroke-width="4"/>' +
+      PIPS[dn].map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="#2c3e50"/>'; }).join(""), 100, 100);
+  }
+  VFS["images/logo.svg"] = svgURI('<circle cx="40" cy="40" r="38" fill="#034F46"/><text x="40" y="54" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#FFFFEB" text-anchor="middle">V</text>', 80, 80);
+  VFS["images/campus.svg"] = svgURI('<rect width="320" height="180" fill="#CFE3DC"/><circle cx="266" cy="42" r="20" fill="#FFA946"/>' +
+    '<path d="M0 142 Q80 112 160 138 T320 130 V180 H0Z" fill="#7FB8A6"/><rect x="92" y="74" width="136" height="76" fill="#FFFFEB" stroke="#034F46" stroke-width="3"/>' +
+    '<path d="M84 76 L160 40 L236 76Z" fill="#034F46"/>' +
+    [104, 126, 180, 202].map(function (x) { return '<rect x="' + x + '" y="88" width="14" height="18" fill="#034F46" opacity=".75"/><rect x="' + x + '" y="118" width="14" height="18" fill="#034F46" opacity=".75"/>'; }).join("") +
+    '<rect x="150" y="116" width="20" height="34" fill="#FFA946"/>', 320, 180);
+  Object.keys(VFS).forEach(function (k) { VFSR[VFS[k]] = k; });
+
+  var BOX_CSS = "h1,h2,h3,h4,h5,h6,p,div,ul,ol,li,dl,dt,dd,section,article,header,footer,nav,main,aside,form,fieldset,table,figure,figcaption,blockquote,pre,hr,address{outline:2px solid rgba(3,79,70,.6);outline-offset:-2px}" +
+    "span,a,strong,em,b,i,u,small,mark,code,kbd,img,label,input,button,select,textarea,sub,sup,q,abbr,time{outline:2px dashed rgba(230,120,0,.95);outline-offset:-2px}";
+  function buildDoc(html, css, boxes) {
+    html = html.replace(/(\b(?:src|href)\s*=\s*)(["'])([^"']*)\2/gi, function (m, a, q, p) { return VFS[p] ? a + q + VFS[p] + q : m; });
+    var style = "<style>" + (boxes ? BOX_CSS : "") + "\n" + (css || "") + "\n</style>";
+    if (/<\/head\s*>/i.test(html)) return html.replace(/<\/head\s*>/i, function () { return style + "</head>"; });
+    if (/<!doctype|<html[\s>]/i.test(html)) return html + style;
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' + style + "</head><body>\n" + html + "\n</body></html>";
+  }
+
+  /* ---------- live editors ---------- */
+  var CH_IDS = ["ch-skel", "ch-escape", "ch-menu", "ch-gallery", "ch-table", "ch-form", "ch-semantic", "ch-about"];
+  var chDone = store.get("wg-ch", {});
+  function paintChStat() {
+    var n = CH_IDS.filter(function (k) { return chDone[k]; }).length;
+    $("#chVal").textContent = n + " of " + CH_IDS.length;
+    $("#chBar").style.width = (n / CH_IDS.length * 100) + "%";
+  }
+  paintChStat();
+
+  function has(root, sel) { return !!root.querySelector(sel); }
+  function count(root, sel) { return root.querySelectorAll(sel).length; }
+  function headOf(s) { return (s.match(/<head[\s>][\s\S]*?<\/head>/i) || [""])[0]; }
+  var CHECKS = {
+    "ch-skel": function (d, s) {
+      var head = headOf(s);
+      return [
+        ["Starts with <code>&lt;!DOCTYPE html&gt;</code>", /^\s*<!doctype\s+html\s*>/i.test(s)],
+        ["An <code>&lt;html&gt;</code> tag with a <code>lang</code>", /<html[^>]*\slang\s*=\s*["']?[a-z]/i.test(s)],
+        ["A <code>&lt;head&gt;</code> and a <code>&lt;body&gt;</code>", !!head && /<body[\s>]/i.test(s)],
+        ["<code>&lt;meta charset=\"UTF-8\"&gt;</code> in the head", /<meta[^>]*charset\s*=\s*["']?utf-8/i.test(head)],
+        ["The viewport <code>&lt;meta&gt;</code> tag in the head", /<meta[^>]*name\s*=\s*["']?viewport/i.test(head) && /width\s*=\s*device-width/i.test(head)],
+        ["A <code>&lt;title&gt;</code> with some text, in the head", /<title>\s*[^<\s][^<]*<\/title>/i.test(head)],
+        ["An <code>&lt;h1&gt;</code> in the body", has(d.body, "h1")]
+      ];
+    },
+    "ch-escape": function (d) {
+      return [
+        ["The page shows <code>&lt;img src=\"dice1.svg\"&gt;</code> as text", /<img src=["']dice1\.svg["']>/.test(d.body.textContent)],
+        ["No real image is created", !has(d, "img")],
+        ["The text is inside a <code>&lt;code&gt;</code> element", $$("code", d).some(function (c) { return c.textContent.indexOf("<img") >= 0; })]
+      ];
+    },
+    "ch-menu": function (d) {
+      var hash = $$("nav a", d).filter(function (a) { return /^#./.test(a.getAttribute("href") || ""); });
+      var work = hash.filter(function (a) { return d.getElementById(a.getAttribute("href").slice(1)); });
+      return [
+        ["A <code>&lt;nav&gt;</code> on the page", has(d, "nav")],
+        ["At least 3 links in it that start with <code>#</code>", hash.length >= 3],
+        ["Each <code>#</code> link matches an element's <code>id</code>", hash.length >= 3 && work.length === hash.length],
+        ["A link to a real website that opens in a new tab", $$('a[href^="http"]', d).some(function (a) { return a.getAttribute("target") === "_blank"; })]
+      ];
+    },
+    "ch-gallery": function (d) {
+      var imgs = $$("img", d), weak = /^(image|img|picture|photo|pic|dice|icon)$/i;
+      return [
+        ["At least 3 dice images", imgs.length >= 3],
+        ["Every image loads, with no broken icon", imgs.length > 0 && imgs.every(function (i) { return i.complete && i.naturalWidth > 0; })],
+        ["Every image has helpful <code>alt</code> text", imgs.length > 0 && imgs.every(function (i) { var a = (i.getAttribute("alt") || "").trim(); return a.length >= 3 && !weak.test(a); })],
+        ["Each image is in a <code>&lt;figure&gt;</code> with a <code>&lt;figcaption&gt;</code>", imgs.length > 0 && imgs.every(function (i) { var f = i.closest("figure"); return !!f && has(f, "figcaption"); })]
+      ];
+    },
+    "ch-table": function (d) {
+      var t = d.querySelector("table");
+      return [
+        ["A <code>&lt;table&gt;</code> with a <code>&lt;caption&gt;</code>", !!t && has(t, "caption")],
+        ["A header row of <code>&lt;th&gt;</code> cells inside <code>&lt;thead&gt;</code>", !!t && count(t, "thead th") >= 2],
+        ["At least 3 rows inside <code>&lt;tbody&gt;</code>", !!t && count(t, "tbody tr") >= 3],
+        ["A merged cell, using <code>colspan</code> or <code>rowspan</code>", !!t && $$("[colspan], [rowspan]", t).some(function (c) { return +c.getAttribute("colspan") > 1 || +c.getAttribute("rowspan") > 1; })]
+      ];
+    },
+    "ch-form": function (d) {
+      var f = d.querySelector("form");
+      var fields = f ? $$("input, select, textarea", f).filter(function (el) { return !/^(submit|button|reset|hidden|image)$/i.test(el.type || ""); }) : [];
+      var groups = {};
+      if (f) $$('input[type="radio"]', f).forEach(function (r) { if (r.name) groups[r.name] = (groups[r.name] || 0) + 1; });
+      function labelled(el) { return !!el.closest("label") || (!!el.id && !!f.querySelector('label[for="' + CSS.escape(el.id) + '"]')); }
+      return [
+        ["A <code>&lt;form&gt;</code>", !!f],
+        ["Every field has a <code>&lt;label&gt;</code>", fields.length > 0 && fields.every(labelled)],
+        ["The email field uses <code>type=\"email\"</code>", !!f && has(f, 'input[type="email"]')],
+        ["Name and email are <code>required</code>", !!f && count(f, "[required]") >= 2],
+        ["Radio buttons for the year, sharing one <code>name</code>", Object.keys(groups).some(function (k) { return groups[k] >= 2; })],
+        ["A <code>&lt;select&gt;</code> for the branch, with options", !!f && count(f, "select option") >= 2],
+        ["A <code>&lt;textarea&gt;</code> for a longer answer", !!f && has(f, "textarea")],
+        ["A submit button", !!f && has(f, 'button:not([type]), button[type="submit"], input[type="submit"]')],
+        ["Every field has a <code>name</code>, so it gets sent", fields.length > 0 && fields.every(function (el) { return !!el.name; })]
+      ];
+    },
+    "ch-semantic": function (d) {
+      var arts = $$("article", d);
+      return [
+        ["A <code>&lt;header&gt;</code> with the club's name in an <code>&lt;h1&gt;</code>", has(d, "header h1")],
+        ["The menu links inside a <code>&lt;nav&gt;</code>", count(d, "nav a") >= 3],
+        ["Exactly one <code>&lt;main&gt;</code>", count(d, "main") === 1],
+        ["Each event is an <code>&lt;article&gt;</code> with an <code>&lt;h2&gt;</code>", arts.length >= 2 && arts.every(function (a) { return has(a, "h2"); })],
+        ["The side note is an <code>&lt;aside&gt;</code>", has(d, "aside")],
+        ["A <code>&lt;footer&gt;</code>", has(d, "footer")],
+        ["No <code>&lt;div&gt;</code> left", count(d, "div") === 0]
+      ];
+    },
+    "ch-about": function (d, s) {
+      var hash = $$('nav a[href^="#"]', d).filter(function (a) { return a.getAttribute("href").length > 1; });
+      var secs = $$("main section", d);
+      return [
+        ["A full skeleton: doctype, <code>lang</code>, charset, viewport and title",
+          /^\s*<!doctype\s+html\s*>/i.test(s) && /<html[^>]*\slang\s*=/i.test(s) && /<meta[^>]*charset/i.test(s) && /<meta[^>]*viewport/i.test(s) && /<title>\s*[^<\s]/i.test(s)],
+        ["A <code>&lt;header&gt;</code> with your name in an <code>&lt;h1&gt;</code>", has(d, "header h1")],
+        ["A <code>&lt;nav&gt;</code> whose links jump to parts of the page", hash.length >= 2 && hash.every(function (a) { return d.getElementById(a.getAttribute("href").slice(1)); })],
+        ["A <code>&lt;main&gt;</code> with at least 2 <code>&lt;section&gt;</code>s, each with an <code>&lt;h2&gt;</code>", secs.length >= 2 && secs.every(function (x) { return has(x, "h2"); })],
+        ["An image that loads, with <code>alt</code> text", $$("img", d).some(function (i) { return i.naturalWidth > 0 && (i.getAttribute("alt") || "").trim().length >= 3; })],
+        ["A list with at least 3 items", $$("ul, ol", d).some(function (l) { return l.querySelectorAll(":scope > li").length >= 3; })],
+        ["A link to another website that opens in a new tab", $$('a[href^="http"]', d).some(function (a) { return a.getAttribute("target") === "_blank"; })],
+        ["A <code>&lt;footer&gt;</code>", has(d, "footer")]
+      ];
+    }
+  };
+  function runChallenge(id, d, src) {
+    var box = $('.ch[data-ed="' + id + '"]');
+    if (!box) return;
+    var res;
+    try { res = CHECKS[id](d, src); } catch (e) { res = []; }
+    var okN = res.filter(function (r) { return r[1]; }).length, all = res.length > 0 && okN === res.length;
+    $(".ch-list", box).innerHTML = res.map(function (r) { return '<li class="' + (r[1] ? "ok" : "") + '">' + r[0] + "</li>"; }).join("");
+    box.classList.toggle("done", all);
+    $(".ch-badge", box).textContent = all ? "Done ✓" : okN + " of " + res.length;
+    var win = $(".ch-win", box);
+    if (win) win.hidden = !all;
+    if (all && !chDone[id]) { chDone[id] = true; store.set("wg-ch", chDone); paintChStat(); }
+  }
+  $$(".ch-hint-btn").forEach(function (b) {
+    var hints = $$(".ch-hint", b.parentNode);
+    b.addEventListener("click", function () {
+      var next = hints.filter(function (h) { return h.hidden; })[0];
+      if (next) next.hidden = false;
+      if (!hints.some(function (h) { return h.hidden; })) { b.disabled = true; b.textContent = "No more hints"; }
+    });
+  });
+
+  function paintOutline(d, el) {
+    var hs = $$("h1, h2, h3, h4, h5, h6", d.body);
+    if (!hs.length) { el.innerHTML = '<p class="ol-h">Page outline</p><p class="small" style="margin:0">No headings yet.</p>'; return; }
+    var prev = 0, h1s = 0;
+    var rows = hs.map(function (h) {
+      var lv = +h.tagName.charAt(1), skip = prev && lv > prev + 1;
+      if (lv === 1) h1s++;
+      var r = '<li style="padding-left:' + (lv - 1) * 18 + 'px"><code>h' + lv + "</code>" + esc(h.textContent.trim() || "(empty)") +
+        (skip ? ' <span class="ol-warn">skips h' + (prev + 1) + "</span>" : "") + "</li>";
+      prev = lv;
+      return r;
+    });
+    el.innerHTML = '<p class="ol-h">Page outline, built from your headings</p><ul class="ol">' + rows.join("") + "</ul>" +
+      (h1s > 1 ? '<p class="ol-warn" style="margin:6px 0 0">There are ' + h1s + " h1 headings. A page should have exactly one.</p>" :
+       h1s === 0 ? '<p class="ol-warn" style="margin:6px 0 0">No h1 yet, so the page has no main title.</p>' : "");
+  }
+
+  function hookPreview(d, toast, sentEl) {
+    d.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("a[href]") : null;
+      if (!a) return;
+      e.preventDefault();
+      var href = (a.getAttribute("href") || "").trim(), se = d.scrollingElement || d.documentElement;
+      if (href.charAt(0) === "#") {
+        var id = href.slice(1), t = null;
+        try { t = id ? d.getElementById(decodeURIComponent(id)) : null; } catch (err) { t = null; }
+        if (t) se.scrollTop += t.getBoundingClientRect().top - 4;
+        else if (!id || id.toLowerCase() === "top") { se.scrollTop = 0; toast((id ? "Nothing has id=\"top\", but browsers treat #top" : "href=\"#\"") + " as the top of the page."); }
+        else toast('No element has id="' + id + '", so this link goes nowhere.');
+        return;
+      }
+      if (/^https?:/i.test(href)) {
+        window.open(href, "_blank", "noopener");
+        toast(a.getAttribute("target") === "_blank" ? "Opened " + href + " in a new tab." : "Without target=\"_blank\" this would replace your page. Here it opens in a new tab so you don't lose your work.");
+        return;
+      }
+      if (/^mailto:/i.test(href)) { toast("This would open your email app, writing to " + href.slice(7) + "."); return; }
+      if (/^tel:/i.test(href)) { toast("On a phone, this would start a call to " + href.slice(4) + "."); return; }
+      toast('This would open "' + href + '". That file isn\'t in this preview, but in your project the browser would load it.');
+    });
+    d.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var f = e.target, fd;
+      try { fd = new FormData(f, e.submitter || null); } catch (err) { fd = new FormData(f); }
+      var pairs = [];
+      fd.forEach(function (v, k) { pairs.push([k, typeof v === "string" ? v : (v && v.name) || ""]); });
+      var qs = pairs.map(function (p) { return encodeURIComponent(p[0]) + "=" + encodeURIComponent(p[1]).replace(/%20/g, "+"); }).join("&");
+      var post = (f.getAttribute("method") || "get").toLowerCase() === "post";
+      var action = f.getAttribute("action") || "/this-page";
+      if (!sentEl) { toast("Sent: " + (post ? "POST " + action : "GET " + action + (qs ? "?" + qs : ""))); return; }
+      var skipped = $$("input, select, textarea", f).filter(function (el) { return !el.name && !/^(submit|button|reset|image)$/i.test(el.type || ""); });
+      var req = post ? "POST " + action + " HTTP/1.1\nHost: example.com\nContent-Type: application/x-www-form-urlencoded\n\n" + qs :
+        "GET " + action + (qs ? "?" + qs : "") + " HTTP/1.1\nHost: example.com";
+      sentEl.innerHTML = '<p class="ol-h">The browser would send</p><pre class="snip">' + esc(req) + "</pre>" +
+        (pairs.length ? '<table class="sent-table"><tbody>' + pairs.map(function (p) { return "<tr><td>" + esc(p[0]) + "</td><td>" + esc(p[1] === "" ? "(empty)" : p[1]) + "</td></tr>"; }).join("") + "</tbody></table>" :
+          '<p class="ol-warn" style="margin:6px 0 0">Nothing was sent. No field has a name.</p>') +
+        (skipped.length ? '<p class="ol-warn" style="margin:6px 0 0">' + skipped.length + (skipped.length === 1 ? " field has no name, so it was" : " fields have no name, so they were") + " left out.</p>" : "") +
+        '<p class="small" style="margin:6px 0 0">' + (post ? "POST puts the data in the body, after the blank line. It's not in the URL." : "GET puts the data in the URL, after the <code>?</code>.") + "</p>";
+    });
+  }
+
+  function insertText(ta, t) {
+    ta.focus();
+    var ok = false;
+    try { ok = document.execCommand("insertText", false, t); } catch (e) { ok = false; }
+    if (!ok) { ta.setRangeText(t, ta.selectionStart, ta.selectionEnd, "end"); ta.dispatchEvent(new Event("input")); }
+  }
+  function edKeys(e, ta, toast) {
+    if (e.key === "Escape") { ta._esc = true; return; }
+    if (e.key === "Tab" && !e.shiftKey && !ta._esc && !e.ctrlKey && !e.altKey && !e.metaKey) { e.preventDefault(); insertText(ta, "  "); return; }
+    if (e.key !== "Tab" && e.key !== "Shift") ta._esc = false;
+    if (e.key === "Enter" && !e.shiftKey && !e.ctrlKey && !e.altKey && !e.metaKey && !e.isComposing) {
+      var before = ta.value.slice(0, ta.selectionStart), line = before.slice(before.lastIndexOf("\n") + 1);
+      var indent = line.match(/^[ \t]*/)[0];
+      if ((/<[a-zA-Z][\w-]*[^>]*>\s*$/.test(line) && !/<\/|\/>\s*$|<(img|br|hr|input|meta|link)\b/i.test(line)) || /\{\s*$/.test(line)) indent += "  ";
+      e.preventDefault();
+      insertText(ta, "\n" + indent);
+      return;
+    }
+    if ((e.ctrlKey || e.metaKey) && (e.key === "s" || e.key === "S")) { e.preventDefault(); toast("No need to save. Your code saves itself as you type."); }
+  }
+
+  function makeEditor(box) {
+    var id = box.id, label = box.getAttribute("data-label") || "Try it", title = box.getAttribute("data-title") || "";
+    var opt = { boxes: box.hasAttribute("data-boxes"), outline: box.hasAttribute("data-outline"), tab: box.hasAttribute("data-tab"), sent: box.hasAttribute("data-sent") };
+    var srcs = $$("textarea", box).map(function (t) { var v = t.value.replace(/\s+$/, ""); return { lang: t.getAttribute("data-lang"), start: v ? v + "\n" : "" }; });
+    var saved = store.get("wg-ed-" + id, null) || {};
+    if (box.getAttribute("data-height")) box.style.setProperty("--ed-h", box.getAttribute("data-height") + "px");
+    box.innerHTML = '<div class="ed-head"><div><p class="ed-tag">' + esc(label) + '</p><p class="ed-name">' + esc(title) + "</p></div>" +
+      '<div class="ed-tools">' + (opt.boxes ? '<label class="check"><input type="checkbox" class="ed-boxes"> Show boxes</label>' : "") +
+      '<button type="button" class="btn btn-ghost btn-small ed-reset">Reset</button></div></div>' +
+      '<div class="ed-body"><div class="ed-left"><div class="ed-tabs" role="tablist">' +
+      srcs.map(function (s, i) { return '<button type="button" role="tab" aria-selected="' + (i ? "false" : "true") + '">' + (s.lang === "css" ? "style.css" : "index.html") + "</button>"; }).join("") + "</div>" +
+      srcs.map(function (s, i) { return '<div class="ed-code"' + (i ? " hidden" : "") + '><pre class="ed-hl" aria-hidden="true"></pre><textarea class="ed-ta" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" aria-label="' + (s.lang === "css" ? "CSS" : "HTML") + " code, " + esc(title) + '"></textarea></div>'; }).join("") +
+      '</div><div class="ed-right"><div class="ed-bar"><i></i><i></i><i></i><span class="ed-tt">Preview</span></div>' +
+      '<div class="ed-out"><iframe class="ed-frame" sandbox="allow-same-origin allow-forms" title="Preview, ' + esc(title) + '"></iframe><div class="ed-toast" role="status" hidden></div></div></div></div>' +
+      (opt.boxes ? '<div class="ed-extra"><p class="ed-legend"><span><i class="lg-block"></i>block</span><span><i class="lg-inline"></i>inline</span></p></div>' : "") +
+      (opt.outline ? '<div class="ed-extra ed-outline"></div>' : "") +
+      (opt.sent ? '<div class="ed-extra ed-sent"><p class="small" style="margin:0">Fill in the form and press its submit button. What the browser would send shows up here.</p></div>' : "") +
+      '<div class="ed-foot"><span>Updates as you type. Saved in this browser.</span><span><kbd>Esc</kbd> then <kbd>Tab</kbd> leaves the editor</span></div>';
+
+    var frame = $(".ed-frame", box), toastEl = $(".ed-toast", box), tt = $(".ed-tt", box);
+    var outEl = $(".ed-outline", box), sentEl = $(".ed-sent", box);
+    var timer = null, boxOn = false, armed = false, rendered = false;
+    function toast(msg) {
+      toastEl.textContent = msg; toastEl.hidden = false;
+      clearTimeout(toastEl._t);
+      toastEl._t = setTimeout(function () { toastEl.hidden = true; }, 4500);
+    }
+    var panes = $$(".ed-code", box).map(function (pane, i) {
+      var s = srcs[i], ta = $(".ed-ta", pane), pre = $(".ed-hl", pane);
+      ta.value = typeof saved[s.lang] === "string" ? saved[s.lang] : s.start;
+      function sync() { pre.scrollTop = ta.scrollTop; pre.scrollLeft = ta.scrollLeft; }
+      function paint() { pre.innerHTML = (s.lang === "css" ? hlCSS : hlHTML)(ta.value) + "\n "; sync(); }
+      ta.addEventListener("input", function () { paint(); schedule(); });
+      ta.addEventListener("scroll", sync);
+      ta.addEventListener("keydown", function (e) { edKeys(e, ta, toast); });
+      paint();
+      return { ta: ta, lang: s.lang, start: s.start, paint: paint };
+    });
+    function code(lang) { for (var i = 0; i < panes.length; i++) if (panes[i].lang === lang) return panes[i].ta.value; return ""; }
+    function render() { rendered = true; frame.srcdoc = buildDoc(code("html"), code("css"), boxOn); }
+    function save() { var o = {}; panes.forEach(function (p) { o[p.lang] = p.ta.value; }); store.set("wg-ed-" + id, o); }
+    function schedule() { clearTimeout(timer); timer = setTimeout(function () { render(); save(); }, 350); }
+
+    $$(".ed-tabs button", box).forEach(function (b, i) {
+      b.addEventListener("click", function () {
+        $$(".ed-tabs button", box).forEach(function (o, k) { o.setAttribute("aria-selected", k === i ? "true" : "false"); });
+        $$(".ed-code", box).forEach(function (p, k) { p.hidden = k !== i; });
+        panes[i].ta.focus();
+      });
+    });
+    var resetBtn = $(".ed-reset", box);
+    resetBtn.addEventListener("click", function () {
+      if (!armed) {
+        armed = true; resetBtn.textContent = "Click again to reset";
+        setTimeout(function () { armed = false; resetBtn.textContent = "Reset"; }, 3000);
+        return;
+      }
+      armed = false; resetBtn.textContent = "Reset";
+      panes.forEach(function (p) { p.ta.value = p.start; p.paint(); });
+      try { localStorage.removeItem("wg-ed-" + id); } catch (e) {}
+      if (sentEl) sentEl.innerHTML = '<p class="small" style="margin:0">Fill in the form and press its submit button. What the browser would send shows up here.</p>';
+      render();
+    });
+    var bx = $(".ed-boxes", box);
+    if (bx) bx.addEventListener("change", function () { boxOn = bx.checked; render(); });
+
+    frame.addEventListener("load", function () {
+      if (!rendered) return;
+      var d;
+      try { d = frame.contentDocument; } catch (e) { return; }
+      if (!d || !d.body) return;
+      hookPreview(d, toast, sentEl);
+      if (opt.tab) { var t = (d.title || "").trim(); tt.textContent = t || "(no title)"; tt.classList.toggle("none", !t); }
+      if (outEl) paintOutline(d, outEl);
+      if (CHECKS[id]) runChallenge(id, d, code("html"));
+    });
+    if ("IntersectionObserver" in window) {
+      var obs = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { obs.disconnect(); render(); } }, { rootMargin: "500px 0px" });
+      obs.observe(box);
+    } else render();
+  }
+  $$(".ed").forEach(makeEditor);
+
+  /* ---------- layers: HTML, CSS, JS ---------- */
+  (function () {
+    var mini = $("#layerMini"), say = $("#layerSay"), mode = "html";
+    mini.innerHTML = miniPage();
+    var dice = $$(".m-img", mini), res = $(".m-result", mini);
+    var SAY = {
+      html: "HTML only. Everything is there: a heading, two images, some text and two buttons, in the browser's plain default style. Click a button. Nothing happens.",
+      css: "Same HTML, plus CSS: colours, sizes, a white card, everything centred. The buttons look ready, but still do nothing.",
+      js: "Now the JavaScript is connected. Click the buttons. The HTML and CSS didn't change at all."
+    };
+    function paint() {
+      mini.className = "mini" + (mode === "html" ? "" : " styled");
+      say.textContent = SAY[mode];
+      $$("#layerSeg button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-mode") === mode ? "true" : "false"); });
+      if (mode !== "js") { dice[0].innerHTML = dieSVG(1); dice[1].innerHTML = dieSVG(1); dice[1].style.display = ""; res.textContent = "Roll the dice!"; }
+    }
+    function roll(n) {
+      if (mode !== "js") { say.textContent = "Nothing happens. Without JavaScript, a button is only a button."; return; }
+      var a = 1 + Math.floor(Math.random() * 6), b = 1 + Math.floor(Math.random() * 6);
+      dice[0].innerHTML = dieSVG(a);
+      dice[1].style.display = n === 1 ? "none" : "";
+      if (n === 2) { dice[1].innerHTML = dieSVG(b); res.textContent = a + " + " + b + " = " + (a + b); } else res.textContent = a;
+    }
+    $(".m-b1", mini).addEventListener("click", function () { roll(1); });
+    $(".m-b2", mini).addEventListener("click", function () { roll(2); });
+    $$("#layerSeg button").forEach(function (b) { b.addEventListener("click", function () { mode = b.getAttribute("data-mode"); paint(); }); });
+    paint();
+  })();
+
+  /* ---------- anatomy ---------- */
+  (function () {
+    var box = $("#anat"), say = $("#anatSay");
+    var TEXT = {
+      element: "The <strong>element</strong> is the whole thing: opening tag, content and closing tag together.",
+      open: "The <strong>opening tag</strong> starts the element. It holds the tag name and all the attributes.",
+      name: "The <strong>tag name</strong> says what this is. <code>a</code> means anchor, a link. The closing tag repeats it after a slash.",
+      attr: "<strong>Attributes</strong> add extra information. They only go in the opening tag, as <code>name=\"value\"</code> pairs separated by spaces.",
+      value: "The <strong>value</strong> sits in quotes. <code>href</code> says where the link goes. <code>target=\"_blank\"</code> opens it in a new tab.",
+      content: "The <strong>content</strong> is what shows on the page. Here, the words you click.",
+      close: "The <strong>closing tag</strong> ends the element: the same name, with a <code>/</code> in front."
+    };
+    function lit(p) {
+      box.classList.toggle("dim", !!p);
+      $$("span[data-p]", box).forEach(function (s) { s.classList.toggle("lit", !!p && (p === "element" || s.getAttribute("data-p").split(" ").indexOf(p) >= 0)); });
+      $$("#anatKeys button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-p") === p ? "true" : "false"); });
+      say.innerHTML = TEXT[p];
+    }
+    $$("#anatKeys button").forEach(function (b) { b.addEventListener("click", function () { lit(b.getAttribute("data-p")); }); });
+    $$("span[data-p]", box).forEach(function (s) { s.addEventListener("click", function () { lit(s.getAttribute("data-p").split(" ").pop()); }); });
+  })();
+
+  /* ---------- viewport phones ---------- */
+  (function () {
+    function page(vp) {
+      return '<!DOCTYPE html><html><head><meta charset="utf-8">' + (vp ? '<meta name="viewport" content="width=device-width, initial-scale=1.0">' : "") +
+        "<style>body{font-family:Arial,sans-serif;margin:14px;color:#1a1a1a}h1{font-size:28px;margin:0 0 8px}p{font-size:16px;line-height:1.45}" +
+        "button{font-size:16px;padding:8px 14px;margin:0 4px 6px 0;background:#2c3e50;color:#fff;border:0;border-radius:5px}</style></head>" +
+        "<body><h1>Dice Roll</h1><p>Roll one die or two. Your last ten rolls show up below the buttons.</p><button>Roll 1 Die</button><button>Roll 2 Dice</button></body></html>";
+    }
+    var W = 210, H = 380, S = W / 980;
+    var no = document.createElement("iframe");
+    no.setAttribute("sandbox", ""); no.title = "A phone without the viewport tag";
+    no.style.width = "980px"; no.style.height = Math.round(H / S) + "px"; no.style.transform = "scale(" + S + ")";
+    no.srcdoc = page(false);
+    $("#phoneNo").appendChild(no);
+    var yes = document.createElement("iframe");
+    yes.setAttribute("sandbox", ""); yes.title = "A phone with the viewport tag";
+    yes.style.width = W + "px"; yes.style.height = H + "px";
+    yes.srcdoc = page(true);
+    $("#phoneYes").appendChild(yes);
+  })();
+
+  /* ---------- charset ---------- */
+  (function () {
+    var inp = $("#encIn"), ok = $("#encOk"), bad = $("#encBad"), dec = null;
+    try { dec = new TextDecoder("windows-1252"); } catch (e) { dec = null; }
+    function run() {
+      ok.textContent = inp.value;
+      bad.textContent = dec ? dec.decode(new TextEncoder().encode(inp.value)) : "(this browser can't show the wrong guess)";
+    }
+    inp.addEventListener("input", run);
+    run();
+  })();
+
+  /* ---------- path finder ---------- */
+  (function () {
+    var FILES = ["index.html", "about.html", "css/style.css", "images/logo.svg", "images/campus.jpg", "projects/dice-roll/index.html", "projects/dice-roll/style.css", "projects/dice-roll/images/dice1.svg"];
+    var ROWS = [["my-site/", "", 0], ["index.html", "index.html", 1], ["about.html", "about.html", 1], ["css/", "css", 1], ["style.css", "css/style.css", 2],
+      ["images/", "images", 1], ["logo.svg", "images/logo.svg", 2], ["campus.jpg", "images/campus.jpg", 2], ["projects/", "projects", 1], ["dice-roll/", "projects/dice-roll", 2],
+      ["index.html", "projects/dice-roll/index.html", 3], ["style.css", "projects/dice-roll/style.css", 3], ["images/", "projects/dice-roll/images", 3], ["dice1.svg", "projects/dice-roll/images/dice1.svg", 4]];
+    var from = $("#pfFrom"), to = $("#pfTo");
+    FILES.forEach(function (f) { if (/\.html$/.test(f)) from.add(new Option(f, f)); to.add(new Option(f, f)); });
+    from.value = "projects/dice-roll/index.html"; to.value = "images/logo.svg";
+    function folder(parts) { return "<code>" + (parts.length ? parts.join("/") + "/" : "my-site/") + "</code>"; }
+    function paint() {
+      var A = from.value.split("/").slice(0, -1), B = to.value.split("/"), file = B.pop(), i = 0;
+      while (i < A.length && i < B.length && A[i] === B[i]) i++;
+      var ups = A.length - i, down = B.slice(i);
+      var path = new Array(ups + 1).join("../") + down.concat(file).join("/");
+      $("#pfOut").textContent = path;
+      var here = A.slice(), steps = ["Start in the page's own folder, " + folder(here) + "."];
+      for (var k = 0; k < ups; k++) { here.pop(); steps.push("<code>../</code> goes up one folder, to " + folder(here) + "."); }
+      down.forEach(function (dname) { here.push(dname); steps.push("<code>" + esc(dname) + "/</code> goes down into " + folder(here) + "."); });
+      steps.push("Then pick the file, <code>" + esc(file) + "</code>.");
+      $("#pfSteps").innerHTML = "<li>" + steps.join("</li><li>") + "</li>";
+      $("#pfNote").innerHTML = from.value === to.value ? "That's the page itself. A link to the same page just reloads it." :
+        "A path starting from the top, <code>/" + esc(to.value) + "</code>, also works on a normal website. On GitHub Pages it starts from <code>vasavi.github.io/</code>, outside your repo folder, so stick to the relative path (1.7).";
+      var via = {}, common = A.slice(0, i);
+      via[common.join("/")] = true;
+      for (var u = i; u < A.length; u++) via[A.slice(0, u + 1).join("/")] = true;
+      for (var v = 0; v < down.length; v++) via[common.concat(down.slice(0, v + 1)).join("/")] = true;
+      $("#pfTree").innerHTML = ROWS.map(function (r) {
+        var cls = r[1] === from.value ? "from" : r[1] === to.value ? "to" : via[r[1]] ? "via" : "";
+        var tag = cls === "from" ? "  <small>this page</small>" : cls === "to" ? "  <small>wants this</small>" : "";
+        return '<span class="pf-row ' + cls + '">' + new Array(r[2] + 1).join("    ") + esc(r[0]) + tag + "</span>";
+      }).join("");
+    }
+    from.addEventListener("change", paint);
+    to.addEventListener("change", paint);
+    paint();
+  })();
+
+  /* ---------- input gallery ---------- */
+  (function () {
+    $$("#gal .gi").forEach(function (gi) {
+      var ctrls = $$(".gi-live input, .gi-live select, .gi-live textarea", gi), out = $(".gi-val", gi);
+      function show() {
+        var c = ctrls[0], v;
+        if (c.type === "checkbox") v = c.checked ? 'sends "on"' : "sends nothing while unticked";
+        else if (c.type === "radio") { var r = ctrls.filter(function (x) { return x.checked; })[0]; v = r ? 'value: "' + r.value + '"' : "nothing picked"; }
+        else if (c.type === "file") v = c.files && c.files.length ? 'file: "' + c.files[0].name + '"' : "no file chosen";
+        else v = 'value: "' + c.value.replace(/\n/g, "\\n") + '"' + (c.validity && !c.validity.valid ? "  (not valid yet)" : "");
+        out.textContent = v;
+      }
+      ctrls.forEach(function (c) { c.addEventListener("input", show); c.addEventListener("change", show); });
+      show();
+    });
+  })();
+
+  /* ---------- semantic demo ---------- */
+  (function () {
+    var CODE = {
+      div: '<div class="top">\n  <div class="logo">Vasavi\'s Blog</div>\n  <div class="menu">\n    <a href="#">Home</a> <a href="#">Posts</a>\n  </div>\n</div>\n<div class="content">\n  <div class="post">\n    <div class="title">My first website</div>\n    <p>...</p>\n  </div>\n  <div class="post">\n    <div class="title">Learning Git</div>\n    <p>...</p>\n  </div>\n</div>\n<div class="side">About me</div>\n<div class="bottom">2026 Vasavi</div>',
+      sem: "<header>\n  <h1>Vasavi's Blog</h1>\n  <nav>\n    <a href=\"#\">Home</a> <a href=\"#\">Posts</a>\n  </nav>\n</header>\n<main>\n  <article>\n    <h2>My first website</h2>\n    <p>...</p>\n  </article>\n  <article>\n    <h2>Learning Git</h2>\n    <p>...</p>\n  </article>\n</main>\n<aside>About me</aside>\n<footer>2026 Vasavi</footer>"
+    };
+    var MAP = {
+      div: ["div", "div", "div", "div", "div", "div", "div"],
+      sem: ["header", "nav", "main", "article", "article", "aside", "footer"]
+    };
+    var SR = {
+      div: "<b>A screen reader can jump to</b><p style=\"margin:0\">Nothing. There are 10 divs and no landmarks, so it has to read everything from the top.</p>",
+      sem: "<b>A screen reader can jump to</b><ul><li>Banner, the header</li><li>Navigation, the nav</li><li>Main, with 2 articles</li><li>Complementary, the aside</li><li>Content info, the footer</li></ul>"
+    };
+    function paint(mode) {
+      var m = MAP[mode], map = $("#semMap");
+      $("#semCode").innerHTML = hlHTML(CODE[mode]);
+      map.className = "wmap" + (mode === "sem" ? " sem-on" : "");
+      map.innerHTML = '<div class="wm wm-h">' + m[0] + '</div><div class="wm wm-n">' + m[1] + '</div><div class="wm wm-m"><span>' + m[2] + '</span><div class="wm">' + m[3] + '</div><div class="wm">' + m[4] + '</div></div><div class="wm wm-a">' + m[5] + '</div><div class="wm wm-f">' + m[6] + "</div>";
+      $("#semSr").innerHTML = SR[mode];
+      $$("#semSeg button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-mode") === mode ? "true" : "false"); });
+    }
+    $$("#semSeg button").forEach(function (b) { b.addEventListener("click", function () { paint(b.getAttribute("data-mode")); }); });
+    paint("div");
+  })();
+
+  /* ---------- id or class ---------- */
+  (function () {
+    var items = $$("#idClass .oc-item"), score = $("#idClassScore"), right = 0, answered = 0;
+    items.forEach(function (it) {
+      var ok = it.getAttribute("data-ok");
+      $$("button", it).forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (it.classList.contains("right") || it.classList.contains("wrong")) return;
+          var good = b.getAttribute("data-pick") === ok;
+          it.classList.add(good ? "right" : "wrong");
+          var why = $(".oc-why", it);
+          why.innerHTML = "<b>" + (good ? "Right. " : "Not quite. ") + "It's " + (ok === "id" ? "an id" : "a class") + ".</b> " + why.innerHTML;
+          why.hidden = false;
+          $$("button", it).forEach(function (o) { o.disabled = true; });
+          answered++;
+          if (good) right++;
+          score.textContent = right + " of " + answered + " right" + (answered === items.length ? "." : "");
+        });
+      });
+    });
+  })();
+
+  /* ---------- spot the bug ---------- */
+  function prettyDom(node, depth, out) {
+    Array.prototype.forEach.call(node.childNodes, function (n) {
+      var pad = new Array(depth + 1).join("  ");
+      if (n.nodeType === 3) { var t = n.data.replace(/\s+/g, " ").trim(); if (t) out.push(pad + esc(t)); return; }
+      if (n.nodeType !== 1) return;
+      var tag = n.tagName.toLowerCase();
+      var open = "<" + tag + Array.prototype.map.call(n.attributes, function (a) { return " " + a.name + '="' + a.value.replace(/&/g, "&amp;").replace(/"/g, "&quot;") + '"'; }).join("") + ">";
+      if (VOID_RE.test(tag)) { out.push(pad + open); return; }
+      var kids = Array.prototype.filter.call(n.childNodes, function (c) { return c.nodeType === 1 || (c.nodeType === 3 && c.data.trim()); });
+      if (!kids.length) { out.push(pad + open + "</" + tag + ">"); return; }
+      if (kids.length === 1 && kids[0].nodeType === 3) { out.push(pad + open + esc(kids[0].data.replace(/\s+/g, " ").trim()) + "</" + tag + ">"); return; }
+      out.push(pad + open);
+      prettyDom(n, depth + 1, out);
+      out.push(pad + "</" + tag + ">");
+    });
+    return out;
+  }
+  (function () {
+    var BUGS = [
+      { code: ["<h2>My hobbies</h2>", "<p>I love <strong>coding <em>and music</strong></em>.</p>", "<p>And cricket.</p>"], bug: 1,
+        why: "The tags cross. <code>&lt;em&gt;</code> opened inside <code>&lt;strong&gt;</code>, so it has to close first: <code>&lt;/em&gt;&lt;/strong&gt;</code>. The browser repaired it this time, but you can't count on its guesses." },
+      { code: ["<h2>Contact</h2>", "<p>Email me at", "  <div>vasavi@example.com</div>", "</p>"], bug: 2,
+        why: "A <code>&lt;p&gt;</code> can't contain a <code>&lt;div&gt;</code>. The browser closes the paragraph just before the div, and the leftover <code>&lt;/p&gt;</code> becomes a new, empty paragraph." },
+      { code: ['<div class="dice">', '  <img src="images/dice1.svg">', '  <img src="images/dice2.svg" alt="Dice showing 2">', "</div>"], bug: 1,
+        why: "The first image has no <code>alt</code>. The browser doesn't mind, but a screen reader may read out the file name, and if the file is missing, nothing explains what should be there." },
+      { code: ['<p id="result">Roll the dice!</p>', '<button id="btn1">Roll 1 Die</button>', '<p id="result">Last roll: 4</p>'], bug: 2,
+        why: "<code>id=\"result\"</code> appears twice. The DOM looks perfectly normal, which is what makes this dangerous: <code>getElementById(\"result\")</code> only ever finds the first one." },
+      { code: ["<ul>", "  My favourite fruits", "  <li>Mango</li>", "  <li>Guava</li>", "</ul>"], bug: 1,
+        why: "Only <code>&lt;li&gt;</code> may sit directly inside <code>&lt;ul&gt;</code>. Put the title in a heading or a <code>&lt;p&gt;</code> above the list." },
+      { code: ["<nav>", '  <a href="index.html">Home</a>', '  <a href="about.html>About</a>', '  <a href="contact.html">Contact</a>', "</nav>"], bug: 2,
+        why: "A closing quote is missing after <code>about.html</code>. The browser keeps reading the href until the next quote it finds, so the About link vanishes and Contact ends up with a broken href." },
+      { code: ["<h1>Dice Roll", "<p>Click a button to roll.</p>", "<button>Roll</button>"], bug: 0,
+        why: "<code>&lt;/h1&gt;</code> is missing, so the heading never ends. The paragraph and the button end up inside the h1, all in giant bold text." }
+    ];
+    var wrap = $("#bugs"), scoreEl = $("#bugScore"), found = 0, tries = 0;
+    BUGS.forEach(function (b, n) {
+      var el = document.createElement("div");
+      el.className = "bug";
+      el.innerHTML = '<p class="bug-n">Bug ' + (n + 1) + " of " + BUGS.length + '</p><div class="bug-code">' +
+        b.code.map(function (l, i) { return '<button type="button" class="bug-line" data-i="' + i + '">' + hlHTML(l) + "</button>"; }).join("") +
+        '</div><p class="bug-msg" aria-live="polite"></p><div class="bug-ans" hidden><p class="bug-why"></p><p class="raw-h">What the browser actually built</p><pre class="snip"></pre></div>';
+      wrap.appendChild(el);
+      var msg = $(".bug-msg", el);
+      $$(".bug-line", el).forEach(function (line) {
+        line.addEventListener("click", function () {
+          if (el.classList.contains("solved")) return;
+          tries++;
+          if (+line.getAttribute("data-i") !== b.bug) { line.classList.add("miss"); msg.textContent = "Not this line. Look again."; return; }
+          line.classList.add("hit");
+          el.classList.add("solved");
+          $$(".bug-line", el).forEach(function (x) { x.disabled = true; });
+          msg.textContent = "";
+          $(".bug-why", el).innerHTML = "<b>Found it.</b> " + b.why;
+          var body = new DOMParser().parseFromString("<!DOCTYPE html><body>" + b.code.join("\n"), "text/html").body;
+          $(".snip", el).innerHTML = hlHTML(prettyDom(body, 0, []).join("\n"));
+          $(".bug-ans", el).hidden = false;
+          found++;
+          scoreEl.textContent = "Found " + found + " of " + BUGS.length + (found === BUGS.length ? " in " + tries + " clicks." : ".");
+        });
+      });
+    });
+  })();
+
+  /* ---------- mini Elements panel ---------- */
+  (function () {
+    var frame = $("#elpFrame"), treeEl = $("#elpTree"), info = $("#elpInfo"), hl = $("#elpHl");
+    var pickBtn = $("#elpPick"), delBtn = $("#elpDel"), resetBtn = $("#elpReset");
+    var css = "body{font-family:Arial,sans-serif;background:#eef2f7;text-align:center;margin:0;padding:14px}" +
+      ".container{max-width:500px;margin:0 auto;padding:12px;background:#fff;border-radius:10px}" +
+      "h1{margin:4px 0 8px;font-size:26px}.dice img{width:64px;margin:6px}#result{font-size:20px;font-weight:bold;margin:8px 0}" +
+      "button{padding:8px 14px;margin:4px;font-size:14px;color:#fff;background:#2c3e50;border:0;border-radius:5px}" +
+      "h2{font-size:18px;margin:12px 0 4px}#history{list-style:none;padding:0;margin:0}#history li{padding:4px;border-bottom:1px solid #ddd}";
+    var PAGE = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Dice Roll</title><style>' + css + "</style></head><body>" +
+      '<div class="container"><h1>Dice Roll</h1><div class="dice"><img id="dice1" src="' + VFS["images/dice4.svg"] + '" alt="Dice"><img id="dice2" src="' + VFS["images/dice2.svg"] + '" alt="Dice"></div>' +
+      '<p id="result">4 + 2 = 6</p><button id="btn1">Roll 1 Die</button><button id="btn2">Roll 2 Dice</button><h2>History</h2><ul id="history"><li>4 + 2 = 6</li><li>3</li></ul></div></body></html>';
+    var d = null, sel = null, picking = false, rows = [];
+    function label(el) {
+      var s = el.tagName.toLowerCase();
+      if (el.id) s += "#" + el.id;
+      if (el.classList.length) s += "." + Array.prototype.join.call(el.classList, ".");
+      return s;
+    }
+    function attrs(el) {
+      return Array.prototype.map.call(el.attributes, function (a) {
+        var v = /^data:/.test(a.value) ? (VFSR[a.value] || "data:…") : a.value;
+        return ' <span class="t-attr">' + esc(a.name) + '</span><span class="t-dim">="</span><span class="t-str">' + esc(v) + '</span><span class="t-dim">"</span>';
+      }).join("");
+    }
+    function row(el, depth, kind) {
+      var r = document.createElement("div");
+      r.className = "elp-row";
+      r.style.paddingLeft = (10 + depth * 16) + "px";
+      r._el = el; r._kind = kind;
+      rows.push(r);
+      return r;
+    }
+    function txt(node) {
+      var s = document.createElement("span");
+      s.className = "elp-txt"; s.contentEditable = "true"; s.spellcheck = false;
+      s.textContent = node.data.trim();
+      s.addEventListener("input", function () { node.data = s.textContent; place(sel); if (sel) info.textContent = label(sel) + " · " + size(sel); });
+      s.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); s.blur(); } });
+      return s;
+    }
+    function walk(el, depth) {
+      var tag = el.tagName.toLowerCase();
+      if (tag === "head") { var h = row(null, depth, "head"); h.classList.add("head"); h.textContent = "<head>…</head>"; return; }
+      var kids = Array.prototype.filter.call(el.childNodes, function (c) { return c.nodeType === 1 || (c.nodeType === 3 && c.data.trim()); });
+      var open = '<span class="t-dim">&lt;</span><span class="t-key">' + tag + "</span>" + attrs(el) + '<span class="t-dim">&gt;</span>';
+      var close = '<span class="t-dim">&lt;/</span><span class="t-key">' + tag + '</span><span class="t-dim">&gt;</span>';
+      var r = row(el, depth, "open");
+      if (VOID_RE.test(tag)) { r.innerHTML = open; return; }
+      if (kids.length === 1 && kids[0].nodeType === 3) { r.innerHTML = open; r.appendChild(txt(kids[0])); r.insertAdjacentHTML("beforeend", close); return; }
+      r.innerHTML = open + (kids.length ? "" : close);
+      kids.forEach(function (k) {
+        if (k.nodeType === 1) walk(k, depth + 1);
+        else row(el, depth + 1, "text").appendChild(txt(k));
+      });
+      if (kids.length) row(el, depth, "close").innerHTML = close;
+    }
+    function build() {
+      rows = [];
+      treeEl.innerHTML = "";
+      walk(d.documentElement, 0);
+      rows.forEach(function (r) { treeEl.appendChild(r); });
+      mark();
+    }
+    function mark() { rows.forEach(function (r) { r.classList.toggle("sel", !!sel && r._el === sel && (r._kind === "open" || r._kind === "close")); }); }
+    function size(el) { var b = el.getBoundingClientRect(); return Math.round(b.width) + " × " + Math.round(b.height) + " px"; }
+    function place(el) {
+      if (!el || !d || el === d.documentElement || !el.isConnected) { hl.hidden = true; return; }
+      var b = el.getBoundingClientRect();
+      hl.hidden = false;
+      hl.style.left = (frame.offsetLeft + b.left) + "px";
+      hl.style.top = (frame.offsetTop + b.top) + "px";
+      hl.style.width = b.width + "px";
+      hl.style.height = b.height + "px";
+      hl.classList.toggle("below", b.top < 24);
+      $("span", hl).textContent = label(el) + "  " + Math.round(b.width) + " × " + Math.round(b.height);
+    }
+    function select(el) {
+      sel = el;
+      mark();
+      place(el);
+      delBtn.disabled = !el || el === d.body || el === d.documentElement;
+      info.textContent = el ? label(el) + " · " + size(el) : "Nothing selected.";
+    }
+    function del() {
+      if (!sel || sel === d.body || sel === d.documentElement) return;
+      var gone = label(sel);
+      sel.remove();
+      build();
+      select(null);
+      info.textContent = "Deleted " + gone + ". Press Reset page to bring it back, like reloading.";
+    }
+    treeEl.tabIndex = 0;
+    treeEl.addEventListener("mouseover", function (e) { var r = e.target.closest(".elp-row"); if (r && r._el) place(r._el); });
+    treeEl.addEventListener("mouseleave", function () { place(sel); });
+    treeEl.addEventListener("click", function (e) { var r = e.target.closest(".elp-row"); if (r && r._el) select(r._el); });
+    treeEl.addEventListener("keydown", function (e) { if (e.key === "Delete" && e.target === treeEl) del(); });
+    delBtn.addEventListener("click", del);
+    pickBtn.addEventListener("click", function () {
+      picking = !picking;
+      pickBtn.setAttribute("aria-pressed", picking ? "true" : "false");
+      if (!picking) place(sel);
+    });
+    resetBtn.addEventListener("click", function () { frame.srcdoc = PAGE; });
+    window.addEventListener("resize", function () { place(sel); });
+    frame.addEventListener("load", function () {
+      d = frame.contentDocument;
+      if (!d || !d.body) return;
+      d.addEventListener("mouseover", function (e) { if (picking && e.target.nodeType === 1) place(e.target); });
+      d.addEventListener("click", function (e) {
+        if (!picking) return;
+        e.preventDefault();
+        picking = false;
+        pickBtn.setAttribute("aria-pressed", "false");
+        select(e.target);
+        var r = rows.filter(function (x) { return x._el === e.target && x._kind === "open"; })[0];
+        if (r) treeEl.scrollTop = r.offsetTop - treeEl.clientHeight / 2;
+      }, true);
+      d.addEventListener("scroll", function () { place(sel); });
+      build();
+      select(null);
+    });
+    frame.srcdoc = PAGE;
+  })();
+
+  /* ---------- name that tag ---------- */
+  (function () {
+    var POOL = [
+      ["The main title of the page", "h1", ["title", "header", "head"]],
+      ["The text on the browser tab", "title", ["h1", "meta", "header"]],
+      ["A link to another page", "a", ["link", "nav", "button"]],
+      ["Loads your CSS file", "link", ["style", "a", "script"]],
+      ["A list where the order matters, like steps", "ol", ["ul", "li", "dl"]],
+      ["One item in a list", "li", ["ul", "dt", "td"]],
+      ["A line break inside a paragraph", "br", ["hr", "p", "pre"]],
+      ["A one-line box the user types into", "input", ["textarea", "form", "label"]],
+      ["The caption text for a form field", "label", ["caption", "legend", "title"]],
+      ["The site's main menu of links", "nav", ["menu", "header", "ul"]],
+      ["Text that is important", "strong", ["b", "em", "mark"]],
+      ["A header cell in a table", "th", ["td", "thead", "tr"]],
+      ["A picture with a caption below it", "figure", ["img", "picture", "caption"]],
+      ["Side content, like an about-me box", "aside", ["section", "div", "footer"]],
+      ["A post or card that makes sense on its own", "article", ["section", "div", "main"]],
+      ["A short piece of code inside a sentence", "code", ["pre", "kbd", "script"]],
+      ["Several lines of user input", "textarea", ["input", "pre", "p"]],
+      ["Information for the browser, like the charset", "meta", ["head", "link", "title"]],
+      ["A block box with no meaning, only for styling", "div", ["section", "main", "article"]],
+      ["Inline text with no meaning, only for styling", "span", ["em", "small", "mark"]]
+    ];
+    var qEl = $("#gameQ"), optsEl = $("#gameOpts"), stepEl = $("#gameStep"), scoreEl = $("#gameScore"), bestEl = $("#gameBest"), startBtn = $("#gameStart");
+    var q = [], i = 0, score = 0, best = store.get("wg-game", 0);
+    function shuffle(a) { for (var k = a.length - 1; k > 0; k--) { var j = Math.random() * (k + 1) | 0, t = a[k]; a[k] = a[j]; a[j] = t; } return a; }
+    function show() {
+      var item = q[i];
+      stepEl.textContent = "Question " + (i + 1) + " of " + q.length;
+      scoreEl.textContent = "Score " + score;
+      qEl.textContent = item[0];
+      optsEl.innerHTML = shuffle([item[1]].concat(item[2])).map(function (o) { return '<button type="button" data-t="' + o + '">&lt;' + o + "&gt;</button>"; }).join("");
+      $$("button", optsEl).forEach(function (b) {
+        b.addEventListener("click", function () {
+          var ok = b.getAttribute("data-t") === item[1];
+          if (ok) score++;
+          $$("button", optsEl).forEach(function (o) { o.disabled = true; if (o.getAttribute("data-t") === item[1]) o.classList.add("right"); });
+          if (!ok) b.classList.add("wrong");
+          scoreEl.textContent = "Score " + score;
+          setTimeout(function () { i++; if (i < q.length) show(); else end(); }, ok ? 700 : 1600);
+        });
+      });
+    }
+    function end() {
+      if (score > best) { best = score; store.set("wg-game", best); }
+      qEl.textContent = score === q.length ? "10 out of 10. Every tag right." : "You got " + score + " out of " + q.length + ".";
+      optsEl.innerHTML = "";
+      stepEl.textContent = "Finished";
+      bestEl.textContent = "Best " + best + " of 10";
+      startBtn.hidden = false;
+      startBtn.textContent = "Play again";
+    }
+    bestEl.textContent = best ? "Best " + best + " of 10" : "";
+    qEl.textContent = "Ten questions. Press Start.";
+    startBtn.addEventListener("click", function () { q = shuffle(POOL.slice()).slice(0, 10); i = 0; score = 0; startBtn.hidden = true; show(); });
   })();
 })();
 </script>

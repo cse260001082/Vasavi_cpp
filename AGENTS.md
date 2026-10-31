@@ -25,7 +25,7 @@ Vasavi Files/
 │   │       └── study_guide.html ← Interview revision: every line explained, trace, question bank
 │   ├── Playground/            ← Her own experiments (vasavi.html)
 │   └── Web Guide/
-│       └── html_css_guide.html ← How the web works, HTML, CSS: demos, quick checks, interview lines (built part by part; Part 1 ready)
+│       └── html_css_guide.html ← How the web works, HTML, CSS: demos, live editors, challenges, interview lines (built part by part; Parts 1–2 ready)
 ├── Google STEP/
 │   ├── README.html            ← Visual guide to Google STEP (pipeline, life, perks)
 │   ├── sprint_tracker.html    ← Interactive 24-day winter DSA sprint tracker
@@ -68,6 +68,7 @@ Vasavi Files/
 ## Area notes
 - **C++ practice and OOP practice:** do the OOP exercises in order, `01` to `15`. The checklist is in `CPP Coding/OOPs/practice/README.md`.
 - **Dice Roll:** it's her induction project, and code she can't explain counts against her. Any web snippet you show her uses the same plain style as her project: short names, no frameworks or CDNs, no features beyond what the task asks. For a practice task, point her to the ✓/✗ hint in the check panel first. Never paste from the `<details>` answers in `practice.md`; she types everything herself.
+- **Web Guide:** the challenges in `Development/Web Guide/html_css_guide.html` tick themselves as she types. When she's stuck on one, point her to the guide's own "Show a hint" button first, then add a hint of your own. Her editor code and ticks are saved in her browser, not in the repo, so ask her to paste her code if you need to see it.
 - **Google STEP sprint:** the same guide-don't-solve rule applies to the DSA problems. Her sprint progress is saved in her browser, not in the repo, so ask her which day she's on.
 - **Git:** after she finishes a step, nudge her to commit with a message in her own words (`githubCommands.md`).
 
