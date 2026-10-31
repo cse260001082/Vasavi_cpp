@@ -93,7 +93,8 @@ File: [html_css_guide.html](Development/Web%20Guide/html_css_guide.html) (double
 *Concepts: how the web works (URLs, DNS, HTTP, HTTPS, rendering), then HTML and CSS*
 - [ ] **Part 1:** How the web works
 - [ ] **Part 2:** HTML, with live editors and 8 challenges
-- Parts 3 (CSS) and 4 (wrap-up) are on the way
+- [ ] **Part 3, first half:** how CSS thinks: selectors, the cascade, colours, units, the box model. 6 challenges
+- The second half of Part 3 (layout and motion) and Part 4 (wrap-up) are on the way
 
 ---
 

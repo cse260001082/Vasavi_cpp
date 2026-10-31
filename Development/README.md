@@ -31,7 +31,7 @@ It is being built one part at a time:
 
 1. How the web works: client and server, URLs, DNS, HTTP, HTTPS, how the browser draws a page, and opening your page three ways. Ready.
 2. HTML: tags, the page skeleton, links and paths, images, lists, tables, forms, semantic layout, id and class, and the Elements panel. Live editors and 8 challenges. Ready.
-3. CSS. Coming next.
+3. CSS. The first half is ready: adding CSS, rules, selectors, classes, combinators, inheritance, the cascade and specificity, pseudo-classes, colours, units, the box model and margins, with 6 challenges. The second half, layout and motion, comes next.
 4. Wrap-up: cheat sheets and glossary. Coming next.
 
 ## Playground

@@ -961,6 +961,134 @@ select {
 .game-opts button.wrong { background: var(--ember-soft); border-color: var(--ember); }
 .game-meta { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .9rem; color: var(--muted); font-weight: 700; }
 
+/* ===== Part 3 ===== */
+input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
+.mini.t-night { background: #0F1222; color: #E6E6FF; font-family: "Trebuchet MS", Arial, sans-serif; text-align: center; padding: 14px; }
+.mini.t-night .m-box { max-width: 320px; margin: 0 auto; padding: 14px; background: #1B2038; border: 1px solid #39407A; border-radius: 14px; }
+.mini.t-night h1 { color: #9AE6FF; font: 700 1.45em/1.2 "Trebuchet MS", Arial, sans-serif; letter-spacing: .1em; text-transform: uppercase; margin: .3em 0 .5em; }
+.mini.t-night .m-img { width: 58px; height: 58px; margin: 6px; filter: invert(1) hue-rotate(180deg); }
+.mini.t-night .m-result { color: #FFD166; font-weight: 700; font-size: 1.1em; }
+.mini.t-night button { background: transparent; color: #9AE6FF; border: 2px solid #9AE6FF; border-radius: 999px; padding: 6px 14px; margin: 3px; font: 600 13px "Trebuchet MS", Arial, sans-serif; }
+.mini.t-paper { background: #F5EFE0; color: #3B2F2F; font-family: Georgia, serif; padding: 18px; }
+.mini.t-paper .m-box { max-width: 330px; margin: 0 auto; padding: 14px 20px; background: #FFFDF7; border: 2px solid #3B2F2F; box-shadow: 6px 6px 0 #3B2F2F; }
+.mini.t-paper h1 { font: italic 700 1.6em/1.1 Georgia, serif; color: #3B2F2F; border-bottom: 2px solid #3B2F2F; padding-bottom: 6px; margin: .2em 0 .5em; }
+.mini.t-paper .m-img { width: 52px; height: 52px; margin: 4px 8px 4px 0; transform: rotate(-6deg); }
+.mini.t-paper .m-result { font-style: italic; }
+.mini.t-paper button { background: #3B2F2F; color: #FFFDF7; border: 0; padding: 7px 12px; margin: 3px 6px 3px 0; font: 13px Georgia, serif; }
+.theme-wrap .fb-view { height: 280px; }
+.theme-code { margin-top: 12px; }
+
+/* selector playground */
+.sp-in { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.sp-in input { flex: 1 1 220px; }
+.sp-msg { min-height: 1.6em; font-weight: 700; margin: 6px 0 10px; max-width: 70ch; }
+.sp-msg span { font-weight: 400; color: var(--ink-2); }
+.sp { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 14px; align-items: start; }
+.sp-host { min-width: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.sp-tree { font: 12.5px/1.75 var(--font-mono); background: var(--code-bg); color: var(--code-fg); border-radius: 12px; padding: 8px 0; max-height: 420px; overflow: auto; min-width: 0; }
+.sp-tree div { padding-right: 12px; white-space: nowrap; }
+.sp-tree div.hit { background: rgba(255,169,70,.22); box-shadow: inset 3px 0 0 var(--ember); }
+
+/* specificity battle */
+.sb { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.sb-rule { border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; background: var(--bg); min-width: 0; }
+.sb-rule.win { border-color: var(--accent-text); box-shadow: 0 0 0 2px var(--accent-text); }
+.sb-rule.out { opacity: .6; }
+.sb-rule h4 { margin: 0 0 8px; display: flex; justify-content: space-between; gap: 8px; }
+.sb-rule h4 span { font: 700 .74rem var(--font-body); color: var(--accent-text); text-transform: uppercase; letter-spacing: .08em; }
+.sb-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 8px; }
+.sb-row input[type="text"] { flex: 1 1 140px; font-family: var(--font-mono); min-width: 0; }
+.sb-score { display: flex; gap: 6px; margin-top: 4px; }
+.sb-score span { flex: 1; text-align: center; border-radius: 8px; padding: 6px 4px 4px; background: var(--surface); border: 1px solid var(--border); font: 700 1.25rem var(--font-mono); }
+.sb-score small { display: block; font: 700 .64rem var(--font-body); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+.sb-note { font-size: .82rem; color: var(--muted); margin: 6px 0 0; min-height: 1.2em; }
+.sb-foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 14px; align-items: center; margin-top: 14px; }
+.sb-host { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.sb-verdict { font-weight: 700; margin: 0; }
+.spec-ex td:last-child { font-family: var(--font-mono); font-weight: 700; white-space: nowrap; }
+
+/* class chips */
+.cc { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.cc-stage { background: #EEF2F7; border-radius: 12px; padding: 22px; min-height: 170px; display: grid; place-items: center; }
+.cc-stage > div { font: 16px/1.4 Arial, sans-serif; color: #1A1A1A; transition: all .25s; }
+.cc-stage .card { padding: 16px; border: 1px solid #CCCCCC; background: #FFFFFF; }
+.cc-stage .highlight { background: #FFE0B5; }
+.cc-stage .big { font-size: 24px; }
+.cc-stage .round { border-radius: 16px; }
+.cc-stage .shadow { box-shadow: 0 6px 16px rgba(0,0,0,.22); }
+.cc-stage .muted { opacity: .45; }
+.cc-code { font-size: 12.5px; }
+.cc-code .off { opacity: .35; }
+.cc-attr { font: 600 .9rem var(--font-mono); background: var(--code-bg); color: var(--code-fg); border-radius: 8px; padding: 8px 12px; margin: 10px 0 0; overflow-wrap: anywhere; }
+
+/* inheritance */
+.inh { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; margin-top: 12px; }
+.inh-parent { border: 2px dashed var(--accent-text); border-radius: 12px; padding: 12px; background: var(--surface); }
+.inh-parent > * { all: revert; }
+.inh-parent > .inh-box { display: block; }
+.inh-res { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .93rem; }
+.inh-res li { border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px; background: var(--bg); }
+.inh-res li.yes { border-color: var(--accent-text); background: var(--ok-soft); }
+.inh-res li.no { border-color: var(--ember); background: var(--ember-soft); }
+.inh-res b { font-family: var(--font-mono); }
+.inh-css { margin: 0 0 10px; }
+
+/* nth-child tester */
+.nth-list { list-style: none; padding: 0; margin: 12px 0 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+.nth-list li { border: 1px solid var(--border); border-radius: 8px; padding: 10px 0; text-align: center; font: 700 1rem var(--font-mono); background: var(--bg); transition: background .2s; }
+.nth-list li.hit { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+
+/* colour mixer */
+.cm { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+.cm-sl { display: grid; gap: 10px; }
+.sl-row { display: grid; grid-template-columns: 96px minmax(0, 1fr) 62px; gap: 10px; align-items: center; font-weight: 700; font-size: .92rem; }
+.sl-row output { font: 600 .9rem var(--font-mono); text-align: right; }
+.cm-swatch { height: 170px; border-radius: 14px; border: 1px solid var(--border); background-color: #FFFFFF; background-image: conic-gradient(#CCCCCC 25%, #FFFFFF 0 50%, #CCCCCC 0 75%, #FFFFFF 0); background-size: 18px 18px; overflow: hidden; }
+.cm-swatch div { height: 100%; display: grid; grid-template-columns: 1fr 1fr; }
+.cm-swatch span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font: 700 1.1rem var(--font-body); text-align: center; line-height: 1.3; }
+.fake-browser, .frame, .cc-stage, .sp-host, .sb-host, .phone, .ed-right, .elp-right { color-scheme: light; }
+.cm-swatch span small { display: block; font-size: .8rem; font-weight: 700; }
+.cm-codes { display: grid; gap: 6px; margin-top: 12px; }
+.cm-codes code { font-size: .92rem; background: var(--code-bg); color: var(--code-fg); border-radius: 8px; padding: 6px 10px; display: block; overflow-wrap: anywhere; }
+.op-demo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 14px; border-radius: 12px; background: repeating-linear-gradient(45deg, #FFA946 0 10px, #FFEBCF 10px 20px); }
+.op-demo div { color: #FFFFFF; font: 700 .9rem var(--font-mono); padding: 22px 12px; border-radius: 10px; text-align: center; }
+
+/* units ruler */
+.ur-parent { border: 2px dashed var(--accent-text); border-radius: 10px; padding: 10px; margin-top: 14px; }
+.ur-parent > p { margin: 0 0 4px; font: 700 .8rem var(--font-body); color: var(--accent-text); }
+.ur-bar { height: 32px; border-radius: 6px; background: var(--lav); color: var(--on-lav); display: flex; align-items: center; padding: 0 10px; margin: 6px 0; white-space: nowrap; box-sizing: border-box; }
+.ur-bar span { font: 600 12.5px var(--font-mono); }
+.ur-bar b { font: 700 12.5px var(--font-mono); margin-left: auto; padding-left: 10px; }
+
+/* box model inspector */
+.bmi { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 18px; align-items: start; }
+.bmi-stage { background: repeating-linear-gradient(45deg, var(--bg) 0 8px, var(--surface) 8px 16px); border: 1px solid var(--border); border-radius: 12px; padding: 16px; overflow-x: auto; }
+.bmi-margin { display: inline-block; background: #F9CC9D; vertical-align: top; }
+.bmi-el { border-style: solid; border-color: #FDDD9B; background: #C3D08B; color: #1A1A1A; }
+.bmi-content { background: #8CB6C0; height: 70px; display: grid; place-items: center; font: 600 12px var(--font-mono); color: #1A1A1A; overflow: hidden; white-space: nowrap; }
+.bmi-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .82rem; margin-top: 10px; }
+.bmi-legend i { width: 14px; height: 14px; display: inline-block; border-radius: 3px; vertical-align: -2px; margin-right: 5px; }
+.bmi-math { font: 600 .88rem/1.6 var(--font-mono); background: var(--code-bg); color: var(--code-fg); border-radius: 10px; padding: 10px 14px; margin: 12px 0 0; white-space: pre-wrap; }
+
+/* margin shorthand */
+.msv { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; justify-items: center; max-width: 440px; margin: 14px auto 0; }
+.msv .c { grid-column: 2; grid-row: 2; background: var(--lav); color: var(--on-lav); border-radius: 10px; padding: 18px 26px; font-weight: 700; }
+.msv .t { grid-column: 2; grid-row: 1; }
+.msv .b { grid-column: 2; grid-row: 3; }
+.msv .l { grid-column: 1; grid-row: 2; justify-self: end; }
+.msv .r { grid-column: 3; grid-row: 2; justify-self: start; }
+.msv .v { text-align: center; }
+.msv .v b { display: block; font: 700 .95rem var(--font-mono); background: var(--ember-soft); border: 1px solid var(--ember); border-radius: 8px; padding: 4px 10px; }
+.msv .v small { display: block; font: 700 .68rem var(--font-body); color: var(--muted); text-transform: uppercase; letter-spacing: .06em; margin-top: 2px; }
+.ms-say { text-align: center; font-weight: 700; margin: 12px 0 0; min-height: 1.5em; }
+.ms-stage { display: flow-root; margin-top: 14px; background: repeating-linear-gradient(45deg, var(--bg) 0 8px, var(--surface) 8px 16px); border: 1px dashed var(--muted); border-radius: 10px; }
+.ms-box { width: 160px; background: var(--accent); color: var(--on-accent); border-radius: 8px; padding: 12px; font-weight: 700; text-align: center; }
+
+@media (max-width: 860px) {
+  .sp, .sb, .sb-foot, .cc, .inh, .cm, .bmi { grid-template-columns: minmax(0, 1fr); }
+  .nth-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .sl-row { grid-template-columns: 80px minmax(0, 1fr) 56px; }
+}
 @media (max-width: 860px) {
   .ed-body, .elp, .sem, .pf { grid-template-columns: minmax(0, 1fr); }
   .ed-right { border-left: 0; border-top: 1px solid var(--border); }
@@ -1033,10 +1161,10 @@ select {
       <h1>HTML and CSS from the ground up</h1>
       <p class="lede">Hi Vasavi! Before you write a single tag, this guide shows what happens when anyone opens a website. Then it teaches HTML and CSS with demos you can click, drag and edit. Go top to bottom, and tick each section once you can explain it out loud.</p>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Part 1 · Web, Part 2 · HTML</div></div>
-        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">CSS, wrap-up</div></div>
-        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 21</div><div class="meter"><i id="progBar"></i></div></div>
-        <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 8</div><div class="meter"><i id="chBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Web, HTML, CSS basics</div></div>
+        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">CSS layout, wrap-up</div></div>
+        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 33</div><div class="meter"><i id="progBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 14</div><div class="meter"><i id="chBar"></i></div></div>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -1089,8 +1217,23 @@ select {
       <li><a href="#devtools" data-sec="devtools">2.12 Elements panel</a></li>
       <li><a href="#recap2" data-sec="recap2">Recap</a></li>
     </ul>
+    <p class="rail-group">Part 3 · CSS</p>
+    <ul class="rail-list">
+      <li><a href="#cssadd" data-sec="cssadd">3.1 Adding CSS</a></li>
+      <li><a href="#rule" data-sec="rule">3.2 A CSS rule</a></li>
+      <li><a href="#selectors" data-sec="selectors">3.3 Selectors</a></li>
+      <li><a href="#classes" data-sec="classes">3.4 Classes</a></li>
+      <li><a href="#hierarchy" data-sec="hierarchy">3.5 Family tree</a></li>
+      <li><a href="#inherit" data-sec="inherit">3.6 Inheritance</a></li>
+      <li><a href="#cascade" data-sec="cascade">3.7 Who wins?</a></li>
+      <li><a href="#pseudo" data-sec="pseudo">3.8 Pseudo-classes</a></li>
+      <li><a href="#colors" data-sec="colors">3.9 Colours</a></li>
+      <li><a href="#units" data-sec="units">3.10 Units</a></li>
+      <li><a href="#boxmodel" data-sec="boxmodel">3.11 Box model</a></li>
+      <li><a href="#margins" data-sec="margins">3.12 Margin and padding</a></li>
+    </ul>
     <p class="rail-group">Coming next</p>
-    <span class="rail-soon">Part 3 · CSS <small>soon</small></span>
+    <span class="rail-soon">3.13+ Layout and motion <small>soon</small></span>
     <span class="rail-soon">Part 4 · Wrap-up <small>soon</small></span>
   </nav>
 
@@ -2921,8 +3064,1010 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
         <div class="nav-row"><button class="btn" id="gameStart" type="button">Start</button></div>
       </div>
 
-      <p>Part 3 is CSS, where all these boxes finally get their colours, sizes and layouts.</p>
+      <p>Next is <a href="#part3">Part 3, CSS</a>, where all these boxes finally get their colours, sizes and layouts.</p>
       <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap2" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- ============ PART 3 ============ -->
+    <section id="part3" class="part">
+      <p class="part-num">Part 3</p>
+      <h2>CSS: how it looks</h2>
+      <p>CSS stands for <strong>Cascading Style Sheets</strong>. HTML gave every piece of the page a name and a meaning. CSS takes those pieces and decides their colours, sizes, spacing and positions. The same HTML can look completely different with different CSS. Try it.</p>
+      <div class="theme-wrap">
+        <div class="seg" id="themeSeg" role="group" aria-label="Stylesheet">
+          <button type="button" data-t="styled" aria-pressed="true">Your style</button>
+          <button type="button" data-t="t-night" aria-pressed="false">Night</button>
+          <button type="button" data-t="t-paper" aria-pressed="false">Paper</button>
+          <button type="button" data-t="" aria-pressed="false">No CSS</button>
+        </div>
+        <div class="fake-browser" style="margin-top:12px">
+          <div class="fb-bar"><i></i><i></i><i></i><div class="fb-url">index.html + style.css</div></div>
+          <div class="fb-view"><div class="mini styled" id="themeMini"></div></div>
+        </div>
+        <pre class="snip theme-code" id="themeCode"></pre>
+      </div>
+      <p style="margin-top:14px">Not one letter of the HTML changed between those four. Only the CSS.</p>
+      <p>Part 3 comes in two halves. This first half is how CSS thinks: rules, selectors, the cascade, colours, units and the box model. The second half, coming next, is layout and motion: flexbox, grid, positioning, animation and phone-friendly design.</p>
+    </section>
+
+    <!-- 3.1 -->
+    <section id="cssadd" class="sec">
+      <p class="kicker">3.1</p>
+      <h2>Three ways to add CSS</h2>
+      <p class="hook">Where does CSS actually go? There are three places, and only one of them is a good habit.</p>
+      <ol class="steps">
+        <li><div><strong>Inline,</strong> in a <code>style</code> attribute: <code>&lt;p style="color: red;"&gt;</code>. It styles one element only, can't be reused, and mixes looks into your structure.</div></li>
+        <li><div><strong>Internal,</strong> in a <code>&lt;style&gt;</code> tag inside the <code>&lt;head&gt;</code>. It styles one page only.</div></li>
+        <li><div><strong>External,</strong> in its own file, linked with <code>&lt;link rel="stylesheet" href="style.css"&gt;</code>. One file styles every page, the browser caches it after the first visit, and the HTML stays clean. Your Dice Roll does this.</div></li>
+      </ol>
+      <p style="margin-top:14px">When they disagree, an inline style beats the other two, because it's the most specific (3.7 explains why). Between a <code>&lt;style&gt;</code> tag and a linked file, whichever comes later in the page wins.</p>
+      <div class="hint"><b>In these editors</b>The style.css tab works like your linked file. The editor connects it to the page for you, before anything you write in the HTML.</div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>The first paragraph gets blue from style.css and green from the <code>&lt;style&gt;</code> tag. Which wins? Why?</li>
+          <li>Delete the whole <code>&lt;style&gt;</code> block. Now what colour is it?</li>
+          <li>Delete the <code>style</code> attribute from the second paragraph.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-cssadd" data-title="Three ways at once" data-height="210">
+        <textarea data-lang="html">
+<style>
+  p { color: green; }
+</style>
+<p>Which colour am I?</p>
+<p style="color: crimson;">And me?</p>
+</textarea>
+        <textarea data-lang="css">
+p {
+  color: blue;
+  font-size: 20px;
+}
+</textarea>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Why is a separate style.css file usually the best choice?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Because inline styles don't work in Chrome</button><p class="why">They work everywhere. They're just hard to reuse and hard to override.</p></li>
+          <li><button type="button">Because it makes the CSS stronger</button><p class="why">A linked file isn't stronger. Inline styles actually beat it.</p></li>
+          <li><button type="button">One file styles every page, gets cached, and keeps the HTML clean</button><p class="why">Change one file and the whole site updates.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>There are three ways to add CSS: inline with the style attribute, internal with a style tag, and external with a link to a .css file. I use an external file, because one file can style every page, the browser caches it, and the HTML stays clean. Inline styles beat stylesheet rules, which also makes them hard to override later.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="cssadd" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.2 -->
+    <section id="rule" class="sec">
+      <p class="kicker">3.2</p>
+      <h2>Anatomy of a CSS rule</h2>
+      <p class="hook">Every CSS file, however long, is a list of rules with exactly the same shape.</p>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Take a rule apart</p>
+          <p class="demo-sub">Click a part name, or any piece of the rule.</p>
+        </div>
+        <div class="anat" id="canat"><span data-p="rule selector" class="t-key">h1</span><span data-p="rule"> </span><span data-p="rule block" class="t-dim">{</span><span data-p="rule block"> </span><span data-p="rule block decl prop" class="t-attr">color</span><span data-p="rule block decl" class="t-dim">:</span><span data-p="rule block decl"> </span><span data-p="rule block decl value" class="t-num">teal</span><span data-p="rule block decl semi" class="t-dim">;</span><span data-p="rule block"> </span><span data-p="rule block decl prop" class="t-attr">font-size</span><span data-p="rule block decl" class="t-dim">:</span><span data-p="rule block decl"> </span><span data-p="rule block decl value" class="t-num">32px</span><span data-p="rule block decl semi" class="t-dim">;</span><span data-p="rule block"> </span><span data-p="rule block" class="t-dim">}</span></div>
+        <div class="seg anat-keys" id="canatKeys" role="group" aria-label="Parts">
+          <button type="button" data-p="rule" aria-pressed="false">Rule</button>
+          <button type="button" data-p="selector" aria-pressed="false">Selector</button>
+          <button type="button" data-p="block" aria-pressed="false">Declaration block</button>
+          <button type="button" data-p="decl" aria-pressed="false">Declaration</button>
+          <button type="button" data-p="prop" aria-pressed="false">Property</button>
+          <button type="button" data-p="value" aria-pressed="false">Value</button>
+          <button type="button" data-p="semi" aria-pressed="false">Semicolon</button>
+        </div>
+        <p class="anat-say" id="canatSay" aria-live="polite">Click a part name, or a piece of the rule.</p>
+      </div>
+      <h3>CSS fails silently</h3>
+      <p>Like HTML, CSS never shows an error. A misspelt property, a missing semicolon or a missing brace just makes the browser skip that part and carry on. So when a style "does nothing", check three suspects first: spelling, a missing <code>;</code> and a missing <code>}</code>.</p>
+      <p>Notes for humans go between <code>/*</code> and <code>*/</code>. That's the only kind of comment CSS has.</p>
+
+      <div class="ch" data-ed="ch-rule">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 9</p><p class="ch-title">Fix the broken stylesheet</p></div><span class="ch-badge">0 of 5</span></div>
+        <div class="ch-in">
+          <p>This style.css has three small mistakes, so most of it is being ignored. Find and fix them all. Don't touch the HTML.</p>
+          <div class="ed" id="ch-rule" data-label="Challenge" data-title="Three hidden mistakes" data-height="320">
+            <textarea data-lang="css">
+h1 {
+  color: #034f46
+  font-size: 36px;
+}
+
+p {
+  colour: #555;
+  line-height: 1.6;
+
+button {
+  background: #ffa946;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 20px;
+}
+</textarea>
+            <textarea data-lang="html">
+<h1>Dice Roll</h1>
+<p>Roll one die or two.</p>
+<button>Roll</button>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Read the h1 rule slowly. Every declaration needs something at its end.</p>
+            <p class="ch-hint" hidden>One property name is spelt the British way. CSS only understands the American spelling.</p>
+            <p class="ch-hint" hidden>Count the opening and closing braces. Does every <code>{</code> have a partner?</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">What does the browser do with <code>color: red background: yellow;</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Makes the text red and ignores the background</button><p class="why">Without the semicolon, it reads the whole thing as one value for color, "red background: yellow", which is nonsense.</p></li>
+          <li><button type="button">Ignores both</button><p class="why">The color value is invalid, so the whole declaration is dropped, background included.</p></li>
+          <li><button type="button">Shows an error</button><p class="why">CSS never shows errors. It quietly skips what it can't read.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>A CSS rule is a selector followed by a declaration block in curly braces. Each declaration is a property and a value, separated by a colon and ended with a semicolon. CSS skips anything it can't understand without showing an error, so when a style doesn't apply, I check the spelling, semicolons and braces first.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="rule" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.3 -->
+    <section id="selectors" class="sec">
+      <p class="kicker">3.3</p>
+      <h2>Selectors: picking elements</h2>
+      <p class="hook">A rule is only useful if it hits the right elements. Selectors are how you aim.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Selector</th><th>Picks</th></tr></thead>
+          <tbody>
+            <tr><td><code>*</code></td><td>Every element</td></tr>
+            <tr><td><code>p</code></td><td>Every <code>&lt;p&gt;</code>. Called a type selector.</td></tr>
+            <tr><td><code>.card</code></td><td>Every element with <code>class="card"</code></td></tr>
+            <tr><td><code>#history</code></td><td>The one element with <code>id="history"</code></td></tr>
+            <tr><td><code>h1, h2</code></td><td>Every h1 and every h2. A comma makes a group.</td></tr>
+            <tr><td><code>[href]</code></td><td>Elements that have an href attribute</td></tr>
+            <tr><td><code>[type="email"]</code></td><td>Elements whose type is exactly email</td></tr>
+            <tr><td><code>.btn.big</code></td><td>Elements with both classes, btn and big. No space.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Selector playground</p>
+          <p class="demo-sub">Type any selector. Every element it matches lights up, on the page and in its tree.</p>
+        </div>
+        <div class="sp-wrap" id="sp1" data-ed="ed-sel"></div>
+      </div>
+      <div class="hint"><b>Watch out: one space changes everything</b><code>.btn.big</code> means one element that has both classes. <code>.btn .big</code>, with a space, means a .big somewhere inside a .btn. Try both in the playground.</div>
+      <div class="ed" id="ed-sel" data-title="Selectors on a real page" data-height="300">
+        <textarea data-lang="css">
+.card {
+  background: #FFA946;
+}
+</textarea>
+        <textarea data-lang="html">
+<header id="top">
+  <h1 class="title">Dice Roll</h1>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#" class="active">Play</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+<main>
+  <section class="card">
+    <h2>Roll</h2>
+    <p class="note">Press a button to roll.</p>
+    <p>Two dice give 2 to 12.</p>
+    <button class="btn">Roll 1</button>
+    <button class="btn big">Roll 2</button>
+  </section>
+  <section class="card dark">
+    <h2>History</h2>
+    <ul id="history">
+      <li>4</li>
+      <li class="best">6</li>
+      <li>2 + 5 = 7</li>
+    </ul>
+  </section>
+</main>
+<footer>
+  <p>Made by <a href="#">Vasavi</a></p>
+</footer>
+</textarea>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">Which selector matches <code>&lt;button class="btn big"&gt;</code> but not <code>&lt;button class="btn"&gt;</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>.btn.big</code></button><p class="why">No space means "has both classes". Only the first button has both.</p></li>
+          <li><button type="button"><code>.btn .big</code></button><p class="why">With a space, it looks for a .big inside a .btn. Neither button contains one.</p></li>
+          <li><button type="button"><code>.btn, .big</code></button><p class="why">A comma means "either". It matches both buttons.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Selectors choose which elements a rule styles. A type selector like p matches tags, .card matches a class, #history matches an id, and the star matches everything. A comma groups selectors, attribute selectors like [type="email"] match attributes, and .btn.big, without a space, matches elements that have both classes.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="selectors" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.4 -->
+    <section id="classes" class="sec">
+      <p class="kicker">3.4</p>
+      <h2>Classes in depth</h2>
+      <p class="hook">Your project already uses classes like <code>.container</code> and <code>.shake</code>. Classes are the tool you'll use most in CSS. Here's why.</p>
+      <ul>
+        <li><strong>One class, many elements.</strong> Write the look once and reuse it everywhere.</li>
+        <li><strong>One element, many classes.</strong> <code>class="card big round"</code> combines small rules like building blocks.</li>
+        <li><strong>Name by meaning, not by look.</strong> <code>.warning</code>, not <code>.orange-text</code>. If you later make warnings red, the name still fits.</li>
+        <li><strong>Lowercase, with dashes:</strong> <code>.dice-face</code>, <code>.roll-btn</code>.</li>
+        <li><strong>JavaScript changes looks by changing classes.</strong> Your shake animation is exactly this: <code>classList.add("shake")</code>, then <code>classList.remove("shake")</code>.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Stack classes on one element</p>
+          <p class="demo-sub">Switch classes on and off, the same way <code>classList</code> does. Rules that apply light up.</p>
+        </div>
+        <div class="seg" id="ccChips" role="group" aria-label="Classes">
+          <button type="button" data-c="card" aria-pressed="true">card</button>
+          <button type="button" data-c="highlight" aria-pressed="false">highlight</button>
+          <button type="button" data-c="big" aria-pressed="false">big</button>
+          <button type="button" data-c="round" aria-pressed="false">round</button>
+          <button type="button" data-c="shadow" aria-pressed="false">shadow</button>
+          <button type="button" data-c="muted" aria-pressed="false">muted</button>
+        </div>
+        <div class="cc" style="margin-top:12px">
+          <div>
+            <div class="cc-stage"><div id="ccEl">My Dice Roll card</div></div>
+            <p class="cc-attr" id="ccAttr"></p>
+          </div>
+          <pre class="snip cc-code" id="ccCode"></pre>
+        </div>
+        <p class="small" style="margin:10px 0 0">Turn on card and highlight together. Both set a background, and highlight wins because it comes later in the CSS. That's the cascade, in 3.7.</p>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Give the second button both <code>big</code> and <code>danger</code>.</li>
+          <li>Make a new class <code>.round</code> with <code>border-radius: 999px;</code> and add it to two buttons.</li>
+          <li>Change the colour inside <code>.danger</code>. Every danger button follows.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-classes" data-title="Build looks from classes" data-height="300">
+        <textarea data-lang="html">
+<button class="btn">Normal</button>
+<button class="btn">Make me big and red</button>
+<button class="btn ghost">Ghost</button>
+</textarea>
+        <textarea data-lang="css">
+.btn {
+  padding: 8px 16px;
+  border: 2px solid #034f46;
+  background: #034f46;
+  color: white;
+  border-radius: 6px;
+}
+.big {
+  font-size: 20px;
+  padding: 12px 24px;
+}
+.danger {
+  background: crimson;
+  border-color: crimson;
+}
+.ghost {
+  background: transparent;
+  color: #034f46;
+}
+</textarea>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">Why name a class <code>.warning</code> instead of <code>.orange</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Shorter names are faster</button><p class="why">Speed isn't the reason. Both are equally fast.</p></li>
+          <li><button type="button">If the design changes to red, <code>.warning</code> still makes sense</button><p class="why">A name that describes the look turns into a lie when the look changes.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>A class is a reusable label. Many elements can share one, and one element can have several, so I build looks from small classes like btn and big. I name classes by meaning, like warning, not by look, like orange. JavaScript changes how things look by adding and removing classes with classList, which is how my shake animation works.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="classes" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.5 -->
+    <section id="hierarchy" class="sec">
+      <p class="kicker">3.5</p>
+      <h2>Family tree: combinators</h2>
+      <p class="hook">How do you style only the links inside the menu, and leave the link in the footer alone, without adding a single class?</p>
+      <p>The DOM is a family tree (1.6). An element's <strong>parent</strong> is the element directly around it. Its <strong>children</strong> are directly inside it. Its <strong>descendants</strong> are everything inside it at any depth, and its <strong>siblings</strong> share its parent. <strong>Combinators</strong> let a selector use these relationships.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Write</th><th>Name</th><th>Picks</th></tr></thead>
+          <tbody>
+            <tr><td><code>nav a</code></td><td>Descendant, a space</td><td>Every a anywhere inside a nav</td></tr>
+            <tr><td><code>ul &gt; li</code></td><td>Child</td><td>Only li elements directly inside a ul</td></tr>
+            <tr><td><code>h2 + p</code></td><td>Next sibling</td><td>The p that comes immediately after an h2</td></tr>
+            <tr><td><code>h2 ~ p</code></td><td>Later siblings</td><td>Every p after an h2, inside the same parent</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Family selectors</p>
+          <p class="demo-sub">The same page and tree. Read the tree first, then guess what each selector will match before you click it.</p>
+        </div>
+        <div class="sp-wrap" id="sp2" data-ed="ed-sel"></div>
+      </div>
+
+      <div class="ch" data-ed="ch-sniper">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 10</p><p class="ch-title">Sniper selectors</p></div><span class="ch-badge">0 of 5</span></div>
+        <div class="ch-in">
+          <p>Change only the CSS. Make the menu links orange, but not the footer link. Make only the paragraph right after the heading italic. Give a border only to paragraphs sitting directly inside <code>.box</code>, not the one nested deeper.</p>
+          <div class="ed" id="ch-sniper" data-label="Challenge" data-title="Aim carefully" data-height="330">
+            <textarea data-lang="css">
+/* Write your rules here */
+</textarea>
+            <textarea data-lang="html">
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Play</a>
+</nav>
+<h2>Rules</h2>
+<p>I come right after the heading.</p>
+<p>I come later.</p>
+<div class="box">
+  <p>I'm directly inside .box.</p>
+  <section>
+    <p>I'm deeper inside .box.</p>
+  </section>
+</div>
+<footer><a href="#">Contact</a></footer>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Orange is simply <code>color: orange;</code>. The trick is the selector, not the colour.</p>
+            <p class="ch-hint" hidden>Look at the table above: which combinator means "immediately after"? Which means "directly inside"?</p>
+            <p class="ch-hint" hidden>For a border, try <code>border: 2px solid teal;</code>. If both box paragraphs get it, your selector is a descendant, not a child.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">A list has a nested list inside one of its items. Which selector styles only the outer items?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>ul li</code></button><p class="why">A space means any depth, so the nested items match too.</p></li>
+          <li><button type="button"><code>.menu &gt; li</code>, where the outer list has <code>class="menu"</code></button><p class="why">The child combinator only reaches one level down, so the nested items are left out.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Combinators select by family relationship. A space means a descendant at any depth, like nav a. A greater-than sign means a direct child, like ul > li. A plus means the very next sibling, like h2 + p, and a tilde means any later sibling. They let me style elements by where they are, without adding extra classes.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="hierarchy" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.6 -->
+    <section id="inherit" class="sec">
+      <p class="kicker">3.6</p>
+      <h2>Inheritance</h2>
+      <p class="hook">Set a colour on <code>body</code>, and every paragraph turns that colour. Set a border on <code>body</code>, and nothing inside gets a border. Why the difference?</p>
+      <p>Some properties are <strong>inherited</strong>: children copy their parent's value unless they set their own. These are mostly text properties, like <code>color</code>, <code>font-family</code>, <code>font-size</code>, <code>font-weight</code>, <code>line-height</code> and <code>text-align</code>. Box properties are not inherited: <code>margin</code>, <code>padding</code>, <code>border</code>, <code>background</code>, <code>width</code> and <code>height</code>. Imagine if borders were inherited. Every paragraph inside a bordered box would get its own border too.</p>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Set it on the parent, watch the children</p>
+          <p class="demo-sub">Pick a property. It's set only on the dashed parent box.</p>
+        </div>
+        <div class="seg" id="inhSeg" role="group" aria-label="Property">
+          <button type="button" data-k="color" aria-pressed="true">color</button>
+          <button type="button" data-k="font" aria-pressed="false">font-family</button>
+          <button type="button" data-k="align" aria-pressed="false">text-align</button>
+          <button type="button" data-k="border" aria-pressed="false">border</button>
+          <button type="button" data-k="padding" aria-pressed="false">padding</button>
+          <button type="button" data-k="bg" aria-pressed="false">background</button>
+        </div>
+        <div class="inh">
+          <div class="inh-parent" id="inhParent">
+            <h4>A heading</h4>
+            <p>A paragraph with <a href="#inherit">a link</a> inside.</p>
+            <button type="button">A button</button>
+            <div class="inh-box">A div</div>
+          </div>
+          <div>
+            <pre class="snip inh-css" id="inhCss"></pre>
+            <ul class="inh-res" id="inhRes"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="hint"><b>Watch out</b>The browser gives links, buttons and inputs their own default styles, and those beat inheritance. That's why links stay blue and buttons ignore your page font. Many stylesheets fix it with <code>button, input { font: inherit; }</code>. The <code>inherit</code> keyword means "take my parent's value".</div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">You give a <code>&lt;section&gt;</code> <code>border: 2px solid</code> and <code>color: teal</code>. What do the paragraphs inside get?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">A border and teal text</button><p class="why">Borders aren't inherited, or nested boxes would all get borders.</p></li>
+          <li><button type="button">Teal text only</button><p class="why">color is inherited, border is not.</p></li>
+          <li><button type="button">Nothing</button><p class="why">Text colour is inherited, so they do turn teal.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Some CSS properties are inherited: children take their parent's value unless they set their own. Those are mostly text properties, like color, font and line-height. Box properties like margin, padding, border and background are not inherited. Links and form controls have browser defaults that block inheritance, so I sometimes write font: inherit on buttons.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="inherit" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.7 -->
+    <section id="cascade" class="sec">
+      <p class="kicker">3.7</p>
+      <h2>The cascade: who wins?</h2>
+      <p class="hook">Two rules give the same paragraph different colours. Which one does the browser use?</p>
+      <p>This is the "cascading" in Cascading Style Sheets. The browser settles every conflict by asking three questions, in this order:</p>
+      <ol class="steps">
+        <li><div><strong>Importance.</strong> A declaration marked <code>!important</code> beats normal ones. Think of it as an emergency button.</div></li>
+        <li><div><strong>Specificity.</strong> The more specific selector wins. A <code>style</code> attribute beats every selector.</div></li>
+        <li><div><strong>Source order.</strong> If it's still a tie, the rule that comes later wins.</div></li>
+      </ol>
+      <h3>Specificity is a score</h3>
+      <p>Count three things in the selector: <strong>ids</strong>, then <strong>classes</strong> (attributes and pseudo-classes count here too), then <strong>elements</strong> (pseudo-elements count here). Compare the scores from the left, like comparing version numbers. One id beats any number of classes.</p>
+      <div class="table-wrap" style="max-width:560px">
+        <table class="spec-ex">
+          <thead><tr><th>Selector</th><th>Score</th></tr></thead>
+          <tbody>
+            <tr><td><code>*</code></td><td>0 · 0 · 0</td></tr>
+            <tr><td><code>p</code></td><td>0 · 0 · 1</td></tr>
+            <tr><td><code>main p</code></td><td>0 · 0 · 2</td></tr>
+            <tr><td><code>.note</code></td><td>0 · 1 · 0</td></tr>
+            <tr><td><code>p.note</code></td><td>0 · 1 · 1</td></tr>
+            <tr><td><code>.card .note</code></td><td>0 · 2 · 0</td></tr>
+            <tr><td><code>#intro</code></td><td>1 · 0 · 0</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Specificity battle</p>
+          <p class="demo-sub">Two rules fight over one paragraph: <code>&lt;p id="intro" class="note"&gt;</code>, inside <code>div.card</code>, inside <code>main</code>. Type any selectors, or pick a match-up.</p>
+        </div>
+        <div class="presets" id="sbPresets"></div>
+        <div class="sb">
+          <div class="sb-rule" id="sbA">
+            <h4>Rule A <span>first in the file</span></h4>
+            <div class="sb-row"><input type="text" class="sb-sel" value="p" spellcheck="false" aria-label="Rule A selector"><select class="sb-col" aria-label="Rule A colour"><option>blue</option><option>orange</option><option>green</option><option>crimson</option><option>purple</option></select></div>
+            <label class="check"><input type="checkbox" class="sb-imp"> !important</label>
+            <div class="sb-score"></div>
+            <p class="sb-note"></p>
+          </div>
+          <div class="sb-rule" id="sbB">
+            <h4>Rule B <span>later in the file</span></h4>
+            <div class="sb-row"><input type="text" class="sb-sel" value=".note" spellcheck="false" aria-label="Rule B selector"><select class="sb-col" aria-label="Rule B colour"><option>orange</option><option>blue</option><option>green</option><option>crimson</option><option>purple</option></select></div>
+            <label class="check"><input type="checkbox" class="sb-imp"> !important</label>
+            <div class="sb-score"></div>
+            <p class="sb-note"></p>
+          </div>
+        </div>
+        <div class="sb-foot">
+          <div class="sb-host" id="sbHost"></div>
+          <div>
+            <p class="sb-verdict" id="sbVerdict" aria-live="polite"></p>
+            <label class="check" style="margin-top:10px"><input type="checkbox" id="sbInline"> Add <code>style="color: green"</code> to the paragraph</label>
+            <div class="nav-row"><button class="btn btn-small" id="sbOpen" type="button">Open in editor</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="ed" id="ed-spec" data-title="The fight, in code" data-height="230">
+        <textarea data-lang="css">
+p {
+  color: blue;
+}
+
+.note {
+  color: orange;
+}
+</textarea>
+        <textarea data-lang="html">
+<main>
+  <div class="card">
+    <p id="intro" class="note">Who colours me?</p>
+  </div>
+</main>
+</textarea>
+      </div>
+      <div class="hint"><b>Watch out: !important</b>It looks like a quick fix, but the next time you need to override that rule, you'll need another <code>!important</code>, and the CSS turns into an arms race. Fix the selector, or the order, instead.</div>
+
+      <div class="ch" data-ed="ch-specific">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 11</p><p class="ch-title">Win without cheating</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>Make the paragraph <code>orange</code>. You may only add new rules at the bottom of style.css. No <code>!important</code>, no editing the two existing rules, and no <code>style</code> attribute.</p>
+          <div class="ed" id="ch-specific" data-label="Challenge" data-title="Orange, the fair way" data-height="250">
+            <textarea data-lang="css">
+#intro {
+  color: blue;
+}
+
+.note {
+  color: green;
+}
+
+/* Add your rule below this line */
+</textarea>
+            <textarea data-lang="html">
+<p id="intro" class="note">Make me orange.</p>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Right now the paragraph is blue. Which rule is winning, and what's its score?</p>
+            <p class="ch-hint" hidden>To beat 1 · 0 · 0 you need at least an id. And when scores tie, the later rule wins.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q"><code>.card .note { color: green; }</code> and <code>#intro { color: blue; }</code> both match a paragraph. Which colour wins?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Green, it has two classes</button><p class="why">0 · 2 · 0 loses to 1 · 0 · 0. One id beats any number of classes.</p></li>
+          <li><button type="button">Blue</button><p class="why">The id gives 1 · 0 · 0, which beats 0 · 2 · 0.</p></li>
+          <li><button type="button">Whichever comes later</button><p class="why">Order only matters when the scores tie.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>When rules conflict, the cascade decides: first importance, then specificity, then source order. Specificity counts ids, then classes, attributes and pseudo-classes, then element names, and one id beats any number of classes. Inline styles beat all selectors, and if two rules tie, the later one wins. I avoid !important, because it makes the CSS hard to override later.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="cascade" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.8 -->
+    <section id="pseudo" class="sec">
+      <p class="kicker">3.8</p>
+      <h2>Pseudo-classes and pseudo-elements</h2>
+      <p class="hook">How do you style something only while the mouse is over it, or every second row of a list, without adding a single class?</p>
+      <p>A <strong>pseudo-class</strong> picks elements in a certain state or position. It's written with one colon. A <strong>pseudo-element</strong> styles a part of an element, or adds content to it. It's written with two colons.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Write</th><th>Picks</th></tr></thead>
+          <tbody>
+            <tr><td><code>a:hover</code></td><td>A link while the mouse is over it</td></tr>
+            <tr><td><code>input:focus</code></td><td>The field you're typing in</td></tr>
+            <tr><td><code>button:active</code></td><td>A button while it's being pressed</td></tr>
+            <tr><td><code>li:first-child</code>, <code>li:last-child</code></td><td>The first or last li among its siblings</td></tr>
+            <tr><td><code>li:nth-child(odd)</code></td><td>Items 1, 3, 5… Also <code>even</code>, <code>3</code>, <code>3n</code>, <code>2n+1</code></td></tr>
+            <tr><td><code>li:not(.done)</code></td><td>Every li that doesn't have the done class</td></tr>
+            <tr><td><code>p::first-letter</code></td><td>The first letter of each paragraph</td></tr>
+            <tr><td><code>li::before</code>, <code>li::after</code></td><td>Content added before or after, set with <code>content: "..."</code></td></tr>
+            <tr><td><code>::placeholder</code>, <code>::selection</code></td><td>Placeholder text, and text you've selected</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">nth-child tester</p>
+          <p class="demo-sub">Type what goes inside <code>:nth-child( )</code>. The browser counts n as 0, 1, 2, 3… and lights up the positions that come out.</p>
+        </div>
+        <div class="sp-in"><label for="nthIn" class="small">li:nth-child(</label><input type="text" id="nthIn" class="url-input" value="odd" spellcheck="false" autocomplete="off" style="max-width:220px"><span class="small">)</span></div>
+        <div class="presets" id="nthPresets"></div>
+        <p class="sp-msg" id="nthMsg" aria-live="polite"></p>
+        <ol class="nth-list" id="nthList"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li><li>10</li><li>11</li><li>12</li></ol>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Hover over the card, and click into the input. Then change the hover colours.</li>
+          <li>Add <code>.todo li:nth-child(2) { color: gray; }</code>.</li>
+          <li>Add a <code>::selection</code> rule with a background colour, then select some text.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-pseudo" data-title="States and parts" data-height="330">
+        <textarea data-lang="css">
+.card {
+  padding: 10px 16px;
+  background: #CFE3DC;
+  color: #034f46;
+}
+.card:hover {
+  background: #034f46;
+  color: white;
+}
+input:focus {
+  outline: 3px solid #FFA946;
+}
+.todo li::before {
+  content: "☐ ";
+}
+.todo li.done::before {
+  content: "✔ ";
+}
+.todo li:not(.done) {
+  font-weight: bold;
+}
+.intro::first-letter {
+  font-size: 2em;
+  color: crimson;
+}
+</textarea>
+        <textarea data-lang="html">
+<p><a class="card" href="#">Hover over me</a></p>
+<input placeholder="Click into me">
+<ul class="todo">
+  <li>Learn selectors</li>
+  <li class="done">Learn HTML</li>
+  <li>Learn the box model</li>
+</ul>
+<p class="intro">Every paragraph can start big.</p>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-zebra">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 12</p><p class="ch-title">Zebra scoreboard</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>Give the scoreboard stripes: odd rows one background colour, even rows another. Then make only the last row bold. Use pseudo-classes only, and don't add any classes to the HTML.</p>
+          <div class="ed" id="ch-zebra" data-label="Challenge" data-title="Stripes, no classes" data-height="250">
+            <textarea data-lang="css">
+li {
+  padding: 6px 10px;
+}
+</textarea>
+            <textarea data-lang="html">
+<h2>Top scores</h2>
+<ol>
+  <li>Vasavi, 12</li>
+  <li>Ravi, 11</li>
+  <li>Anu, 11</li>
+  <li>Kiran, 9</li>
+  <li>Meera, 8</li>
+  <li>Arjun, 7</li>
+</ol>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Try the nth-child tester above with <code>odd</code> and <code>even</code>.</p>
+            <p class="ch-hint" hidden>Bold is <code>font-weight: bold;</code>. Which pseudo-class means "the last one"?</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">Which items does <code>li:nth-child(3n)</code> pick?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">3, 6, 9, 12…</button><p class="why">n = 1, 2, 3… gives 3, 6, 9. n = 0 gives 0, which doesn't exist.</p></li>
+          <li><button type="button">Only the third item</button><p class="why">That's <code>:nth-child(3)</code>, without the n.</p></li>
+          <li><button type="button">The first three items</button><p class="why">That one is <code>:nth-child(-n+3)</code>. Try it in the tester.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>A pseudo-class selects elements in a state or position, like :hover, :focus or :nth-child(odd), and it's written with one colon. A pseudo-element styles part of an element, like ::first-letter, or adds content with ::before and ::after, and it's written with two colons. They save me from adding extra classes or extra HTML.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="pseudo" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.9 -->
+    <section id="colors" class="sec">
+      <p class="kicker">3.9</p>
+      <h2>Colours</h2>
+      <p class="hook"><code>#034f46</code>, <code>rgb(3, 79, 70)</code> and <code>hsl(173, 93%, 16%)</code> are the same colour. Why so many ways to write it?</p>
+      <ul>
+        <li><strong>Names:</strong> <code>tomato</code>, <code>teal</code>, <code>crimson</code>. There are about 150. Quick, but limited.</li>
+        <li><strong>Hex:</strong> <code>#RRGGBB</code>, three pairs from <code>00</code> to <code>ff</code> for red, green and blue. <code>#fa0</code> is shorthand for <code>#ffaa00</code>.</li>
+        <li><strong>rgb:</strong> the same three amounts as numbers from 0 to 255, like <code>rgb(3, 79, 70)</code>.</li>
+        <li><strong>hsl:</strong> hue, saturation and lightness. Hue is a position on the colour wheel from 0 to 360. Change only the lightness and you get lighter or darker shades of the same colour.</li>
+        <li><strong>Alpha</strong> makes a colour see-through: <code>rgba(3, 79, 70, 0.5)</code>, or an extra pair in hex, like <code>#034f4680</code>.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Colour mixer</p>
+          <p class="demo-sub">Mix a colour and get the code in every format. The swatch also checks whether text on it is readable.</p>
+        </div>
+        <div class="presets" id="cmPresets"></div>
+        <div class="cm">
+          <div class="cm-sl">
+            <label class="sl-row">Red <input type="range" min="0" max="255" id="cmR"><output id="cmRv"></output></label>
+            <label class="sl-row">Green <input type="range" min="0" max="255" id="cmG"><output id="cmGv"></output></label>
+            <label class="sl-row">Blue <input type="range" min="0" max="255" id="cmB"><output id="cmBv"></output></label>
+            <label class="sl-row">Alpha <input type="range" min="0" max="100" id="cmA"><output id="cmAv"></output></label>
+            <div class="cm-codes" id="cmCodes"></div>
+          </div>
+          <div>
+            <div class="cm-swatch"><div id="cmSwatch"><span id="cmW"></span><span id="cmK"></span></div></div>
+            <p class="small" style="margin:8px 0 0">Readable text needs a contrast ratio of at least 4.5 to 1 (3 to 1 for large text). That's the WCAG AA rule used for accessibility.</p>
+          </div>
+        </div>
+      </div>
+      <h3>opacity or alpha?</h3>
+      <div class="op-demo">
+        <div style="background:#034F46;opacity:.5">opacity: 0.5</div>
+        <div style="background:rgba(3,79,70,.5)">background: rgba(3, 79, 70, 0.5)</div>
+      </div>
+      <p style="margin-top:12px"><code>opacity</code> fades the whole element, text and all. An alpha colour only makes that one colour see-through, so the text stays solid.</p>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">You want a see-through card background but solid, readable text. What do you use?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>opacity: 0.5</code> on the card</button><p class="why">That fades the text as well. See the left box above.</p></li>
+          <li><button type="button">A background with alpha, like <code>rgba(255, 255, 255, 0.6)</code></button><p class="why">Only the background is see-through. The text keeps full strength.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Colours can be written as names, hex like #034f46, rgb, or hsl. Hex and rgb give the amounts of red, green and blue, while hsl is hue, saturation and lightness, which makes shades easy. An alpha value makes a colour see-through, unlike opacity, which fades the whole element, text included. I keep text contrast at 4.5 to 1 or more so it stays readable.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="colors" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.10 -->
+    <section id="units" class="sec">
+      <p class="kicker">3.10</p>
+      <h2>Units: px, %, em, rem, vw</h2>
+      <p class="hook">Is 16px big or small? And why do nested em sizes suddenly get huge?</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Unit</th><th>Means</th><th>Good for</th></tr></thead>
+          <tbody>
+            <tr><td><code>px</code></td><td>A fixed size</td><td>Borders, small details</td></tr>
+            <tr><td><code>%</code></td><td>A share of the parent's size</td><td>Widths inside a container</td></tr>
+            <tr><td><code>em</code></td><td>Times this element's font size</td><td>Padding that grows with the text</td></tr>
+            <tr><td><code>rem</code></td><td>Times the root font size, usually 16px</td><td>Font sizes, consistent spacing</td></tr>
+            <tr><td><code>vw</code> / <code>vh</code></td><td>1% of the window's width or height</td><td>Full-screen sections, big headings</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Which bars follow which slider?</p>
+          <p class="demo-sub">Five bars inside one parent box. Move each slider and watch which bars change. Then resize the browser window.</p>
+        </div>
+        <div class="cm-sl">
+          <label class="sl-row">Parent width <input type="range" min="40" max="100" value="100" id="urW"><output id="urWv"></output></label>
+          <label class="sl-row">Parent font <input type="range" min="10" max="28" value="16" id="urF"><output id="urFv"></output></label>
+        </div>
+        <div class="ur-parent" id="urParent">
+          <p>Parent box</p>
+          <div class="ur-bar" style="width:140px"><span>width: 140px</span><b></b></div>
+          <div class="ur-bar" style="width:50%"><span>width: 50%</span><b></b></div>
+          <div class="ur-bar" style="width:12em"><span>width: 12em</span><b></b></div>
+          <div class="ur-bar" style="width:12rem"><span>width: 12rem</span><b></b></div>
+          <div class="ur-bar" style="width:30vw"><span>width: 30vw</span><b></b></div>
+        </div>
+        <p class="small" style="margin:8px 0 0" id="urNote"></p>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Change <code>.a</code> to <code>20px</code>. Which boxes grow?</li>
+          <li>Change <code>1.5em</code> to <code>1.5rem</code> in the second rule. What happens to the nesting?</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-units" data-title="The em trap" data-height="260">
+        <textarea data-lang="css">
+.a { font-size: 16px; }
+.b, .c, .d { font-size: 1.5em; }
+.r { font-size: 2rem; }
+div { border-left: 3px solid #034f46; padding-left: 8px; }
+</textarea>
+        <textarea data-lang="html">
+<div class="a">Parent, 16px
+  <div class="b">1.5em
+    <div class="c">1.5em again
+      <div class="d">and again</div>
+    </div>
+  </div>
+</div>
+<div class="r">2rem, the same anywhere</div>
+</textarea>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">The root font size is 16px and a parent's is 20px. A child has <code>font-size: 2em</code>. How big is it?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">16px</button><p class="why">That's the root size. em looks at the parent here.</p></li>
+          <li><button type="button">32px</button><p class="why">That would be 2rem: twice the root.</p></li>
+          <li><button type="button">40px</button><p class="why">For font-size, em is times the parent's font size: 2 × 20px.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>px is a fixed size and % is a share of the parent. em is relative to the font size, so nested ems multiply, while rem is relative to the root font size, so it stays predictable. That's why I use rem for text. vw and vh are percentages of the window's width and height.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="units" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.11 -->
+    <section id="boxmodel" class="sec">
+      <p class="kicker">3.11</p>
+      <h2>The box model</h2>
+      <p class="hook">You set <code>width: 200px</code>, add some padding and a border, and the box comes out 250px wide. Is the browser broken?</p>
+      <p>No. Every element is a box made of four layers, from the inside out:</p>
+      <ol class="steps">
+        <li><div><strong>Content:</strong> the text or image itself.</div></li>
+        <li><div><strong>Padding:</strong> space inside the border. It shows the element's background.</div></li>
+        <li><div><strong>Border:</strong> the line around the padding.</div></li>
+        <li><div><strong>Margin:</strong> space outside the border, pushing other elements away. Always see-through.</div></li>
+      </ol>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Box model inspector</p>
+          <p class="demo-sub">The same colours DevTools uses. Move the sliders, then switch box-sizing and watch the total width.</p>
+        </div>
+        <div class="bmi">
+          <div class="cm-sl">
+            <label class="sl-row">width <input type="range" min="80" max="300" value="200" id="bmW"><output id="bmWv"></output></label>
+            <label class="sl-row">padding <input type="range" min="0" max="40" value="20" id="bmP"><output id="bmPv"></output></label>
+            <label class="sl-row">border <input type="range" min="0" max="20" value="5" id="bmB"><output id="bmBv"></output></label>
+            <label class="sl-row">margin <input type="range" min="0" max="40" value="20" id="bmM"><output id="bmMv"></output></label>
+            <div class="seg" id="bmSize" role="group" aria-label="box-sizing">
+              <button type="button" data-v="content-box" aria-pressed="true">content-box</button>
+              <button type="button" data-v="border-box" aria-pressed="false">border-box</button>
+            </div>
+            <pre class="snip" id="bmCode" style="margin-top:4px"></pre>
+            <div class="nav-row" style="margin-top:0"><button class="btn btn-small" id="bmOpen" type="button">Open in editor</button></div>
+          </div>
+          <div>
+            <div class="bmi-stage"><div class="bmi-margin" id="bmMargin"><div class="bmi-el" id="bmEl"><div class="bmi-content" id="bmContent"></div></div></div></div>
+            <div class="bmi-legend"><span><i style="background:#F9CC9D"></i>margin</span><span><i style="background:#FDDD9B"></i>border</span><span><i style="background:#C3D08B"></i>padding</span><span><i style="background:#8CB6C0"></i>content</span></div>
+            <p class="bmi-math" id="bmMath" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+      <p><code>box-sizing: content-box</code> is the default: <code>width</code> sets only the content, and padding and border are added on top. With <code>box-sizing: border-box</code>, <code>width</code> includes the padding and border, so the box is exactly as wide as you said. Most developers put this at the top of their CSS:</p>
+      <pre class="snip" data-lang="css" style="max-width:560px"><code>*, *::before, *::after {
+  box-sizing: border-box;
+}</code></pre>
+      <div class="ed" id="ed-box" data-title="A box to measure" data-height="220">
+        <textarea data-lang="css">
+.box {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #034f46;
+  margin: 20px;
+  background: #CFE3DC;
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="box">I'm a box. Inspect me in DevTools.</div>
+<div class="box">So am I.</div>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-box">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 13</p><p class="ch-title">Exactly 300 pixels</p></div><span class="ch-badge">0 of 3</span></div>
+        <div class="ch-in">
+          <p>The design says this box must be exactly 300px wide, border included. It also needs to keep its 20px padding and 5px border. Right now it's 350px. Fix it. There are two different ways.</p>
+          <div class="ed" id="ch-box" data-label="Challenge" data-title="Make it fit" data-height="200">
+            <textarea data-lang="css">
+.box {
+  width: 300px;
+  padding: 20px;
+  border: 5px solid #034f46;
+  background: #CFE3DC;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="box">I must be exactly 300px wide.</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Where do the extra 50px come from? Add up both sides of the padding and of the border.</p>
+            <p class="ch-hint" hidden>Way one: do the maths and change the width. Way two: one property changes what width means.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open your Dice Roll page, right-click the white card and choose Inspect.</li>
+          <li>In the Styles pane, scroll to the bottom, or open the Computed tab. You'll see the same coloured box diagram.</li>
+          <li>Hover over the diagram's layers to highlight them on the page.</li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">With the default box-sizing, a box has <code>width: 100px</code>, <code>padding: 10px</code> and <code>border: 2px solid</code>. How wide is it on screen?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">100px</button><p class="why">That would be true with border-box.</p></li>
+          <li><button type="button">112px</button><p class="why">Remember both sides: padding and border appear on the left and on the right.</p></li>
+          <li><button type="button">124px</button><p class="why">100 + 10 + 10 + 2 + 2 = 124.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Every element is a box: content, then padding, then border, then margin. Padding is inside the border and shows the background, while margin is outside and transparent. By default, width sets only the content, so padding and border are added on top. With box-sizing: border-box, width includes the padding and border, which makes sizes predictable, so I set it on everything.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="boxmodel" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.12 -->
+    <section id="margins" class="sec">
+      <p class="kicker">3.12</p>
+      <h2>Margin, padding and centring</h2>
+      <p class="hook">Your <code>.container</code> has <code>margin: 0 auto</code>. What does that line actually do?</p>
+      <p>Margin and padding can be written for each side, like <code>margin-top</code>, or all at once with a shorthand. The shorthand always goes <strong>clockwise from the top</strong>: top, right, bottom, left.</p>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Shorthand decoder</p>
+          <p class="demo-sub">Type a margin value with 1 to 4 parts. The browser itself decodes it.</p>
+        </div>
+        <div class="sp-in"><label for="msIn" class="small">margin:</label><input type="text" id="msIn" class="url-input" value="10px 40px" spellcheck="false" autocomplete="off" style="max-width:280px"></div>
+        <div class="presets" id="msPresets"></div>
+        <div class="msv" id="msv">
+          <div class="v t"><b id="msT"></b><small>top</small></div>
+          <div class="v l"><b id="msL"></b><small>left</small></div>
+          <div class="c">the box</div>
+          <div class="v r"><b id="msR"></b><small>right</small></div>
+          <div class="v b"><b id="msB"></b><small>bottom</small></div>
+        </div>
+        <p class="ms-say" id="msSay" aria-live="polite"></p>
+        <div class="ms-stage"><div class="ms-box" id="msBox">margin applied</div></div>
+      </div>
+      <ul>
+        <li><strong><code>margin: 0 auto</code></strong> sets top and bottom to 0, and left and right to <code>auto</code>. Auto splits the leftover space equally, so the box sits in the middle. It only works on a block element with a width or max-width smaller than its parent.</li>
+        <li><strong>Margins collapse.</strong> When two blocks sit on top of each other, their vertical margins don't add up. A 20px bottom margin above a 30px top margin gives a 30px gap, not 50px. Padding never collapses.</li>
+        <li><strong>Padding or margin?</strong> Padding is inside the border, so it makes a button bigger to click and shows its background. Margin is outside, and only pushes other things away.</li>
+      </ul>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Is the gap between the two paragraphs 20px, 30px or 50px? Check with DevTools.</li>
+          <li>Change the card's margin to <code>20px auto</code>.</li>
+          <li>Swap the card's <code>margin</code> and <code>padding</code> values and compare.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-margin" data-title="Gaps and centring" data-height="260">
+        <textarea data-lang="css">
+p {
+  background: #CFE3DC;
+  margin: 0;
+}
+.one { margin-bottom: 20px; }
+.two { margin-top: 30px; }
+.card {
+  width: 200px;
+  padding: 12px;
+  margin: 20px 0;
+  background: #FFE0B5;
+}
+</textarea>
+        <textarea data-lang="html">
+<p class="one">I have margin-bottom: 20px.</p>
+<p class="two">I have margin-top: 30px.</p>
+<div class="card">Centre me with margin.</div>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-center">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 14</p><p class="ch-title">Centre the card</p></div><span class="ch-badge">0 of 3</span></div>
+        <div class="ch-in">
+          <p>Centre this card on the page, keep it 260px wide, and centre the text inside it too.</p>
+          <div class="ed" id="ch-center" data-label="Challenge" data-title="Into the middle" data-height="250">
+            <textarea data-lang="css">
+body {
+  background: #eef2f7;
+}
+.card {
+  width: 260px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #ccc;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="card">
+  <h3>Dice Roll</h3>
+  <p>Centre this card on the page.</p>
+</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Centring the box and centring the text are two different properties.</p>
+            <p class="ch-hint" hidden>Try the value <code>0 auto</code> in the shorthand decoder above.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">What does <code>padding: 10px 20px</code> mean?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">10px left and right, 20px top and bottom</button><p class="why">It's the other way round. The first value is always the vertical one.</p></li>
+          <li><button type="button">10px top and bottom, 20px left and right</button><p class="why">With two values: top and bottom first, then left and right.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">Two paragraphs, one above the other: the first has <code>margin-bottom: 20px</code>, the second has <code>margin-top: 30px</code>. How big is the gap?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">30px</button><p class="why">Vertical margins collapse, and the bigger one wins.</p></li>
+          <li><button type="button">50px</button><p class="why">That's what you'd expect, but vertical margins between blocks collapse.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Margin and padding shorthand go clockwise from the top: top, right, bottom, left. With two values, the first is top and bottom and the second is left and right. margin: 0 auto centres a block that has a width, because auto splits the leftover space equally. Vertical margins between blocks collapse, so the gap is the bigger margin, not the sum.</p></div>
+      <p>That's the first half of CSS. Next comes layout and motion: display, positioning, flexbox, grid, transitions, animations and phone-friendly design.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="margins" aria-pressed="false">I can explain this</button></div>
     </section>
 
   </main>
@@ -2930,7 +4075,7 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
 
 <footer class="foot">
   <div class="foot-in">
-    <p>Parts 1 and 2 of 4. Ticks, challenges, your code and the theme are saved only in this browser.</p>
+    <p>Parts 1, 2 and the first half of Part 3. Ticks, challenges, your code and the theme are saved only in this browser.</p>
     <button class="btn btn-ghost btn-small" id="resetBtn" type="button">Clear my ticks</button>
   </div>
 </footer>
@@ -3024,7 +4169,8 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
 
   /* ---------- progress ---------- */
   var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1",
-    "anatomy", "skeleton", "text", "links", "images", "lists", "forms", "semantic", "blockinline", "attributes", "rules", "devtools", "recap2"];
+    "anatomy", "skeleton", "text", "links", "images", "lists", "forms", "semantic", "blockinline", "attributes", "rules", "devtools", "recap2",
+    "cssadd", "rule", "selectors", "classes", "hierarchy", "inherit", "cascade", "pseudo", "colors", "units", "boxmodel", "margins"];
   var done = store.get("wg-done", {});
   function paintDone() {
     $$(".done-btn").forEach(function (b) {
@@ -3071,6 +4217,7 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
 
   /* ---------- quizzes ---------- */
   $$(".quiz").forEach(function (q) {
+    if (!$(".quiz-tag", q)) q.insertAdjacentHTML("afterbegin", '<p class="quiz-tag">Quick check</p>');
     var ans = +q.getAttribute("data-answer");
     var items = $$(".quiz-opts > li", q);
     items.forEach(function (li, i) {
@@ -3781,7 +4928,9 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
   }
 
   /* ---------- live editors ---------- */
-  var CH_IDS = ["ch-skel", "ch-escape", "ch-menu", "ch-gallery", "ch-table", "ch-form", "ch-semantic", "ch-about"];
+  var CH_IDS = ["ch-skel", "ch-escape", "ch-menu", "ch-gallery", "ch-table", "ch-form", "ch-semantic", "ch-about",
+    "ch-rule", "ch-sniper", "ch-specific", "ch-zebra", "ch-box", "ch-center"];
+  var STARTS = {}, EDS = {};
   var chDone = store.get("wg-ch", {});
   function paintChStat() {
     var n = CH_IDS.filter(function (k) { return chDone[k]; }).length;
@@ -3887,11 +5036,11 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
       ];
     }
   };
-  function runChallenge(id, d, src) {
+  function runChallenge(id, d, src, css) {
     var box = $('.ch[data-ed="' + id + '"]');
     if (!box) return;
     var res;
-    try { res = CHECKS[id](d, src); } catch (e) { res = []; }
+    try { res = CHECKS[id](d, src, css || ""); } catch (e) { res = []; }
     var okN = res.filter(function (r) { return r[1]; }).length, all = res.length > 0 && okN === res.length;
     $(".ch-list", box).innerHTML = res.map(function (r) { return '<li class="' + (r[1] ? "ok" : "") + '">' + r[0] + "</li>"; }).join("");
     box.classList.toggle("done", all);
@@ -3995,6 +5144,8 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
     var id = box.id, label = box.getAttribute("data-label") || "Try it", title = box.getAttribute("data-title") || "";
     var opt = { boxes: box.hasAttribute("data-boxes"), outline: box.hasAttribute("data-outline"), tab: box.hasAttribute("data-tab"), sent: box.hasAttribute("data-sent") };
     var srcs = $$("textarea", box).map(function (t) { var v = t.value.replace(/\s+$/, ""); return { lang: t.getAttribute("data-lang"), start: v ? v + "\n" : "" }; });
+    STARTS[id] = {};
+    srcs.forEach(function (s) { STARTS[id][s.lang] = s.start; });
     var saved = store.get("wg-ed-" + id, null) || {};
     if (box.getAttribute("data-height")) box.style.setProperty("--ed-h", box.getAttribute("data-height") + "px");
     box.innerHTML = '<div class="ed-head"><div><p class="ed-tag">' + esc(label) + '</p><p class="ed-name">' + esc(title) + "</p></div>" +
@@ -4065,8 +5216,16 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
       hookPreview(d, toast, sentEl);
       if (opt.tab) { var t = (d.title || "").trim(); tt.textContent = t || "(no title)"; tt.classList.toggle("none", !t); }
       if (outEl) paintOutline(d, outEl);
-      if (CHECKS[id]) runChallenge(id, d, code("html"));
+      if (CHECKS[id]) runChallenge(id, d, code("html"), code("css"));
     });
+    EDS[id] = {
+      box: box,
+      load: function (o) {
+        panes.forEach(function (p) { if (typeof o[p.lang] === "string") { p.ta.value = o[p.lang]; p.paint(); } });
+        render();
+        save();
+      }
+    };
     if ("IntersectionObserver" in window) {
       var obs = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { obs.disconnect(); render(); } }, { rootMargin: "500px 0px" });
       obs.observe(box);
@@ -4506,6 +5665,465 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
     bestEl.textContent = best ? "Best " + best + " of 10" : "";
     qEl.textContent = "Ten questions. Press Start.";
     startBtn.addEventListener("click", function () { q = shuffle(POOL.slice()).slice(0, 10); i = 0; score = 0; startBtn.hidden = true; show(); });
+  })();
+
+  /* ================= Part 3 ================= */
+  function cs(el) { return el.ownerDocument.defaultView.getComputedStyle(el); }
+  function norm(s) { return String(s || "").replace(/\s+/g, " ").trim(); }
+  function sameHTML(id, s) { return !!STARTS[id] && norm(s) === norm(STARTS[id].html); }
+  function openInEditor(id, o) {
+    var e = EDS[id];
+    if (!e) return;
+    e.load(o);
+    e.box.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  }
+  var ORANGE = "rgb(255, 165, 0)";
+  CHECKS["ch-rule"] = function (d) {
+    var h = d.querySelector("h1"), p = d.querySelector("p"), b = d.querySelector("button");
+    return [
+      ["The heading is teal, <code>#034f46</code>", !!h && cs(h).color === "rgb(3, 79, 70)"],
+      ["The heading is 36px", !!h && cs(h).fontSize === "36px"],
+      ["The paragraph is grey, <code>#555</code>", !!p && cs(p).color === "rgb(85, 85, 85)"],
+      ["The button is orange, <code>#ffa946</code>", !!b && cs(b).backgroundColor === "rgb(255, 169, 70)"],
+      ["The button is round", !!b && parseFloat(cs(b).borderTopLeftRadius) >= 20]
+    ];
+  };
+  CHECKS["ch-sniper"] = function (d, s) {
+    var navA = $$("nav a", d), foot = d.querySelector("footer a"), ps = $$("h2 ~ p", d);
+    var direct = d.querySelector(".box > p"), deep = d.querySelector(".box section p");
+    function bordered(el) { var c = cs(el); return c.borderTopStyle !== "none" && parseFloat(c.borderTopWidth) > 0; }
+    return [
+      ["The menu links are orange", navA.length > 0 && navA.every(function (a) { return cs(a).color === ORANGE; })],
+      ["The footer link is not orange", !!foot && cs(foot).color !== ORANGE],
+      ["Only the paragraph right after the heading is italic", ps.length >= 2 && cs(ps[0]).fontStyle === "italic" && cs(ps[1]).fontStyle !== "italic"],
+      ["Only the paragraph directly inside <code>.box</code> has a border", !!direct && !!deep && bordered(direct) && !bordered(deep)],
+      ["The HTML is unchanged", sameHTML("ch-sniper", s)]
+    ];
+  };
+  CHECKS["ch-specific"] = function (d, s, css) {
+    var p = d.getElementById("intro");
+    return [
+      ["The paragraph is orange", !!p && cs(p).color === ORANGE],
+      ["No <code>!important</code>", !/!\s*important/i.test(css)],
+      ["The two original rules are unchanged", /#intro\s*\{\s*color\s*:\s*blue\s*;?\s*\}/i.test(css) && /\.note\s*\{\s*color\s*:\s*green\s*;?\s*\}/i.test(css)],
+      ["No <code>style</code> attribute, and the HTML is unchanged", !has(d, "[style]") && sameHTML("ch-specific", s)]
+    ];
+  };
+  CHECKS["ch-zebra"] = function (d, s) {
+    var li = $$("li", d);
+    function bg(x) { return cs(x).backgroundColor; }
+    var odd = li.filter(function (x, i) { return i % 2 === 0; }), even = li.filter(function (x, i) { return i % 2 === 1; });
+    return [
+      ["Odd rows share one background colour", odd.length >= 3 && bg(odd[0]) !== "rgba(0, 0, 0, 0)" && odd.every(function (x) { return bg(x) === bg(odd[0]); })],
+      ["Even rows share a different one", even.length >= 3 && bg(even[0]) !== bg(odd[0]) && even.every(function (x) { return bg(x) === bg(even[0]); })],
+      ["Only the last row is bold", li.length > 1 && +cs(li[li.length - 1]).fontWeight >= 700 && li.slice(0, -1).every(function (x) { return +cs(x).fontWeight < 700; })],
+      ["The HTML is unchanged, with no classes added", sameHTML("ch-zebra", s)]
+    ];
+  };
+  CHECKS["ch-box"] = function (d) {
+    var b = d.querySelector(".box");
+    return [
+      ["The box is exactly 300px wide, border included", !!b && b.offsetWidth === 300],
+      ["It still has 20px of padding on each side", !!b && cs(b).paddingLeft === "20px" && cs(b).paddingRight === "20px"],
+      ["It still has a 5px border on each side", !!b && cs(b).borderLeftWidth === "5px" && cs(b).borderRightWidth === "5px"]
+    ];
+  };
+  CHECKS["ch-center"] = function (d) {
+    var c = d.querySelector(".card"), r = c && c.getBoundingClientRect(), W = d.documentElement.clientWidth;
+    return [
+      ["The card sits in the middle of the page", !!c && r.left > 20 && Math.abs(r.left - (W - r.right)) <= 1.5],
+      ["It's still 260px wide", !!c && cs(c).width === "260px"],
+      ["The text inside the card is centred", !!c && cs(c).textAlign === "center"]
+    ];
+  };
+
+  /* ---------- same HTML, different CSS ---------- */
+  (function () {
+    var mini = $("#themeMini"), code = $("#themeCode");
+    mini.innerHTML = miniPage();
+    var CODE = {
+      "styled": "body {\n  background: #eef2f7;\n  font-family: Arial, sans-serif;\n  text-align: center;\n}\n.container {\n  background: white;\n  border-radius: 10px;\n}\nbutton {\n  background: #2c3e50;\n  color: white;\n}",
+      "t-night": "body {\n  background: #0f1222;\n  color: #e6e6ff;\n}\nh1 {\n  color: #9ae6ff;\n  text-transform: uppercase;\n}\nbutton {\n  background: transparent;\n  border: 2px solid #9ae6ff;\n  border-radius: 999px;\n}",
+      "t-paper": "body {\n  background: #f5efe0;\n  font-family: Georgia, serif;\n}\n.container {\n  border: 2px solid #3b2f2f;\n  box-shadow: 6px 6px 0 #3b2f2f;\n}\nimg {\n  transform: rotate(-6deg);\n}",
+      "": "/* No CSS at all. Only the browser's own defaults. */"
+    };
+    function paint(t) {
+      mini.className = "mini" + (t ? " " + t : "");
+      code.innerHTML = hlCSS(CODE[t]);
+      $$("#themeSeg button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-t") === t ? "true" : "false"); });
+    }
+    $$("#themeSeg button").forEach(function (b) { b.addEventListener("click", function () { paint(b.getAttribute("data-t")); }); });
+    paint("styled");
+  })();
+
+  /* ---------- CSS rule anatomy ---------- */
+  (function () {
+    var box = $("#canat"), say = $("#canatSay");
+    var TEXT = {
+      rule: "The whole thing is a <strong>rule</strong>: which elements to style, and how.",
+      selector: "The <strong>selector</strong> picks the elements. <code>h1</code> means every h1 on the page.",
+      block: "Everything between the curly braces is the <strong>declaration block</strong>.",
+      decl: "Each <code>property: value;</code> pair is one <strong>declaration</strong>. This rule has two.",
+      prop: "The <strong>property</strong> is what you're changing: colour, size, spacing.",
+      value: "The <strong>value</strong> is what you're changing it to. Colours, lengths and keywords are all values.",
+      semi: "The <strong>semicolon</strong> ends each declaration. Forget one, and the next declaration breaks too."
+    };
+    function lit(p) {
+      box.classList.add("dim");
+      $$("span[data-p]", box).forEach(function (s) { s.classList.toggle("lit", s.getAttribute("data-p").split(" ").indexOf(p) >= 0); });
+      $$("#canatKeys button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-p") === p ? "true" : "false"); });
+      say.innerHTML = TEXT[p];
+    }
+    $$("#canatKeys button").forEach(function (b) { b.addEventListener("click", function () { lit(b.getAttribute("data-p")); }); });
+    $$("span[data-p]", box).forEach(function (s) { s.addEventListener("click", function () { lit(s.getAttribute("data-p").split(" ").pop()); }); });
+  })();
+
+  /* ---------- selector playgrounds ---------- */
+  (function () {
+    var SP_HTML = STARTS["ed-sel"] ? STARTS["ed-sel"].html : "";
+    var SP_CSS = ".pg{background:#fff;color:#1a1a1a;font:14px/1.45 Arial,sans-serif;padding:10px}" +
+      ".pg *{margin:0}.pg header,.pg main,.pg section,.pg footer,.pg nav,.pg ul{display:block;border:1px dashed #c9c9b4;border-radius:6px;padding:5px 8px;margin:5px 0}" +
+      ".pg ul{padding-left:28px}.pg h1{font-size:19px}.pg h2{font-size:15px}.pg p{margin:3px 0}.pg a{color:#034f46;margin-right:6px}" +
+      ".pg button{font:12px Arial,sans-serif;padding:3px 9px;margin:4px 4px 0 0}.pg .dark{background:#2c3e50;color:#fff}.pg .dark h2{color:#fff}" +
+      ".pg .sp-hit{outline:3px solid #ffa946;outline-offset:1px;background-color:#ffe0b5;color:#1a1a1a}.pg{color-scheme:light}";
+    var PRESETS = {
+      sp1: [["h2", "Every h2."], [".card", "Every element with class=\"card\". There are two."], ["#history", "The one element with id=\"history\"."],
+        ["*", "Every single element."], ["h1, h2", "A comma groups two selectors: every h1 and every h2."], [".btn.big", "No space: elements that have both classes."],
+        [".btn .big", "With a space: a .big inside a .btn. There isn't one."], [".card.dark", "Only the card that is also dark."], ["[href]", "Every element with an href attribute: the links."]],
+      sp2: [["nav a", "Every a anywhere inside nav. The footer link is left out."], ["header > h1", "The h1 that is a direct child of the header."],
+        ["main p", "Every p anywhere inside main."], ["section > *", "Every direct child of any section."], ["h2 + p", "Only a p that comes immediately after an h2."],
+        ["h2 ~ p", "Every p after an h2, in the same parent."], ["li:first-child", "The first li in its list."], ["footer a", "Only the link inside the footer."], ["main > p", "A p directly inside main. There isn't one: they're all inside sections."]]
+    };
+    $$(".sp-wrap").forEach(function (wrap) {
+      var presets = PRESETS[wrap.id] || [], edId = wrap.getAttribute("data-ed");
+      wrap.innerHTML = '<div class="sp-in"><label class="small" for="' + wrap.id + 'In">Selector</label><input type="text" id="' + wrap.id + 'In" class="url-input" spellcheck="false" autocomplete="off" value="' + esc(presets[0][0]) + '">' +
+        '<button class="btn btn-small" type="button">Open in editor</button></div><div class="presets"></div><p class="sp-msg" aria-live="polite"></p>' +
+        '<div class="sp"><div class="sp-host"></div><div class="sp-tree" aria-label="The page as a tree"></div></div>';
+      var root = $(".sp-host", wrap).attachShadow({ mode: "open" });
+      root.innerHTML = "<style>" + SP_CSS + '</style><div class="pg">' + SP_HTML + "</div>";
+      var pg = root.querySelector(".pg"), input = $("input", wrap), msg = $(".sp-msg", wrap), tree = $(".sp-tree", wrap), rows = [];
+      (function walk(el, depth) {
+        Array.prototype.forEach.call(el.children, function (c) {
+          var r = document.createElement("div");
+          r.style.paddingLeft = (12 + depth * 16) + "px";
+          r.innerHTML = '<span class="t-key">' + c.tagName.toLowerCase() + "</span>" + (c.id ? '<span class="t-attr">#' + c.id + "</span>" : "") +
+            Array.prototype.map.call(c.classList, function (k) { return '<span class="t-str">.' + k + "</span>"; }).join("");
+          r._el = c;
+          rows.push(r);
+          tree.appendChild(r);
+          walk(c, depth + 1);
+        });
+      })(pg, 0);
+      function run() {
+        var sel = input.value.trim(), hits = [];
+        Array.prototype.forEach.call(pg.querySelectorAll(".sp-hit"), function (e) { e.classList.remove("sp-hit"); if (!e.getAttribute("class")) e.removeAttribute("class"); });
+        rows.forEach(function (r) { r.classList.remove("hit"); });
+        if (!sel) { msg.textContent = "Type a selector, or pick one above."; return; }
+        try { hits = Array.prototype.filter.call(root.querySelectorAll(sel), function (e) { return e !== pg && pg.contains(e); }); }
+        catch (err) { msg.textContent = "That selector has a typo, so it matches nothing. A browser would skip the whole rule."; return; }
+        hits.forEach(function (e) { e.classList.add("sp-hit"); });
+        rows.forEach(function (r) { r.classList.toggle("hit", hits.indexOf(r._el) >= 0); });
+        var p = presets.filter(function (x) { return x[0] === sel; })[0];
+        msg.innerHTML = (hits.length ? hits.length + (hits.length === 1 ? " element matches." : " elements match.") : "Nothing matches.") + (p ? " <span>" + esc(p[1]) + "</span>" : "");
+      }
+      presets.forEach(function (p) {
+        var b = document.createElement("button");
+        b.type = "button"; b.className = "chip"; b.textContent = p[0];
+        b.addEventListener("click", function () { input.value = p[0]; run(); });
+        $(".presets", wrap).appendChild(b);
+      });
+      input.addEventListener("input", run);
+      $(".sp-in .btn", wrap).addEventListener("click", function () {
+        var sel = input.value.trim() || "h2";
+        openInEditor(edId, { css: sel + " {\n  background: #FFA946;\n}\n" });
+      });
+      run();
+    });
+  })();
+
+  /* ---------- specificity battle ---------- */
+  function cmpSpec(x, y) { for (var i = 0; i < 3; i++) if (x[i] !== y[i]) return x[i] - y[i]; return 0; }
+  function specOf(sel) {
+    var a = 0, b = 0, c = 0;
+    sel = sel.replace(/"[^"]*"|'[^']*'/g, '""').replace(/:where\((?:[^()]|\([^()]*\))*\)/g, " ");
+    sel = sel.replace(/:(?:not|is|has)\(((?:[^()]|\([^()]*\))*)\)/g, function (m, inner) {
+      var best = [0, 0, 0];
+      inner.split(",").forEach(function (part) { var s = specOf(part); if (cmpSpec(s, best) > 0) best = s; });
+      a += best[0]; b += best[1]; c += best[2];
+      return " ";
+    });
+    a += (sel.match(/#[\w-]+/g) || []).length;
+    b += (sel.match(/\.[\w-]+/g) || []).length + (sel.match(/\[[^\]]*\]/g) || []).length + (sel.match(/(?<!:):(?!:)[\w-]+(\([^)]*\))?/g) || []).length;
+    c += (sel.match(/::[\w-]+/g) || []).length;
+    c += (sel.replace(/#[\w-]+|\.[\w-]+|\[[^\]]*\]|::?[\w-]+(\([^)]*\))?/g, " ").match(/[a-zA-Z][\w-]*/g) || []).length;
+    return [a, b, c];
+  }
+  (function () {
+    var host = $("#sbHost").attachShadow({ mode: "open" });
+    host.innerHTML = "<style>main{display:block;font:700 21px/1.3 Arial,sans-serif;text-align:center;padding:20px 14px;background:#fff;color:#1a1a1a}p{margin:0}</style>" +
+      '<main><div class="card"><p id="intro" class="note">Who colours me?</p></div></main>';
+    var target = host.querySelector("p"), mainEl = host.querySelector("main");
+    var boxA = $("#sbA"), boxB = $("#sbB"), inline = $("#sbInline"), verdict = $("#sbVerdict");
+    var PAIRS = [["p", ".note"], ["#intro", ".card .note"], [".card p", "p.note"], ["main p", "div p"], ["*", "p"], [".note", "h2"]];
+    function state(box) {
+      var sel = $(".sb-sel", box).value.trim(), r = { sel: sel, col: $(".sb-col", box).value, imp: $(".sb-imp", box).checked, ok: false, bad: false, sp: [0, 0, 0] };
+      if (!sel) return r;
+      try { r.ok = target.matches(sel); } catch (e) { r.bad = true; return r; }
+      var best = null;
+      sel.split(",").forEach(function (part) {
+        part = part.trim();
+        var m = false;
+        try { m = target.matches(part); } catch (e) { m = false; }
+        var s = specOf(part);
+        if (m && (!best || cmpSpec(s, best) > 0)) best = s;
+      });
+      r.sp = best || specOf(sel.split(",")[0]);
+      return r;
+    }
+    function paintRule(box, r) {
+      $(".sb-score", box).innerHTML = ["ids", "classes", "elements"].map(function (k, i) { return "<span>" + r.sp[i] + "<small>" + k + "</small></span>"; }).join("");
+      $(".sb-note", box).textContent = !r.sel ? "Type a selector." : r.bad ? "That selector has a typo." : r.ok ? "It matches the paragraph." : "It doesn't match the paragraph, so it's out.";
+    }
+    function run() {
+      var A = state(boxA), B = state(boxB);
+      paintRule(boxA, A); paintRule(boxB, B);
+      var C = [];
+      if (A.ok) C.push({ n: "A", r: A });
+      if (B.ok) C.push({ n: "B", r: B });
+      var win = null, why = "";
+      var imp = C.filter(function (c) { return c.r.imp; });
+      function bySpec(x, y) {
+        var k = cmpSpec(x.r.sp, y.r.sp);
+        if (k === 0) return { w: y, why: "Both score " + x.r.sp.join(" · ") + ", a tie. Rule " + y.n + " comes later in the file, so it wins." };
+        var w = k > 0 ? x : y, l = k > 0 ? y : x;
+        return { w: w, why: "Rule " + w.n + " wins: " + w.r.sp.join(" · ") + " beats " + l.r.sp.join(" · ") + ". Compare from the left, ids first." };
+      }
+      if (imp.length === 2) { var t = bySpec(imp[0], imp[1]); win = t.w; why = "Both are !important, so specificity decides. " + t.why; }
+      else if (imp.length === 1) { win = imp[0]; why = "Rule " + win.n + " has !important, which beats everything else" + (inline.checked ? ", even the style attribute." : "."); }
+      else if (inline.checked) { win = { n: "inline", r: { col: "green" } }; why = "The style attribute beats every selector."; }
+      else if (C.length === 2) { var t2 = bySpec(C[0], C[1]); win = t2.w; why = t2.why; }
+      else if (C.length === 1) { win = C[0]; why = "Only Rule " + win.n + " matches the paragraph, so it wins without a fight."; }
+      else why = "Neither rule matches the paragraph, so it keeps its default colour.";
+      mainEl.style.color = win ? win.r.col : "";
+      verdict.textContent = why;
+      boxA.classList.toggle("win", !!win && win.n === "A");
+      boxB.classList.toggle("win", !!win && win.n === "B");
+      boxA.classList.toggle("out", !A.ok);
+      boxB.classList.toggle("out", !B.ok);
+    }
+    PAIRS.forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p[0] + "  vs  " + p[1];
+      b.addEventListener("click", function () { $(".sb-sel", boxA).value = p[0]; $(".sb-sel", boxB).value = p[1]; run(); });
+      $("#sbPresets").appendChild(b);
+    });
+    $$("#sbA input, #sbA select, #sbB input, #sbB select, #sbInline").forEach(function (el) { el.addEventListener("input", run); el.addEventListener("change", run); });
+    $("#sbOpen").addEventListener("click", function () {
+      var A = state(boxA), B = state(boxB);
+      function rule(r) { return (r.sel || "p") + " {\n  color: " + r.col + (r.imp ? " !important" : "") + ";\n}\n"; }
+      openInEditor("ed-spec", {
+        css: rule(A) + "\n" + rule(B),
+        html: '<main>\n  <div class="card">\n    <p id="intro" class="note"' + (inline.checked ? ' style="color: green"' : "") + ">Who colours me?</p>\n  </div>\n</main>\n"
+      });
+    });
+    run();
+  })();
+
+  /* ---------- class chips ---------- */
+  (function () {
+    var el = $("#ccEl"), on = { card: true };
+    var RULES = [["card", ".card {\n  padding: 16px;\n  border: 1px solid #ccc;\n  background: white;\n}"], ["highlight", ".highlight {\n  background: #FFE0B5;\n}"],
+      ["big", ".big {\n  font-size: 24px;\n}"], ["round", ".round {\n  border-radius: 16px;\n}"], ["shadow", ".shadow {\n  box-shadow: 0 6px 16px rgba(0,0,0,.2);\n}"], ["muted", ".muted {\n  opacity: .45;\n}"]];
+    function paint() {
+      var cls = RULES.filter(function (r) { return on[r[0]]; }).map(function (r) { return r[0]; });
+      el.className = cls.join(" ");
+      $("#ccAttr").innerHTML = hlHTML('<div class="' + cls.join(" ") + '">');
+      $("#ccCode").innerHTML = RULES.map(function (r) { return '<span class="' + (on[r[0]] ? "" : "off") + '">' + hlCSS(r[1]) + "</span>"; }).join("\n");
+      $$("#ccChips button").forEach(function (b) { b.setAttribute("aria-pressed", on[b.getAttribute("data-c")] ? "true" : "false"); });
+    }
+    $$("#ccChips button").forEach(function (b) { b.addEventListener("click", function () { var c = b.getAttribute("data-c"); on[c] = !on[c]; paint(); }); });
+    paint();
+  })();
+
+  /* ---------- inheritance ---------- */
+  (function () {
+    var parent = $("#inhParent");
+    var P = {
+      color: ["color", "crimson", true], font: ["fontFamily", "Georgia, serif", true], align: ["textAlign", "center", true],
+      border: ["border", "3px solid crimson", false], padding: ["padding", "24px", false], bg: ["backgroundColor", "#FFE0B5", false]
+    };
+    var CSSNAME = { color: "color", font: "font-family", align: "text-align", border: "border", padding: "padding", bg: "background-color" };
+    var KIDS = [["h4", "heading"], ["p", "paragraph"], ["a", "link"], ["button", "button"], [".inh-box", "div"]];
+    function paint(k) {
+      Object.keys(P).forEach(function (x) { parent.style[P[x][0]] = ""; });
+      parent.style[P[k][0]] = P[k][1];
+      $$("#inhSeg button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === k ? "true" : "false"); });
+      $("#inhCss").innerHTML = hlCSS(".parent {\n  " + CSSNAME[k] + ": " + P[k][1] + ";\n}") + '\n<span class="t-dim">/* ' + CSSNAME[k] + (P[k][2] ? " is inherited */" : " is not inherited */") + "</span>";
+      var pc = cs(parent);
+      $("#inhRes").innerHTML = KIDS.map(function (kid) {
+        var el = $(kid[0], parent), c = cs(el), got, note;
+        if (k === "border") {
+          got = c.borderTopStyle === pc.borderTopStyle && c.borderTopWidth === pc.borderTopWidth && c.borderTopColor === pc.borderTopColor;
+          note = got ? "has the same border." : c.borderTopStyle !== "none" ? "keeps the browser's own button border, not the parent's." : "gets no border. Borders aren't inherited.";
+        }
+        else if (k === "padding") { got = c.paddingTop === pc.paddingTop; note = got ? "has the same padding." : "keeps its own padding. Padding isn't inherited."; }
+        else if (k === "bg") { got = c.backgroundColor === pc.backgroundColor; note = got ? "has the same background." : (c.backgroundColor === "rgba(0, 0, 0, 0)" ? "isn't inherited. It's see-through, so the parent's colour shows behind it." : "keeps the browser's own background."); }
+        else {
+          var prop = P[k][0];
+          got = c[prop] === pc[prop];
+          note = got ? "takes the parent's value." : (kid[1] === "link" ? "keeps the browser's link colour." : kid[1] === "button" ? "keeps the browser's button style, which blocks inheritance." : "keeps its own value.");
+        }
+        return '<li class="' + (got ? "yes" : "no") + '"><b>' + kid[1] + "</b> " + note + "</li>";
+      }).join("");
+    }
+    $$("#inhSeg button").forEach(function (b) { b.addEventListener("click", function () { paint(b.getAttribute("data-k")); }); });
+    paint("color");
+  })();
+
+  /* ---------- nth-child tester ---------- */
+  (function () {
+    var inp = $("#nthIn"), msg = $("#nthMsg"), items = $$("#nthList li");
+    var P = [["odd", "The same as 2n+1."], ["even", "The same as 2n."], ["3", "Just the third."], ["3n", "n = 1, 2, 3… gives 3, 6, 9, 12."],
+      ["3n+1", "n = 0, 1, 2… gives 1, 4, 7, 10."], ["-n+3", "n = 0, 1, 2 gives 3, 2, 1: the first three."], ["n+8", "The 8th and everything after it."]];
+    function run() {
+      var f = inp.value.trim(), hits = [];
+      items.forEach(function (li) { li.classList.remove("hit"); });
+      if (!f) { msg.textContent = "Type a formula, like 2n+1."; return; }
+      try { hits = $$("#nthList li:nth-child(" + f + ")"); } catch (e) { msg.textContent = "The browser can't read that. Try something like 2n+1."; return; }
+      hits.forEach(function (li) { li.classList.add("hit"); });
+      var p = P.filter(function (x) { return x[0] === f; })[0];
+      msg.innerHTML = (hits.length ? "Picks " + hits.map(function (li) { return li.textContent; }).join(", ") + "." : "Picks nothing.") + (p ? " <span>" + p[1] + "</span>" : "");
+    }
+    P.forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p[0];
+      b.addEventListener("click", function () { inp.value = p[0]; run(); });
+      $("#nthPresets").appendChild(b);
+    });
+    inp.addEventListener("input", run);
+    run();
+  })();
+
+  /* ---------- colour mixer ---------- */
+  (function () {
+    var R = $("#cmR"), G = $("#cmG"), B = $("#cmB"), A = $("#cmA");
+    function hex2(n) { return ("0" + n.toString(16)).slice(-2); }
+    function toHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      var mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, h = 0, s = 0, d = mx - mn;
+      if (d) {
+        s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn);
+        h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4;
+        h *= 60;
+      }
+      return [Math.round(h), Math.round(s * 100), Math.round(l * 100)];
+    }
+    function lum(r, g, b) {
+      var c = [r, g, b].map(function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+      return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+    }
+    function ratio(x, y) { return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+    function setHex(h) {
+      R.value = parseInt(h.slice(1, 3), 16); G.value = parseInt(h.slice(3, 5), 16); B.value = parseInt(h.slice(5, 7), 16); A.value = 100;
+      paint();
+    }
+    function paint() {
+      var r = +R.value, g = +G.value, b = +B.value, a = Math.round(+A.value) / 100;
+      $("#cmRv").textContent = r; $("#cmGv").textContent = g; $("#cmBv").textContent = b; $("#cmAv").textContent = a;
+      var h = toHsl(r, g, b), solid = a === 1;
+      var hex = "#" + hex2(r) + hex2(g) + hex2(b) + (solid ? "" : hex2(Math.round(a * 255)));
+      var rgb = solid ? "rgb(" + r + ", " + g + ", " + b + ")" : "rgba(" + r + ", " + g + ", " + b + ", " + a + ")";
+      var hsl = solid ? "hsl(" + h[0] + ", " + h[1] + "%, " + h[2] + "%)" : "hsla(" + h[0] + ", " + h[1] + "%, " + h[2] + "%, " + a + ")";
+      $("#cmSwatch").style.background = rgb;
+      $("#cmCodes").innerHTML = [hex, rgb, hsl].map(function (v) { return "<code>color: " + v + ";</code>"; }).join("");
+      var L = lum(r, g, b), cw = ratio(L, 1), ck = ratio(L, 0);
+      function lab(name, col, cr) { return '<span style="color:' + col + '">' + name + "<small>" + cr.toFixed(1) + " : 1, " + (cr >= 4.5 ? "readable" : cr >= 3 ? "large text only" : "hard to read") + "</small></span>"; }
+      $("#cmW").outerHTML = lab("White text", "#FFFFFF", cw).replace("<span", '<span id="cmW"');
+      $("#cmK").outerHTML = lab("Black text", "#1A1A1A", ck).replace("<span", '<span id="cmK"');
+    }
+    [["Your teal", "#034f46"], ["Ember", "#ffa946"], ["Your button", "#2c3e50"], ["Your background", "#eef2f7"], ["Crimson", "#dc143c"]].forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p[0];
+      b.addEventListener("click", function () { setHex(p[1]); });
+      $("#cmPresets").appendChild(b);
+    });
+    [R, G, B, A].forEach(function (s) { s.addEventListener("input", paint); });
+    setHex("#034f46");
+  })();
+
+  /* ---------- units ruler ---------- */
+  (function () {
+    var W = $("#urW"), F = $("#urF"), parent = $("#urParent"), bars = $$("#urParent .ur-bar");
+    function paint() {
+      parent.style.width = W.value + "%";
+      parent.style.fontSize = F.value + "px";
+      $("#urWv").textContent = W.value + "%";
+      $("#urFv").textContent = F.value + "px";
+      bars.forEach(function (b) { $("b", b).textContent = Math.round(b.getBoundingClientRect().width) + "px"; });
+      $("#urNote").textContent = "Here 1rem is " + parseFloat(getComputedStyle(document.documentElement).fontSize) + "px, the page's root font size. Your window is " + window.innerWidth + "px wide, so 1vw is " + (window.innerWidth / 100).toFixed(1) + "px.";
+    }
+    W.addEventListener("input", paint);
+    F.addEventListener("input", paint);
+    window.addEventListener("resize", paint);
+    paint();
+  })();
+
+  /* ---------- box model inspector ---------- */
+  (function () {
+    var W = $("#bmW"), P = $("#bmP"), Bd = $("#bmB"), M = $("#bmM"), el = $("#bmEl"), wrap = $("#bmMargin"), content = $("#bmContent"), sizing = "content-box";
+    function vals() { return { w: +W.value, p: +P.value, b: +Bd.value, m: +M.value }; }
+    function css(v, colours) {
+      return ".box {\n  width: " + v.w + "px;\n  padding: " + v.p + "px;\n  border: " + v.b + "px solid" + (colours ? " #034f46" : "") + ";\n  margin: " + v.m + "px;\n" +
+        (sizing === "border-box" ? "  box-sizing: border-box;\n" : "") + (colours ? "  background: #CFE3DC;\n" : "") + "}";
+    }
+    function paint() {
+      var v = vals();
+      $("#bmWv").textContent = v.w + "px"; $("#bmPv").textContent = v.p + "px"; $("#bmBv").textContent = v.b + "px"; $("#bmMv").textContent = v.m + "px";
+      el.style.width = v.w + "px"; el.style.padding = v.p + "px"; el.style.borderWidth = v.b + "px"; el.style.boxSizing = sizing;
+      wrap.style.padding = v.m + "px";
+      var cw = sizing === "border-box" ? Math.max(0, v.w - 2 * v.p - 2 * v.b) : v.w;
+      content.textContent = cw ? cw + " × 70" : "0";
+      var total = sizing === "border-box" ? Math.max(v.w, 2 * v.p + 2 * v.b) : v.w + 2 * v.p + 2 * v.b;
+      $("#bmMath").textContent = (sizing === "border-box" ?
+        "Total width = width = " + v.w + "px\nThe content shrinks to " + v.w + " − " + 2 * v.p + " − " + 2 * v.b + " = " + cw + "px" :
+        "Total width = width + padding × 2 + border × 2\n            = " + v.w + " + " + 2 * v.p + " + " + 2 * v.b + " = " + total + "px") +
+        "\nWith margins, it takes " + total + " + " + 2 * v.m + " = " + (total + 2 * v.m) + "px of space." +
+        "\nMeasured by the browser: " + el.offsetWidth + "px";
+      $("#bmCode").innerHTML = hlCSS(css(v, false));
+      $$("#bmSize button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-v") === sizing ? "true" : "false"); });
+    }
+    [W, P, Bd, M].forEach(function (s) { s.addEventListener("input", paint); });
+    $$("#bmSize button").forEach(function (b) { b.addEventListener("click", function () { sizing = b.getAttribute("data-v"); paint(); }); });
+    $("#bmOpen").addEventListener("click", function () { openInEditor("ed-box", { css: css(vals(), true) + "\n" }); });
+    paint();
+  })();
+
+  /* ---------- margin shorthand decoder ---------- */
+  (function () {
+    var inp = $("#msIn"), box = $("#msBox");
+    var SAY = ["", "One value: all four sides.", "Two values: top and bottom, then left and right.", "Three values: top, then left and right, then bottom.", "Four values: top, right, bottom, left. Clockwise from the top."];
+    function run() {
+      var v = inp.value.trim();
+      box.style.margin = "";
+      if (v) box.style.margin = v;
+      if (!v || !box.style.margin) {
+        $("#msSay").textContent = v ? "The browser can't read that value." : "Type a value.";
+        ["T", "R", "B", "L"].forEach(function (k) { $("#ms" + k).textContent = "?"; });
+        return;
+      }
+      $("#msT").textContent = box.style.marginTop; $("#msR").textContent = box.style.marginRight;
+      $("#msB").textContent = box.style.marginBottom; $("#msL").textContent = box.style.marginLeft;
+      var n = Math.min(v.split(/\s+/).length, 4);
+      $("#msSay").textContent = SAY[n] + (/auto/.test(v) ? " Auto shares the leftover space, so the box below moves to the middle." : "");
+    }
+    ["10px", "10px 40px", "10px 40px 30px", "10px 20px 30px 40px", "0 auto", "20px auto"].forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p;
+      b.addEventListener("click", function () { inp.value = p; run(); });
+      $("#msPresets").appendChild(b);
+    });
+    inp.addEventListener("input", run);
+    run();
   })();
 })();
 </script>

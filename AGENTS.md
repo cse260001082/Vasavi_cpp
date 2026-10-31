@@ -25,7 +25,7 @@ Vasavi Files/
 │   │       └── study_guide.html ← Interview revision: every line explained, trace, question bank
 │   ├── Playground/            ← Her own experiments (vasavi.html)
 │   └── Web Guide/
-│       └── html_css_guide.html ← How the web works, HTML, CSS: demos, live editors, challenges, interview lines (built part by part; Parts 1–2 ready)
+│       └── html_css_guide.html ← How the web works, HTML, CSS: demos, live editors, challenges, interview lines (built part by part; Parts 1–2 and the first half of Part 3 ready)
 ├── Google STEP/
 │   ├── README.html            ← Visual guide to Google STEP (pipeline, life, perks)
 │   ├── sprint_tracker.html    ← Interactive 24-day winter DSA sprint tracker
