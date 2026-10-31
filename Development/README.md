@@ -23,6 +23,17 @@ Suggested order:
 2. Revise with `prep/study_guide.html` until you can explain every line of the project.
 3. Do the final challenge at the end of `practice.md`: rebuild the project from three empty files.
 
+## Web Guide
+
+`Web Guide/html_css_guide.html` teaches how the web works, then HTML and CSS, with demos you can click and quick checks after each section. Double-click it to open it in Chrome.
+
+It is being built one part at a time:
+
+1. How the web works: client and server, URLs, DNS, HTTP, HTTPS, how the browser draws a page, and opening your page three ways. Ready.
+2. HTML. Coming next.
+3. CSS. Coming next.
+4. Wrap-up: cheat sheets and glossary. Coming next.
+
 ## Playground
 
 A place for your own experiments. `vasavi.html` is your first "About me" page.

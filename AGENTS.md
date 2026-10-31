@@ -23,7 +23,9 @@ Vasavi Files/
 │   │       ├── practice.md    ← 10 tasks, HTML to JS (answers are in <details> blocks)
 │   │       ├── practice/      ← task01 … task10 folders, check.js (check panel), README.md
 │   │       └── study_guide.html ← Interview revision: every line explained, trace, question bank
-│   └── Playground/            ← Her own experiments (vasavi.html)
+│   ├── Playground/            ← Her own experiments (vasavi.html)
+│   └── Web Guide/
+│       └── html_css_guide.html ← How the web works, HTML, CSS: demos, quick checks, interview lines (built part by part; Part 1 ready)
 ├── Google STEP/
 │   ├── README.html            ← Visual guide to Google STEP (pipeline, life, perks)
 │   ├── sprint_tracker.html    ← Interactive 24-day winter DSA sprint tracker

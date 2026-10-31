@@ -1,0 +1,2321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Web Basics Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
+<script>
+try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.setAttribute("data-theme", JSON.parse(t)); } catch (e) {}
+</script>
+<style>
+/* Layout: teal hero with an animated browser, then a sticky rail of parts and sections beside one reading column; on phones the rail becomes a chip bar */
+:root {
+  --bg: #FFFFEB;
+  --surface: #FFFFFF;
+  --border: #E4E4D0;
+  --ink: #1A1A1A;
+  --ink-2: #3D3D36;
+  --muted: #6E6E64;
+  --accent: #034F46;
+  --on-accent: #FFFFEB;
+  --accent-text: #034F46;
+  --lav: #F0D7FF;
+  --on-lav: #1A1A1A;
+  --ember: #FFA946;
+  --ember-soft: #FFEBCF;
+  --on-ember: #1A1A1A;
+  --hero-bg: #034F46;
+  --hero-fg: #FFFFEB;
+  --hero-fg-2: #CFE3DC;
+  --hero-chip: #0A5F55;
+  --hero-line: #2F7A70;
+  --code-bg: #222222;
+  --code-fg: #FFFFEB;
+  --code-chip: #45385A;
+  --syn-key: #F0D7FF;
+  --syn-str: #FFA946;
+  --syn-num: #8FD9C9;
+  --syn-attr: #C9E6DF;
+  --syn-dim: #8A8A80;
+  --ok-soft: #DCEFE9;
+  --u-scheme: #F0D7FF;
+  --u-host: #CDEBE2;
+  --u-port: #E8E6CC;
+  --u-path: #FFE0B5;
+  --u-query: #D5E6F7;
+  --u-frag: #F8D3DF;
+  --wire: #C9C9B4;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+    --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+    --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+    --code-bg: #121212; --code-chip: #45385A;
+    --ok-soft: #1E3A35;
+    --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
+    --wire: #4A4A40;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1A1A1A; --surface: #222222; --border: #36362F; --ink: #FFFFEB; --ink-2: #DADAC8; --muted: #A3A397;
+  --accent: #F0D7FF; --on-accent: #1A1A1A; --accent-text: #F0D7FF; --lav: #3A2D47; --on-lav: #FFFFEB;
+  --ember: #FFA946; --ember-soft: #3B2C18; --on-ember: #1A1A1A;
+  --code-bg: #121212; --code-chip: #45385A;
+  --ok-soft: #1E3A35;
+  --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
+  --wire: #4A4A40;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+img, svg { max-width: 100%; }
+a { color: var(--accent-text); text-underline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+code, pre, kbd { font-family: var(--font-mono); }
+p code, li code, dd code, td code, .why code, .say code, .callout code, .hint code, .real code, .demo-sub code, .status code {
+  font-size: .86em;
+  background: var(--lav);
+  color: var(--on-lav);
+  padding: .06em .35em;
+  border-radius: 5px;
+  overflow-wrap: anywhere;
+}
+.callout code, .say code { background: var(--surface); color: var(--ink); }
+kbd {
+  font-size: .82em;
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 5px;
+  padding: .05em .4em;
+  background: var(--surface);
+  white-space: nowrap;
+}
+h1, h2, h3, h4 { font-family: var(--font-display); text-wrap: balance; }
+h1 { font-size: clamp(2.3rem, 6vw, 3.7rem); line-height: 1.02; letter-spacing: -0.025em; font-weight: 800; margin: .15em 0 .35em; }
+h2 { font-size: clamp(1.7rem, 3.5vw, 2.25rem); line-height: 1.1; letter-spacing: -0.015em; font-weight: 750; margin: 0 0 .5em; }
+h3 { font-size: 1.28rem; line-height: 1.25; font-weight: 700; margin: 1.9em 0 .55em; }
+h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
+.kicker {
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .11em;
+  font-weight: 700;
+  color: var(--accent-text);
+  margin: 0 0 .6em;
+}
+.small { font-size: .9rem; color: var(--muted); }
+.hook { font-size: 1.12rem; color: var(--ink-2); max-width: 64ch; }
+
+.btn {
+  font: 700 .95rem/1.2 var(--font-body);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 9px 18px;
+  cursor: pointer;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.btn:hover { filter: brightness(1.12); }
+.btn:disabled { opacity: .5; cursor: default; filter: none; }
+.btn-ghost { background: transparent; color: var(--accent-text); border-color: var(--border); }
+.btn-ghost:hover { background: var(--bg); filter: none; }
+.btn-small { padding: 6px 13px; font-size: .86rem; }
+.btn-ember { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+input[type="text"], textarea {
+  font: inherit;
+  font-size: .95rem;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  max-width: 100%;
+}
+input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); margin: 0; flex: none; }
+.check { display: inline-flex; gap: 8px; align-items: center; font-size: .92rem; cursor: pointer; }
+.seg { display: inline-flex; flex-wrap: wrap; gap: 6px; }
+.seg button {
+  font: 700 .88rem var(--font-body);
+  padding: 7px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+}
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+/* hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); position: relative; }
+.hero-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 52px 44px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: 44px;
+  align-items: center;
+}
+.eyebrow { font-size: .8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 700; color: var(--lav); margin: 0; }
+:root[data-theme="dark"] .eyebrow { color: #F0D7FF; }
+.hero h1 { color: var(--hero-fg); }
+.lede { max-width: 58ch; font-size: 1.1rem; color: var(--hero-fg-2); margin: 0 0 22px; }
+.hero-stats { display: flex; flex-wrap: wrap; gap: 10px; }
+.stat {
+  background: var(--hero-chip);
+  border: 1px solid var(--hero-line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  min-width: 150px;
+}
+.stat-label { font-size: .78rem; color: var(--hero-fg-2); }
+.stat-val { font-weight: 700; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
+.meter { height: 6px; border-radius: 99px; background: var(--hero-line); margin-top: 6px; overflow: hidden; }
+.meter i { display: block; height: 100%; width: 0; background: var(--ember); border-radius: 99px; transition: width .3s; }
+.theme-btn {
+  position: absolute;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  font: 700 .82rem var(--font-body);
+  color: var(--hero-fg);
+  background: var(--hero-chip);
+  border: 1px solid var(--hero-line);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+.theme-btn:hover { background: var(--hero-line); }
+.bm { background: #FFFFEB; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.28); }
+.bm-bar { display: flex; align-items: center; gap: 6px; padding: 9px 10px; background: #E4E4D0; }
+.bm-bar i { width: 10px; height: 10px; border-radius: 50%; background: #B8B8A4; flex: none; }
+.bm-url {
+  flex: 1;
+  margin-left: 6px;
+  background: #FFFFFF;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font: 600 12.5px var(--font-mono);
+  color: #1A1A1A;
+  min-height: 26px;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.caret { display: inline-block; width: 1.5px; height: 13px; background: #034F46; vertical-align: -2px; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.bm-page { background: #EEF2F7; padding: 18px; height: 196px; display: grid; place-items: center; }
+.bm-card { background: #FFFFFF; border-radius: 10px; padding: 14px 16px; width: 82%; text-align: center; display: grid; gap: 10px; justify-items: center; }
+.bm-card > * { opacity: 0; transform: translateY(6px); transition: opacity .35s, transform .35s; }
+.bm-card > .in { opacity: 1; transform: none; }
+.bm-h { width: 58%; height: 12px; border-radius: 4px; background: #2C3E50; }
+.bm-dice { display: flex; gap: 10px; }
+.bm-dice svg { width: 44px; height: 44px; display: block; }
+.bm-line { width: 40%; height: 9px; border-radius: 4px; background: #B9C3CF; }
+.bm-btns { display: flex; gap: 8px; }
+.bm-btns span { width: 62px; height: 18px; border-radius: 4px; background: #2C3E50; }
+.bm-cap { font-family: var(--font-mono); font-size: .86rem; color: var(--hero-fg-2); margin: 12px 2px 0; min-height: 1.5em; }
+
+/* layout */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 48px;
+}
+.rail {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  padding-block: 32px 24px;
+  max-height: 100vh;
+  overflow-y: auto;
+}
+.rail-group { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--muted); margin: 18px 0 6px 12px; }
+.rail-group:first-child { margin-top: 0; }
+.rail-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 1px; }
+.rail-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--ink-2);
+  font-weight: 700;
+  font-size: .92rem;
+}
+.rail-list a:hover { background: var(--surface); }
+.rail-list a.on { background: var(--lav); color: var(--on-lav); }
+.rail-list a.ticked::after { content: "\2713"; color: var(--accent-text); }
+.rail-list a.on.ticked::after { color: inherit; }
+.rail-soon { display: block; padding: 6px 12px; color: var(--muted); font-weight: 700; font-size: .92rem; }
+.rail-soon small { font-weight: 400; }
+main { padding-block: 16px 40px; min-width: 0; }
+.sec { padding-block: 44px; border-top: 1px solid var(--border); scroll-margin-top: 8px; }
+.sec > p, .sec > ul, .sec > ol { max-width: 68ch; }
+.part {
+  margin-top: 28px;
+  padding: 26px 26px 24px;
+  border-radius: 18px;
+  background: var(--lav);
+  color: var(--on-lav);
+  scroll-margin-top: 8px;
+}
+.part-num { font-family: var(--font-display); font-size: .9rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; margin: 0; }
+.part h2 { margin: .1em 0 .3em; font-size: clamp(2rem, 4.4vw, 2.8rem); }
+.part p { max-width: 64ch; margin: 0 0 .7em; }
+
+/* boxes */
+.callout { background: var(--lav); color: var(--on-lav); border-radius: 14px; padding: 18px 24px; margin: 22px 0; max-width: 760px; }
+.callout h3, .callout h4 { margin-top: 0; }
+.callout ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.callout p:last-child { margin-bottom: 0; }
+.hint { background: var(--ember-soft); color: var(--ink); border-radius: 10px; padding: 12px 16px; margin: 18px 0; max-width: 760px; }
+.hint b:first-child, .real b:first-child { display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 2px; }
+.hint ul { margin: .3em 0 0; padding-left: 1.2em; display: grid; gap: 4px; }
+.real { border: 1.5px dashed var(--accent-text); border-radius: 14px; padding: 14px 18px; margin: 22px 0; max-width: 760px; }
+.real b:first-child { color: var(--accent-text); }
+.real ol { margin: .3em 0 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.say { background: var(--lav); color: var(--on-lav); border-radius: 12px; padding: 12px 16px; margin: 24px 0 0; max-width: 760px; }
+.say b { display: block; font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 2px; }
+.say p { margin: 0; }
+.done-row { margin-top: 18px; }
+.done-btn[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.legend { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 760px; margin-top: 18px; }
+.legend > div { margin: 0; }
+.steps { list-style: none; padding: 0; margin: 0; counter-reset: s; display: grid; gap: 10px; max-width: 760px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 12px; align-items: start; }
+.steps li::before {
+  content: counter(s);
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  font-size: .9rem;
+}
+.table-wrap { overflow-x: auto; max-width: 100%; }
+table { border-collapse: collapse; width: 100%; font-size: .95rem; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font-size: .74rem; text-transform: uppercase; letter-spacing: .09em; color: var(--muted); font-weight: 700; }
+
+/* code */
+.snip {
+  background: var(--code-bg);
+  color: var(--code-fg);
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  overflow-x: auto;
+  margin: 0;
+}
+.t-key { color: var(--syn-key); }
+.t-str { color: var(--syn-str); }
+.t-num { color: var(--syn-num); }
+.t-attr { color: var(--syn-attr); }
+.t-dim { color: var(--syn-dim); }
+
+/* demo shell */
+.demo { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 18px 20px 20px; margin: 24px 0; }
+.demo-head { margin-bottom: 14px; }
+.demo-tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--accent-text); margin: 0; }
+.demo-title { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; margin: 2px 0 0; line-height: 1.25; }
+.demo-sub { color: var(--muted); font-size: .92rem; margin: 4px 0 0; max-width: 70ch; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; margin-bottom: 14px; }
+.status { font-size: .95rem; color: var(--ink-2); min-height: 1.6em; margin: 12px 0 0; }
+
+/* quiz */
+.quiz { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px 18px; margin: 16px 0; max-width: 760px; }
+.quiz-tag { font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; font-weight: 700; color: var(--muted); margin: 0; }
+.quiz-q { font-weight: 700; margin: 4px 0 12px; }
+.quiz-opts { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.quiz-opts button {
+  width: 100%;
+  text-align: left;
+  font: inherit;
+  font-size: .97rem;
+  line-height: 1.45;
+  padding: 9px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+.quiz-opts button:hover:not(:disabled) { border-color: var(--accent-text); }
+.quiz-opts button:disabled { cursor: default; }
+.ql { flex: none; width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--border); display: grid; place-items: center; font-size: .78rem; font-weight: 700; margin-top: 1px; }
+.quiz-opts button code { font-size: .86em; background: var(--lav); color: var(--on-lav); padding: .04em .32em; border-radius: 5px; }
+.quiz-opts li.right button { border-color: var(--accent-text); background: var(--ok-soft); }
+.quiz-opts li.right .ql { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.quiz-opts li.wrong button { border-color: var(--ember); background: var(--ember-soft); }
+.quiz-opts li.wrong .ql { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
+.why { display: none; margin: 6px 0 2px 34px; font-size: .94rem; color: var(--ink-2); }
+.quiz-opts li.right .why, .quiz-opts li.wrong .why { display: block; }
+.why b { color: var(--ink); }
+
+/* journey */
+.journey { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; counter-reset: j; }
+.journey a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px 12px;
+  transition: background .25s, border-color .25s;
+}
+.journey li { counter-increment: j; }
+.journey a::before { content: counter(j); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); font-weight: 700; font-size: .8rem; margin-bottom: 6px; }
+.journey b { display: block; font-family: var(--font-display); font-size: .98rem; line-height: 1.2; }
+.journey span { display: block; font-size: .82rem; color: var(--muted); margin-top: 3px; line-height: 1.35; }
+.journey a.lit { background: var(--ember-soft); border-color: var(--ember); }
+.journey a.lit::before { background: var(--ember); border-color: var(--ember); color: var(--on-ember); }
+.journey a.past::before { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.jr-cap { font-weight: 700; min-height: 3.2em; margin: 12px 0 0; max-width: 70ch; }
+.part .journey a { color: var(--ink); }
+
+/* packets */
+.net { width: 100%; height: auto; display: block; }
+.net .wire { stroke: var(--wire); stroke-width: 3; }
+.net .router circle { fill: var(--bg); stroke: var(--muted); stroke-width: 2; }
+.net .router text, .net .end text { fill: var(--ink-2); font: 700 11px var(--font-body); text-anchor: middle; }
+.net .end rect { fill: var(--accent); }
+.net .end text.lbl { fill: var(--on-accent); }
+.net .end text.sub { fill: var(--muted); font-weight: 400; }
+.net .pkt rect { fill: var(--ember); stroke: var(--on-ember); stroke-width: 1.5; }
+.net .pkt.again rect { fill: var(--lav); stroke: var(--ink); }
+.net .pkt text { fill: #1A1A1A; font: 700 12px var(--font-mono); text-anchor: middle; }
+.net .pkt.lost { opacity: 0; transition: opacity .8s; }
+.net .boom { fill: none; stroke: var(--ember); stroke-width: 3; }
+.slots { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 10px; min-height: 40px; }
+.slots-label { font-size: .85rem; color: var(--muted); font-weight: 700; min-width: 70px; }
+.slot { font-family: var(--font-mono); font-size: .9rem; border: 1px dashed var(--border); border-radius: 8px; padding: 5px 10px; min-width: 76px; text-align: center; color: var(--muted); }
+.slot.full { border-style: solid; border-color: var(--ember); background: var(--ember-soft); color: var(--ink); }
+.slot.full b { margin-right: 6px; }
+.slots.sorted .slot.full { border-color: var(--accent-text); background: var(--ok-soft); }
+.msg-out { font-family: var(--font-mono); font-weight: 600; font-size: 1.15rem; letter-spacing: .06em; }
+
+/* url */
+.url-input { width: 100%; font-family: var(--font-mono) !important; font-size: .95rem !important; }
+.presets { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 16px; }
+.chip {
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink-2);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font: 700 .84rem var(--font-body);
+  cursor: pointer;
+}
+.chip:hover { border-color: var(--accent-text); }
+.ribbon { display: flex; flex-wrap: wrap; gap: 4px 2px; align-items: flex-start; margin-bottom: 16px; }
+.rb { display: inline-flex; flex-direction: column; min-width: 0; max-width: 100%; }
+.rb code { font-size: .98rem; padding: 6px 7px; border-radius: 6px; color: var(--ink); overflow-wrap: anywhere; word-break: break-all; }
+.rb small { font-size: .72rem; font-weight: 700; color: var(--muted); padding: 3px 4px 0; text-transform: uppercase; letter-spacing: .06em; }
+.u-scheme { background: var(--u-scheme); }
+.u-host { background: var(--u-host); }
+.u-port { background: var(--u-port); }
+.u-path { background: var(--u-path); }
+.u-query { background: var(--u-query); }
+.u-frag { background: var(--u-frag); }
+.parts { margin: 0; display: grid; border-top: 1px solid var(--border); }
+.parts > div { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.parts dt { font-weight: 700; display: flex; gap: 8px; align-items: baseline; }
+.parts dt i { flex: none; width: 12px; height: 12px; border-radius: 3px; display: inline-block; transform: translateY(1px); }
+.parts dd { margin: 0; color: var(--ink-2); font-size: .95rem; min-width: 0; }
+.parts .absent dt, .parts .absent dd { color: var(--muted); }
+.parts .absent dt i { opacity: .45; }
+.qtable { margin-top: 6px; font-size: .9rem; width: auto; }
+.qtable td { padding: 4px 12px 4px 0; font-family: var(--font-mono); }
+.url-note { font-size: .9rem; color: var(--ink-2); background: var(--ember-soft); border-radius: 8px; padding: 8px 12px; margin: 0 0 12px; }
+
+/* dns */
+.dns-flow { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
+.dn {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 10px 12px;
+  min-width: 0;
+  transition: border-color .25s, background .25s;
+  display: flex;
+  flex-direction: column;
+}
+.dn b { font-family: var(--font-display); font-size: .95rem; line-height: 1.2; }
+.dn span { font-size: .78rem; color: var(--muted); line-height: 1.3; margin-top: 2px; }
+.dn em { font-style: normal; font-size: .76rem; font-weight: 700; margin-top: auto; padding-top: 8px; min-height: 1.6em; }
+.dn.cur { border-color: var(--ember); box-shadow: 0 0 0 2px var(--ember); }
+.dn.miss em { color: var(--muted); }
+.dn.ref em { color: var(--accent-text); }
+.dn.hit { background: var(--ok-soft); border-color: var(--accent-text); }
+.dn.hit em { color: var(--accent-text); font-family: var(--font-mono); }
+.dns-text { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 12px 16px; margin-top: 12px; min-height: 5.4em; }
+.dns-text p { margin: 0; }
+.dns-count { font-size: .76rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); font-weight: 700; margin: 0 0 2px !important; }
+.nav-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+
+/* http */
+.msgs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 18px 0; }
+.msg { background: var(--code-bg); color: var(--code-fg); border-radius: 12px; padding: 12px 0 14px; min-width: 0; }
+.msg h4 { font-family: var(--font-body); font-size: .72rem; text-transform: uppercase; letter-spacing: .11em; color: var(--syn-dim); margin: 0 16px 8px; }
+.mrow { display: grid; grid-template-columns: minmax(0, 1fr); padding: 3px 16px; border-left: 3px solid transparent; }
+.mrow code { font-size: 13px; white-space: pre-wrap; overflow-wrap: anywhere; min-height: 1.3em; }
+.mrow span { font-size: .8rem; color: var(--syn-attr); font-family: var(--font-body); }
+.mrow.m1 { border-left-color: var(--syn-str); }
+.mrow.m2 { border-left-color: var(--syn-key); }
+.mrow.m3 { border-left-color: var(--syn-dim); }
+.mrow.m4 { border-left-color: var(--syn-num); }
+.netsim { display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 16px; align-items: start; }
+.fake-browser { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #FFFFFF; min-width: 0; }
+.fb-bar { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: #E4E4D0; }
+.fb-bar i { width: 9px; height: 9px; border-radius: 50%; background: #B8B8A4; flex: none; }
+.fb-url { flex: 1; background: #FFFFFF; color: #1A1A1A; border-radius: 999px; padding: 3px 10px; font: 600 12px var(--font-mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fb-view { height: 300px; overflow: auto; background: #FFFFFF; position: relative; }
+.fb-empty { position: absolute; inset: 0; display: grid; place-items: center; color: #8A8A80; font-size: .9rem; padding: 20px; text-align: center; }
+.devtools { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; min-width: 0; background: var(--bg); }
+.dt-tabs { display: flex; gap: 2px; padding: 6px 8px 0; background: var(--surface); border-bottom: 1px solid var(--border); font-size: .8rem; color: var(--muted); }
+.dt-tabs span { padding: 4px 10px 6px; }
+.dt-tabs span.on { color: var(--ink); font-weight: 700; border-bottom: 2px solid var(--accent-text); }
+.nt { font-size: .84rem; }
+.nt th { font-size: .66rem; padding: 6px 8px; }
+.nt td { padding: 6px 8px; font-family: var(--font-mono); font-size: .8rem; white-space: nowrap; }
+.nt tbody tr { cursor: pointer; }
+.nt tbody tr:hover td { background: var(--surface); }
+.nt tbody tr.sel td { background: var(--lav); color: var(--on-lav); }
+.nt tbody tr.bad td:first-child, .nt tbody tr.bad td:nth-child(2) { color: #C2410C; font-weight: 700; }
+:root[data-theme="dark"] .nt tbody tr.bad td:first-child, :root[data-theme="dark"] .nt tbody tr.bad td:nth-child(2) { color: var(--ember); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .nt tbody tr.bad td:first-child, :root:not([data-theme="light"]) .nt tbody tr.bad td:nth-child(2) { color: var(--ember); } }
+.nt .pending td { color: var(--muted); }
+.wf { width: 90px; position: relative; }
+.wf i { position: absolute; top: 50%; height: 8px; margin-top: -4px; background: var(--accent-text); border-radius: 2px; }
+.nt tr.bad .wf i { background: var(--ember); }
+.nt-empty td { color: var(--muted); font-family: var(--font-body); white-space: normal; cursor: default; }
+.dt-foot { font-size: .78rem; color: var(--muted); padding: 6px 10px; border-top: 1px solid var(--border); }
+.raw { margin-top: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.raw .snip { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 12.5px; max-height: 300px; overflow: auto; }
+.raw-h { font-size: .74rem; text-transform: uppercase; letter-spacing: .1em; font-weight: 700; color: var(--muted); margin: 0 0 4px; }
+.raw-hint { color: var(--muted); font-size: .92rem; margin: 14px 0 0; }
+.families { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin: 12px 0 18px; }
+.fam { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--surface); }
+.fam b { font-family: var(--font-mono); font-size: 1.05rem; display: block; }
+.fam span { font-size: .86rem; color: var(--ink-2); display: block; line-height: 1.35; }
+.fam.f2 { border-top: 4px solid var(--accent-text); }
+.fam.f3 { border-top: 4px solid var(--u-query); }
+.fam.f4 { border-top: 4px solid var(--ember); }
+.fam.f5 { border-top: 4px solid var(--ink); }
+.fam.f1 { border-top: 4px solid var(--border); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.sc { all: unset; display: block; cursor: pointer; perspective: 800px; height: 150px; border-radius: 12px; }
+.sc:focus-visible { outline: 3px solid var(--ember); outline-offset: 2px; }
+.sc-in { display: block; position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+.sc[aria-pressed="true"] .sc-in { transform: rotateY(180deg); }
+.sc-face { position: absolute; inset: 0; border-radius: 12px; padding: 14px; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 1px solid var(--border); background: var(--surface); display: flex; flex-direction: column; overflow: hidden; }
+.sc-front b { font-family: var(--font-mono); font-size: 2rem; line-height: 1; }
+.sc-front span { font-weight: 700; margin-top: 6px; }
+.sc-front small { margin-top: auto; color: var(--muted); font-size: .78rem; }
+.sc-back { transform: rotateY(180deg); background: var(--lav); color: var(--on-lav); font-size: .9rem; line-height: 1.4; }
+.sc-back b { font-family: var(--font-mono); }
+.c2 .sc-front b { color: var(--accent-text); }
+.c4 .sc-front b, .c5 .sc-front b { color: #C2410C; }
+:root[data-theme="dark"] .c4 .sc-front b, :root[data-theme="dark"] .c5 .sc-front b { color: var(--ember); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .c4 .sc-front b, :root:not([data-theme="light"]) .c5 .sc-front b { color: var(--ember); } }
+
+/* mini dice roll page (her project's look, inside the fake browser) */
+.mini { font: 16px/1.25 "Times New Roman", Times, serif; color: #000000; background: #FFFFFF; padding: 8px 10px; min-height: 100%; text-align: left; }
+.mini h1 { font: 700 2em/1.15 "Times New Roman", Times, serif; letter-spacing: 0; margin: .5em 0; color: #000000; }
+.mini p { margin: .8em 0; }
+.mini .m-img { display: inline-block; width: 70px; height: 70px; vertical-align: top; }
+.mini .m-img svg { width: 100%; height: 100%; display: block; }
+.mini button { font: 13px system-ui, sans-serif; }
+.mini.noimg .m-img svg { visibility: hidden; }
+.mini.styled { background: #EEF2F7; font-family: Arial, Helvetica, sans-serif; text-align: center; padding: 14px; }
+.mini.styled .m-box { max-width: 320px; margin: 0 auto; padding: 12px 14px; background: #FFFFFF; border-radius: 8px; }
+.mini.styled h1 { font: 700 1.55em/1.2 Arial, Helvetica, sans-serif; margin: .3em 0 .5em; }
+.mini.styled .m-img { width: 64px; height: 64px; margin: 6px; }
+.mini.styled .m-result { font-size: 1.15em; font-weight: 700; }
+.mini.styled button { padding: 7px 12px; margin: 3px; font: 13px Arial, Helvetica, sans-serif; color: #FFFFFF; background: #2C3E50; border: 0; border-radius: 4px; cursor: pointer; }
+.mini.wire, .mini.wire * { background: transparent !important; color: #8A8A80 !important; box-shadow: none !important; }
+.mini.wire [data-box] { position: relative; outline: 1.5px dashed #034F46; outline-offset: 1px; }
+.mini.wire [data-box]::after {
+  content: attr(data-box);
+  position: absolute;
+  top: -9px;
+  left: 4px;
+  font: 600 9.5px/1.4 var(--font-mono);
+  background: #034F46 !important;
+  color: #FFFFEB !important;
+  padding: 0 4px;
+  border-radius: 3px;
+  white-space: nowrap;
+  z-index: 1;
+}
+.mini.wire .m-img svg { visibility: hidden; }
+
+/* https */
+.road { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 6px 0 4px; }
+.road::before { content: ""; position: absolute; left: 12%; right: 12%; top: 34px; border-top: 3px dashed var(--wire); }
+.stop { position: relative; text-align: center; font-size: .86rem; font-weight: 700; color: var(--ink-2); }
+.stop svg { width: 50px; height: 50px; display: block; margin: 9px auto 6px; background: var(--surface); border-radius: 50%; padding: 9px; border: 1px solid var(--border); stroke: var(--ink); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.stop.spy svg { border-color: var(--ember); box-shadow: 0 0 0 3px var(--ember-soft); }
+.stop small { display: block; font-weight: 400; color: var(--muted); font-size: .78rem; }
+.env {
+  position: absolute;
+  top: 20px;
+  left: 12%;
+  transform: translateX(-50%);
+  background: var(--ember);
+  color: var(--on-ember);
+  font: 700 .74rem var(--font-mono);
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+.env.locked { background: var(--accent); color: var(--on-accent); }
+.env.go { opacity: 1; left: 88%; transition: left 2.6s linear, opacity .2s; }
+.spybox { margin-top: 14px; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.spybox-h { background: var(--ember-soft); padding: 8px 14px; font-weight: 700; font-size: .9rem; }
+.spybox .snip { border-radius: 0; min-height: 132px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.spybox mark { background: var(--ember); color: #1A1A1A; border-radius: 3px; padding: 0 3px; }
+.spy-wait { color: var(--syn-dim); }
+.bars { display: grid; gap: 10px; max-width: 560px; margin: 14px 0; }
+.abar { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--surface); border-radius: 999px; padding: 6px 14px; font: 600 .86rem var(--font-mono); min-width: 0; }
+.abar svg { width: 18px; height: 18px; flex: none; stroke: var(--ink); fill: none; stroke-width: 2; stroke-linecap: round; }
+.abar .ns { font-family: var(--font-body); font-weight: 700; color: #C2410C; border-right: 1px solid var(--border); padding-right: 8px; white-space: nowrap; }
+:root[data-theme="dark"] .abar .ns { color: var(--ember); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .abar .ns { color: var(--ember); } }
+.abar span:last-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* render */
+.render { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 16px; align-items: start; }
+.rsteps { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; counter-reset: r; }
+.rsteps button {
+  width: 100%;
+  text-align: left;
+  font: 700 .92rem var(--font-body);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.rsteps li { counter-increment: r; }
+.rsteps button::before { content: counter(r); flex: none; width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; font-size: .76rem; border: 1px solid var(--border); background: var(--surface); }
+.rsteps button[aria-current="step"] { background: var(--lav); color: var(--on-lav); border-color: var(--lav); }
+.rsteps button[aria-current="step"]::before { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+.rsteps button.past::before { background: var(--ok-soft); }
+.rstage { min-width: 0; }
+.rstage h4 { margin: 0 0 4px; font-size: 1.1rem; }
+.rstage > p { margin: 0 0 12px; color: var(--ink-2); max-width: 64ch; }
+.rpane { min-height: 280px; }
+.rpane .snip { font-size: 12.5px; }
+.tree, .tree ul { list-style: none; margin: 0; padding: 0; }
+.tree ul { padding-left: 22px; position: relative; }
+.tree li { position: relative; padding: 3px 0 3px 16px; }
+.tree ul > li::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; border-left: 1.5px solid var(--wire); }
+.tree ul > li:last-child::before { bottom: auto; height: 16px; }
+.tree ul > li::after { content: ""; position: absolute; left: 0; top: 16px; width: 12px; border-top: 1.5px solid var(--wire); }
+.tree > li { padding-left: 0; }
+.node { display: inline-block; font: 600 .84rem var(--font-mono); background: var(--lav); color: var(--on-lav); border-radius: 6px; padding: 1px 8px; }
+.node.txt { background: transparent; color: var(--muted); font-weight: 400; font-style: italic; padding: 1px 2px; }
+.tree.rt .gone > .node { background: transparent; color: var(--muted); text-decoration: line-through; border: 1px dashed var(--wire); }
+.tree.rt .gone .node { background: transparent; color: var(--muted); text-decoration: line-through; }
+.gone-note { font: 400 .76rem var(--font-body); color: var(--muted); margin-left: 6px; text-decoration: none; display: none; }
+.tree.rt .gone > .gone-note { display: inline; }
+.cssmap { display: grid; gap: 6px; margin-top: 12px; }
+.cssmap div { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .86rem; }
+.cssmap code { font: 600 .82rem var(--font-mono); background: var(--code-bg); color: var(--syn-key); padding: 2px 8px; border-radius: 6px; }
+.cssmap .arrow { color: var(--muted); }
+.frame { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: #FFFFFF; height: 300px; }
+.frame .mini { height: 100%; }
+
+/* hosting */
+.addr { display: flex; align-items: center; gap: 8px; border: 1px solid var(--border); background: var(--bg); border-radius: 999px; padding: 7px 14px; font: 600 .9rem var(--font-mono); margin: 14px 0; min-width: 0; }
+.addr span { overflow-wrap: anywhere; min-width: 0; }
+.chain { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 4px 0 14px; }
+.chain .lk { background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 7px 12px; font-weight: 700; font-size: .9rem; }
+.chain .lk small { display: block; font-weight: 400; color: var(--muted); font-size: .76rem; }
+.chain .ar { color: var(--muted); font-weight: 700; }
+.facts { margin: 0; display: grid; border-top: 1px solid var(--border); }
+.facts > div { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--border); }
+.facts dt { font-weight: 700; }
+.facts dd { margin: 0; color: var(--ink-2); }
+.yes, .no { font-weight: 700; }
+.yes { color: var(--accent-text); }
+.no { color: var(--muted); }
+.host-note { margin: 14px 0 0; color: var(--ink-2); }
+.files { font: 600 .86rem/1.6 var(--font-mono); background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px; margin: 0 0 14px; white-space: pre; overflow-x: auto; }
+.oc { display: grid; gap: 10px; }
+.oc-item { border: 1px solid var(--border); border-radius: 12px; padding: 10px 14px; background: var(--bg); }
+.oc-row { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; }
+.oc-row code { font-size: .86rem; overflow-wrap: anywhere; min-width: 0; }
+.oc-btns { display: flex; gap: 6px; }
+.oc-why { margin: 8px 0 0; font-size: .93rem; color: var(--ink-2); }
+.oc-item.right { border-color: var(--accent-text); background: var(--ok-soft); }
+.oc-item.wrong { border-color: var(--ember); background: var(--ember-soft); }
+.oc-score { font-weight: 700; margin: 12px 0 0; }
+
+/* recap */
+.recap-box textarea { width: 100%; min-height: 150px; line-height: 1.55; resize: vertical; }
+.ideas { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 0; padding: 0; list-style: none; }
+.ideas li { border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; font-size: .86rem; font-weight: 700; color: var(--muted); background: var(--bg); }
+.ideas li.got { background: var(--ok-soft); border-color: var(--accent-text); color: var(--ink); }
+.ideas li.got::before { content: "\2713  "; color: var(--accent-text); }
+.model { margin-top: 14px; }
+.saved { font-size: .85rem; color: var(--muted); min-height: 1.4em; margin: 4px 0 0; }
+
+/* footer */
+.foot { border-top: 1px solid var(--border); }
+.foot-in {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-block: 26px 40px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  align-items: center;
+  justify-content: space-between;
+  font-size: .9rem;
+  color: var(--muted);
+}
+.foot-in p { margin: 0; max-width: 70ch; }
+
+@media (max-width: 1100px) {
+  .netsim { grid-template-columns: minmax(0, 1fr); }
+  .journey { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .dns-flow { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 980px) {
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .rail {
+    z-index: 20;
+    background: var(--bg);
+    padding-block: 10px;
+    max-height: none;
+    overflow: visible;
+    margin-left: calc(-1 * max(16px, env(safe-area-inset-left, 0px)));
+    margin-right: calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .rail::-webkit-scrollbar { display: none; }
+  .rail-group, .rail-soon { display: none; }
+  .rail-list { display: flex; gap: 6px; flex: none; }
+  .rail-list a { white-space: nowrap; background: var(--surface); border: 1px solid var(--border); padding: 5px 12px; border-radius: 999px; font-size: .86rem; }
+  .rail-list a.on { border-color: var(--lav); }
+  .sec, .part { scroll-margin-top: 60px; }
+  .hero-in { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .hero-art { max-width: 420px; }
+  .render { grid-template-columns: minmax(0, 1fr); }
+  .rsteps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .hero-in { padding-block: 56px 30px; }
+  .msgs, .raw, .legend { grid-template-columns: minmax(0, 1fr); }
+  .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .dns-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .families { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .parts > div, .facts > div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .rsteps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .wf { display: none; }
+  .demo { padding: 16px 14px 18px; }
+  .part { padding: 22px 18px 20px; }
+  .road .stop { font-size: .78rem; }
+  .stop svg { width: 42px; height: 42px; padding: 7px; }
+  .road::before { top: 30px; }
+  .env { top: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  <div class="hero-in">
+    <div>
+      <p class="eyebrow">Web basics · made for Vasavi</p>
+      <h1>HTML and CSS from the ground up</h1>
+      <p class="lede">Hi Vasavi! Before you write a single tag, this guide shows what happens when anyone opens a website. Then it teaches HTML and CSS with demos you can click, drag and edit. Go top to bottom, and tick each section once you can explain it out loud.</p>
+      <div class="hero-stats">
+        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Part 1 · How the web works</div></div>
+        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">HTML, CSS, wrap-up</div></div>
+        <div class="stat"><div class="stat-label">Your progress</div><div class="stat-val" id="progVal">0 of 8</div><div class="meter"><i id="progBar"></i></div></div>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <div class="bm">
+        <div class="bm-bar"><i></i><i></i><i></i><div class="bm-url"><span id="heroUrl"></span><b class="caret"></b></div></div>
+        <div class="bm-page">
+          <div class="bm-card" id="heroCard">
+            <div class="bm-h"></div>
+            <div class="bm-dice" id="heroDice"></div>
+            <div class="bm-line"></div>
+            <div class="bm-btns"><span></span><span></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="bm-cap" id="heroCap"></p>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="rail" aria-label="Sections">
+    <p class="rail-group">Start</p>
+    <ul class="rail-list">
+      <li><a href="#start">How to use this</a></li>
+    </ul>
+    <p class="rail-group">Part 1 · How the web works</p>
+    <ul class="rail-list">
+      <li><a href="#client" data-sec="client">1.1 Two computers</a></li>
+      <li><a href="#url" data-sec="url">1.2 Reading a URL</a></li>
+      <li><a href="#dns" data-sec="dns">1.3 IP and DNS</a></li>
+      <li><a href="#http" data-sec="http">1.4 HTTP</a></li>
+      <li><a href="#https" data-sec="https">1.5 HTTPS</a></li>
+      <li><a href="#render" data-sec="render">1.6 Text to pixels</a></li>
+      <li><a href="#hosting" data-sec="hosting">1.7 Opening your page</a></li>
+      <li><a href="#recap1" data-sec="recap1">Recap</a></li>
+    </ul>
+    <p class="rail-group">Coming next</p>
+    <span class="rail-soon">Part 2 · HTML <small>soon</small></span>
+    <span class="rail-soon">Part 3 · CSS <small>soon</small></span>
+    <span class="rail-soon">Part 4 · Wrap-up <small>soon</small></span>
+  </nav>
+
+  <main id="main">
+
+    <section id="start" class="sec" style="border-top:0">
+      <p class="kicker">Start here</p>
+      <h2>How to use this guide</h2>
+      <ol class="steps">
+        <li><div><strong>Read the idea.</strong> Every section opens with a question and a short explanation.</div></li>
+        <li><div><strong>Play with the demo.</strong> Click everything. Nothing on this page can break.</div></li>
+        <li><div><strong>Answer the quick check.</strong> Pick before you scroll on. A wrong pick tells you why it's wrong, so wrong picks teach too.</div></li>
+        <li><div><strong>Say the interview line out loud,</strong> in your own words, without reading it.</div></li>
+        <li><div><strong>Tick "I can explain this"</strong> at the end of the section. Ticks are saved in this browser.</div></li>
+      </ol>
+      <div class="hint"><b>Where your ticks are saved</b>Open this file in Chrome by double-clicking it, the same way every time. Your ticks, the theme and your recap answer stay after a reload, and after closing Chrome. They don't carry over to an Incognito window, another browser or VS Code Live Server, because each of those counts as a different place. Clearing Chrome's browsing data wipes them.</div>
+      <div class="legend">
+        <div class="callout"><h4>Think of it like</h4><p>The idea in everyday terms, before the technical words.</p></div>
+        <div class="hint"><b>Watch out</b>A common mistake, and how to avoid it.</div>
+        <div class="real"><b>Try it on your laptop</b>Something to do outside this page, in Chrome or the terminal.</div>
+        <div class="say"><b>Say it in an interview</b><p>A short answer to practise saying out loud.</p></div>
+      </div>
+    </section>
+
+    <!-- ============ PART 1 ============ -->
+    <section id="part1" class="part">
+      <p class="part-num">Part 1</p>
+      <h2>How the web works</h2>
+      <p>You type an address, press Enter, and about a second later a page appears. In that second your laptop finds another computer somewhere in the world, asks it for files, gets them back, and turns them into the pixels you see.</p>
+      <p>Part 1 follows that trip one step at a time. Press play to see the whole trip first.</p>
+      <ol class="journey" id="journey">
+        <li><a href="#url" data-cap="You type vasavi.github.io/dice-roll and press Enter."><b>You type a URL</b><span>The address of the page</span></a></li>
+        <li><a href="#dns" data-cap="Your laptop asks DNS for the number behind vasavi.github.io. The answer is 185.199.108.153."><b>DNS finds the IP</b><span>The name becomes a number</span></a></li>
+        <li><a href="#http" data-cap="The browser sends a message to that number: GET /dice-roll/, please."><b>The browser asks</b><span>An HTTP request goes out</span></a></li>
+        <li><a href="#http" data-cap="GitHub's server replies 200 OK with index.html. Requests for the CSS, JS and images follow."><b>The server answers</b><span>Files come back with a status code</span></a></li>
+        <li><a href="#render" data-cap="The browser reads the HTML into a tree, applies the CSS and works out where every box goes."><b>The browser builds</b><span>Text becomes a tree, then boxes</span></a></li>
+        <li><a href="#render" data-cap="It paints the pixels. Your Dice Roll page is on the screen."><b>You see the page</b><span>Pixels on your screen</span></a></li>
+      </ol>
+      <p class="jr-cap" id="jrCap" aria-live="polite">Each box links to the section that explains it.</p>
+      <button class="btn btn-ember" id="jrPlay" type="button">Play the trip</button>
+    </section>
+
+    <!-- 1.1 -->
+    <section id="client" class="sec">
+      <p class="kicker">1.1</p>
+      <h2>Two computers talking</h2>
+      <p class="hook">Where does a website actually live? Not inside your browser. It lives as ordinary files on another computer, and your browser asks that computer for a copy every time you visit.</p>
+      <p>The computer that asks is the <strong>client</strong>. On your laptop, the client is the browser, Chrome. The computer that answers is the <strong>server</strong>. A server is a normal computer, usually without a screen, kept switched on all day and waiting for requests. GitHub runs thousands of them.</p>
+
+      <div class="callout">
+        <h4>Think of it like a restaurant</h4>
+        <ul>
+          <li>You are the client. You don't walk into the kitchen. You place an order.</li>
+          <li>The kitchen is the server. It has everything ready and sends out what you asked for.</li>
+          <li>Your order is the <strong>request</strong>. The plate that comes back is the <strong>response</strong>.</li>
+          <li>The waiter carrying both ways is the internet.</li>
+        </ul>
+      </div>
+
+      <h3>How the message travels</h3>
+      <p>Your laptop and the server are not joined by one long wire. Between them sit many <strong>routers</strong>, small computers that pass data along like a relay team. Your Wi-Fi box is the first one.</p>
+      <p>Big messages don't travel in one piece either. They are cut into small numbered <strong>packets</strong>. Each packet can take a different road, so they often arrive out of order. The receiver puts them back in order using the numbers, and asks again for any packet that went missing.</p>
+
+      <div class="demo" id="pktDemo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Send a message in packets</p>
+          <p class="demo-sub">Your laptop sends "HELLO VASAVI" to a server, cut into 4 packets. Send it a few times. The packets race differently each time.</p>
+        </div>
+        <svg class="net" viewBox="0 0 640 250" role="img" aria-label="A network: your laptop on the left, five routers in the middle, the server on the right">
+          <g id="netWires"></g>
+          <g id="netNodes"></g>
+          <g id="netPkts"></g>
+        </svg>
+        <div class="controls" style="margin-top:10px">
+          <button class="btn" id="pktSend" type="button">Send the message</button>
+          <label class="check"><input type="checkbox" id="pktLose"> Lose one packet on the way</label>
+        </div>
+        <div class="slots" id="pktSlots"></div>
+        <p class="status" id="pktStatus" aria-live="polite">The server's inbox is empty.</p>
+        <p class="msg-out" id="pktMsg"></p>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You open Instagram on your phone. Which one is the client?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Instagram's computers in a data centre</button><p class="why">Those are the servers. They hold the photos and answer requests.</p></li>
+          <li><button type="button">The app on your phone</button><p class="why">The client is whatever sends the request. Here, that's the app on your phone.</p></li>
+          <li><button type="button">Your Wi-Fi router</button><p class="why">The router only passes messages along. It never asks for anything itself.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A photo is cut into 300 packets. Packet 120 arrives before packet 7. What happens?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The photo comes out scrambled</button><p class="why">The packets are numbered, so the order they arrive in doesn't matter.</p></li>
+          <li><button type="button">The receiver collects them all and sorts them by number</button><p class="why">The numbers fix the order, and a missing packet gets asked for again.</p></li>
+          <li><button type="button">The whole photo is sent again from the start</button><p class="why">Only a missing packet is sent again, not the whole photo.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>A website is a set of files on a server. My browser is the client. It sends a request, and the server sends back a response. On the way, the data is cut into small numbered packets that pass through routers and get put back together at the end.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="client" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.2 -->
+    <section id="url" class="sec">
+      <p class="kicker">1.2</p>
+      <h2>Reading a URL</h2>
+      <p class="hook"><code>https://vasavi.github.io/dice-roll/index.html</code> looks like one long word. It is really several small pieces, and each piece has a different job.</p>
+      <p>URL stands for <strong>Uniform Resource Locator</strong>. It is the full address of one file on the internet. Paste any address below, or pick an example, and the demo splits it into its parts.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">URL splitter</p>
+          <p class="demo-sub">Edit the address and watch the parts change. Try deleting <code>#history</code>, or adding <code>?player=2</code> before it.</p>
+        </div>
+        <label for="urlIn" class="small">Address</label>
+        <input type="text" id="urlIn" class="url-input" spellcheck="false" autocomplete="off" value="https://vasavi.github.io/dice-roll/index.html#history">
+        <div class="presets" id="urlPresets"></div>
+        <p class="url-note" id="urlNote" hidden></p>
+        <div class="ribbon" id="urlRibbon" aria-live="polite"></div>
+        <dl class="parts" id="urlParts"></dl>
+      </div>
+
+      <div class="hint"><b>Watch out</b>URLs can't contain spaces. A space in a folder name becomes <code>%20</code>, so <code>Dice Roll/index.html</code> turns into <code>Dice%20Roll/index.html</code>. That's why web file names use dashes instead, like <code>dice-roll</code>.</div>
+
+      <div class="quiz" data-answer="3">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">In <code>https://shop.com/cart?item=pen#reviews</code>, which part never travels to the server?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>shop.com</code></button><p class="why">The domain is needed first of all, to find the server.</p></li>
+          <li><button type="button"><code>/cart</code></button><p class="why">The server needs the path to know which page to send.</p></li>
+          <li><button type="button"><code>?item=pen</code></button><p class="why">The query is sent. The server reads it to know which item you mean.</p></li>
+          <li><button type="button"><code>#reviews</code></button><p class="why">The browser keeps the fragment to itself and scrolls to the element with <code>id="reviews"</code>.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">What is the path in <code>https://github.com/vasavi/dice-roll</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>github.com</code></button><p class="why">That's the host, the name of the server.</p></li>
+          <li><button type="button"><code>/vasavi/dice-roll</code></button><p class="why">Everything after the host, up to a <code>?</code> or <code>#</code>, is the path.</p></li>
+          <li><button type="button"><code>https</code></button><p class="why">That's the scheme. It says how to talk to the server.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>A URL is the address of a file on the web. It has a scheme like https, a host like github.com that DNS turns into an IP address, an optional port, and a path to the file. It can end with a query after the question mark and a fragment after the hash. The fragment never goes to the server. The browser uses it to jump to an element with that id.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="url" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.3 -->
+    <section id="dns" class="sec">
+      <p class="kicker">1.3</p>
+      <h2>IP addresses and DNS</h2>
+      <p class="hook">Computers don't understand names like <code>github.com</code>. They find each other by number. So who turns the name into a number?</p>
+      <p>Every device on the internet has an <strong>IP address</strong>. The common kind, IPv4, is four numbers from 0 to 255 joined by dots, like <code>185.199.108.153</code>. That allows about 4.3 billion addresses, and the world ran out of them years ago. So there is also IPv6, which is much longer, like <code>2606:50c0:8000::153</code>.</p>
+      <p>One address is worth remembering. <code>127.0.0.1</code>, also called <code>localhost</code>, always means "this computer". You'll meet it again in 1.7.</p>
+      <p>Nobody wants to remember <code>185.199.108.153</code>. <strong>DNS</strong>, the Domain Name System, is the internet's contact list. You give it a name, and it gives back the number.</p>
+
+      <div class="callout">
+        <h4>Think of it like your phone's contacts</h4>
+        <p>You tap "Amma" and your phone dials the number saved behind that name. You never type the number yourself. DNS does the same for websites. You type <code>github.com</code>, DNS finds the number, and the browser connects to that number.</p>
+      </div>
+
+      <h3>Who knows the answer?</h3>
+      <p>No single computer knows every name. A lookup is a chain of questions, and most servers in the chain only know who to ask next. Step through it below.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Follow a DNS lookup for vasavi.github.io</p>
+          <p class="demo-sub">Press Next to move one question along. Then switch to "Second visit" to see why it's faster.</p>
+        </div>
+        <div class="controls">
+          <div class="seg" id="dnsMode" role="group" aria-label="Visit">
+            <button type="button" data-mode="first" aria-pressed="true">First visit</button>
+            <button type="button" data-mode="second" aria-pressed="false">Second visit</button>
+          </div>
+        </div>
+        <div class="dns-flow" id="dnsFlow">
+          <div class="dn" data-n="browser"><b>Browser cache</b><span>Chrome's memory</span><em></em></div>
+          <div class="dn" data-n="os"><b>Windows cache</b><span>Your laptop</span><em></em></div>
+          <div class="dn" data-n="resolver"><b>Resolver</b><span>Your internet provider, or 8.8.8.8</span><em></em></div>
+          <div class="dn" data-n="root"><b>Root server</b><span>Knows every ending</span><em></em></div>
+          <div class="dn" data-n="tld"><b>.io server</b><span>Knows every .io name</span><em></em></div>
+          <div class="dn" data-n="auth"><b>github.io server</b><span>In charge of the name</span><em></em></div>
+        </div>
+        <div class="dns-text" aria-live="polite"><p class="dns-count" id="dnsCount"></p><p id="dnsText"></p></div>
+        <div class="nav-row">
+          <button class="btn btn-ghost btn-small" id="dnsBack" type="button">Back</button>
+          <button class="btn btn-small" id="dnsNext" type="button">Next</button>
+        </div>
+      </div>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Press <kbd>Windows</kbd> + <kbd>R</kbd>, type <code>cmd</code> and press Enter.</li>
+          <li>Type <code>nslookup github.com</code> and press Enter.</li>
+          <li>The number under "Address" is GitHub's IP address, straight from DNS. Try <code>nslookup google.com</code> too. Different name, different number.</li>
+        </ol>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You type <code>185.199.108.153</code> straight into the address bar instead of a name. Is a DNS lookup needed?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Yes, every page needs DNS</button><p class="why">DNS only turns names into numbers. You already gave it the number.</p></li>
+          <li><button type="button">No, the browser already has the number</button><p class="why">DNS exists only because people prefer names to numbers.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Why does a website you visited yesterday often open faster today?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The internet happens to be less busy</button><p class="why">That's luck. There's a reason that works every time.</p></li>
+          <li><button type="button">Your laptop saved (cached) answers and files from last time</button><p class="why">Chrome saved the DNS answer, and often the files too, so it skips part of the trip.</p></li>
+          <li><button type="button">The server recognises you and hurries</button><p class="why">Servers don't speed up for you. Your own laptop does the remembering.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>Computers find each other by IP address, like 185.199.108.153. DNS turns a domain name into that IP address. The browser checks its cache first, then asks a resolver. The resolver asks a root server, then the server for the ending, like .io, then the domain's own name server, which gives the answer. Each step caches the answer, so the next visit is faster.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="dns" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.4 -->
+    <section id="http" class="sec">
+      <p class="kicker">1.4</p>
+      <h2>HTTP: the request and the response</h2>
+      <p class="hook">Now the browser knows the server's number. What does it actually say to it?</p>
+      <p>Browser and server talk in <strong>HTTP</strong>, the HyperText Transfer Protocol. A protocol is a set of rules both sides agree on, the way every phone call starts with "Hello?". An HTTP message is plain text with a fixed shape. Here is the browser asking for your CSS file, and the server's reply.</p>
+
+      <div class="msgs">
+        <div class="msg">
+          <h4>Request, from the browser</h4>
+          <div class="mrow m1"><code><span class="t-str">GET</span> /dice-roll/style.css HTTP/1.1</code><span>Start line: method, path, version</span></div>
+          <div class="mrow m2"><code><span class="t-key">Host:</span> vasavi.github.io</code></div>
+          <div class="mrow m2"><code><span class="t-key">Accept:</span> text/css</code><span>Headers: extra details, one per line</span></div>
+          <div class="mrow m3"><code> </code><span>Blank line: the headers are over</span></div>
+        </div>
+        <div class="msg">
+          <h4>Response, from the server</h4>
+          <div class="mrow m1"><code>HTTP/1.1 <span class="t-str">200 OK</span></code><span>Start line: version, status code, message</span></div>
+          <div class="mrow m2"><code><span class="t-key">Content-Type:</span> text/css</code></div>
+          <div class="mrow m2"><code><span class="t-key">Content-Length:</span> 980</code><span>Headers: what's coming, and how big</span></div>
+          <div class="mrow m3"><code> </code><span>Blank line</span></div>
+          <div class="mrow m4"><code><span class="t-dim">body {
+  font-family: Arial, sans-serif;
+  ...</span></code><span>Body: the file itself</span></div>
+        </div>
+      </div>
+
+      <p>The first word of a request is the <strong>method</strong>. It says what the browser wants to do.</p>
+      <div class="table-wrap" style="max-width:760px">
+        <table>
+          <thead><tr><th>Method</th><th>Means</th><th>Used for</th></tr></thead>
+          <tbody>
+            <tr><td><code>GET</code></td><td>Give me this</td><td>Pages, CSS, JS, images. Almost every request your project makes.</td></tr>
+            <tr><td><code>POST</code></td><td>Take this</td><td>Sending data, like a login form or a new comment.</td></tr>
+            <tr><td><code>PUT</code> / <code>PATCH</code></td><td>Update this</td><td>Changing something already saved, like editing your profile.</td></tr>
+            <tr><td><code>DELETE</code></td><td>Remove this</td><td>Deleting something, like a post.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>One page, many requests</h3>
+      <p>A page is rarely one file. The browser first gets the HTML, reads it, and finds the <code>&lt;link&gt;</code>, <code>&lt;script&gt;</code> and <code>&lt;img&gt;</code> tags. Each one starts a new request. Your Dice Roll page needs four. The demo copies the Network tab in Chrome's DevTools, the panel you open with <kbd>F12</kbd>.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Load the Dice Roll page</p>
+          <p class="demo-sub">Press Load and watch the requests arrive. Click any row to read the real request and response. Then turn on the typo and load again.</p>
+        </div>
+        <div class="controls">
+          <button class="btn" id="nsLoad" type="button">Load page</button>
+          <label class="check"><input type="checkbox" id="nsTypo"> Make a typo: <code>href="styles.css"</code></label>
+        </div>
+        <div class="netsim">
+          <div class="fake-browser">
+            <div class="fb-bar"><i></i><i></i><i></i><div class="fb-url">https://vasavi.github.io/dice-roll/</div></div>
+            <div class="fb-view" id="nsView"><div class="fb-empty">Press Load page</div></div>
+          </div>
+          <div class="devtools">
+            <div class="dt-tabs"><span>Elements</span><span>Console</span><span class="on">Network</span></div>
+            <div class="table-wrap">
+              <table class="nt">
+                <thead><tr><th>Name</th><th>Status</th><th>Type</th><th>Time</th><th class="wf">Waterfall</th></tr></thead>
+                <tbody id="nsRows"><tr class="nt-empty"><td colspan="5">No requests yet.</td></tr></tbody>
+              </table>
+            </div>
+            <div class="dt-foot" id="nsFoot">0 requests</div>
+          </div>
+        </div>
+        <p class="status" id="nsStatus" aria-live="polite"></p>
+        <div id="nsRaw" hidden>
+          <div class="raw">
+            <div><p class="raw-h">Request</p><pre class="snip" id="nsReq"></pre></div>
+            <div><p class="raw-h">Response</p><pre class="snip" id="nsRes"></pre></div>
+          </div>
+        </div>
+        <p class="raw-hint" id="nsHint">Click a row after loading to see its request and response.</p>
+      </div>
+
+      <div class="hint"><b>Watch out</b>When your page suddenly looks plain, with Times New Roman text and grey buttons, your HTML is usually fine. The CSS file didn't arrive. Open the Network tab and look for a red 404.</div>
+
+      <h3>Status codes</h3>
+      <p>Every response starts with a three-digit <strong>status code</strong>. The first digit tells you the family.</p>
+      <div class="families">
+        <div class="fam f1"><b>1xx</b><span>Hold on. Information, rarely seen.</span></div>
+        <div class="fam f2"><b>2xx</b><span>Done. It worked.</span></div>
+        <div class="fam f3"><b>3xx</b><span>Look somewhere else. A redirect.</span></div>
+        <div class="fam f4"><b>4xx</b><span>Your mistake. A client error.</span></div>
+        <div class="fam f5"><b>5xx</b><span>The server's mistake.</span></div>
+      </div>
+      <p>Tap a card to flip it.</p>
+      <div class="cards" id="codeCards"></div>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open <code>github.com</code> in Chrome and press <kbd>F12</kbd>.</li>
+          <li>Click the Network tab, then press <kbd>F5</kbd> to reload. Each row is one request.</li>
+          <li>Look at the Status column. Click any row and open Headers to see the real request and response.</li>
+        </ol>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You change <code>src="images/dice1.svg"</code> to <code>src="images/dice7.svg"</code>, a file that doesn't exist. What does the Network tab show for it?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">200</button><p class="why">200 means the file was found and sent. There is no dice7.svg.</p></li>
+          <li><button type="button">404</button><p class="why">Not Found. The page still loads. Only that one image is missing.</p></li>
+          <li><button type="button">500</button><p class="why">500 means the server itself broke. Here the server is fine, the file just isn't there.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which method does the browser use to fetch your <code>style.css</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>GET</code></button><p class="why">GET means "give me this file".</p></li>
+          <li><button type="button"><code>POST</code></button><p class="why">POST sends data to the server, like a form. Fetching a file is a GET.</p></li>
+        </ol>
+      </div>
+      <p class="small" style="max-width:68ch">Most big sites today speak HTTP/2 or HTTP/3. They pack the same information into a faster format, but the parts are the same: method, path, headers, status code, body. DevTools shows them the same way.</p>
+
+      <div class="say"><b>Say it in an interview</b><p>HTTP is the protocol browsers and servers use to talk. The browser sends a request with a method like GET, a path and some headers. The server replies with a status code, like 200 for OK or 404 for Not Found, its own headers, and the file in the body. Each file needs its own request, so the browser gets the HTML first and then asks for the CSS, JS and images it links to.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="http" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.5 -->
+    <section id="https" class="sec">
+      <p class="kicker">1.5</p>
+      <h2>HTTPS and the lock</h2>
+      <p class="hook">HTTP messages are plain text. On the way to the server they pass through the café's Wi-Fi and a string of routers. Who else can read them?</p>
+      <p>With plain HTTP, anyone on the path can read every message. It's a postcard, and every postman can read a postcard. They could even change what it says. <strong>HTTPS</strong> fixes this. It's the same HTTP, sent through an encrypted connection called <strong>TLS</strong>. Only your browser and the server can unlock it.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Someone is watching the café Wi-Fi</p>
+          <p class="demo-sub">Send the same login twice, once over HTTP and once over HTTPS, and compare what the snooper sees.</p>
+        </div>
+        <div class="controls">
+          <div class="seg" id="tlsMode" role="group" aria-label="Protocol">
+            <button type="button" data-mode="http" aria-pressed="true">HTTP</button>
+            <button type="button" data-mode="https" aria-pressed="false">HTTPS</button>
+          </div>
+          <button class="btn" id="tlsSend" type="button">Send login</button>
+        </div>
+        <div class="road">
+          <div class="env" id="tlsEnv">user=vasavi…</div>
+          <div class="stop"><svg viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>Your laptop</div>
+          <div class="stop spy"><svg viewBox="0 0 24 24"><path d="M5 12.5a10 10 0 0 1 14 0"/><path d="M8.5 15.5a5 5 0 0 1 7 0"/><circle cx="12" cy="18.5" r="1"/><path d="M2 9a15 15 0 0 1 20 0"/></svg>Café Wi-Fi<small>a snooper is here</small></div>
+          <div class="stop"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>The internet<small>many routers</small></div>
+          <div class="stop"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="7" rx="1.5"/><rect x="5" y="14" width="14" height="7" rx="1.5"/><path d="M8 6.5h.01M8 17.5h.01"/></svg>example.com<small>the server</small></div>
+        </div>
+        <div class="spybox">
+          <div class="spybox-h">What the snooper on the café Wi-Fi sees</div>
+          <pre class="snip" id="tlsSpy"><span class="spy-wait">Nothing yet. Press Send login.</span></pre>
+        </div>
+        <p class="status" id="tlsStatus" aria-live="polite"></p>
+      </div>
+
+      <h3>What HTTPS promises</h3>
+      <ul>
+        <li><strong>Private.</strong> Nobody on the way can read the messages.</li>
+        <li><strong>Unchanged.</strong> If someone alters a message on the way, the browser notices and rejects it.</li>
+        <li><strong>The real server.</strong> The site shows a <strong>certificate</strong>, a digital ID card signed by a trusted company called a Certificate Authority. Your browser checks it before trusting the server.</li>
+      </ul>
+
+      <h3>The handshake, simplified</h3>
+      <p>Before any page is sent, the browser and server set up the secure connection. It takes a few milliseconds.</p>
+      <ol class="steps">
+        <li><div><strong>Browser:</strong> Hello. These are the kinds of encryption I can use.</div></li>
+        <li><div><strong>Server:</strong> Hello. Let's use this one. Here is my certificate.</div></li>
+        <li><div><strong>Browser checks the certificate.</strong> Is it signed by an authority I trust? Is it for this exact domain? Has it expired?</div></li>
+        <li><div><strong>Both sides work out a shared secret key</strong> without ever sending the key itself. Every message after this is locked with it.</div></li>
+      </ol>
+
+      <h3>What your address bar shows</h3>
+      <div class="bars">
+        <div class="abar"><span class="ns">Not secure</span><span>http://example.com</span></div>
+        <div class="abar"><svg viewBox="0 0 24 24" aria-label="Site settings icon"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg><span>https://github.com</span></div>
+      </div>
+      <p>Plain HTTP pages get a <strong>Not secure</strong> label. In 2023 Chrome replaced its old padlock with the small sliders icon, because many people thought the lock meant "this site is safe". Firefox still shows a padlock. Click the icon and choose "Connection is secure" to see the certificate.</p>
+      <p>HTTP uses port 80 and HTTPS uses port 443, which is why you never type them. GitHub Pages gives every <code>github.io</code> site HTTPS for free, so your Dice Roll link will start with <code>https://</code> without you doing anything.</p>
+
+      <div class="hint"><b>Watch out</b>HTTPS doesn't mean a site is honest. A scam site can get a certificate too. HTTPS only promises that the connection is private and that you're really talking to that domain. So always read the domain. <code>github.com</code> and <code>github-login-help.com</code> have different owners.</div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You're on hostel Wi-Fi, logging in to <code>https://github.com</code>. What can someone else on the Wi-Fi see?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Your username and password</button><p class="why">Not with HTTPS. The form data is encrypted.</p></li>
+          <li><button type="button">Only that you're connecting to github.com</button><p class="why">The domain name still shows. The pages, the password and the replies are encrypted.</p></li>
+          <li><button type="button">Nothing at all, not even the site's name</button><p class="why">Close, but the domain name usually still shows. HTTPS hides everything else.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">A page uses HTTPS. Is it safe to type your bank password there?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Yes, HTTPS means the site is trusted</button><p class="why">HTTPS only proves the connection is private and the domain is real. Scam sites can have HTTPS too.</p></li>
+          <li><button type="button">Only if the domain really is your bank's</button><p class="why">You need HTTPS and the right domain. Read the address carefully.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>HTTPS is HTTP sent through an encrypted TLS connection. Nobody on the way can read or change the messages, and the server's certificate proves it owns the domain. It doesn't prove the site is honest, only that the connection is secure. HTTP uses port 80 and HTTPS uses port 443.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="https" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.6 -->
+    <section id="render" class="sec">
+      <p class="kicker">1.6</p>
+      <h2>From text to pixels</h2>
+      <p class="hook">The server sent back plain text, HTML and CSS. Your screen shows colours, boxes and buttons. What happens in between?</p>
+      <p>The browser turns text into pixels in a fixed order. MDN calls it the critical rendering path. Step through it with a small version of your Dice Roll page.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Build the page, step by step</p>
+          <p class="demo-sub">Click a step, or use Next. Watch how the same page changes form at each step.</p>
+        </div>
+        <div class="render">
+          <ol class="rsteps" id="rSteps">
+            <li><button type="button">Read the HTML</button></li>
+            <li><button type="button">Build the DOM</button></li>
+            <li><button type="button">Build the CSSOM</button></li>
+            <li><button type="button">Render tree</button></li>
+            <li><button type="button">Layout</button></li>
+            <li><button type="button">Paint</button></li>
+          </ol>
+          <div class="rstage" aria-live="polite">
+            <h4 id="rTitle"></h4>
+            <p id="rText"></p>
+            <div class="rpane" data-step="0">
+<pre class="snip" data-lang="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;title&gt;Dice Roll&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;h1&gt;Dice Roll&lt;/h1&gt;
+    &lt;div class="dice"&gt;
+      &lt;img id="dice1" src="images/dice1.svg" alt="Dice"&gt;
+      &lt;img id="dice2" src="images/dice1.svg" alt="Dice"&gt;
+    &lt;/div&gt;
+    &lt;p id="result"&gt;Roll the dice!&lt;/p&gt;
+    &lt;button id="btn1"&gt;Roll 1 Die&lt;/button&gt;
+    &lt;button id="btn2"&gt;Roll 2 Dice&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+            <div class="rpane" data-step="1" hidden><ul class="tree" id="domTree"></ul></div>
+            <div class="rpane" data-step="2" hidden>
+<pre class="snip" data-lang="css"><code>body { font-family: Arial, sans-serif; background-color: #eef2f7; }
+.container { max-width: 500px; margin: 0 auto; background-color: white; }
+.dice img { width: 120px; }
+#result { font-size: 24px; font-weight: bold; }
+button { color: white; background-color: #2c3e50; }</code></pre>
+              <div class="cssmap">
+                <div><code>body</code><span class="arrow">styles</span><span class="node">body</span></div>
+                <div><code>.container</code><span class="arrow">styles</span><span class="node">div.container</span></div>
+                <div><code>.dice img</code><span class="arrow">styles</span><span class="node">img#dice1</span><span class="node">img#dice2</span></div>
+                <div><code>#result</code><span class="arrow">styles</span><span class="node">p#result</span></div>
+                <div><code>button</code><span class="arrow">styles</span><span class="node">button#btn1</span><span class="node">button#btn2</span></div>
+              </div>
+            </div>
+            <div class="rpane" data-step="3" hidden><ul class="tree rt" id="renderTree"></ul></div>
+            <div class="rpane" data-step="4" hidden><div class="frame"><div class="mini styled wire" id="miniLayout"></div></div></div>
+            <div class="rpane" data-step="5" hidden><div class="frame"><div class="mini styled" id="miniPaint"></div></div></div>
+            <div class="nav-row">
+              <button class="btn btn-ghost btn-small" id="rBack" type="button">Back</button>
+              <button class="btn btn-small" id="rNext" type="button">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p>When JavaScript changes something later, the browser repeats only the steps it needs. Your Roll button changes an image's <code>src</code> and the text in <code>#result</code>. A new colour only needs a fresh paint. A change in size needs layout and paint again.</p>
+
+      <h3>Why <code>&lt;script&gt;</code> goes at the end of <code>&lt;body&gt;</code></h3>
+      <p>The browser builds the DOM from top to bottom. When it meets a <code>&lt;script&gt;</code> tag, it stops, downloads the JavaScript, runs it, and only then carries on. If your script sat in the <code>&lt;head&gt;</code>, it would run before the buttons exist, and <code>document.getElementById("btn1")</code> would return <code>null</code>. At the end of <code>&lt;body&gt;</code>, every element above it is already in the DOM.</p>
+      <p>You may see <code>&lt;script defer&gt;</code> in other projects. It's another way to get the same result. Your end-of-body way is fine.</p>
+
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open your Dice Roll page, press <kbd>F12</kbd> and click Elements. That's the DOM, the live tree.</li>
+          <li>Press <kbd>Ctrl</kbd> + <kbd>U</kbd> to see the page source. That's the original text.</li>
+          <li>Roll a few times and compare. The DOM changes, with a new <code>src</code> and new text. The source never does.</li>
+        </ol>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">An element has <code>display: none</code>. Where is it?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">In the DOM and in the render tree</button><p class="why">It's in the DOM, but the browser leaves it out of the render tree because there's nothing to draw.</p></li>
+          <li><button type="button">In the DOM, but not in the render tree</button><p class="why">It exists, so JavaScript can find it and show it again. It just isn't drawn.</p></li>
+          <li><button type="button">In neither</button><p class="why">It's still in the DOM. <code>getElementById</code> can find it.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Someone moves your <code>&lt;script&gt;</code> tag into the <code>&lt;head&gt;</code>. Now clicking Roll does nothing, and the Console shows an error. Why?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The script ran before the buttons were in the DOM, so <code>getElementById</code> returned <code>null</code></button><p class="why">That's the timing problem. The script looked for elements that didn't exist yet.</p></li>
+          <li><button type="button">Scripts aren't allowed in the head</button><p class="why">They are allowed. The problem is when the script runs, not where it is.</p></li>
+          <li><button type="button">The CSS hadn't loaded yet</button><p class="why">CSS doesn't matter to <code>getElementById</code>. The elements themselves were missing at that moment.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>The browser parses the HTML into the DOM tree and the CSS into the CSSOM. It combines them into a render tree that holds only the visible elements. Then layout works out each box's size and position, and paint fills in the pixels. A script pauses the parser while it runs, so I put mine at the end of the body, after the elements it uses.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="render" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 1.7 -->
+    <section id="hosting" class="sec">
+      <p class="kicker">1.7</p>
+      <h2>Three ways to open your page</h2>
+      <p class="hook">When you double-click <code>index.html</code>, there's no DNS, no server and no HTTP at all. So how does the page still work?</p>
+      <p>The same Dice Roll files can be opened three ways. Pick one to see which parts of the trip actually happen.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Same page, three addresses</p>
+        </div>
+        <div class="seg" id="hostMode" role="group" aria-label="How the page is opened">
+          <button type="button" data-mode="file" aria-pressed="true">Double-click</button>
+          <button type="button" data-mode="live" aria-pressed="false">VS Code Live Server</button>
+          <button type="button" data-mode="pages" aria-pressed="false">GitHub Pages</button>
+        </div>
+        <div class="addr"><span id="hostUrl"></span></div>
+        <div class="chain" id="hostChain"></div>
+        <dl class="facts" id="hostFacts"></dl>
+        <p class="host-note" id="hostNote"></p>
+      </div>
+
+      <h3>Works on my laptop, broken online</h3>
+      <p>This is the most common surprise when a project goes live. Windows ignores capital letters in file names, so <code>Dice1.svg</code> and <code>dice1.svg</code> open the same file. GitHub's servers run Linux, where those are two different names. A link can work perfectly on your laptop and give a 404 online.</p>
+
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Will it work on GitHub Pages?</p>
+          <p class="demo-sub">Your repo has exactly these files. For each line of HTML, decide: works online, or breaks?</p>
+        </div>
+<pre class="files">dice-roll/
+├── index.html
+├── style.css
+├── script.js
+└── images/
+    ├── dice1.svg
+    └── … dice6.svg</pre>
+        <div class="oc" id="onlineCheck">
+          <div class="oc-item" data-ok="1">
+            <div class="oc-row"><code>&lt;link rel="stylesheet" href="style.css"&gt;</code><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="1">Works</button><button class="btn btn-ghost btn-small" type="button" data-pick="0">Breaks</button></span></div>
+            <p class="oc-why" hidden>It matches the file name exactly, and it's relative to the page's folder.</p>
+          </div>
+          <div class="oc-item" data-ok="0">
+            <div class="oc-row"><code>&lt;img src="images/Dice1.svg"&gt;</code><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="1">Works</button><button class="btn btn-ghost btn-small" type="button" data-pick="0">Breaks</button></span></div>
+            <p class="oc-why" hidden>The file is <code>dice1.svg</code> with a small d. Windows forgives this, GitHub Pages doesn't. It's a 404.</p>
+          </div>
+          <div class="oc-item" data-ok="0">
+            <div class="oc-row"><code>&lt;img src="C:/Users/Vasavi/Desktop/Dice Roll/images/dice1.svg"&gt;</code><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="1">Works</button><button class="btn btn-ghost btn-small" type="button" data-pick="0">Breaks</button></span></div>
+            <p class="oc-why" hidden>That path only exists on your laptop. Nobody else's computer has your C: drive.</p>
+          </div>
+          <div class="oc-item" data-ok="0">
+            <div class="oc-row"><code>&lt;script src="Script.js"&gt;&lt;/script&gt;</code><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="1">Works</button><button class="btn btn-ghost btn-small" type="button" data-pick="0">Breaks</button></span></div>
+            <p class="oc-why" hidden>Capital S. The file is <code>script.js</code>, so online the buttons would stop working.</p>
+          </div>
+          <div class="oc-item" data-ok="0">
+            <div class="oc-row"><code>&lt;img src="/images/dice1.svg"&gt;</code><span class="oc-btns"><button class="btn btn-ghost btn-small" type="button" data-pick="1">Works</button><button class="btn btn-ghost btn-small" type="button" data-pick="0">Breaks</button></span></div>
+            <p class="oc-why" hidden>The tricky one. A path that starts with <code>/</code> means "from the top of the site", which is <code>vasavi.github.io/</code>. The browser asks for <code>vasavi.github.io/images/dice1.svg</code>, but your images live inside <code>/dice-roll/</code>. Drop the first slash.</p>
+          </div>
+        </div>
+        <p class="oc-score" id="ocScore" aria-live="polite"></p>
+      </div>
+
+      <div class="hint">
+        <b>Habits that prevent this</b>
+        <ul>
+          <li>Name files in small letters, with dashes instead of spaces: <code>dice-roll</code>, <code>dice1.svg</code>.</li>
+          <li>Use relative paths like <code>images/dice1.svg</code>. Never <code>C:/…</code>.</li>
+          <li>Use forward slashes <code>/</code> in paths, not Windows backslashes.</li>
+          <li>Call the first page <code>index.html</code>. When a URL ends in a folder, like <code>/dice-roll/</code>, the server sends that folder's <code>index.html</code>.</li>
+        </ul>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">You send a friend <code>file:///C:/Users/Vasavi/Desktop/Dice%20Roll/index.html</code> on WhatsApp. What happens when they tap it?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">It opens your page</button><p class="why"><code>file://</code> means "on this computer". Your friend's phone has no such file.</p></li>
+          <li><button type="button">It fails, because the file is only on your laptop</button><p class="why">To share a page, it has to be on a server, like GitHub Pages.</p></li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-tag">Quick check</p>
+        <p class="quiz-q">Which address can the interview panel open on their own laptop?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>http://127.0.0.1:5500/index.html</code></button><p class="why">127.0.0.1 always means "this computer". On their laptop, that's their own machine, not yours.</p></li>
+          <li><button type="button"><code>https://vasavi.github.io/dice-roll/</code></button><p class="why">It's on a real server on the internet, so anyone with the link can open it.</p></li>
+          <li><button type="button"><code>file:///C:/Users/Vasavi/Desktop/Dice%20Roll/index.html</code></button><p class="why">That's a path on your own disk.</p></li>
+        </ol>
+      </div>
+
+      <div class="say"><b>Say it in an interview</b><p>When I double-click the file, the browser opens it with file://, reading straight from my disk with no server. Live Server runs a small HTTP server on localhost, port 5500, and reloads when I save. On GitHub Pages a real server sends the files over HTTPS, so anyone can open the link. Paths online are case-sensitive, so I keep file names lowercase and use relative paths like images/dice1.svg.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="hosting" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- recap -->
+    <section id="recap1" class="sec">
+      <p class="kicker">Part 1 recap</p>
+      <h2>The 30-second answer</h2>
+      <p class="hook">"What happens when you type a URL and press Enter?" is one of the most common web interview questions.</p>
+      <p>Write your own answer below, as if you were saying it. Don't scroll back up. Then press Check to see which ideas you covered. Your answer is saved in this browser.</p>
+      <div class="demo recap-box">
+        <label for="recapText" class="small">Your answer</label>
+        <textarea id="recapText" placeholder="I type the URL and press Enter. First, the browser..."></textarea>
+        <p class="saved" id="recapSaved"></p>
+        <div class="controls" style="margin:6px 0 0">
+          <button class="btn" id="recapCheck" type="button">Check my answer</button>
+          <button class="btn btn-ghost" id="recapModelBtn" type="button" hidden>Compare with a sample answer</button>
+        </div>
+        <ul class="ideas" id="recapIdeas"></ul>
+        <p class="status" id="recapStatus" aria-live="polite"></p>
+        <div class="callout model" id="recapModel" hidden>
+          <h4>A sample answer</h4>
+          <p>I type the URL and press Enter. The browser needs the server's IP address, so it checks its cache, and if the address isn't there it asks DNS, which finds the IP for the domain. The browser connects to that IP over HTTPS, so the connection is encrypted, and sends an HTTP GET request for the page. The server replies with status 200 and the HTML. While reading the HTML, the browser sends more requests for the CSS, JS and images it links to. It builds the DOM from the HTML and the CSSOM from the CSS, combines them into a render tree, works out the layout, and paints the pixels on screen.</p>
+        </div>
+      </div>
+      <p>Part 2 is HTML. The guide will grow one part at a time, and you'll find it in the menu when it's ready.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap1" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <p>Part 1 of 4. Ticks, theme and your recap answer are saved only in this browser.</p>
+    <button class="btn btn-ghost btn-small" id="resetBtn" type="button">Clear my ticks</button>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var store = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+  function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+
+  /* ---------- theme ---------- */
+  var root = document.documentElement;
+  var themeBtn = $("#themeBtn");
+  function isDark() {
+    var t = root.getAttribute("data-theme");
+    if (t) return t === "dark";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+  function paintTheme() {
+    themeBtn.textContent = isDark() ? "Light mode" : "Dark mode";
+  }
+  themeBtn.addEventListener("click", function () {
+    var next = isDark() ? "light" : "dark";
+    root.setAttribute("data-theme", next);
+    store.set("wg-theme", next);
+    paintTheme();
+  });
+  paintTheme();
+
+  /* ---------- syntax colouring ---------- */
+  function hlAttrs(s) {
+    var out = "", last = 0, m;
+    var re = /([^\s=]+)(?:(\s*=\s*)("[^"]*"|'[^']*'|[^\s"']+))?/g;
+    while ((m = re.exec(s))) {
+      out += esc(s.slice(last, m.index));
+      out += '<span class="t-attr">' + esc(m[1]) + "</span>";
+      if (m[2]) out += esc(m[2]) + '<span class="t-str">' + esc(m[3]) + "</span>";
+      last = re.lastIndex;
+    }
+    return out + esc(s.slice(last));
+  }
+  function hlHTML(src) {
+    var out = "", last = 0, m;
+    var re = /<!\-\-[\s\S]*?\-\->|<(\/?)([a-zA-Z!][\w-]*)([^>]*?)(\/?)>/g;
+    while ((m = re.exec(src))) {
+      out += esc(src.slice(last, m.index));
+      if (/^<!-/.test(m[0])) out += '<span class="t-dim">' + esc(m[0]) + "</span>";
+      else out += '<span class="t-dim">&lt;' + m[1] + '</span><span class="t-key">' + esc(m[2]) + "</span>" + hlAttrs(m[3]) + '<span class="t-dim">' + m[4] + "&gt;</span>";
+      last = re.lastIndex;
+    }
+    return out + esc(src.slice(last));
+  }
+  function hlCSS(src) {
+    var out = "", m, stack = [], inVal = false, sawAt = false;
+    var re = /\/\*[\s\S]*?\*\/|"[^"]*"|'[^']*'|[{};:(),]|@[\w-]+|[^\s{};:"'(),]+|\s+/g;
+    function wrap(c, t) { return c ? '<span class="' + c + '">' + esc(t) + "</span>" : esc(t); }
+    while ((m = re.exec(src))) {
+      var t = m[0], ctx = stack[stack.length - 1], c = "";
+      if (t.slice(0, 2) === "/*") c = "t-dim";
+      else if (/^\s+$/.test(t)) c = "";
+      else if (t === "{") { stack.push(sawAt ? "at" : "rule"); sawAt = false; inVal = false; c = "t-dim"; }
+      else if (t === "}") { stack.pop(); inVal = false; c = "t-dim"; }
+      else if (ctx === "rule") {
+        if (t === ":" && !inVal) { inVal = true; c = "t-dim"; }
+        else if (t === ";") { inVal = false; c = "t-dim"; }
+        else if (inVal) c = /^["']/.test(t) ? "t-str" : (/^#[0-9a-fA-F]{3,8}$/.test(t) || /^-?\.?\d/.test(t)) ? "t-num" : "";
+        else c = "t-attr";
+      } else {
+        if (t.charAt(0) === "@") { sawAt = true; c = "t-str"; }
+        else if (/^-?\.?\d/.test(t)) c = "t-num";
+        else if (/^[(),:]$/.test(t)) c = "t-dim";
+        else c = "t-key";
+      }
+      out += wrap(c, t);
+    }
+    return out;
+  }
+  $$("pre[data-lang]").forEach(function (p) {
+    var c = $("code", p) || p;
+    c.innerHTML = (p.getAttribute("data-lang") === "css" ? hlCSS : hlHTML)(c.textContent);
+  });
+
+  /* ---------- progress ---------- */
+  var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1"];
+  var done = store.get("wg-done", {});
+  function paintDone() {
+    $$(".done-btn").forEach(function (b) {
+      var on = !!done[b.getAttribute("data-done")];
+      b.setAttribute("aria-pressed", on ? "true" : "false");
+      b.textContent = on ? "Done \u2713 (click to undo)" : "I can explain this";
+    });
+    $$(".rail-list a[data-sec]").forEach(function (a) { a.classList.toggle("ticked", !!done[a.getAttribute("data-sec")]); });
+    var n = SECS.filter(function (s) { return done[s]; }).length;
+    $("#progVal").textContent = n + " of " + SECS.length + " sections";
+    $("#progBar").style.width = (n / SECS.length * 100) + "%";
+  }
+  $$(".done-btn").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var k = b.getAttribute("data-done");
+      if (done[k]) delete done[k]; else done[k] = true;
+      store.set("wg-done", done);
+      paintDone();
+    });
+  });
+  var resetBtn = $("#resetBtn"), resetArmed = false;
+  resetBtn.addEventListener("click", function () {
+    if (!resetArmed) { resetArmed = true; resetBtn.textContent = "Click again to clear"; setTimeout(function () { resetArmed = false; resetBtn.textContent = "Clear my ticks"; }, 3000); return; }
+    done = {}; store.set("wg-done", done); paintDone();
+    resetArmed = false; resetBtn.textContent = "Clear my ticks";
+  });
+  paintDone();
+
+  /* ---------- rail highlight ---------- */
+  var railLinks = $$(".rail-list a");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        railLinks.forEach(function (a) {
+          var on = a.getAttribute("href") === "#" + e.target.id;
+          a.classList.toggle("on", on);
+          if (on && window.innerWidth <= 980) a.scrollIntoView({ block: "nearest", inline: "center" });
+        });
+      });
+    }, { rootMargin: "-30% 0px -60% 0px" });
+    $$("main .sec").forEach(function (s) { io.observe(s); });
+  }
+
+  /* ---------- quizzes ---------- */
+  $$(".quiz").forEach(function (q) {
+    var ans = +q.getAttribute("data-answer");
+    var items = $$(".quiz-opts > li", q);
+    items.forEach(function (li, i) {
+      var b = $("button", li);
+      b.insertAdjacentHTML("afterbegin", '<span class="ql" aria-hidden="true">' + "ABCD".charAt(i) + "</span>");
+      var why = $(".why", li);
+      why.insertAdjacentHTML("afterbegin", i === ans ? "<b>Yes.</b> " : "<b>Not quite.</b> ");
+      b.addEventListener("click", function () {
+        if (q.classList.contains("solved")) return;
+        li.classList.add(i === ans ? "right" : "wrong");
+        if (i === ans) {
+          q.classList.add("solved");
+          items.forEach(function (o) { $("button", o).disabled = true; });
+        } else b.disabled = true;
+      });
+    });
+  });
+
+  /* ---------- dice drawing ---------- */
+  var PIPS = { 1: [[50, 50]], 2: [[28, 28], [72, 72]], 3: [[28, 28], [50, 50], [72, 72]], 4: [[28, 28], [72, 28], [28, 72], [72, 72]], 5: [[28, 28], [72, 28], [50, 50], [28, 72], [72, 72]], 6: [[28, 26], [72, 26], [28, 50], [72, 50], [28, 74], [72, 74]] };
+  function dieSVG(n) {
+    return '<svg viewBox="0 0 100 100" role="img" aria-label="Dice showing ' + n + '"><rect x="4" y="4" width="92" height="92" rx="16" fill="#ffffff" stroke="#2c3e50" stroke-width="4"/>' +
+      PIPS[n].map(function (p) { return '<circle cx="' + p[0] + '" cy="' + p[1] + '" r="9" fill="#2c3e50"/>'; }).join("") + "</svg>";
+  }
+  function miniPage() {
+    return '<div class="m-box" data-box="div.container · max 500px · centred">' +
+      '<h1 data-box="h1">Dice Roll</h1>' +
+      '<div class="m-dice" data-box="div.dice"><span class="m-img" data-box="img · 120px">' + dieSVG(1) + '</span><span class="m-img" data-box="img · 120px">' + dieSVG(1) + "</span></div>" +
+      '<p class="m-result" data-box="p#result">Roll the dice!</p>' +
+      '<button type="button" class="m-b1" data-box="button">Roll 1 Die</button> <button type="button" class="m-b2" data-box="button">Roll 2 Dice</button>' +
+      "</div>";
+  }
+
+  /* ---------- hero animation ---------- */
+  (function () {
+    var urlEl = $("#heroUrl"), cap = $("#heroCap"), card = $("#heroCard");
+    $("#heroDice").innerHTML = dieSVG(3) + dieSVG(5);
+    var parts = Array.prototype.slice.call(card.children);
+    var text = "vasavi.github.io/dice-roll";
+    if (reduce) {
+      urlEl.textContent = text;
+      parts.forEach(function (p) { p.classList.add("in"); });
+      cap.textContent = "One address. About one second. One page.";
+      return;
+    }
+    async function loop() {
+      for (;;) {
+        urlEl.textContent = "";
+        parts.forEach(function (p) { p.classList.remove("in"); });
+        cap.textContent = "Typing the address\u2026";
+        for (var i = 1; i <= text.length; i++) { urlEl.textContent = text.slice(0, i); await wait(65); }
+        await wait(500);
+        cap.textContent = "DNS: vasavi.github.io is 185.199.108.153";
+        await wait(1400);
+        cap.textContent = "GET /dice-roll/   \u2192   200 OK";
+        await wait(1400);
+        cap.textContent = "Building the page\u2026";
+        for (var j = 0; j < parts.length; j++) { parts[j].classList.add("in"); await wait(260); }
+        cap.textContent = "Done. About one second, start to finish.";
+        await wait(3600);
+      }
+    }
+    loop();
+  })();
+
+  /* ---------- journey ---------- */
+  (function () {
+    var stops = $$("#journey a"), cap = $("#jrCap"), btn = $("#jrPlay"), timer = null;
+    btn.addEventListener("click", function () {
+      clearInterval(timer);
+      var i = 0;
+      function show() {
+        stops.forEach(function (s, k) { s.classList.toggle("lit", k === i); s.classList.toggle("past", k < i); });
+        cap.textContent = stops[i].getAttribute("data-cap");
+      }
+      show();
+      btn.textContent = "Play again";
+      timer = setInterval(function () {
+        i++;
+        if (i >= stops.length) {
+          clearInterval(timer);
+          stops.forEach(function (s) { s.classList.remove("lit"); s.classList.add("past"); });
+          cap.textContent = "That's the whole trip. The sections below slow down each step.";
+          return;
+        }
+        show();
+      }, 2600);
+    });
+  })();
+
+  /* ---------- packets ---------- */
+  (function () {
+    var NS = "http://www.w3.org/2000/svg";
+    var P = { L: [56, 125], R1: [190, 55], R2: [190, 195], R3: [330, 125], R4: [470, 55], R5: [470, 195], S: [586, 125] };
+    var EDGES = [["L", "R1"], ["L", "R2"], ["R1", "R3"], ["R2", "R3"], ["R1", "R4"], ["R3", "R4"], ["R3", "R5"], ["R2", "R5"], ["R4", "S"], ["R5", "S"]];
+    var PK = [
+      { n: 1, text: "HEL", path: ["L", "R1", "R4", "S"] },
+      { n: 2, text: "LO ", path: ["L", "R2", "R5", "S"] },
+      { n: 3, text: "VAS", path: ["L", "R1", "R3", "R5", "S"] },
+      { n: 4, text: "AVI", path: ["L", "R2", "R3", "R4", "S"] }
+    ];
+    var wires = $("#netWires"), nodes = $("#netNodes"), layer = $("#netPkts");
+    function el(tag, attrs, parent) {
+      var e = document.createElementNS(NS, tag);
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+      if (parent) parent.appendChild(e);
+      return e;
+    }
+    EDGES.forEach(function (e) { el("line", { x1: P[e[0]][0], y1: P[e[0]][1], x2: P[e[1]][0], y2: P[e[1]][1], "class": "wire" }, wires); });
+    ["R1", "R2", "R3", "R4", "R5"].forEach(function (k) {
+      var g = el("g", { "class": "router" }, nodes);
+      el("circle", { cx: P[k][0], cy: P[k][1], r: 17 }, g);
+      el("text", { x: P[k][0], y: P[k][1] + 4 }, g).textContent = k;
+    });
+    [["L", "Laptop", "you"], ["S", "Server", "github.io"]].forEach(function (d) {
+      var g = el("g", { "class": "end" }, nodes);
+      el("rect", { x: P[d[0]][0] - 40, y: P[d[0]][1] - 20, width: 80, height: 40, rx: 10 }, g);
+      el("text", { x: P[d[0]][0], y: P[d[0]][1] + 4, "class": "lbl" }, g).textContent = d[1];
+      el("text", { x: P[d[0]][0], y: P[d[0]][1] + 36, "class": "sub" }, g).textContent = d[2];
+    });
+
+    function along(pts, t) {
+      var segs = [], total = 0;
+      for (var i = 1; i < pts.length; i++) { var d = Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); segs.push(d); total += d; }
+      var dist = t * total;
+      for (var j = 0; j < segs.length; j++) {
+        if (dist <= segs[j] || j === segs.length - 1) {
+          var f = Math.min(dist / segs[j], 1);
+          return [pts[j][0] + (pts[j + 1][0] - pts[j][0]) * f, pts[j][1] + (pts[j + 1][1] - pts[j][1]) * f];
+        }
+        dist -= segs[j];
+      }
+    }
+    function makePkt(n, again) {
+      var g = el("g", { "class": "pkt" + (again ? " again" : ""), transform: "translate(" + P.L[0] + "," + P.L[1] + ")" }, layer);
+      el("rect", { x: -15, y: -11, width: 30, height: 22, rx: 6 }, g);
+      el("text", { y: 4.5 }, g).textContent = n;
+      return g;
+    }
+    function fly(g, keys, ms) {
+      var pts = keys.map(function (k) { return P[k]; });
+      return new Promise(function (res) {
+        if (reduce) {
+          setTimeout(function () { var e = pts[pts.length - 1]; g.setAttribute("transform", "translate(" + e[0] + "," + e[1] + ")"); res(); }, ms / 4);
+          return;
+        }
+        var t0 = performance.now();
+        function step(now) {
+          var t = Math.min((now - t0) / ms, 1);
+          var xy = along(pts, t);
+          g.setAttribute("transform", "translate(" + xy[0] + "," + xy[1] + ")");
+          if (t < 1) requestAnimationFrame(step); else res();
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    var slots = $("#pktSlots"), status = $("#pktStatus"), out = $("#pktMsg"), btn = $("#pktSend"), lose = $("#pktLose");
+    var arrived = [], sorted = false;
+    function showText(t) { return t.replace(/ /g, "\u2423"); }
+    function paintSlots() {
+      var list = sorted ? arrived.slice().sort(function (a, b) { return a.n - b.n; }) : arrived;
+      var html = '<span class="slots-label">Server got</span>';
+      for (var i = 0; i < 4; i++) {
+        var p = list[i];
+        html += p ? '<span class="slot full"><b>' + p.n + "</b>" + showText(p.text) + "</span>" : '<span class="slot">empty</span>';
+      }
+      slots.innerHTML = html;
+      slots.classList.toggle("sorted", sorted);
+    }
+    function durations() {
+      var d = [1500, 1950, 2400, 2850];
+      do { d.sort(function () { return Math.random() - 0.5; }); } while (d[0] < d[1] && d[1] < d[2] && d[2] < d[3]);
+      return d;
+    }
+    paintSlots();
+    btn.addEventListener("click", async function () {
+      btn.disabled = true; lose.disabled = true;
+      layer.innerHTML = ""; arrived = []; sorted = false; out.textContent = ""; paintSlots();
+      var losing = lose.checked, durs = durations();
+      status.textContent = "The message is cut into 4 numbered packets. Each one picks its own road.";
+      var jobs = PK.map(function (pk, i) {
+        var g = makePkt(pk.n);
+        if (losing && pk.n === 3) {
+          return fly(g, ["L", "R1", "R3"], 1300).then(function () {
+            g.classList.add("lost");
+            var boom = el("circle", { cx: P.R3[0], cy: P.R3[1], r: 24, "class": "boom" }, layer);
+            status.textContent = "Packet 3 got dropped by a busy router.";
+            setTimeout(function () { g.remove(); boom.remove(); }, 900);
+          });
+        }
+        return fly(g, pk.path, durs[i]).then(function () { g.remove(); arrived.push(pk); paintSlots(); });
+      });
+      await Promise.all(jobs);
+      if (losing) {
+        status.textContent = "Packets 1, 2 and 4 arrived. Number 3 is missing, so the server asks your laptop to send it again.";
+        await wait(1600);
+        var g3 = makePkt(3, true);
+        await fly(g3, ["L", "R2", "R5", "S"], 1700);
+        g3.remove(); arrived.push(PK[2]); paintSlots();
+      }
+      status.textContent = "All 4 packets are here, but out of order. The server sorts them by number\u2026";
+      await wait(1300);
+      sorted = true; paintSlots();
+      out.textContent = PK.map(function (p) { return p.text; }).join("");
+      status.textContent = "Sorted by number and joined back together. The message is complete.";
+      btn.disabled = false; lose.disabled = false;
+    });
+  })();
+
+  /* ---------- URL splitter ---------- */
+  (function () {
+    var input = $("#urlIn"), ribbon = $("#urlRibbon"), partsEl = $("#urlParts"), note = $("#urlNote");
+    var PRESETS = [
+      ["Your future site", "https://vasavi.github.io/dice-roll/index.html#history"],
+      ["A Google search", "https://www.google.com/search?q=iit+indore&hl=en"],
+      ["Opened by double-click", "file:///C:/Users/Vasavi/Desktop/Dice%20Roll/index.html"],
+      ["VS Code Live Server", "http://127.0.0.1:5500/index.html"],
+      ["Your college site", "https://www.iiti.ac.in/"]
+    ];
+    var pre = $("#urlPresets");
+    PRESETS.forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p[0];
+      b.addEventListener("click", function () { input.value = p[1]; run(); });
+      pre.appendChild(b);
+    });
+    var TWO = ["ac.in", "co.in", "gov.in", "org.in", "net.in", "edu.in", "nic.in", "res.in", "co.uk", "ac.uk", "org.uk", "com.au"];
+    function hostInfo(h) {
+      if (/^\d{1,3}(\.\d{1,3}){3}$/.test(h)) return h === "127.0.0.1" ? "An IP address, so no DNS lookup is needed. <code>127.0.0.1</code> is special. It always means this computer, also called localhost." : "An IP address. The browser already has the number, so no DNS lookup is needed.";
+      if (h === "localhost") return "<code>localhost</code> always means this computer. No DNS on the internet is needed.";
+      if (h.charAt(0) === "[") return "An IPv6 address in square brackets. No DNS lookup is needed.";
+      var labels = h.split("."), tldN = 1;
+      if (labels.length > 2 && TWO.indexOf(labels.slice(-2).join(".")) >= 0) tldN = 2;
+      var tld = labels.slice(-tldN).join("."), name = labels[labels.length - tldN - 1], sub = labels.slice(0, labels.length - tldN - 1).join(".");
+      if (!name) return "The name of the server. DNS turns it into an IP address (1.3).";
+      var s = tldN === 2 ?
+        "<code>." + esc(tld) + "</code> is the ending. Strictly, the top-level domain is <code>." + esc(labels[labels.length - 1]) + "</code>, and <code>." + esc(tld) + "</code> is a section under it." :
+        "<code>." + esc(tld) + "</code> is the ending, called the top-level domain.";
+      s += " <code>" + esc(name) + "</code> is the name someone registered under it.";
+      if (sub) s += " <code>" + esc(sub) + "</code> is a subdomain, a name the owner created under their own.";
+      return s + " DNS turns the whole name into an IP address (1.3).";
+    }
+    function row(cls, name, html, absent) {
+      return '<div class="' + (absent ? "absent" : "") + '"><dt><i class="' + cls + '"></i>' + name + "</dt><dd>" + html + "</dd></div>";
+    }
+    function run() {
+      var raw = input.value.trim(), u = null, msg = "";
+      note.hidden = true;
+      if (!raw) { ribbon.innerHTML = ""; partsEl.innerHTML = '<div><dd class="small">Type or paste an address.</dd></div>'; return; }
+      if (/\s/.test(raw)) { ribbon.innerHTML = ""; partsEl.innerHTML = "<div><dd>URLs can't contain spaces. A URL writes a space as <code>%20</code>, so <code>Dice Roll</code> becomes <code>Dice%20Roll</code>.</dd></div>"; return; }
+      var hasScheme = /^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(raw);
+      try { if (hasScheme) u = new URL(raw); } catch (e) { u = null; }
+      if (!u) {
+        try { u = new URL("https://" + raw); msg = "You left out the scheme, so the demo added <code>https://</code> in front, the same thing Chrome does when you type only a name."; } catch (e2) { u = null; }
+      }
+      if (!u || ["http:", "https:", "file:"].indexOf(u.protocol) < 0 || (u.protocol !== "file:" && !u.hostname)) {
+        ribbon.innerHTML = "";
+        partsEl.innerHTML = '<div><dd>That doesn\'t look like a web address. Try something like <code>https://github.com/vasavi</code>.</dd></div>';
+        return;
+      }
+      if (msg) { note.innerHTML = msg; note.hidden = false; }
+      var isFile = u.protocol === "file:";
+      var segs = [["u-scheme", "scheme", u.protocol + "//"]];
+      if (u.host) segs.push(["u-host", "host", u.hostname]);
+      if (u.port) segs.push(["u-port", "port", ":" + u.port]);
+      segs.push(["u-path", "path", u.pathname]);
+      if (u.search) segs.push(["u-query", "query", u.search]);
+      if (u.hash) segs.push(["u-frag", "fragment", u.hash]);
+      ribbon.innerHTML = segs.map(function (s) { return '<span class="rb"><code class="' + s[0] + '">' + esc(s[2]) + "</code><small>" + s[1] + "</small></span>"; }).join("");
+
+      var html = "";
+      var sch = u.protocol.slice(0, -1);
+      var schText = sch === "https" ? "Talk to the server using HTTP inside an encrypted connection (1.5)." :
+        sch === "http" ? "Talk to the server using plain HTTP, with no encryption. Chrome marks these pages Not secure." :
+        "No server at all. The browser reads the file straight from this computer's disk (1.7).";
+      html += row("u-scheme", "Scheme", "<code>" + esc(sch) + "</code>. " + schText);
+      if (isFile) html += row("u-host", "Host", "None. A <code>file://</code> address has no server, so the host is empty.", true);
+      else html += row("u-host", "Host", "<code>" + esc(u.hostname) + "</code>. " + hostInfo(u.hostname));
+      if (isFile) html += row("u-port", "Port", "None, because nothing travels over the network.", true);
+      else if (u.port) html += row("u-port", "Port", "<code>" + esc(u.port) + "</code>. One computer can run many server programs, and the port says which one to talk to, like a flat number in a building.");
+      else html += row("u-port", "Port", "Not written. " + (sch === "https" ? "HTTPS uses port 443" : "HTTP uses port 80") + " by default, so nobody types it.", true);
+      var path = u.pathname, segsP = path.split("/").filter(Boolean), pHtml = "<code>" + esc(path) + "</code>. ";
+      function dec(s) { try { return decodeURIComponent(s); } catch (e) { return s; } }
+      function folders(list) { return "Folders: " + list.map(function (s) { return "<code>" + esc(dec(s)) + "</code>"; }).join(" then ") + ". "; }
+      if (path === "/" || path === "") pHtml += "Just the top folder of the site. The server sends its home page, usually <code>index.html</code>.";
+      else if (path.slice(-1) === "/") pHtml += folders(segsP) + "It ends in a folder, so the server sends that folder's <code>index.html</code>.";
+      else {
+        var last = segsP.pop(), hasExt = last.indexOf(".") > 0;
+        pHtml += (segsP.length ? folders(segsP) : "") + (hasExt ? "File: " : "Last part: ") + "<code>" + esc(dec(last)) + "</code>. " +
+          (isFile ? "The browser opens this file straight from your disk." :
+           hasExt ? "The server uses the path to find the file." :
+           "It has no file extension, so the server decides what to send for it, like a page of search results or a profile.");
+      }
+      if (/%20/.test(path)) pHtml += " <code>%20</code> is how a URL writes a space.";
+      html += row("u-path", "Path", pHtml);
+      if (u.search) {
+        var q = "";
+        u.searchParams.forEach(function (v, k) { q += "<tr><td>" + esc(k) + "</td><td>=</td><td>" + esc(v) + "</td></tr>"; });
+        html += row("u-query", "Query", "<code>" + esc(u.search) + "</code>. Extra details for the server, as <code>key=value</code> pairs joined by <code>&amp;</code>. A <code>+</code> means a space." + '<table class="qtable"><tbody>' + q + "</tbody></table>");
+      } else html += row("u-query", "Query", "None here. A query starts with <code>?</code>, like <code>?q=dice</code>.", true);
+      if (u.hash) html += row("u-frag", "Fragment", "<code>" + esc(u.hash) + "</code>. The browser scrolls to the element with <code>id=\"" + esc(u.hash.slice(1)) + "\"</code>. It is never sent to the server.");
+      else html += row("u-frag", "Fragment", "None here. A fragment starts with <code>#</code> and points at an element's id.", true);
+      partsEl.innerHTML = html;
+    }
+    input.addEventListener("input", run);
+    run();
+  })();
+
+  /* ---------- DNS ---------- */
+  (function () {
+    var STEPS = {
+      first: [
+        { cur: null, text: "You type <code>vasavi.github.io</code> and press Enter. Before anything else, the browser needs the IP address behind that name." },
+        { cur: "browser", mark: "miss", text: "Chrome checks its own memory first. Has it looked this name up recently? No." },
+        { cur: "os", mark: "miss", text: "Chrome asks Windows, which keeps its own list of recent answers. Not there either." },
+        { cur: "resolver", mark: "ref", text: "Windows asks the <strong>resolver</strong>, a DNS server run by your internet provider, or a public one like Google's <code>8.8.8.8</code>. It doesn't have the answer saved, so it goes looking for you." },
+        { cur: "root", mark: "ref", text: "The resolver asks a <strong>root server</strong>. There are 13 named root servers, A to M, copied in hundreds of places around the world. The root doesn't know <code>vasavi.github.io</code>. Its reply: I don't know, but here are the servers for <code>.io</code>." },
+        { cur: "tld", mark: "ref", text: "The resolver asks the <strong>.io server</strong>. Its reply: I don't know <code>vasavi.github.io</code> either, but <code>github.io</code> has its own name servers. Ask them." },
+        { cur: "auth", mark: "hit", text: "The resolver asks <strong>github.io's name server</strong>. This one is in charge of the name, so it gives the real answer: <code>185.199.108.153</code>." },
+        { cur: null, saves: ["browser", "os", "resolver"], text: "The answer travels back through the resolver and Windows to Chrome. Each one saves it for a while. That time limit is called the TTL. Now Chrome can connect to <code>185.199.108.153</code>." }
+      ],
+      second: [
+        { cur: null, text: "You type <code>vasavi.github.io</code> again, an hour later." },
+        { cur: "browser", mark: "hit", text: "Chrome checks its memory. Found it: <code>185.199.108.153</code>, saved last time. Nobody else needs to be asked. This is one reason a site opens faster the second time." }
+      ]
+    };
+    var BADGE = { miss: "not here", ref: "ask the next one", hit: "185.199.108.153" };
+    var mode = "first", i = 0;
+    var nodes = $$("#dnsFlow .dn"), txt = $("#dnsText"), cnt = $("#dnsCount"), back = $("#dnsBack"), next = $("#dnsNext");
+    function paint() {
+      var steps = STEPS[mode], s = steps[i], marks = {};
+      for (var k = 0; k <= i; k++) if (steps[k].cur) marks[steps[k].cur] = steps[k].mark;
+      nodes.forEach(function (n) {
+        var key = n.getAttribute("data-n"), m = marks[key];
+        var saved = s.saves && s.saves.indexOf(key) >= 0;
+        n.className = "dn" + (saved ? " hit" : m ? " " + m : "") + (s.cur === key ? " cur" : "");
+        $("em", n).textContent = saved ? "saved it" : m ? BADGE[m] : "";
+      });
+      cnt.textContent = "Step " + (i + 1) + " of " + steps.length;
+      txt.innerHTML = s.text;
+      back.disabled = i === 0;
+      next.textContent = i === steps.length - 1 ? "Start again" : "Next";
+    }
+    next.addEventListener("click", function () { i = i === STEPS[mode].length - 1 ? 0 : i + 1; paint(); });
+    back.addEventListener("click", function () { if (i > 0) { i--; paint(); } });
+    $$("#dnsMode button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        mode = b.getAttribute("data-mode"); i = 0;
+        $$("#dnsMode button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+        paint();
+      });
+    });
+    paint();
+  })();
+
+  /* ---------- network simulator ---------- */
+  (function () {
+    var HOST = "vasavi.github.io";
+    var INDEX_BODY = '<!DOCTYPE html>\n<html lang="en">\n<head>\n  <meta charset="UTF-8">\n  <title>Dice Roll</title>\n  <link rel="stylesheet" href="style.css">\n</head>\n<body>\n  <div class="container">\n    <h1>Dice Roll</h1>\n  ...';
+    function files(typo) {
+      return [
+        { name: "dice-roll/", path: "/dice-roll/", type: "document", accept: "text/html", ctype: "text/html; charset=utf-8", len: 657, start: 0, dur: 140, code: 200, body: INDEX_BODY },
+        typo ?
+          { name: "styles.css", path: "/dice-roll/styles.css", type: "stylesheet", accept: "text/css,*/*;q=0.1", ctype: "text/html; charset=utf-8", len: 9115, start: 165, dur: 95, code: 404, body: "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Page not found \u00b7 GitHub Pages</title>\n  ...\n  <h1>404</h1>\n  <p><strong>File not found</strong></p>\n  ..." } :
+          { name: "style.css", path: "/dice-roll/style.css", type: "stylesheet", accept: "text/css,*/*;q=0.1", ctype: "text/css; charset=utf-8", len: 980, start: 165, dur: 90, code: 200, body: "body {\n  font-family: Arial, sans-serif;\n  background-color: #eef2f7;\n  text-align: center;\n  ...\n}" },
+        { name: "script.js", path: "/dice-roll/script.js", type: "script", accept: "*/*", ctype: "application/javascript; charset=utf-8", len: 1322, start: 170, dur: 110, code: 200, body: 'const dice1 = document.getElementById("dice1");\nconst dice2 = document.getElementById("dice2");\n...' },
+        { name: "dice1.svg", path: "/dice-roll/images/dice1.svg", type: "svg+xml", accept: "image/avif,image/webp,image/svg+xml,image/*,*/*;q=0.8", ctype: "image/svg+xml", len: 246, start: 180, dur: 70, code: 200, body: '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">\n  <rect x="4" y="4" width="92" height="92" rx="16" fill="#ffffff" stroke="#2c3e50" stroke-width="4"/>\n  <circle cx="50" cy="50" r="9" fill="#2c3e50"/>\n</svg>' }
+      ];
+    }
+    var MSG = { 200: "OK", 404: "Not Found" };
+    var rowsEl = $("#nsRows"), view = $("#nsView"), foot = $("#nsFoot"), status = $("#nsStatus"), raw = $("#nsRaw"), hint = $("#nsHint");
+    var loadBtn = $("#nsLoad"), typoBox = $("#nsTypo");
+    var current = [], selected = -1, run = 0, SCALE = 6, TOTAL = 300;
+    function rawReq(f) {
+      return '<span class="t-str">GET</span> ' + esc(f.path) + " HTTP/1.1\n" +
+        '<span class="t-key">Host:</span> ' + HOST + "\n" +
+        '<span class="t-key">Accept:</span> ' + esc(f.accept) + "\n" +
+        '<span class="t-key">User-Agent:</span> Mozilla/5.0 \u2026 Chrome/\u2026\n';
+    }
+    function rawRes(f) {
+      return "HTTP/1.1 " + '<span class="t-str">' + f.code + " " + MSG[f.code] + "</span>\n" +
+        '<span class="t-key">Content-Type:</span> ' + esc(f.ctype) + "\n" +
+        '<span class="t-key">Content-Length:</span> ' + f.len + "\n" +
+        '<span class="t-key">Server:</span> GitHub.com\n\n' +
+        '<span class="t-dim">' + esc(f.body) + "</span>";
+    }
+    function select(i) {
+      selected = i;
+      $$("tr", rowsEl).forEach(function (r, k) { r.classList.toggle("sel", k === i); });
+      var f = current[i];
+      if (!f || !f.doneAt) return;
+      $("#nsReq").innerHTML = rawReq(f);
+      $("#nsRes").innerHTML = rawRes(f);
+      raw.hidden = false;
+      hint.textContent = f.code === 404 ? "404: the server looked for " + f.path + " and found nothing, so it sent its \"not found\" page instead of CSS." :
+        f.type === "document" ? "The URL ends in a folder, /dice-roll/, so the server sent that folder's index.html." :
+        f.name === "dice1.svg" ? "Both <img> tags use dice1.svg, but the browser downloads it once and uses it twice." :
+        "The start line, then headers, then a blank line, then the file itself.";
+    }
+    function addRow(f, idx) {
+      var tr = document.createElement("tr");
+      tr.className = "pending";
+      tr.innerHTML = "<td>" + esc(f.name) + "</td><td>(pending)</td><td>" + f.type + '</td><td></td><td class="wf"><i style="left:' + (f.start / TOTAL * 100) + '%;width:0"></i></td>';
+      tr.addEventListener("click", function () { select(idx); });
+      rowsEl.appendChild(tr);
+      return tr;
+    }
+    function finishRow(tr, f) {
+      tr.className = f.code >= 400 ? "bad" : "";
+      tr.children[1].textContent = f.code;
+      tr.children[3].textContent = f.dur + " ms";
+      $("i", tr).style.width = Math.max(f.dur / TOTAL * 100, 4) + "%";
+    }
+    function paintPage(styled, imgs, live) {
+      var div = view.querySelector(".mini");
+      if (!div) { view.innerHTML = '<div class="mini">' + miniPage() + "</div>"; div = view.querySelector(".mini"); }
+      div.className = "mini" + (styled ? " styled" : "") + (imgs ? "" : " noimg");
+      if (live && !div.getAttribute("data-live")) {
+        div.setAttribute("data-live", "1");
+        var dice = $$(".m-img", div), res = $(".m-result", div);
+        function rollMini(n) {
+          var a = 1 + Math.floor(Math.random() * 6), b = 1 + Math.floor(Math.random() * 6);
+          dice[0].innerHTML = dieSVG(a);
+          dice[1].style.display = n === 1 ? "none" : "";
+          if (n === 2) { dice[1].innerHTML = dieSVG(b); res.textContent = a + " + " + b + " = " + (a + b); } else res.textContent = a;
+        }
+        $(".m-b1", div).addEventListener("click", function () { rollMini(1); });
+        $(".m-b2", div).addEventListener("click", function () { rollMini(2); });
+      }
+    }
+    loadBtn.addEventListener("click", async function () {
+      var my = ++run, typo = typoBox.checked;
+      current = files(typo); selected = -1;
+      rowsEl.innerHTML = ""; raw.hidden = true; hint.textContent = "Click a row to see its request and response.";
+      view.innerHTML = '<div class="fb-empty">Waiting for the server\u2026</div>';
+      foot.textContent = "0 requests";
+      loadBtn.disabled = true;
+      var trs = [];
+      trs[0] = addRow(current[0], 0);
+      status.textContent = "Request 1: GET /dice-roll/ for the HTML.";
+      foot.textContent = "1 request";
+      await wait(current[0].dur * SCALE);
+      if (my !== run) return;
+      current[0].doneAt = 1; finishRow(trs[0], current[0]);
+      view.innerHTML = '<div class="fb-empty">Got the HTML. It links to a CSS file, a JS file and an image.<br>The browser waits for the CSS before painting anything.</div>';
+      status.textContent = "The HTML arrived. Reading it, the browser finds three more files and asks for all of them.";
+      var rest = [1, 2, 3];
+      rest.forEach(function (k) { trs[k] = addRow(current[k], k); });
+      foot.textContent = "4 requests";
+      var cssDone = false, imgDone = false, jsDone = false;
+      await Promise.all(rest.map(function (k) {
+        var f = current[k];
+        return wait((f.start - current[0].dur + f.dur) * SCALE).then(function () {
+          if (my !== run) return;
+          f.doneAt = 1; finishRow(trs[k], f);
+          if (f.type === "stylesheet") cssDone = true;
+          if (f.type === "svg+xml") imgDone = true;
+          if (f.type === "script") jsDone = true;
+          if (cssDone) paintPage(!typo, imgDone, jsDone);
+          if (selected === k) select(k);
+        });
+      }));
+      if (my !== run) return;
+      loadBtn.disabled = false;
+      foot.textContent = "4 requests \u00b7 " + (current.reduce(function (s, f) { return s + f.len; }, 0) / 1000).toFixed(1) + " kB transferred";
+      status.innerHTML = typo ?
+        "Done, with one <strong>404</strong>. The page works, but it has no styles: the browser asked for <code>styles.css</code> and the server has no file by that name. Untick the typo and load again." :
+        "Done. 4 requests, all <strong>200</strong>. The buttons in the page work too, because <code>script.js</code> arrived. Click a row to read it.";
+      select(typo ? 1 : 0);
+    });
+  })();
+
+  /* ---------- status code cards ---------- */
+  (function () {
+    var CODES = [
+      [200, "OK", "Here's what you asked for. Every working file in the demo above got a 200.", 2],
+      [301, "Moved Permanently", "This page has a new address. The browser goes there by itself, and remembers it.", 3],
+      [304, "Not Modified", "The copy you saved last time is still up to date, so no file is sent again. Use your copy.", 3],
+      [403, "Forbidden", "The file exists, but you're not allowed to see it.", 4],
+      [404, "Not Found", "There's nothing at that path. Usually a typo in a link or a file name.", 4],
+      [500, "Internal Server Error", "The server's own code crashed while answering. Nothing you can fix from the browser.", 5],
+      [503, "Service Unavailable", "The server is overloaded or down for maintenance. Think results day on a college website.", 5]
+    ];
+    var wrap = $("#codeCards");
+    CODES.forEach(function (c) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "sc c" + c[3]; b.setAttribute("aria-pressed", "false");
+      b.innerHTML = '<span class="sc-in"><span class="sc-face sc-front"><b>' + c[0] + "</b><span>" + c[1] + '</span><small>Tap to flip</small></span><span class="sc-face sc-back"><b>' + c[0] + "</b>" + c[2] + "</span></span>";
+      b.addEventListener("click", function () { b.setAttribute("aria-pressed", b.getAttribute("aria-pressed") === "true" ? "false" : "true"); });
+      wrap.appendChild(b);
+    });
+  })();
+
+  /* ---------- HTTPS snooper ---------- */
+  (function () {
+    var mode = "http", env = $("#tlsEnv"), spy = $("#tlsSpy"), st = $("#tlsStatus"), btn = $("#tlsSend"), busy = false;
+    function gibberish() {
+      var h = "0123456789abcdef", lines = [];
+      for (var l = 0; l < 4; l++) {
+        var w = [];
+        for (var k = 0; k < 8; k++) w.push(h[Math.random() * 16 | 0] + h[Math.random() * 16 | 0] + h[Math.random() * 16 | 0] + h[Math.random() * 16 | 0]);
+        lines.push(w.join(" "));
+      }
+      return lines.join("\n");
+    }
+    function caught() {
+      if (mode === "http") {
+        spy.innerHTML = '<span class="t-str">POST</span> /login HTTP/1.1\n<span class="t-key">Host:</span> example.com\n<span class="t-key">Content-Type:</span> application/x-www-form-urlencoded\n\nuser=vasavi&amp;password=<mark>dice123</mark>';
+        st.innerHTML = "Over HTTP the snooper reads everything, including your password. They could also change the reply before it reaches you.";
+      } else {
+        spy.innerHTML = '<span class="t-dim">Connecting to:</span> example.com <span class="t-dim">(the domain still shows)</span>\n\n' + gibberish();
+        st.innerHTML = "Over HTTPS the snooper sees which site you're connecting to, and nothing else. The page, the form and the reply are scrambled. Changing even one byte would break the encryption, and the browser would notice.";
+      }
+    }
+    function send() {
+      if (busy) return;
+      busy = true; btn.disabled = true;
+      spy.innerHTML = '<span class="spy-wait">Watching\u2026</span>'; st.textContent = "";
+      env.className = "env" + (mode === "https" ? " locked" : "");
+      env.textContent = mode === "https" ? "locked \u25a0\u25a0\u25a0\u25a0" : "user=vasavi\u2026";
+      void env.offsetWidth;
+      if (reduce) { caught(); busy = false; btn.disabled = false; return; }
+      env.classList.add("go");
+      setTimeout(caught, 900);
+      setTimeout(function () { env.className = "env"; busy = false; btn.disabled = false; }, 2900);
+    }
+    btn.addEventListener("click", send);
+    $$("#tlsMode button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        mode = b.getAttribute("data-mode");
+        $$("#tlsMode button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+        spy.innerHTML = '<span class="spy-wait">Nothing yet. Press Send login.</span>'; st.textContent = "";
+      });
+    });
+  })();
+
+  /* ---------- render pipeline ---------- */
+  (function () {
+    var TREE = ["html", [
+      ["head", [["title", [['"Dice Roll"']]], ["link"]], "not drawn"],
+      ["body", [
+        ["div.container", [
+          ["h1", [['"Dice Roll"']]],
+          ["div.dice", [["img#dice1"], ["img#dice2"]]],
+          ["p#result", [['"Roll the dice!"']]],
+          ["button#btn1", [['"Roll 1 Die"']]],
+          ["button#btn2", [['"Roll 2 Dice"']]]
+        ]],
+        ["script", [], "not drawn"]
+      ]]
+    ]];
+    function tree(n) {
+      var name = n[0], kids = n[1] || [], txt = name.charAt(0) === '"';
+      var h = "<li" + (n[2] ? ' class="gone"' : "") + '><span class="node' + (txt ? " txt" : "") + '">' + esc(name) + "</span>" + (n[2] ? '<span class="gone-note">' + n[2] + "</span>" : "");
+      if (kids.length) h += "<ul>" + kids.map(tree).join("") + "</ul>";
+      return h + "</li>";
+    }
+    $("#domTree").innerHTML = tree(TREE);
+    $("#renderTree").innerHTML = tree(TREE);
+    $("#miniLayout").innerHTML = miniPage();
+    $("#miniPaint").innerHTML = miniPage();
+    var STEPS = [
+      ["1. Read the HTML", "The HTML arrives as plain text. The browser reads it from top to bottom, one tag at a time."],
+      ["2. Build the DOM", "Every tag becomes a node in a tree called the DOM, the Document Object Model. A tag inside another tag becomes its child. When your JavaScript calls getElementById, it searches this tree."],
+      ["3. Build the CSSOM", "The CSS becomes a second tree, the CSSOM, and the browser works out which rules apply to which elements. It paints nothing until all the CSS has arrived, because a later rule could change everything."],
+      ["4. Combine into the render tree", "DOM plus CSSOM gives the render tree. Only things that will be drawn get in. The head, title, link and script are left out, and so is anything with display: none."],
+      ["5. Layout", "Now the browser works out where every box goes and how big it is, in pixels. The container is at most 500px wide and centred. Each image is 120px wide. Nothing has colour yet."],
+      ["6. Paint", "Finally the browser fills in the pixels: colours, text, borders and images. Then it stacks the layers together on screen. All six steps take a few milliseconds."]
+    ];
+    var i = 0, btns = $$("#rSteps button"), panes = $$(".rpane"), title = $("#rTitle"), text = $("#rText"), back = $("#rBack"), next = $("#rNext");
+    function paint() {
+      btns.forEach(function (b, k) { if (k === i) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current"); b.classList.toggle("past", k < i); });
+      panes.forEach(function (p) { p.hidden = +p.getAttribute("data-step") !== i; });
+      title.textContent = STEPS[i][0];
+      text.textContent = STEPS[i][1];
+      back.disabled = i === 0;
+      next.textContent = i === STEPS.length - 1 ? "Start again" : "Next";
+    }
+    btns.forEach(function (b, k) { b.addEventListener("click", function () { i = k; paint(); }); });
+    next.addEventListener("click", function () { i = i === STEPS.length - 1 ? 0 : i + 1; paint(); });
+    back.addEventListener("click", function () { if (i > 0) { i--; paint(); } });
+    paint();
+  })();
+
+  /* ---------- hosting modes ---------- */
+  (function () {
+    var MODES = {
+      file: {
+        url: "file:///C:/Users/Vasavi/Desktop/Dice%20Roll/index.html",
+        chain: [["Files on your disk", "C:\\Users\\Vasavi\\Desktop"], ["Chrome", "reads them directly"]],
+        facts: [["A server?", false, "Nothing is sent anywhere."], ["DNS lookup?", false, "There's no name to look up."], ["HTTP requests?", false, "Chrome opens the files the way any app opens a file."], ["Encrypted?", false, "Nothing travels, so there's nothing to encrypt."], ["Who can open it?", null, "Only you, on this laptop."]],
+        note: "This is what happens when you double-click index.html. It works fine for HTML, CSS and plain JavaScript. A few features, like loading data files with JavaScript, are blocked on file:// for safety."
+      },
+      live: {
+        url: "http://127.0.0.1:5500/index.html",
+        chain: [["Files on your disk", "your project folder"], ["Live Server", "a small server on your laptop"], ["Chrome", "asks over HTTP"]],
+        facts: [["A server?", true, "A small one, running on your own laptop."], ["DNS lookup?", false, "127.0.0.1 is already a number."], ["HTTP requests?", true, "Real GET requests, with status codes."], ["Encrypted?", false, "Plain http. That's fine, since nothing leaves your laptop."], ["Who can open it?", null, "Only you, on this laptop."]],
+        note: "The VS Code Live Server extension runs a tiny web server on your own laptop. 127.0.0.1 means \"this computer\", and 5500 is the port it listens on. It also reloads the page every time you save."
+      },
+      pages: {
+        url: "https://vasavi.github.io/dice-roll/",
+        chain: [["Chrome", "you, or anyone"], ["DNS", "vasavi.github.io = 185.199.108.153"], ["The internet", "over HTTPS"], ["GitHub's server", "sends your files"]],
+        facts: [["A server?", true, "GitHub's servers, switched on day and night."], ["DNS lookup?", true, "vasavi.github.io becomes an IP address."], ["HTTP requests?", true, "One request per file, with status codes."], ["Encrypted?", true, "GitHub Pages gives you HTTPS for free."], ["Who can open it?", null, "Anyone in the world with the link."]],
+        note: "Your files sit on GitHub's servers, and every step from 1.1 to 1.6 happens. This is the link you'll show in the interview. Swap vasavi for your own GitHub username."
+      }
+    };
+    var url = $("#hostUrl"), chain = $("#hostChain"), facts = $("#hostFacts"), note = $("#hostNote");
+    function paint(m) {
+      var d = MODES[m];
+      url.textContent = d.url;
+      chain.innerHTML = d.chain.map(function (c) { return '<span class="lk">' + esc(c[0]) + "<small>" + esc(c[1]) + "</small></span>"; }).join('<span class="ar" aria-hidden="true">\u2192</span>');
+      facts.innerHTML = d.facts.map(function (f) {
+        var tag = f[1] === null ? "" : '<span class="' + (f[1] ? "yes" : "no") + '">' + (f[1] ? "Yes. " : "No. ") + "</span>";
+        return "<div><dt>" + f[0] + "</dt><dd>" + tag + esc(f[2]) + "</dd></div>";
+      }).join("");
+      note.textContent = d.note;
+    }
+    $$("#hostMode button").forEach(function (b) {
+      b.addEventListener("click", function () {
+        $$("#hostMode button").forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+        paint(b.getAttribute("data-mode"));
+      });
+    });
+    paint("file");
+  })();
+
+  /* ---------- works online? ---------- */
+  (function () {
+    var items = $$("#onlineCheck .oc-item"), score = $("#ocScore"), right = 0, answered = 0;
+    items.forEach(function (it) {
+      var ok = it.getAttribute("data-ok");
+      $$("button", it).forEach(function (b) {
+        b.addEventListener("click", function () {
+          if (it.classList.contains("right") || it.classList.contains("wrong")) return;
+          var good = b.getAttribute("data-pick") === ok;
+          it.classList.add(good ? "right" : "wrong");
+          var why = $(".oc-why", it);
+          why.innerHTML = "<b>" + (good ? "Right. " : "Not quite. ") + (ok === "1" ? "It works." : "It breaks.") + "</b> " + why.innerHTML;
+          why.hidden = false;
+          $$("button", it).forEach(function (o) { o.disabled = true; });
+          answered++; if (good) right++;
+          score.textContent = right + " of " + answered + " right" + (answered === items.length ? (right === items.length ? ". All five. You'd catch these before going live." : ". Read the reasons for the ones you missed.") : "");
+        });
+      });
+    });
+  })();
+
+  /* ---------- recap ---------- */
+  (function () {
+    var IDEAS = [
+      ["The URL or domain", /\b(url|domain|address)\b/i],
+      ["DNS", /\bdns\b/i],
+      ["IP address", /\bip\b/i],
+      ["HTTP request", /\b(request|requests|get)\b/i],
+      ["A server", /\bserver/i],
+      ["Response and status code", /\b(response|respond|replies|reply|status|200)\b/i],
+      ["HTTPS or encryption", /\b(https|tls|encrypt\w*|secure)\b/i],
+      ["HTML, CSS and JS files", /\b(html|css)\b/i],
+      ["DOM, layout, paint", /\b(dom|render\w*|layout|paint\w*)\b/i]
+    ];
+    var ta = $("#recapText"), list = $("#recapIdeas"), st = $("#recapStatus"), modelBtn = $("#recapModelBtn"), model = $("#recapModel"), saved = $("#recapSaved"), t = null;
+    ta.value = store.get("wg-recap1", "");
+    ta.addEventListener("input", function () {
+      clearTimeout(t);
+      t = setTimeout(function () { store.set("wg-recap1", ta.value); saved.textContent = "Saved in this browser."; }, 500);
+    });
+    $("#recapCheck").addEventListener("click", function () {
+      var v = ta.value, n = 0;
+      list.innerHTML = IDEAS.map(function (d) { var got = d[1].test(v); if (got) n++; return '<li class="' + (got ? "got" : "") + '">' + d[0] + "</li>"; }).join("");
+      st.textContent = !v.trim() ? "Write something first. Even three sentences is a start." :
+        n === IDEAS.length ? "You covered every idea. Now say it out loud in under 30 seconds." :
+        "You covered " + n + " of " + IDEAS.length + " ideas. The grey ones are missing. Add them in your own words and check again.";
+      if (v.trim()) modelBtn.hidden = false;
+    });
+    modelBtn.addEventListener("click", function () { model.hidden = !model.hidden; modelBtn.textContent = model.hidden ? "Compare with a sample answer" : "Hide the sample answer"; });
+  })();
+})();
+</script>
+</body>
+</html>
