@@ -2187,7 +2187,7 @@ This line break in my code does not show.</p>
 <body>
   <h1>Dice Roll</h1>
   <p>Roll one die or two.</p>
-</body>
+&lt;/body&gt;
 </html>
 </textarea>
       </div>
@@ -6305,7 +6305,7 @@ button {
     var style = "<style>" + (boxes ? BOX_CSS : "") + "\n" + (css || "") + "\n</style>";
     if (/<\/head\s*>/i.test(html)) return html.replace(/<\/head\s*>/i, function () { return style + "</head>"; });
     if (/<!doctype|<html[\s>]/i.test(html)) return html + style;
-    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' + style + "</head><body>\n" + html + "\n</body></html>";
+    return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' + style + "</head><body>\n" + html + "\n<\/body></html>";
   }
 
   /* ---------- live editors ---------- */
@@ -6718,7 +6718,7 @@ button {
       return '<!DOCTYPE html><html><head><meta charset="utf-8">' + (vp ? '<meta name="viewport" content="width=device-width, initial-scale=1.0">' : "") +
         "<style>body{font-family:Arial,sans-serif;margin:14px;color:#1a1a1a}h1{font-size:28px;margin:0 0 8px}p{font-size:16px;line-height:1.45}" +
         "button{font-size:16px;padding:8px 14px;margin:0 4px 6px 0;background:#2c3e50;color:#fff;border:0;border-radius:5px}</style></head>" +
-        "<body><h1>Dice Roll</h1><p>Roll one die or two. Your last ten rolls show up below the buttons.</p><button>Roll 1 Die</button><button>Roll 2 Dice</button></body></html>";
+        "<body><h1>Dice Roll</h1><p>Roll one die or two. Your last ten rolls show up below the buttons.</p><button>Roll 1 Die</button><button>Roll 2 Dice</button><\/body></html>";
     }
     var W = 210, H = 380, S = W / 980;
     var no = document.createElement("iframe");
@@ -6923,7 +6923,7 @@ button {
       "h2{font-size:18px;margin:12px 0 4px}#history{list-style:none;padding:0;margin:0}#history li{padding:4px;border-bottom:1px solid #ddd}";
     var PAGE = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Dice Roll</title><style>' + css + "</style></head><body>" +
       '<div class="container"><h1>Dice Roll</h1><div class="dice"><img id="dice1" src="' + VFS["images/dice4.svg"] + '" alt="Dice"><img id="dice2" src="' + VFS["images/dice2.svg"] + '" alt="Dice"></div>' +
-      '<p id="result">4 + 2 = 6</p><button id="btn1">Roll 1 Die</button><button id="btn2">Roll 2 Dice</button><h2>History</h2><ul id="history"><li>4 + 2 = 6</li><li>3</li></ul></div></body></html>';
+      '<p id="result">4 + 2 = 6</p><button id="btn1">Roll 1 Die</button><button id="btn2">Roll 2 Dice</button><h2>History</h2><ul id="history"><li>4 + 2 = 6</li><li>3</li></ul></div><\/body></html>';
     var d = null, sel = null, picking = false, rows = [];
     function label(el) {
       var s = el.tagName.toLowerCase();
@@ -7772,7 +7772,7 @@ button {
       ".sib{background:#CFE3DC;padding:6px 8px;border-radius:6px;margin:6px 0}.box{background:#FFA946;padding:6px 8px;border-radius:6px;margin:6px 0;width:130px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.25)}" +
       ".cb{outline:3px solid rgba(232,137,12,.55);outline-offset:2px}</style></head><body><p>This is a page inside the demo. The dashed box is the parent of the orange box.</p>" +
       '<div class="parent"><div class="sib">Box A</div><div class="box">Orange box</div><div class="sib">Box B</div><div class="sib">Box C</div><div class="sib">Box D</div><div class="sib">Box E</div></div>' +
-      new Array(9).join(filler) + "</body></html>";
+      new Array(9).join(filler) + "<\/body></html>";
     function say() {
       var t = T.value + "px", l = L.value + "px";
       return {

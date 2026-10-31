@@ -25,7 +25,7 @@ Welcome Vasavi! (CSE 1st Year, **IIT Indore**) This is your personal coding and 
 │   📂 Dice Roll/             ← Web development project (HTML/CSS/JS)
 │   │   📂 prep/              ← Practice tasks, study guide, induction PDF
 │   📂 Playground/            ← Your own small experiments
-│   📂 Web Guide/             ← How the web works, then HTML and CSS, with live demos
+│   📂 Web Dev Guide/         ← How the web works, then HTML and CSS, with live demos
 │
 📂 Google STEP/               ← 🚀 Guide to Google STEP & 24-Day Winter Sprint
 │   ├── README.html           ← Visual interactive guide to Google STEP
@@ -88,8 +88,8 @@ Folder: [Dice Roll/](Development/Dice%20Roll/)
 
 ---
 
-### 🧭 Web Guide: HTML and CSS from the ground up
-File: [html_css_guide.html](Development/Web%20Guide/html_css_guide.html) (double-click to open in Chrome)
+### 🧭 Web Dev Guide: HTML and CSS from the ground up
+File: [html_css_guide.html](Development/Web%20Dev%20Guide/html_css_guide.html) (double-click to open in Chrome)
 *Concepts: how the web works (URLs, DNS, HTTP, HTTPS, rendering), then HTML and CSS*
 - [ ] **Part 1:** How the web works
 - [ ] **Part 2:** HTML, with live editors and 8 challenges
