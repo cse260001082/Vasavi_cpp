@@ -101,6 +101,7 @@ p code, li code, dd code, td code, .why code, .say code, .callout code, .hint co
   overflow-wrap: anywhere;
 }
 .callout code, .say code { background: var(--surface); color: var(--ink); }
+code.nw { white-space: nowrap; overflow-wrap: normal; }
 .table-wrap td code { white-space: nowrap; overflow-wrap: normal; }
 kbd {
   font-size: .82em;
@@ -1084,8 +1085,118 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
 .ms-stage { display: flow-root; margin-top: 14px; background: repeating-linear-gradient(45deg, var(--bg) 0 8px, var(--surface) 8px 16px); border: 1px dashed var(--muted); border-radius: 10px; }
 .ms-box { width: 160px; background: var(--accent); color: var(--on-accent); border-radius: 8px; padding: 12px; font-weight: 700; text-align: center; }
 
+/* ===== Part 3, second half ===== */
+.ed-stack .ed-body { grid-template-columns: minmax(0, 1fr); }
+.ed-stack .ed-right { border-left: 0; border-top: 1px solid var(--border); }
+.ed-stack .ed-out { overflow-x: auto; background: repeating-linear-gradient(45deg, #E4E4D0 0 8px, #F2F2E4 8px 16px); }
+.ed-probe { position: fixed; left: -10000px; top: 0; width: 0; height: 0; overflow: hidden; visibility: hidden; pointer-events: none; }
+.ed-probe iframe { height: 700px; border: 0; }
+.ed-size .sl-row { grid-template-columns: 110px minmax(0, 1fr) 62px; }
+.ed-mq { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; font-size: .9rem; color: var(--muted); }
+.ed-mq li.on { color: var(--ink); font-weight: 700; }
+.ed-mq li.on::before { content: "\25CF"; color: var(--ember); margin-right: 6px; }
+.seg-sm button { padding: 4px 10px; font: 600 .8rem var(--font-mono); }
+.ctl { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.ctl-row { display: grid; gap: 4px; }
+.ctl-row > span { font: 700 .8rem var(--font-mono); color: var(--accent-text); }
+.pl { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); gap: 18px; align-items: start; }
+.pl-say { font-weight: 700; margin: 10px 0 0; min-height: 3em; max-width: 70ch; }
+.pl-say span { font-weight: 400; color: var(--ink-2); }
+.stage { background: #FFFFFF; color: #1A1A1A; border: 1px solid var(--border); border-radius: 12px; padding: 16px; color-scheme: light; font: 15px/1.45 Arial, sans-serif; }
+.pg-item { background: #FFE0B5; border: 2px solid #E8890C; border-radius: 8px; padding: 8px 12px; font: 700 15px/1.3 var(--font-mono); color: #1A1A1A; min-width: 44px; text-align: center; }
+.pg-item.big { font-size: 24px; }
+
+/* backgrounds and shadows */
+.bgb-stage { display: grid; place-items: center; min-height: 230px; background-color: #FFFFFF; background-image: conic-gradient(#F0F0E4 25%, #FFFFFF 0 50%, #F0F0E4 0 75%, #FFFFFF 0); background-size: 20px 20px; }
+.bgb-el { width: 170px; height: 120px; display: grid; place-items: center; font: 700 15px Arial, sans-serif; color: #1A1A1A; text-align: center; }
+
+/* type tuner */
+.tt-stage { min-height: 200px; }
+.tt-stage h4 { font: inherit; font-size: 1.6em; font-weight: 700; margin: 0 0 .3em; line-height: 1.15; }
+.tt-stage p { margin: 0; }
+
+/* display */
+.dsp-stage p { margin: 0 0 8px; }
+.dsp-item { background: #FFE0B5; border: 2px solid #E8890C; width: 110px; height: 46px; margin: 8px; padding: 4px 8px; font: 700 13px var(--font-mono); color: #1A1A1A; }
+.hide3 { display: grid; gap: 10px; }
+.hide3 > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 10px; align-items: center; }
+.hide3 code { font-size: .8rem; }
+.h3-row { display: flex; gap: 8px; background: repeating-linear-gradient(45deg, #F2F2E4 0 6px, #FFFFFF 6px 12px); border: 1px dashed #C9C9B4; border-radius: 8px; padding: 8px; min-height: 60px; color-scheme: light; }
+.h3-row button { all: unset; box-sizing: border-box; width: 64px; height: 42px; border-radius: 6px; background: #034F46; color: #FFFFEB; font: 700 14px Arial, sans-serif; display: grid; place-items: center; cursor: pointer; }
+.h3-row button.b { background: #FFA946; color: #1A1A1A; }
+.h3-row button:focus-visible { outline: 3px solid #1A1A1A; }
+
+/* position */
+.pos-frame { width: 100%; height: 330px; border: 1px solid var(--border); border-radius: 12px; display: block; background: #FFFFFF; color-scheme: light; }
+
+/* flexbox and grid playgrounds */
+.fx-stage { display: grid; grid-template-columns: 28px minmax(0, 1fr); grid-template-rows: auto auto; gap: 4px; }
+.ax { display: flex; align-items: center; gap: 8px; font: 700 .74rem var(--font-body); text-transform: uppercase; letter-spacing: .06em; min-width: 0; }
+.ax i { position: relative; flex: 1; height: 3px; background: currentColor; border-radius: 2px; min-width: 30px; }
+.ax i::after { content: ""; position: absolute; right: -2px; top: 50%; translate: 0 -50%; border: 7px solid transparent; border-left: 11px solid currentColor; border-right: 0; }
+.ax.rev i { transform: scaleX(-1); }
+.ax-top { grid-column: 2; grid-row: 1; }
+.ax-left { grid-column: 1; grid-row: 2; writing-mode: vertical-rl; }
+.ax-left i { width: 3px; height: auto; min-width: 0; min-height: 30px; }
+.ax-left i::after { right: auto; top: auto; bottom: -2px; left: 50%; translate: -50% 0; border: 7px solid transparent; border-top: 11px solid currentColor; border-bottom: 0; }
+.ax-left.rev i { transform: scaleY(-1); }
+.ax.main { color: #C2410C; }
+.ax.cross { color: var(--accent-text); }
+:root[data-theme="dark"] .ax.main { color: var(--ember); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .ax.main { color: var(--ember); } }
+.fx-box { grid-column: 2; grid-row: 2; height: 250px; border: 2px dashed var(--accent-text); border-radius: 10px; padding: 8px; background: #FFFFFF; overflow: auto; color-scheme: light; }
+.gd-stage { position: relative; padding: 24px 0 0 26px; }
+.gd-box { display: grid; border: 2px dashed var(--accent-text); border-radius: 10px; padding: 10px; background: #FFFFFF; grid-auto-rows: minmax(58px, auto); color-scheme: light; }
+.gd-box .pg-item { background: #F0D7FF; border-color: #8E5BB8; display: grid; place-items: center; }
+.gd-ov { position: absolute; inset: 0; pointer-events: none; }
+.gd-ln { position: absolute; border: 0 dashed #8E5BB8; }
+.gd-ln.v { border-left-width: 1.5px; }
+.gd-ln.h { border-top-width: 1.5px; }
+.gd-n { position: absolute; font: 700 11px var(--font-mono); background: #8E5BB8; color: #FFFFFF; border-radius: 4px; padding: 1px 5px; translate: -50% 0; }
+.gd-n.r { translate: 0 -50%; }
+.gd-sizes { font: 600 .86rem var(--font-mono); color: var(--ink-2); margin: 8px 0 0; }
+
+/* transforms */
+.tf-stage { display: flex; justify-content: center; align-items: center; gap: 22px; padding: 46px 16px; overflow: hidden; }
+.tf-n { width: 70px; height: 70px; border-radius: 10px; background: #E4E4D0; display: grid; place-items: center; font: 700 12px Arial, sans-serif; color: #6E6E64; flex: none; }
+.tf-slot { position: relative; width: 90px; height: 90px; flex: none; }
+.tf-ghost { position: absolute; inset: 0; border: 2px dashed #8A8A80; border-radius: 12px; }
+.tf-el { position: absolute; inset: 0; }
+.tf-el svg { width: 100%; height: 100%; display: block; }
+.tf-dot { position: absolute; width: 10px; height: 10px; border-radius: 50%; background: #C2410C; translate: -50% -50%; box-shadow: 0 0 0 2px #FFFFFF; z-index: 2; }
+
+/* motion demos */
+.race-host, .anim-host, .vars-host, .stp-host { display: block; min-width: 0; }
+.kf { position: relative; height: 34px; margin: 18px 10px 4px; }
+.kf::before { content: ""; position: absolute; left: 0; right: 0; top: 15px; height: 4px; border-radius: 2px; background: var(--border); }
+.kf b { position: absolute; top: 6px; width: 22px; height: 22px; translate: -50% 0; border-radius: 50%; background: var(--lav); border: 2px solid var(--accent-text); }
+.kf b small { position: absolute; top: 24px; left: 50%; translate: -50% 0; font: 700 .72rem var(--font-mono); white-space: nowrap; color: var(--ink-2); }
+.kf .kf-now { position: absolute; top: 0; width: 3px; height: 34px; translate: -50% 0; background: var(--ember); border-radius: 2px; }
+.kf-read { font: 600 .9rem var(--font-mono); margin: 40px 0 0; min-height: 3em; }
+
+/* variables */
+.vars-ctl input[type="color"] { width: 54px; height: 32px; border: 1px solid var(--border); border-radius: 8px; padding: 2px; background: var(--surface); cursor: pointer; }
+.vars-ctl .sl-row { grid-template-columns: 110px minmax(0, 1fr) 62px; }
+
+/* styles pane */
+.stp { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 0; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+.stp-view { background: #FFFFFF; display: grid; place-items: center; padding: 20px; min-height: 260px; color-scheme: light; }
+.stp-pane { background: var(--code-bg); color: var(--code-fg); font: 12.5px/1.7 var(--font-mono); padding: 8px 0; min-width: 0; overflow-x: auto; }
+.stp-rule { padding: 4px 12px 6px; border-bottom: 1px solid rgba(255,255,255,.08); }
+.stp-sel { color: var(--syn-key); }
+.stp-src { float: right; color: var(--syn-dim); font-size: 11px; }
+.stp-d { display: flex; align-items: center; gap: 6px; padding-left: 4px; white-space: nowrap; }
+.stp-d input { width: 13px; height: 13px; accent-color: var(--ember); }
+.stp-d .p { color: var(--syn-attr); }
+.stp-d .v { color: var(--syn-str); }
+.stp-d.over .p, .stp-d.over .v, .stp-d.bad .p, .stp-d.bad .v { text-decoration: line-through; opacity: .55; }
+.stp-d.off .p, .stp-d.off .v { opacity: .4; }
+.stp-d .warn { color: var(--ember); font-family: var(--font-body); font-size: 12px; }
+.stp-ua { color: var(--syn-dim); font-style: italic; }
+
 @media (max-width: 860px) {
-  .sp, .sb, .sb-foot, .cc, .inh, .cm, .bmi { grid-template-columns: minmax(0, 1fr); }
+  .sp, .sb, .sb-foot, .cc, .inh, .cm, .bmi, .pl, .stp { grid-template-columns: minmax(0, 1fr); }
+  .hide3 > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   .nth-list { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .sl-row { grid-template-columns: 80px minmax(0, 1fr) 56px; }
 }
@@ -1161,10 +1272,10 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
       <h1>HTML and CSS from the ground up</h1>
       <p class="lede">Hi Vasavi! Before you write a single tag, this guide shows what happens when anyone opens a website. Then it teaches HTML and CSS with demos you can click, drag and edit. Go top to bottom, and tick each section once you can explain it out loud.</p>
       <div class="hero-stats">
-        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Web, HTML, CSS basics</div></div>
-        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">CSS layout, wrap-up</div></div>
-        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 33</div><div class="meter"><i id="progBar"></i></div></div>
-        <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 14</div><div class="meter"><i id="chBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Web, HTML, CSS</div></div>
+        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">Cheat sheets, glossary</div></div>
+        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 46</div><div class="meter"><i id="progBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 21</div><div class="meter"><i id="chBar"></i></div></div>
       </div>
     </div>
     <div class="hero-art" aria-hidden="true">
@@ -1231,9 +1342,21 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
       <li><a href="#units" data-sec="units">3.10 Units</a></li>
       <li><a href="#boxmodel" data-sec="boxmodel">3.11 Box model</a></li>
       <li><a href="#margins" data-sec="margins">3.12 Margin and padding</a></li>
+      <li><a href="#backgrounds" data-sec="backgrounds">3.13 Backgrounds</a></li>
+      <li><a href="#type" data-sec="type">3.14 Text and fonts</a></li>
+      <li><a href="#display" data-sec="display">3.15 Display</a></li>
+      <li><a href="#position" data-sec="position">3.16 Position</a></li>
+      <li><a href="#flexbox" data-sec="flexbox">3.17 Flexbox</a></li>
+      <li><a href="#grid" data-sec="grid">3.18 Grid</a></li>
+      <li><a href="#transforms" data-sec="transforms">3.19 Transforms</a></li>
+      <li><a href="#transitions" data-sec="transitions">3.20 Transitions</a></li>
+      <li><a href="#animations" data-sec="animations">3.21 Animations</a></li>
+      <li><a href="#responsive" data-sec="responsive">3.22 Responsive</a></li>
+      <li><a href="#variables" data-sec="variables">3.23 Variables</a></li>
+      <li><a href="#debugcss" data-sec="debugcss">3.24 Debugging CSS</a></li>
+      <li><a href="#recap3" data-sec="recap3">Recap</a></li>
     </ul>
     <p class="rail-group">Coming next</p>
-    <span class="rail-soon">3.13+ Layout and motion <small>soon</small></span>
     <span class="rail-soon">Part 4 · Wrap-up <small>soon</small></span>
   </nav>
 
@@ -3087,7 +3210,7 @@ of text</textarea></div><code>&lt;textarea&gt;</code><span class="gi-val"></span
         <pre class="snip theme-code" id="themeCode"></pre>
       </div>
       <p style="margin-top:14px">Not one letter of the HTML changed between those four. Only the CSS.</p>
-      <p>Part 3 comes in two halves. This first half is how CSS thinks: rules, selectors, the cascade, colours, units and the box model. The second half, coming next, is layout and motion: flexbox, grid, positioning, animation and phone-friendly design.</p>
+      <p>Part 3 comes in two halves. The first half, 3.1 to 3.12, is how CSS thinks: rules, selectors, the cascade, colours, units and the box model. The second half, from 3.13, is how it looks and moves: backgrounds, text, positioning, flexbox, grid, motion and phone-friendly design.</p>
     </section>
 
     <!-- 3.1 -->
@@ -4066,8 +4189,1265 @@ body {
         </ol>
       </div>
       <div class="say"><b>Say it in an interview</b><p>Margin and padding shorthand go clockwise from the top: top, right, bottom, left. With two values, the first is top and bottom and the second is left and right. margin: 0 auto centres a block that has a width, because auto splits the leftover space equally. Vertical margins between blocks collapse, so the gap is the bigger margin, not the sum.</p></div>
-      <p>That's the first half of CSS. Next comes layout and motion: display, positioning, flexbox, grid, transitions, animations and phone-friendly design.</p>
+      <p>That's how CSS thinks. Next comes how it looks and moves: backgrounds, text, positioning, flexbox, grid, motion and phone-friendly design.</p>
       <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="margins" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.13 -->
+    <section id="backgrounds" class="sec">
+      <p class="kicker">3.13</p>
+      <h2>Backgrounds, borders and shadows</h2>
+      <p class="hook">Your card is a plain white box with round corners. How do other sites get soft shadows, colour fades and perfectly round profile pictures?</p>
+      <p>Four groups of properties paint the outside of a box:</p>
+      <ul>
+        <li><strong>Background.</strong> <code>background-color</code> fills the box, padding included. <code>background-image: url("campus.jpg")</code> puts a picture behind the content. Add <code>background-size: cover</code> to fill the box without stretching, and <code>background-position: center</code> to keep the middle in view.</li>
+        <li><strong>Gradients.</strong> To CSS, a colour fade is an image: <code>linear-gradient(135deg, #034f46, #8fd9c9)</code> goes in a straight line, and <code>radial-gradient(...)</code> spreads out from the centre. You don't need a file for them.</li>
+        <li><strong>Border.</strong> The shorthand takes a width, a style and a colour: <code>border: 2px solid #034f46</code>. You can also style one side, like <code>border-bottom</code>.</li>
+        <li><strong>Corners and shadows.</strong> <code>border-radius</code> rounds the corners. <code>box-shadow</code> paints a shadow. A shadow takes no space, so it never pushes other elements.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Corner and shadow builder</p>
+          <p class="demo-sub">A box-shadow has up to five numbers. Move one slider at a time and watch which part of the shadow it changes.</p>
+        </div>
+        <div class="pl">
+          <div class="cm-sl">
+            <label class="sl-row">radius <input type="range" min="0" max="85" value="16" id="bgR"><output id="bgRv"></output></label>
+            <label class="sl-row">x offset <input type="range" min="-20" max="20" value="0" id="bgX"><output id="bgXv"></output></label>
+            <label class="sl-row">y offset <input type="range" min="-20" max="30" value="8" id="bgY"><output id="bgYv"></output></label>
+            <label class="sl-row">blur <input type="range" min="0" max="40" value="20" id="bgBl"><output id="bgBlv"></output></label>
+            <label class="sl-row">spread <input type="range" min="-10" max="20" value="0" id="bgSp"><output id="bgSpv"></output></label>
+            <label class="sl-row">darkness <input type="range" min="0" max="80" value="25" id="bgA"><output id="bgAv"></output></label>
+            <div class="seg seg-sm" id="bgFill" role="group" aria-label="Background">
+              <button type="button" data-v="solid" aria-pressed="true">solid</button>
+              <button type="button" data-v="linear" aria-pressed="false">linear-gradient</button>
+              <button type="button" data-v="radial" aria-pressed="false">radial-gradient</button>
+            </div>
+            <label class="check"><input type="checkbox" id="bgIn"> <code>inset</code>: shadow inside the box</label>
+          </div>
+          <div>
+            <div class="stage bgb-stage"><div class="bgb-el" id="bgEl">.card</div></div>
+            <pre class="snip" id="bgCode" style="margin-top:12px"></pre>
+            <div class="nav-row"><button class="btn btn-small" id="bgOpen" type="button">Open in editor</button></div>
+          </div>
+        </div>
+        <p class="pl-say" id="bgSay" aria-live="polite"></p>
+      </div>
+      <div class="hint"><b>Watch out</b><code>border: 3px #034f46;</code> shows no border at all. A border's style is <code>none</code> until you give it one, like <code>solid</code>, <code>dashed</code> or <code>dotted</code>.</div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Make the avatar a circle. What does <code>50%</code> do to a square? What would it do to a rectangle?</li>
+          <li>Swap the gradient's two colours, then change <code>135deg</code> to <code>to right</code>.</li>
+          <li>Give the button a second shadow: separate two shadows with a comma.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-bg" data-title="A profile card" data-height="330">
+        <textarea data-lang="css">
+body {
+  background: #eef2f7;
+  font-family: Arial, sans-serif;
+}
+.card {
+  width: 240px;
+  margin: 20px auto;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  text-align: center;
+}
+.cover {
+  height: 70px;
+  background: linear-gradient(135deg, #034f46, #8fd9c9);
+}
+.avatar {
+  width: 80px;
+  height: 80px;
+  margin-top: -40px;
+  border: 4px solid white;
+  border-radius: 12px;
+  background: #ffa946;
+}
+.btn {
+  margin: 10px 0 18px;
+  padding: 8px 20px;
+  border: 2px solid #034f46;
+  border-radius: 999px;
+  background: white;
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="card">
+  <div class="cover"></div>
+  <img class="avatar" src="images/logo.svg" alt="Vasavi's logo">
+  <h3>Vasavi</h3>
+  <p>CSE, IIT Indore</p>
+  <button class="btn">Follow</button>
+</div>
+</textarea>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">Why does <code>border: 3px #034f46;</code> show nothing?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The colour needs to come first</button><p class="why">The order of the three parts doesn't matter.</p></li>
+          <li><button type="button">It has no style, and the default style is none</button><p class="why">Add <code>solid</code> and it appears.</p></li>
+          <li><button type="button">Borders need a width in em</button><p class="why">Pixels are fine for borders.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Background-color fills the box including its padding, and background-image can hold a picture or a gradient, which CSS treats as an image. The border shorthand needs a width, a style and a colour, and without a style there's no border. Border-radius rounds the corners, so 50% on a square makes a circle. Box-shadow takes x, y, blur, spread and a colour, and it doesn't take up any space in the layout.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="backgrounds" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.14 -->
+    <section id="type" class="sec">
+      <p class="kicker">3.14</p>
+      <h2>Text and fonts</h2>
+      <p class="hook">Your body rule says <code>font-family: Arial, sans-serif</code>. Why two names?</p>
+      <p>The first name is the font you want. If the computer doesn't have it, the browser tries the next one, and so on. The last one should be a <strong>generic family</strong>: <code>serif</code>, <code>sans-serif</code> or <code>monospace</code>. Every computer has one of each, so the text never falls back to something random. A name with spaces needs quotes: <code>"Courier New"</code>.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Property</th><th>Example</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>font-size</code></td><td><code>1.25rem</code></td><td>The size of the letters. rem keeps it tied to the page's base size (3.10).</td></tr>
+            <tr><td><code>font-weight</code></td><td><code>700</code></td><td>Thickness. 400 is normal and 700 is bold.</td></tr>
+            <tr><td><code>line-height</code></td><td><code>1.5</code></td><td>The height of each line. A number without a unit means "times the font size".</td></tr>
+            <tr><td><code>letter-spacing</code></td><td><code>0.05em</code></td><td>Extra space between letters.</td></tr>
+            <tr><td><code>text-align</code></td><td><code>center</code></td><td>Lines up the text inside its box: left, center, right or justify.</td></tr>
+            <tr><td><code>text-transform</code></td><td><code>uppercase</code></td><td>Changes how the letters look, not the text in your HTML.</td></tr>
+            <tr><td><code>text-decoration</code></td><td><code>none</code></td><td>Underlines, or removes the underline from links.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Type tuner</p>
+          <p class="demo-sub">Change one property at a time. Notice how much easier the paragraph is to read with a line-height around 1.5.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl" id="ttCtl"></div>
+          <div>
+            <div class="stage tt-stage" id="ttStage"><h4>Roll the dice!</h4><p>Click a button to roll one die or two. Your last ten rolls appear below, newest first, so you can check whether your luck is really that bad.</p></div>
+            <pre class="snip" id="ttCode" style="margin-top:12px"></pre>
+          </div>
+        </div>
+      </div>
+      <h3>Fonts from the internet</h3>
+      <p>To use a font your visitors don't have, load it from a font service like Google Fonts. It gives you a <code>&lt;link&gt;</code> for your <code>&lt;head&gt;</code>, and then you use the font's name as normal. This guide loads three fonts that way.</p>
+      <pre class="snip" data-lang="html" style="max-width:760px"><code>&lt;link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&amp;display=swap" rel="stylesheet"&gt;</code></pre>
+      <pre class="snip" data-lang="css" style="max-width:760px;margin-top:8px"><code>body {
+  font-family: "Poppins", Arial, sans-serif;
+}</code></pre>
+      <div class="hint"><b>Watch out</b>A web font needs the internet. Offline, or if the link has a typo, the browser quietly uses the next font in your list. That's one more reason to always write a fallback.</div>
+      <div class="ed" id="ed-type" data-title="Make it readable" data-height="270">
+        <textarea data-lang="css">
+body {
+  font-family: Georgia, serif;
+  max-width: 60ch;
+  margin: 20px auto;
+  padding: 0 12px;
+  color: #333;
+}
+h1 {
+  font-family: Arial, sans-serif;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+.tag {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: #034f46;
+}
+p {
+  line-height: 1;
+}
+</textarea>
+        <textarea data-lang="html">
+<p class="tag">Club news</p>
+<h1>Induction week is here</h1>
+<p>The Programming Club takes new members every year. In the Software Division round, you build a small project and then explain every line of it in an interview.</p>
+<p>Line height is set to 1 right now. Try 1.6 and read this again.</p>
+</textarea>
+      </div>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">Why should a <code>font-family</code> list end with a word like <code>sans-serif</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">It makes the font load faster</button><p class="why">It has nothing to do with speed.</p></li>
+          <li><button type="button">Without it, the first font is ignored</button><p class="why">The first font is always tried first.</p></li>
+          <li><button type="button">If none of the named fonts exist, the browser still uses the right kind of font</button><p class="why">Every computer has a serif, a sans-serif and a monospace font.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>font-family is a list of fallbacks. The browser uses the first font it has, and I end the list with a generic family like sans-serif, so there's always a sensible choice. I size text in rem so it follows the user's settings, and I use a unitless line-height around 1.5 for body text, because it scales with the font size. Web fonts come from a link in the head, so they still need a fallback.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="type" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.15 -->
+    <section id="display" class="sec">
+      <p class="kicker">3.15</p>
+      <h2>Display, hiding and overflow</h2>
+      <p class="hook">In 2.9, you met block and inline elements. That difference comes from one CSS property, <code>display</code>, and you can change it.</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>display</th><th>Starts a new line?</th><th>width and height work?</th><th>Example</th></tr></thead>
+          <tbody>
+            <tr><td><code>block</code></td><td>Yes, and fills the row</td><td>Yes</td><td>div, p, h1</td></tr>
+            <tr><td><code>inline</code></td><td>No, flows inside text</td><td>No, and top and bottom margins are ignored</td><td>span, a, strong</td></tr>
+            <tr><td><code>inline-block</code></td><td>No, flows inside text</td><td>Yes</td><td>button, img behave like this</td></tr>
+            <tr><td><code>none</code></td><td colspan="2">The element is removed from the page, as if it weren't in the HTML</td><td>a closed menu</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">One property, four layouts</p>
+          <p class="demo-sub">Three spans, each with <code>width: 110px</code>, <code>height: 46px</code> and <code>margin: 8px</code>. Switch their display.</p>
+        </div>
+        <div class="seg seg-sm" id="dspSeg" role="group" aria-label="display">
+          <button type="button" data-v="inline" aria-pressed="true">inline</button>
+          <button type="button" data-v="block" aria-pressed="false">block</button>
+          <button type="button" data-v="inline-block" aria-pressed="false">inline-block</button>
+          <button type="button" data-v="none" aria-pressed="false">none</button>
+        </div>
+        <div class="stage dsp-stage" style="margin-top:12px"><p>Some text before the spans. <span class="dsp-item">span 1</span><span class="dsp-item">span 2</span><span class="dsp-item">span 3</span> And some text after them, to show how they sit in a line of text.</p></div>
+        <p class="pl-say" id="dspSay" aria-live="polite"></p>
+      </div>
+      <h3>Three ways to hide</h3>
+      <p>Each row hides the orange button B in a different way. Click where B was.</p>
+      <div class="demo">
+        <div class="hide3" id="hide3">
+          <div><code>display: none</code><div class="h3-row"><button type="button">A</button><button type="button" class="b" style="display:none">B</button><button type="button">C</button></div></div>
+          <div><code>visibility: hidden</code><div class="h3-row"><button type="button">A</button><button type="button" class="b" style="visibility:hidden">B</button><button type="button">C</button></div></div>
+          <div><code>opacity: 0</code><div class="h3-row"><button type="button">A</button><button type="button" class="b" style="opacity:0">B</button><button type="button">C</button></div></div>
+        </div>
+        <p class="pl-say" id="hide3Say" aria-live="polite">Click a button, or the empty spot where B was.</p>
+      </div>
+      <ul>
+        <li><code>display: none</code> removes the element. C moves left to fill the space, and screen readers skip it.</li>
+        <li><code>visibility: hidden</code> keeps the space empty, but you can't see it or click it.</li>
+        <li><code>opacity: 0</code> makes it see-through. It still takes space, and it still gets clicks.</li>
+      </ul>
+      <h3>Overflow: when content doesn't fit</h3>
+      <p>If a box has a fixed height and too much text, the text spills out. That's <code>overflow: visible</code>, the default. <code>hidden</code> cuts it off, <code>scroll</code> always adds scrollbars, and <code>auto</code> adds them only when needed.</p>
+      <div class="ed" id="ed-overflow" data-title="Too much text" data-height="280">
+        <textarea data-lang="css">
+.box {
+  width: 220px;
+  height: 70px;
+  padding: 8px;
+  margin-bottom: 40px;
+  border: 2px solid #034f46;
+  overflow: visible;
+}
+.one-line {
+  width: 220px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 2px dashed #ffa946;
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="box">Rolling two dice gives 36 possible results. The most common total is 7, which comes up 6 times out of 36. Snake eyes, a total of 2, comes up only once.</div>
+<p class="one-line">This long sentence is cut off with three dots when it runs out of room.</p>
+</textarea>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Try each of <code>hidden</code>, <code>scroll</code> and <code>auto</code> on <code>.box</code>.</li>
+          <li>Remove <code>white-space: nowrap</code> from <code>.one-line</code>. Why do the three dots disappear?</li>
+        </ul>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">You want to hide an element but keep its empty space, so nothing else moves. Which do you use?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>display: none</code></button><p class="why">That removes the space too, so the elements after it move up.</p></li>
+          <li><button type="button"><code>visibility: hidden</code></button><p class="why">The space stays, and the element can't be seen or clicked.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>display decides how a box takes part in the layout. Block starts a new line and takes width and height, inline flows in the text and ignores width and height, and inline-block flows in the text but takes a size. display: none removes the element completely, visibility: hidden keeps its space, and opacity: 0 keeps its space and still gets clicks. overflow decides what happens when content is bigger than its box.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="display" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.16 -->
+    <section id="position" class="sec">
+      <p class="kicker">3.16</p>
+      <h2>Position and z-index</h2>
+      <p class="hook">How does a little red badge sit exactly on the corner of an app icon? How does a header stay on screen while you scroll?</p>
+      <p>Normally, every element takes its place in the <strong>normal flow</strong>: blocks stack down the page and inline elements flow along the lines. The <code>position</code> property lets an element step out of that, and <code>top</code>, <code>right</code>, <code>bottom</code> and <code>left</code> say where it goes.</p>
+      <ul>
+        <li><strong><code>static</code></strong> is the default. The element stays in the flow, and top and left do nothing.</li>
+        <li><strong><code>relative</code></strong> moves the element away from its normal spot, but its old space stays reserved. It also becomes the anchor for absolute children.</li>
+        <li><strong><code>absolute</code></strong> takes the element out of the flow, so the others close the gap. It's placed from the nearest ancestor that has a position other than static. If there isn't one, it's placed from the page.</li>
+        <li><strong><code>fixed</code></strong> is placed from the browser window, so it stays put when you scroll.</li>
+        <li><strong><code>sticky</code></strong> behaves like a normal element until you scroll it to its <code>top</code> value, then sticks there, but only while its parent is on screen.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Position playground</p>
+          <p class="demo-sub">The orange box is the one being positioned. For fixed and sticky, scroll inside the page.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl">
+            <div class="seg seg-sm" id="posSeg" role="group" aria-label="position">
+              <button type="button" data-v="static" aria-pressed="true">static</button>
+              <button type="button" data-v="relative" aria-pressed="false">relative</button>
+              <button type="button" data-v="absolute" aria-pressed="false">absolute</button>
+              <button type="button" data-v="fixed" aria-pressed="false">fixed</button>
+              <button type="button" data-v="sticky" aria-pressed="false">sticky</button>
+            </div>
+            <label class="sl-row">top <input type="range" min="0" max="80" value="20" id="posT"><output id="posTv"></output></label>
+            <label class="sl-row">left <input type="range" min="0" max="160" value="40" id="posL"><output id="posLv"></output></label>
+            <label class="check"><input type="checkbox" id="posRel" checked> The parent has <code>position: relative</code></label>
+            <pre class="snip" id="posCode"></pre>
+          </div>
+          <iframe class="pos-frame" id="posFrame" sandbox="allow-same-origin" title="Position playground page"></iframe>
+        </div>
+        <p class="pl-say" id="posSay" aria-live="polite"></p>
+      </div>
+      <h3>z-index: who's on top</h3>
+      <p>When positioned elements overlap, the one later in the HTML is painted on top. <code>z-index</code> changes that: a bigger number comes to the front. It only works on positioned elements, and on flex and grid items.</p>
+      <div class="ed" id="ed-z" data-title="Stack the cards" data-height="250">
+        <textarea data-lang="css">
+.card {
+  position: absolute;
+  width: 120px;
+  height: 80px;
+  padding: 8px;
+  border-radius: 10px;
+  color: white;
+  font: bold 16px Arial, sans-serif;
+}
+.a { top: 20px; left: 20px; background: #034f46; }
+.b { top: 50px; left: 70px; background: #ffa946; }
+.c { top: 80px; left: 120px; background: crimson; }
+</textarea>
+        <textarea data-lang="html">
+<div class="card a">A</div>
+<div class="card b">B</div>
+<div class="card c">C</div>
+</textarea>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Bring A to the front by giving it <code>z-index: 1</code>.</li>
+          <li>Now change A's position to <code>static</code>. Does its z-index still work? Where did it go?</li>
+        </ul>
+      </div>
+
+      <div class="ch" data-ed="ch-badge">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 15</p><p class="ch-title">The notification badge</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>Put the red badge on the top-right corner of the icon, with its centre right on the corner, half in and half out. Change only the CSS.</p>
+          <div class="ed" id="ch-badge" data-label="Challenge" data-title="Pin the badge" data-height="290">
+            <textarea data-lang="css">
+.icon {
+  width: 80px;
+  height: 80px;
+  margin: 30px;
+  background: #034f46;
+  border-radius: 16px;
+}
+.badge {
+  width: 28px;
+  height: 28px;
+  background: crimson;
+  color: white;
+  border-radius: 50%;
+  font: bold 14px/28px Arial, sans-serif;
+  text-align: center;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="icon">
+  <span class="badge">3</span>
+</div>
+<p>The badge belongs on the icon's top-right corner.</p>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Two elements need a position. One is the anchor that stays in place, and the other one moves.</p>
+            <p class="ch-hint" hidden>In the playground, tick and untick "The parent has position: relative". That's the anchor.</p>
+            <p class="ch-hint" hidden>Negative values are allowed. <code>top: -10px</code> pushes an element up past its anchor's edge. How far is half of the badge?</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">A box has <code>position: absolute; top: 0; left: 0;</code>, and none of its ancestors are positioned. Where does it go?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The top-left corner of its parent</button><p class="why">Only if the parent had a position other than static.</p></li>
+          <li><button type="button">It stays where it was</button><p class="why">That's static. Absolute leaves the flow.</p></li>
+          <li><button type="button">The top-left corner of the page</button><p class="why">With no positioned ancestor, the page itself is the anchor.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Static is the default and follows the normal flow. Relative nudges an element from its normal spot and keeps its space. Absolute takes it out of the flow and places it from the nearest positioned ancestor, which is why I put position: relative on the parent. Fixed is placed from the window, and sticky sticks once you scroll to it. z-index decides which overlapping element is in front.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="position" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.17 -->
+    <section id="flexbox" class="sec">
+      <p class="kicker">3.17</p>
+      <h2>Flexbox</h2>
+      <p class="hook">In task 4, three lines of flexbox put a dot in the middle of a die. How does flexbox decide where things go?</p>
+      <p>Write <code>display: flex</code> on a parent and it becomes a <strong>flex container</strong>. Its direct children become <strong>flex items</strong>, and they line up in a row. Everything else in flexbox is about two lines through the container:</p>
+      <ul>
+        <li>The <strong>main axis</strong> runs the way the items line up. <code>flex-direction</code> sets it: <code>row</code> is left to right, <code>column</code> is top to bottom. <code>justify-content</code> spreads the items along it.</li>
+        <li>The <strong>cross axis</strong> runs across it. <code>align-items</code> places the items along it.</li>
+      </ul>
+      <div class="callout"><h4>Think of it like</h4><p>Beads on a string. The string is the main axis. <code>justify-content</code> slides the beads along the string, and <code>align-items</code> moves them up or down off it. Turn the string to stand upright with <code>flex-direction: column</code>, and both controls turn with it.</p></div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Flexbox playground</p>
+          <p class="demo-sub">Every button sets one property on the container. Watch the arrows when you change the direction.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl" id="fxCtl"></div>
+          <div>
+            <div class="fx-stage">
+              <div class="ax ax-top" id="fxTop"><span></span><i></i></div>
+              <div class="ax ax-left" id="fxLeft"><span></span><i></i></div>
+              <div class="fx-box" id="fxBox"></div>
+            </div>
+            <pre class="snip" id="fxCode" style="margin-top:12px"></pre>
+            <div class="nav-row"><button class="btn btn-small" id="fxOpen" type="button">Open in editor</button></div>
+          </div>
+        </div>
+        <p class="pl-say" id="fxSay" aria-live="polite"></p>
+      </div>
+      <h3>Properties for the items</h3>
+      <ul>
+        <li><code>flex-grow: 1</code> lets an item take the leftover space. If two items have it, they share the space equally.</li>
+        <li><code>flex-shrink</code> says whether an item may get narrower than its width when space runs out. It's 1 by default, so items shrink.</li>
+        <li><code>flex-basis</code> is the item's starting size, before growing or shrinking. <code>flex: 1</code> is short for all three.</li>
+        <li><code>align-self</code> overrides <code>align-items</code> for one item, and <code>order</code> moves one item without touching the HTML.</li>
+      </ul>
+      <div class="ed" id="ed-flex" data-title="Flex container" data-height="300">
+        <textarea data-lang="css">
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  height: 180px;
+  padding: 10px;
+  border: 2px dashed #034f46;
+}
+.item {
+  padding: 10px 16px;
+  background: #FFE0B5;
+  border: 2px solid #e8890c;
+  border-radius: 8px;
+  font: bold 16px monospace;
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="container">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+</div>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-navbar">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 16</p><p class="ch-title">A real navigation bar</p></div><span class="ch-badge">0 of 6</span></div>
+        <div class="ch-in">
+          <p>Almost every website starts with this: the name on the left, the links on the right in one row, everything centred vertically. Leave at least 12px between the links. Change only the CSS.</p>
+          <div class="ed" id="ch-navbar" data-label="Challenge" data-title="Build the bar" data-height="330">
+            <textarea data-lang="css">
+.bar {
+  background: #2c3e50;
+  padding: 10px 20px;
+}
+.bar a {
+  color: white;
+  text-decoration: none;
+}
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+}
+.links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+</textarea>
+            <textarea data-lang="html">
+<nav class="bar">
+  <a class="logo" href="#">Dice Roll</a>
+  <ul class="links">
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Rules</a></li>
+    <li><a href="#">History</a></li>
+  </ul>
+</nav>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>There are two rows here: the bar itself (logo and list), and the list (three links). Each one needs to be a flex container.</p>
+            <p class="ch-hint" hidden>Which <code>justify-content</code> value pushes the first item to the start and the last item to the end? Try them all in the playground.</p>
+            <p class="ch-hint" hidden>Vertical centring in a row happens on the cross axis.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">A container has <code>flex-direction: column</code>. Which property centres the items left to right?</p>
+        <ol class="quiz-opts">
+          <li><button type="button"><code>align-items: center</code></button><p class="why">In a column, the main axis goes down, so left to right is the cross axis.</p></li>
+          <li><button type="button"><code>justify-content: center</code></button><p class="why">In a column, justify-content works top to bottom, along the main axis.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Flexbox lays out items in one direction. display: flex on the parent makes its direct children flex items. flex-direction sets the main axis, justify-content places the items along it, and align-items places them along the cross axis. In a column, the two axes swap, so justify-content works vertically. gap adds space between items, and flex: 1 lets an item take the leftover space.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="flexbox" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.18 -->
+    <section id="grid" class="sec">
+      <p class="kicker">3.18</p>
+      <h2>Grid</h2>
+      <p class="hook">Flexbox lines things up in one direction. What about rows and columns at the same time, like a photo gallery?</p>
+      <p><code>display: grid</code> makes a <strong>grid container</strong>. You draw the columns with <code>grid-template-columns</code>, and the children fill the cells in order, row by row.</p>
+      <ul>
+        <li><strong><code>fr</code></strong> means one share of the free space. <code>1fr 2fr</code> makes the second column twice as wide as the first.</li>
+        <li><strong><code>repeat(3, 1fr)</code></strong> is short for <code>1fr 1fr 1fr</code>.</li>
+        <li><strong>Grid lines</strong> are numbered from 1, starting before the first column. <code>grid-column: 1 / 3</code> means "from line 1 to line 3", which covers two columns. <code>span 2</code> says the same thing without the line numbers.</li>
+        <li><strong><code>repeat(auto-fit, minmax(120px, 1fr))</code></strong> fits as many columns as there's room for, each at least 120px. The grid becomes phone-friendly without a media query.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Grid playground</p>
+          <p class="demo-sub">The purple numbers are the grid lines, like DevTools draws them. Type your own column pattern too.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl" id="gdCtl"></div>
+          <div>
+            <div class="gd-stage"><div class="gd-box" id="gdBox"></div><div class="gd-ov" id="gdOv" aria-hidden="true"></div></div>
+            <p class="gd-sizes" id="gdSizes"></p>
+            <pre class="snip" id="gdCode" style="margin-top:10px"></pre>
+            <div class="nav-row"><button class="btn btn-small" id="gdOpen" type="button">Open in editor</button></div>
+          </div>
+        </div>
+        <p class="pl-say" id="gdSay" aria-live="polite"></p>
+      </div>
+      <p>For a whole page, you can name areas and draw the layout as a picture:</p>
+      <pre class="snip" data-lang="css" style="max-width:560px"><code>.page {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-areas:
+    "head head"
+    "side main"
+    "foot foot";
+}
+header { grid-area: head; }
+aside  { grid-area: side; }</code></pre>
+      <div class="ed" id="ed-grid" data-title="Grid container" data-height="300">
+        <textarea data-lang="css">
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 10px;
+  border: 2px dashed #034f46;
+}
+.item {
+  padding: 14px;
+  background: #F0D7FF;
+  border: 2px solid #8e5bb8;
+  border-radius: 8px;
+  font: bold 16px monospace;
+  text-align: center;
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="grid">
+  <div class="item">1</div>
+  <div class="item">2</div>
+  <div class="item">3</div>
+  <div class="item">4</div>
+  <div class="item">5</div>
+</div>
+</textarea>
+      </div>
+
+      <div class="ch" data-ed="ch-grid">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 17</p><p class="ch-title">The dice gallery</p></div><span class="ch-badge">0 of 5</span></div>
+        <div class="ch-in">
+          <p>Lay out the six dice in three equal columns with at least 10px between them. The six is the star of the show: make it two columns wide. Change only the CSS.</p>
+          <div class="ed" id="ch-grid" data-label="Challenge" data-title="Gallery wall" data-height="300">
+            <textarea data-lang="css">
+.gallery {
+  background: #eef2f7;
+  padding: 10px;
+}
+.gallery img {
+  width: 100%;
+  background: white;
+  border-radius: 10px;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="gallery">
+  <img src="images/dice6.svg" alt="Dice showing 6">
+  <img src="images/dice1.svg" alt="Dice showing 1">
+  <img src="images/dice2.svg" alt="Dice showing 2">
+  <img src="images/dice3.svg" alt="Dice showing 3">
+  <img src="images/dice4.svg" alt="Dice showing 4">
+  <img src="images/dice5.svg" alt="Dice showing 5">
+</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Which unit splits the free space into equal shares?</p>
+            <p class="ch-hint" hidden>The six is the first image. A selector from 3.8 can pick it without a class.</p>
+            <p class="ch-hint" hidden>In the playground, try "Item 1 spans" and read the code it writes.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="callout"><h4>Flexbox or grid?</h4><ul><li>Flexbox: one row or one column, where the content decides the sizes. Navbars, button groups, centring one thing.</li><li>Grid: rows and columns together, where you decide the sizes. Galleries, card grids, whole page layouts.</li><li>They mix well. A grid cell can be a flex container.</li></ul></div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">A grid has <code>grid-template-columns: 1fr 1fr 1fr 1fr</code>. What does <code>grid-column: 2 / 4</code> cover?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Columns 2, 3 and 4</button><p class="why">The numbers are lines, not columns. Line 4 is where column 3 ends.</p></li>
+          <li><button type="button">Columns 2 and 3</button><p class="why">From line 2 to line 4 crosses two columns.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>Grid is for two-dimensional layouts, rows and columns at once. I set the columns with grid-template-columns, usually in fr units, which share out the free space. Items fill the cells in order, and an item can span several columns with grid-column, using the numbered grid lines. repeat(auto-fit, minmax(…)) makes a grid that adapts to the screen width on its own. I use flexbox for a single row or column, and grid when I need both.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="grid" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.19 -->
+    <section id="transforms" class="sec">
+      <p class="kicker">3.19</p>
+      <h2>Transforms</h2>
+      <p class="hook">Your shake animation turns the die with <code>rotate(20deg)</code>. What else can <code>transform</code> do, and why doesn't the turning die push the buttons around?</p>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Function</th><th>Example</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td><code>translate(x, y)</code></td><td><code>translate(20px, -10px)</code></td><td>Slides the element: right 20px and up 10px</td></tr>
+            <tr><td><code>rotate(angle)</code></td><td><code>rotate(45deg)</code></td><td>Turns it clockwise. Negative turns it the other way.</td></tr>
+            <tr><td><code>scale(n)</code></td><td><code>scale(1.5)</code></td><td>Makes it bigger or smaller. 1 is normal size.</td></tr>
+            <tr><td><code>skewX(angle)</code></td><td><code>skewX(15deg)</code></td><td>Slants it sideways</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Transform sliders</p>
+          <p class="demo-sub">The dashed outline is where the layout put the die. The grey boxes are its neighbours. Do they ever move?</p>
+        </div>
+        <div class="pl">
+          <div class="cm-sl">
+            <label class="sl-row">translateX <input type="range" min="-60" max="60" value="0" id="tfX"><output id="tfXv"></output></label>
+            <label class="sl-row">translateY <input type="range" min="-40" max="40" value="0" id="tfY"><output id="tfYv"></output></label>
+            <label class="sl-row">rotate <input type="range" min="-180" max="180" value="0" id="tfR"><output id="tfRv"></output></label>
+            <label class="sl-row">scale <input type="range" min="30" max="200" value="100" id="tfS"><output id="tfSv"></output></label>
+            <label class="sl-row">skewX <input type="range" min="-40" max="40" value="0" id="tfK"><output id="tfKv"></output></label>
+            <div class="ctl-row"><span>transform-origin</span>
+              <div class="seg seg-sm" id="tfO" role="group" aria-label="transform-origin">
+                <button type="button" data-v="center" aria-pressed="true">center</button>
+                <button type="button" data-v="top left" aria-pressed="false">top left</button>
+                <button type="button" data-v="bottom right" aria-pressed="false">bottom right</button>
+              </div>
+            </div>
+            <label class="check"><input type="checkbox" id="tfSwap"> Write <code>rotate</code> before <code>translate</code></label>
+            <button class="btn btn-ghost btn-small" id="tfReset" type="button" style="justify-self:start">Reset</button>
+          </div>
+          <div>
+            <div class="stage tf-stage"><div class="tf-n">before</div><div class="tf-slot"><div class="tf-ghost"></div><div class="tf-el" id="tfEl"></div><i class="tf-dot" id="tfDot"></i></div><div class="tf-n">after</div></div>
+            <pre class="snip" id="tfCode" style="margin-top:12px"></pre>
+          </div>
+        </div>
+        <p class="pl-say" id="tfSay" aria-live="polite"></p>
+      </div>
+      <ul>
+        <li><strong>Transforms happen after layout.</strong> The browser first works out where every box goes (1.6), and only then moves, turns or stretches the picture of the box. The neighbours never notice, so nothing jumps around.</li>
+        <li>That's also why transforms are cheap to animate. The browser doesn't have to redo the layout on every frame.</li>
+        <li><strong>The order matters.</strong> Functions run from right to left. Tick "Write rotate before translate" with a translate and a rotate set: turning first changes which way "right" points.</li>
+        <li><code>transform-origin</code> is the pin the element turns and grows around. It's the orange dot.</li>
+      </ul>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">A rule has <code>transform: rotate(45deg);</code> and, on the next line, <code>transform: scale(2);</code>. What happens?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">It turns 45° and doubles in size</button><p class="why">That needs both functions in one property: <code>transform: rotate(45deg) scale(2);</code></p></li>
+          <li><button type="button">It only doubles in size</button><p class="why">They're the same property, so the second line replaces the first.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>transform moves, rotates, scales or skews an element after the layout is done, so it doesn't push other elements around. That also makes it cheap to animate, which is why my shake animation uses rotate. Several functions go in one transform property, and their order matters. transform-origin sets the point it rotates around.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="transforms" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.20 -->
+    <section id="transitions" class="sec">
+      <p class="kicker">3.20</p>
+      <h2>Transitions</h2>
+      <p class="hook">When a value changes, CSS can jump to the new value or glide to it. A transition is the glide.</p>
+      <p>A transition watches a property. When its value changes, because of <code>:hover</code>, <code>:focus</code> or a class added by JavaScript, the browser animates from the old value to the new one.</p>
+      <pre class="snip" data-lang="css" style="max-width:560px"><code>.card {
+  transition: transform 0.3s ease;
+}</code></pre>
+      <p style="margin-top:12px">Read it as: when <strong>transform</strong> changes, take <strong>0.3 seconds</strong>, and use the <strong>ease</strong> speed curve. A fourth value adds a delay. List several properties with commas, or write <code>all</code>.</p>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">The timing-function race</p>
+          <p class="demo-sub">Every die makes the same trip in the same time. Only the speed curve is different. Each little graph shows distance against time.</p>
+        </div>
+        <div class="controls">
+          <button class="btn btn-ember" id="raceGo" type="button">Race</button>
+          <label class="sl-row" style="flex:1 1 260px">duration <input type="range" min="4" max="40" value="20" id="raceD"><output id="raceDv"></output></label>
+        </div>
+        <div class="race-host" id="raceHost"></div>
+      </div>
+      <ul>
+        <li><strong>ease-out</strong> starts fast and slows down. It feels natural for things that appear, like a menu opening.</li>
+        <li><strong>ease-in</strong> starts slow and speeds up, like something leaving.</li>
+        <li><strong>linear</strong> keeps the same speed. It looks mechanical for movement, but suits spinning and progress bars.</li>
+      </ul>
+      <div class="hint"><b>Watch out</b>Not everything can glide. Colours, sizes, opacity and transforms can, because the browser can work out the values in between. <code>display</code> can't: there's nothing halfway between <code>none</code> and <code>block</code>.</div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Hover over the card. Then change <code>0.3s</code> to <code>2s</code> and hover again.</li>
+          <li>Move the <code>transition</code> line into the <code>.card:hover</code> rule. Hover, then move the mouse away. What's different?</li>
+          <li>Try <code>linear</code> and <code>ease-out</code>. Which one feels better?</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-trans" data-title="A card that lifts" data-height="300">
+        <textarea data-lang="css">
+body {
+  background: #eef2f7;
+  font-family: Arial, sans-serif;
+}
+.card {
+  width: 200px;
+  margin: 40px auto;
+  padding: 24px;
+  text-align: center;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.2);
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="card">Hover over me</div>
+</textarea>
+      </div>
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">Where should the <code>transition</code> line go, so the card glides both up and back down?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">On <code>.card</code>, the normal state</button><p class="why">Then it applies in both directions: going into hover and coming out.</p></li>
+          <li><button type="button">On <code>.card:hover</code></button><p class="why">Then it only applies while hovering. When the mouse leaves, the card snaps back.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>A transition animates a property from its old value to its new value when it changes, for example on hover or when JavaScript adds a class. I give it the property, the duration, a timing function like ease-out, and optionally a delay. I put it on the normal state so it runs both ways. Transitions work on values with something in between, like colours, sizes, opacity and transforms, but not display.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="transitions" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.21 -->
+    <section id="animations" class="sec">
+      <p class="kicker">3.21</p>
+      <h2>Animations and @keyframes</h2>
+      <p class="hook">A transition needs something to change first. An animation runs on its own, as many times as you want. Your shake is one.</p>
+      <p>An animation has two parts. <code>@keyframes</code> gives it a name and lists the steps, and the <code>animation</code> property attaches it to an element:</p>
+      <pre class="snip" data-lang="css" style="max-width:560px"><code>@keyframes shake {
+  0%   { transform: rotate(0deg); }
+  25%  { transform: rotate(20deg); }
+  50%  { transform: rotate(-20deg); }
+  75%  { transform: rotate(20deg); }
+  100% { transform: rotate(0deg); }
+}
+.shake {
+  animation: shake 0.5s;
+}</code></pre>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">Inside a keyframe animation</p>
+          <p class="demo-sub">Drag the scrubber to stop time anywhere in your shake. Then press Play to run it with the settings below.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl" id="anCtl">
+            <label class="sl-row">time <input type="range" min="0" max="100" value="25" id="anT"><output id="anTv"></output></label>
+          </div>
+          <div>
+            <div class="anim-host" id="anHost"></div>
+            <div class="kf" id="anKf"><i class="kf-now" id="anNow"></i></div>
+            <p class="kf-read" id="anRead" aria-live="polite"></p>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrap" style="max-width:860px">
+        <table>
+          <thead><tr><th>Part of <code>animation</code></th><th>Example</th><th>Meaning</th></tr></thead>
+          <tbody>
+            <tr><td>name</td><td><code>shake</code></td><td>Which <code>@keyframes</code> to run</td></tr>
+            <tr><td>duration</td><td><code>0.5s</code></td><td>How long one run takes</td></tr>
+            <tr><td>timing function</td><td><code>ease-in-out</code></td><td>The speed curve, the same as in transitions</td></tr>
+            <tr><td>delay</td><td><code>0.2s</code></td><td>How long to wait before starting</td></tr>
+            <tr><td>iteration count</td><td><code>3</code>, <code>infinite</code></td><td>How many times to run</td></tr>
+            <tr><td>direction</td><td><code>alternate</code></td><td>Run forwards, then backwards, then forwards</td></tr>
+            <tr><td>fill mode</td><td><code>forwards</code></td><td>Keep the last frame when it ends, instead of jumping back</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="hint"><b>Watch out</b>An animation runs once, when the class is added. Adding the same class again does nothing. To replay it, JavaScript removes the class first, then adds it back. Your task 9 does exactly this.</div>
+      <div class="ed" id="ed-anim" data-title="Two animations" data-height="320">
+        <textarea data-lang="css">
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+@keyframes slide-in {
+  from { transform: translateX(-120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+}
+.live {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: crimson;
+  color: white;
+  font-weight: bold;
+  animation: pulse 1s ease-in-out infinite;
+}
+.toast {
+  margin-top: 30px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: #034f46;
+  color: white;
+  animation: slide-in 0.6s ease-out;
+}
+</textarea>
+        <textarea data-lang="html">
+<span class="live">LIVE</span>
+<div class="toast">New high score: 12!</div>
+</textarea>
+      </div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Add <code>alternate</code> to the pulse, and simplify its keyframes to just two steps.</li>
+          <li>Give the toast a <code>1s</code> delay. Where is it while it waits? Then add <code>backwards</code>.</li>
+        </ul>
+      </div>
+
+      <div class="ch" data-ed="ch-dots">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 18</p><p class="ch-title">Loading dots</p></div><span class="ch-badge">0 of 6</span></div>
+        <div class="ch-in">
+          <p>Make the three dots move like a loading indicator: each one bounces or fades forever, and they start one after another, so they make a wave. Change only the CSS.</p>
+          <div class="ed" id="ch-dots" data-label="Challenge" data-title="Please wait…" data-height="300">
+            <textarea data-lang="css">
+.loader {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px;
+}
+.dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #034f46;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="loader">
+  <span class="dot"></span>
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Write the <code>@keyframes</code> first. What should one dot do: move up and down, or fade in and out?</p>
+            <p class="ch-hint" hidden>One <code>animation</code> line on <code>.dot</code> covers all three dots. Then a selector from 3.8 can give each dot a different <code>animation-delay</code>.</p>
+            <p class="ch-hint" hidden>Delays like 0s, 0.2s and 0.4s make a wave. <code>alternate</code> saves you writing the way back.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">An animation lasts <code>2s</code>. When does its <code>50%</code> keyframe happen?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">After 0.5 seconds</button><p class="why">That's 25% of 2 seconds.</p></li>
+          <li><button type="button">Halfway through the page loading</button><p class="why">Keyframe percentages are about the animation's own time, not the page.</p></li>
+          <li><button type="button">After 1 second</button><p class="why">50% of 2 seconds. The browser fills in the frames between keyframes.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>An animation has two parts: @keyframes, which names it and describes the steps as percentages of its time, and the animation property, which attaches it with a duration, a timing function, a delay, an iteration count and a direction. Unlike a transition, it doesn't need a trigger and it can loop. In my project, JavaScript adds the shake class to start it and removes it afterwards, so it can play again.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="animations" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.22 -->
+    <section id="responsive" class="sec">
+      <p class="kicker">3.22</p>
+      <h2>Responsive design</h2>
+      <p class="hook">One page has to fit a 360px phone and a 1440px laptop. How?</p>
+      <p>A <strong>responsive</strong> page changes its layout to fit the screen. It needs three things:</p>
+      <ol class="steps">
+        <li><div><strong>The viewport tag</strong> from 2.2, so phones don't pretend to be 980px wide.</div></li>
+        <li><div><strong>Flexible sizes:</strong> %, <code>fr</code>, <code>max-width</code> instead of fixed widths, and <code>img { max-width: 100%; }</code> so pictures shrink with their box.</div></li>
+        <li><div><strong>Media queries</strong> for the changes that flexible sizes can't do on their own, like moving a sidebar on top.</div></li>
+      </ol>
+      <pre class="snip" data-lang="css" style="max-width:560px;margin-top:16px"><code>@media (max-width: 600px) {
+  .page {
+    flex-direction: column;
+  }
+}</code></pre>
+      <p style="margin-top:12px">Read it as: "<strong>when the window is 600px wide or less</strong>, also use these rules." The rules inside are normal rules, and the cascade (3.7) still decides who wins. <code>min-width</code> works the other way round: "600px or more".</p>
+      <div class="callout"><h4>Mobile-first</h4><p>Many developers write the phone layout first, with no media query, then add <code>@media (min-width: …)</code> rules for bigger screens. Phones then load the simplest CSS. Choose the width where your own layout starts to look wrong, rather than a list of phone models.</p></div>
+      <div class="tasks"><b>Try this in the editor</b>
+        <ul>
+          <li>Drag the preview width slider across 600px and watch the menu move. The list under it shows which <code>@media</code> rules are on.</li>
+          <li>Inside the media query, make the <code>h2</code> smaller.</li>
+          <li>Cut the whole <code>@media</code> block and paste it at the top of the CSS. Does it still work? Why not?</li>
+          <li>Harder: rewrite it mobile-first. A column by default, and a row from 601px up.</li>
+        </ul>
+      </div>
+      <div class="ed" id="ed-resp" data-title="Sidebar layout" data-height="300" data-resize>
+        <textarea data-lang="css">
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+.page {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+}
+aside {
+  width: 180px;
+  flex-shrink: 0;
+  padding: 12px;
+  border-radius: 10px;
+  background: #CFE3DC;
+}
+main {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  background: #eef2f7;
+}
+@media (max-width: 600px) {
+  .page {
+    flex-direction: column;
+  }
+  aside {
+    width: auto;
+  }
+}
+</textarea>
+        <textarea data-lang="html">
+<div class="page">
+  <aside>
+    <h3>Menu</h3>
+    <p>Home, Rules, History</p>
+  </aside>
+  <main>
+    <h2>Dice Roll</h2>
+    <p>On a wide screen, the menu sits on the left. Make the preview narrower than 600px and it moves on top.</p>
+  </main>
+</div>
+</textarea>
+      </div>
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Open any website, press <kbd>F12</kbd>, then <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> for the device toolbar.</li>
+          <li>Choose "Responsive" and drag the page's edge. Watch where the layout changes.</li>
+          <li>In the Styles pane, look for <code>@media</code> above some rules. That's the condition that switched them on.</li>
+        </ol>
+      </div>
+
+      <div class="ch" data-ed="ch-resp">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 19</p><p class="ch-title">Cards that fit any screen</p></div><span class="ch-badge">0 of 5</span></div>
+        <div class="ch-in">
+          <p>On a laptop, the three cards sit side by side. On a phone, 600px wide or less, they're stacked in one column with no sideways scrolling. Use a media query, and change only the CSS. The checks test the page at 900px and at 360px wide, whatever width your preview is.</p>
+          <div class="ed" id="ch-resp" data-label="Challenge" data-title="Laptop and phone" data-height="300" data-resize data-sizes="900,360">
+            <textarea data-lang="css">
+body {
+  font-family: Arial, sans-serif;
+}
+.cards {
+  display: flex;
+  gap: 16px;
+}
+.card {
+  width: 260px;
+  flex-shrink: 0;
+  padding: 16px;
+  background: #eef2f7;
+  border-radius: 10px;
+}
+</textarea>
+            <textarea data-lang="html">
+<div class="cards">
+  <div class="card"><h3>Roll</h3><p>One die or two.</p></div>
+  <div class="card"><h3>Shake</h3><p>A short animation.</p></div>
+  <div class="card"><h3>History</h3><p>Your last ten rolls.</p></div>
+</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Start with the media query from the editor above, but change what's inside it.</p>
+            <p class="ch-hint" hidden>Stacking the cards is a change of direction. Which flex property sets the direction?</p>
+            <p class="ch-hint" hidden>Set the preview to Phone 360, and drag it past 600 and back, to check both layouts yourself.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">What does <code>@media (max-width: 600px)</code> mean?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The page can't be wider than 600px</button><p class="why">It doesn't limit anything. It's a condition.</p></li>
+          <li><button type="button">Use these rules only when the window is 600px wide or less</button><p class="why">Above 600px, the rules inside are ignored.</p></li>
+          <li><button type="button">Use these rules only on phones</button><p class="why">It's about the window's width, not the device. A narrow laptop window matches too.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>A responsive page adapts its layout to the screen. I start with the viewport meta tag, use flexible sizes like percentages, fr and max-width, and add media queries where the layout needs to change. A media query applies its rules only when a condition is true, like max-width: 600px. I test it with the device toolbar in DevTools.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="responsive" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.23 -->
+    <section id="variables" class="sec">
+      <p class="kicker">3.23</p>
+      <h2>CSS variables</h2>
+      <p class="hook">Your teal <code>#034f46</code> appears in eight places. The club picks a new colour. Do you change eight lines and hope you didn't miss one?</p>
+      <p>A <strong>custom property</strong>, usually called a CSS variable, stores a value under a name that starts with two dashes. You define it once, usually on <code>:root</code> (the <code>&lt;html&gt;</code> element), and use it anywhere with <code>var()</code>:</p>
+      <pre class="snip" data-lang="css" style="max-width:560px"><code>:root {
+  --brand: #034f46;
+  --radius: 12px;
+}
+button {
+  background: var(--brand);
+  border-radius: var(--radius);
+}</code></pre>
+      <ul style="margin-top:14px">
+        <li>Variables are inherited, so you can change one for a single part of the page: <code>.dark { --brand: #F0D7FF; }</code>.</li>
+        <li>A second value inside <code>var()</code> is a fallback, used if the variable doesn't exist: <code>var(--brand, teal)</code>.</li>
+        <li>JavaScript can change a variable while the page runs, and everything that uses it updates. This guide's Dark mode button works that way: it swaps the values of about twenty variables.</li>
+      </ul>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">One variable, many places</p>
+          <p class="demo-sub">The page below uses only these variables for its colours and corners. Change one, and watch every place that uses it.</p>
+        </div>
+        <div class="pl">
+          <div class="ctl vars-ctl" id="vrCtl"></div>
+          <div>
+            <div class="vars-host" id="vrHost"></div>
+            <pre class="snip" id="vrCode" style="margin-top:12px"></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="ch" data-ed="ch-vars">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 20</p><p class="ch-title">One place to change it</p></div><span class="ch-badge">0 of 4</span></div>
+        <div class="ch-in">
+          <p>This CSS repeats the same two colours again and again. Store them in two variables, <code class="nw">--brand</code> and <code class="nw">--accent</code>, on <code>:root</code>, and use <code>var()</code> everywhere else. The page must look exactly the same as before.</p>
+          <div class="ed" id="ch-vars" data-label="Challenge" data-title="Tidy the colours" data-height="330">
+            <textarea data-lang="css">
+h1 {
+  color: #034f46;
+}
+.card {
+  border: 2px solid #034f46;
+  border-radius: 12px;
+  padding: 12px;
+}
+.card a {
+  color: #034f46;
+}
+button {
+  background: #ffa946;
+  border: 2px solid #034f46;
+  padding: 8px 16px;
+}
+.tag {
+  background: #ffa946;
+  padding: 2px 8px;
+}
+</textarea>
+            <textarea data-lang="html">
+<h1>Programming Club</h1>
+<div class="card">
+  <span class="tag">New</span>
+  <p>Induction week starts soon. <a href="#">Read the rules</a>.</p>
+  <button>Sign up</button>
+</div>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Start with a <code>:root { }</code> rule at the very top, and define the two variables there.</p>
+            <p class="ch-hint" hidden>Then replace every hex colour outside <code>:root</code> with <code>var(--brand)</code> or <code>var(--accent)</code>. Check the border lines too.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+          <p class="ch-win" hidden>All green. Now change <code>--brand</code> to <code>crimson</code> and watch five places change at once. Then change it back.</p>
+        </div>
+      </div>
+
+      <div class="quiz" data-answer="0">
+        <p class="quiz-q">Why define variables on <code>:root</code>?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">Every element inherits from it, so the variables work everywhere</button><p class="why"><code>:root</code> is the html element, the top of the family tree.</p></li>
+          <li><button type="button">Variables only work on <code>:root</code></button><p class="why">They work on any element. A variable set on <code>.card</code> is visible inside that card.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>CSS variables, or custom properties, store a value under a name starting with two dashes, and var() reads it. I define them on :root so the whole page inherits them, which means a colour change is one line. Because they're inherited, I can override one for a section, and JavaScript can change them at runtime, which is how dark mode themes are usually built.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="variables" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- 3.24 -->
+    <section id="debugcss" class="sec">
+      <p class="kicker">3.24</p>
+      <h2>Debugging CSS</h2>
+      <p class="hook">You wrote a rule, saved, pressed F5, and nothing changed. Here's how to find out why in under a minute.</p>
+      <ol class="steps">
+        <li><div><strong>Is the file loading?</strong> Console shows a red 404 if the <code>href</code> of your <code>&lt;link&gt;</code> is wrong. Remember, paths are case-sensitive online.</div></li>
+        <li><div><strong>Does the selector match?</strong> Right-click the element, choose Inspect. If your rule isn't in the Styles pane, the selector doesn't match. Check the spelling of the class, in both files.</div></li>
+        <li><div><strong>Is it crossed out?</strong> Then another declaration won. The winner is higher up in the Styles pane. Compare specificity (3.7).</div></li>
+        <li><div><strong>Is there a warning sign?</strong> Then the property name or the value is invalid, and the browser ignored it. Look for typos, a missing unit or a space in <code>10 px</code>.</div></li>
+        <li><div><strong>Still stuck?</strong> Press <kbd>Ctrl</kbd>+<kbd>F5</kbd> to reload without the cache. Add <code>outline: 2px solid red</code> to see where boxes really are.</div></li>
+      </ol>
+      <div class="demo">
+        <div class="demo-head">
+          <p class="demo-tag">Demo</p>
+          <p class="demo-title">A Styles pane you can play with</p>
+          <p class="demo-sub">This is what Chrome shows for the Roll button, highest priority first. Untick and tick declarations, like you can in DevTools.</p>
+        </div>
+        <div class="stp">
+          <div class="stp-view"><div class="stp-host" id="stpHost"></div></div>
+          <div class="stp-pane" id="stpPane"></div>
+        </div>
+        <p class="pl-say" id="stpSay" aria-live="polite"></p>
+      </div>
+      <h3>Find the bug</h3>
+      <p>Each snippet has one line that breaks it. Read the symptom, then click the line that causes it.</p>
+      <div class="bugs" id="cssBugs"></div>
+      <p class="bug-score" id="cssBugScore" aria-live="polite">Found 0 of 5.</p>
+      <div class="real">
+        <b>Try it on your laptop</b>
+        <ol>
+          <li>Inspect your Roll button. Untick <code>background-color</code> in the Styles pane, then tick it again.</li>
+          <li>Click a value, like <code>16px</code>, and press the up arrow key a few times.</li>
+          <li>Click <code>:hov</code> at the top of the Styles pane and tick <code>:hover</code>. DevTools pretends the mouse is over the button, so you can inspect hover styles.</li>
+          <li>Changes in DevTools disappear on reload. Copy the ones you like into style.css.</li>
+        </ol>
+      </div>
+      <div class="quiz" data-answer="1">
+        <p class="quiz-q">In the Styles pane, your <code>color: green;</code> is crossed out with no warning sign. What does that mean?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">The value is spelled wrong</button><p class="why">Invalid values get a warning sign as well.</p></li>
+          <li><button type="button">Another rule set color and won the cascade</button><p class="why">Look higher in the pane for the colour that won, and compare specificity.</p></li>
+          <li><button type="button">The CSS file didn't load</button><p class="why">Then your rule wouldn't be in the pane at all.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>When CSS doesn't apply, I inspect the element. If my rule isn't listed, the selector doesn't match or the file didn't load, which shows as a 404 in the Console. If it's crossed out, another rule won, so I compare specificity. If there's a warning sign, the property or value is invalid. I can toggle and edit declarations live in DevTools, then copy the fix into my CSS file.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="debugcss" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- recap 3 -->
+    <section id="recap3" class="sec">
+      <p class="kicker">Part 3 recap</p>
+      <h2>Style a whole page</h2>
+      <p class="hook">Here's a plain HTML page for a club's events. Make it look good using everything from Part 3, starting from an empty stylesheet.</p>
+      <p>The checklist tests your page at two sizes: a 900px laptop and a 360px phone. Move the preview's own width slider to see both.</p>
+
+      <div class="ch" data-ed="ch-final">
+        <div class="ch-head"><div><p class="ch-tag">Challenge 21</p><p class="ch-title">The club events page</p></div><span class="ch-badge">0 of 9</span></div>
+        <div class="ch-in">
+          <div class="ed" id="ch-final" data-label="Challenge" data-title="events.html + style.css" data-height="420" data-resize data-sizes="900,360">
+            <textarea data-lang="css">
+/* Start here. */
+</textarea>
+            <textarea data-lang="html">
+<header class="top">
+  <a class="logo" href="#">Prog Club</a>
+  <nav>
+    <a href="#">Events</a>
+    <a href="#">Team</a>
+    <a href="#">Join</a>
+  </nav>
+</header>
+<main>
+  <h1>Upcoming events</h1>
+  <div class="events">
+    <article class="event">
+      <h2>Web Dev 101</h2>
+      <p>Build your first page in one evening.</p>
+    </article>
+    <article class="event">
+      <h2>DSA Sprint</h2>
+      <p>24 days of arrays, strings and lists.</p>
+    </article>
+    <article class="event">
+      <h2>Git Night</h2>
+      <p>Commit, branch, merge and push.</p>
+    </article>
+  </div>
+</main>
+<footer>Made by Vasavi</footer>
+</textarea>
+          </div>
+          <ul class="ch-list"></ul>
+          <div class="ch-hints">
+            <p class="ch-hint" hidden>Begin with two rules: <code>:root</code> with your colour variables, and <code>*</code> with box-sizing.</p>
+            <p class="ch-hint" hidden>The header is Challenge 16 again, with fewer pieces.</p>
+            <p class="ch-hint" hidden>For the events, try grid with <code>repeat(auto-fit, minmax(220px, 1fr))</code>. It goes from three columns to one with no media query.</p>
+            <p class="ch-hint" hidden>Put the transition on <code>.event</code> itself, then add a <code>.event:hover</code> rule that lifts the card.</p>
+            <button class="btn btn-ghost btn-small ch-hint-btn" type="button">Show a hint</button>
+          </div>
+          <p class="ch-win" hidden>All green. Copy both files into your Playground folder in VS Code as <code>club.html</code> and <code>club.css</code>, link them, open the page in Chrome, and try it in the device toolbar. Then commit it with a message in your own words.</p>
+        </div>
+      </div>
+
+      <h3>What you can say now</h3>
+      <div class="quiz" data-answer="2">
+        <p class="quiz-q">An interviewer asks: "How would you put three cards side by side, and stack them on a phone?" Which answer shows the most understanding?</p>
+        <ol class="quiz-opts">
+          <li><button type="button">"I'd use a table with three columns."</button><p class="why">Tables are for data, not layout (2.6), and they don't stack on phones.</p></li>
+          <li><button type="button">"I'd give each card width: 33%."</button><p class="why">That gets them side by side, but they'd be squashed on a phone.</p></li>
+          <li><button type="button">"Flexbox or grid on the parent, then a media query, or grid's auto-fit, to change to one column on small screens."</button><p class="why">It names the tool, says where it goes, and covers both screen sizes.</p></li>
+        </ol>
+      </div>
+      <div class="say"><b>Say it in an interview</b><p>CSS is a list of rules: a selector picks elements, and declarations style them. When rules clash, the cascade decides by importance, specificity and order. Every element is a box with content, padding, border and margin. I lay out pages with flexbox for one direction and grid for two, make them responsive with flexible sizes and media queries, keep colours in variables, and use transitions and keyframe animations for motion. When something looks wrong, I inspect it in DevTools.</p></div>
+      <p>Next is Part 4, the wrap-up: cheat sheets, a glossary, and every interview line in one place.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap3" aria-pressed="false">I can explain this</button></div>
     </section>
 
   </main>
@@ -4075,7 +5455,7 @@ body {
 
 <footer class="foot">
   <div class="foot-in">
-    <p>Parts 1, 2 and the first half of Part 3. Ticks, challenges, your code and the theme are saved only in this browser.</p>
+    <p>Parts 1 to 3. Ticks, challenges, your code and the theme are saved only in this browser.</p>
     <button class="btn btn-ghost btn-small" id="resetBtn" type="button">Clear my ticks</button>
   </div>
 </footer>
@@ -4170,7 +5550,8 @@ body {
   /* ---------- progress ---------- */
   var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1",
     "anatomy", "skeleton", "text", "links", "images", "lists", "forms", "semantic", "blockinline", "attributes", "rules", "devtools", "recap2",
-    "cssadd", "rule", "selectors", "classes", "hierarchy", "inherit", "cascade", "pseudo", "colors", "units", "boxmodel", "margins"];
+    "cssadd", "rule", "selectors", "classes", "hierarchy", "inherit", "cascade", "pseudo", "colors", "units", "boxmodel", "margins",
+    "backgrounds", "type", "display", "position", "flexbox", "grid", "transforms", "transitions", "animations", "responsive", "variables", "debugcss", "recap3"];
   var done = store.get("wg-done", {});
   function paintDone() {
     $$(".done-btn").forEach(function (b) {
@@ -4929,7 +6310,8 @@ body {
 
   /* ---------- live editors ---------- */
   var CH_IDS = ["ch-skel", "ch-escape", "ch-menu", "ch-gallery", "ch-table", "ch-form", "ch-semantic", "ch-about",
-    "ch-rule", "ch-sniper", "ch-specific", "ch-zebra", "ch-box", "ch-center"];
+    "ch-rule", "ch-sniper", "ch-specific", "ch-zebra", "ch-box", "ch-center",
+    "ch-badge", "ch-navbar", "ch-grid", "ch-dots", "ch-resp", "ch-vars", "ch-final"];
   var STARTS = {}, EDS = {};
   var chDone = store.get("wg-ch", {});
   function paintChStat() {
@@ -5036,11 +6418,11 @@ body {
       ];
     }
   };
-  function runChallenge(id, d, src, css) {
+  function runChallenge(id, d, src, css, probes) {
     var box = $('.ch[data-ed="' + id + '"]');
     if (!box) return;
     var res;
-    try { res = CHECKS[id](d, src, css || ""); } catch (e) { res = []; }
+    try { res = CHECKS[id](d, src, css || "", probes || []); } catch (e) { res = []; }
     var okN = res.filter(function (r) { return r[1]; }).length, all = res.length > 0 && okN === res.length;
     $(".ch-list", box).innerHTML = res.map(function (r) { return '<li class="' + (r[1] ? "ok" : "") + '">' + r[0] + "</li>"; }).join("");
     box.classList.toggle("done", all);
@@ -5142,7 +6524,9 @@ body {
 
   function makeEditor(box) {
     var id = box.id, label = box.getAttribute("data-label") || "Try it", title = box.getAttribute("data-title") || "";
-    var opt = { boxes: box.hasAttribute("data-boxes"), outline: box.hasAttribute("data-outline"), tab: box.hasAttribute("data-tab"), sent: box.hasAttribute("data-sent") };
+    var opt = { boxes: box.hasAttribute("data-boxes"), outline: box.hasAttribute("data-outline"), tab: box.hasAttribute("data-tab"), sent: box.hasAttribute("data-sent"), resize: box.hasAttribute("data-resize") };
+    var sizes = (box.getAttribute("data-sizes") || "").split(",").filter(Boolean).map(Number);
+    if (opt.resize) box.classList.add("ed-stack");
     var srcs = $$("textarea", box).map(function (t) { var v = t.value.replace(/\s+$/, ""); return { lang: t.getAttribute("data-lang"), start: v ? v + "\n" : "" }; });
     STARTS[id] = {};
     srcs.forEach(function (s) { STARTS[id][s.lang] = s.start; });
@@ -5159,10 +6543,13 @@ body {
       (opt.boxes ? '<div class="ed-extra"><p class="ed-legend"><span><i class="lg-block"></i>block</span><span><i class="lg-inline"></i>inline</span></p></div>' : "") +
       (opt.outline ? '<div class="ed-extra ed-outline"></div>' : "") +
       (opt.sent ? '<div class="ed-extra ed-sent"><p class="small" style="margin:0">Fill in the form and press its submit button. What the browser would send shows up here.</p></div>' : "") +
+      (opt.resize ? '<div class="ed-extra ed-size"><label class="sl-row">Preview width <input type="range" min="280" max="1000" value="1000" class="ed-w" aria-label="Preview width"><output class="ed-wv"></output></label>' +
+        '<div class="presets" style="margin:8px 0 6px"><button type="button" class="chip" data-w="360">Phone 360</button><button type="button" class="chip" data-w="768">Tablet 768</button><button type="button" class="chip" data-w="1000">Laptop 1000</button></div><ul class="ed-mq"></ul></div>' : "") +
+      (sizes.length ? '<div class="ed-probe" aria-hidden="true">' + sizes.map(function (w) { return '<iframe sandbox="allow-same-origin" tabindex="-1" style="width:' + w + 'px"></iframe>'; }).join("") + "</div>" : "") +
       '<div class="ed-foot"><span>Updates as you type. Saved in this browser.</span><span><kbd>Esc</kbd> then <kbd>Tab</kbd> leaves the editor</span></div>';
 
     var frame = $(".ed-frame", box), toastEl = $(".ed-toast", box), tt = $(".ed-tt", box);
-    var outEl = $(".ed-outline", box), sentEl = $(".ed-sent", box);
+    var outEl = $(".ed-outline", box), sentEl = $(".ed-sent", box), probes = $$(".ed-probe iframe", box);
     var timer = null, boxOn = false, armed = false, rendered = false;
     function toast(msg) {
       toastEl.textContent = msg; toastEl.hidden = false;
@@ -5181,7 +6568,19 @@ body {
       return { ta: ta, lang: s.lang, start: s.start, paint: paint };
     });
     function code(lang) { for (var i = 0; i < panes.length; i++) if (panes[i].lang === lang) return panes[i].ta.value; return ""; }
-    function render() { rendered = true; frame.srcdoc = buildDoc(code("html"), code("css"), boxOn); }
+    function render() {
+      rendered = true;
+      frame.srcdoc = buildDoc(code("html"), code("css"), boxOn);
+      probes.forEach(function (p) { p.srcdoc = buildDoc(code("html"), code("css"), false); });
+    }
+    function check() {
+      if (!CHECKS[id]) return;
+      var d;
+      try { d = frame.contentDocument; } catch (e) { return; }
+      if (!d || !d.body) return;
+      runChallenge(id, d, code("html"), code("css"), probes.map(function (p) { var pd = p.contentDocument; return pd && pd.body ? pd : null; }));
+    }
+    probes.forEach(function (p) { p.addEventListener("load", function () { if (rendered) check(); }); });
     function save() { var o = {}; panes.forEach(function (p) { o[p.lang] = p.ta.value; }); store.set("wg-ed-" + id, o); }
     function schedule() { clearTimeout(timer); timer = setTimeout(function () { render(); save(); }, 350); }
 
@@ -5216,8 +6615,37 @@ body {
       hookPreview(d, toast, sentEl);
       if (opt.tab) { var t = (d.title || "").trim(); tt.textContent = t || "(no title)"; tt.classList.toggle("none", !t); }
       if (outEl) paintOutline(d, outEl);
-      if (CHECKS[id]) runChallenge(id, d, code("html"), code("css"));
+      if (opt.resize) paintMQ();
+      check();
     });
+    if (opt.resize) {
+      var wIn = $(".ed-w", box), wOut = $(".ed-wv", box), mqEl = $(".ed-mq", box);
+      var paintMQ = function () {
+        var conds = [], m, re = /@media\s*([^{]+)\{/g, src = code("css") + "\n" + code("html"), win = frame.contentWindow;
+        while ((m = re.exec(src))) { var c = m[1].trim(); if (conds.indexOf(c) < 0) conds.push(c); }
+        mqEl.innerHTML = conds.length ? conds.map(function (c) {
+          var on = false;
+          try { on = !!win && win.matchMedia(c).matches; } catch (e) { on = false; }
+          return '<li class="' + (on ? "on" : "") + '"><code>@media ' + esc(c) + "</code> " + (on ? "is ON at this width" : "is off at this width") + "</li>";
+        }).join("") : '<li>No <code>@media</code> rules in your CSS yet.</li>';
+      };
+      var setW = function (w) {
+        var max = Math.max(280, Math.floor($(".ed-out", box).clientWidth));
+        wIn.max = max;
+        w = Math.min(Math.max(280, w), max);
+        wIn.value = w;
+        frame.style.flex = "none";
+        frame.style.width = w + "px";
+        wOut.textContent = w + "px";
+        void frame.offsetWidth;
+        paintMQ();
+        requestAnimationFrame(paintMQ);
+      };
+      wIn.addEventListener("input", function () { setW(+wIn.value); });
+      $$(".ed-size .chip", box).forEach(function (b) { b.addEventListener("click", function () { setW(+b.getAttribute("data-w")); }); });
+      window.addEventListener("resize", function () { setW(+wIn.value); });
+      setW(1000);
+    }
     EDS[id] = {
       box: box,
       load: function (o) {
@@ -6124,6 +7552,650 @@ body {
     });
     inp.addEventListener("input", run);
     run();
+  })();
+
+  /* ================= Part 3, second half ================= */
+  function rect(el) { return el.getBoundingClientRect(); }
+  function allRules(d) {
+    var out = [];
+    function walk(list) { Array.prototype.forEach.call(list, function (r) { out.push(r); if (r.cssRules && r.type !== 7) walk(r.cssRules); }); }
+    Array.prototype.forEach.call(d.styleSheets, function (sh) { try { walk(sh.cssRules); } catch (e) {} });
+    return out;
+  }
+  function contentBox(el) {
+    var c = cs(el), r = rect(el);
+    return { left: r.left + parseFloat(c.borderLeftWidth) + parseFloat(c.paddingLeft), right: r.right - parseFloat(c.borderRightWidth) - parseFloat(c.paddingRight) };
+  }
+  function mid(r) { return r.top + r.height / 2; }
+  function inRow(rs) { return rs.length > 1 && rs.every(function (r, i) { return !i || (Math.abs(r.top - rs[0].top) <= 1 && r.left >= rs[i - 1].right - 1); }); }
+  function stacked(rs) { return rs.length > 1 && rs.every(function (r, i) { return !i || r.top >= rs[i - 1].bottom - 1; }); }
+  function segHTML(key, label, vals, cur) {
+    return '<div class="ctl-row"><span>' + esc(label) + '</span><div class="seg seg-sm" role="group" aria-label="' + esc(label) + '" data-k="' + key + '">' +
+      vals.map(function (v) { var val = typeof v === "string" ? v : v[0], lab = typeof v === "string" ? v : v[1]; return '<button type="button" data-v="' + esc(val) + '" aria-pressed="' + (val === cur ? "true" : "false") + '">' + esc(lab) + "</button>"; }).join("") + "</div></div>";
+  }
+  function wireSeg(el, cb) {
+    $$("button", el).forEach(function (b) {
+      b.addEventListener("click", function () {
+        $$("button", el).forEach(function (o) { o.setAttribute("aria-pressed", o === b ? "true" : "false"); });
+        cb(b.getAttribute("data-v"));
+      });
+    });
+  }
+
+  CHECKS["ch-badge"] = function (d, s) {
+    var icon = d.querySelector(".icon"), b = d.querySelector(".badge");
+    if (!icon || !b) return [["The icon and the badge are both there", false]];
+    var ir = rect(icon), br = rect(b), abs = cs(b).position === "absolute";
+    return [
+      ["The badge has <code>position: absolute</code>", abs],
+      ["It's placed from the icon, not from the page", abs && b.offsetParent === icon],
+      ["Its centre sits on the icon's top-right corner", Math.abs(br.left + br.width / 2 - ir.right) <= 4 && Math.abs(mid(br) - ir.top) <= 4],
+      ["The HTML is unchanged", sameHTML("ch-badge", s)]
+    ];
+  };
+  CHECKS["ch-navbar"] = function (d, s) {
+    var bar = d.querySelector(".bar"), logo = d.querySelector(".logo"), li = $$(".links li", d);
+    if (!bar || !logo || li.length < 3) return [["The bar, the name and three links are there", false]];
+    var cb = contentBox(bar), lr = rect(logo), r = li.map(rect);
+    return [
+      ["The name is at the left edge of the bar", Math.abs(lr.left - cb.left) <= 2],
+      ["The three links are in one row", inRow(r)],
+      ["The links end at the right edge of the bar", Math.abs(r[2].right - cb.right) <= 2],
+      ["The name and the links are centred on the same level", Math.abs(mid(lr) - mid(r[0])) <= 2],
+      ["At least 12px between the links", r[1].left - r[0].right >= 12 && r[2].left - r[1].right >= 12],
+      ["The HTML is unchanged", sameHTML("ch-navbar", s)]
+    ];
+  };
+  CHECKS["ch-grid"] = function (d, s) {
+    var g = d.querySelector(".gallery"), imgs = $$(".gallery img", d);
+    if (!g || imgs.length < 6) return [["The gallery and its six dice are there", false]];
+    var c = cs(g), isGrid = /grid/.test(c.display), cols = isGrid ? c.gridTemplateColumns.split(" ").map(parseFloat) : [];
+    var even = cols.length === 3 && Math.max.apply(null, cols) - Math.min.apply(null, cols) <= 1;
+    return [
+      ["The gallery is a grid", isGrid],
+      ["Three columns of equal width", even],
+      ["At least 10px between the dice, across and down", parseFloat(c.columnGap) >= 10 && parseFloat(c.rowGap) >= 10],
+      ["The six is two columns wide", even && Math.abs(rect(imgs[0]).width - (2 * cols[0] + parseFloat(c.columnGap))) <= 2],
+      ["The HTML is unchanged", sameHTML("ch-grid", s)]
+    ];
+  };
+  CHECKS["ch-dots"] = function (d, s) {
+    var dots = $$(".dot", d), kfs = allRules(d).filter(function (r) { return r.type === 7; });
+    var names = dots.map(function (x) { return cs(x).animationName; });
+    var kf = kfs.filter(function (k) { return k.name === names[0]; })[0], delays = {};
+    dots.forEach(function (x) { delays[cs(x).animationDelay] = 1; });
+    return [
+      ["A <code>@keyframes</code> rule", kfs.length > 0],
+      ["All three dots run it", dots.length === 3 && !!kf && names.every(function (n) { return n === names[0]; })],
+      ["It repeats forever", dots.length === 3 && dots.every(function (x) { return cs(x).animationIterationCount === "infinite"; })],
+      ["The keyframes move, grow or fade the dot", !!kf && /transform|translate|scale|opacity|margin|top/i.test(kf.cssText)],
+      ["The dots start at different times", Object.keys(delays).length === 3],
+      ["The HTML is unchanged", sameHTML("ch-dots", s)]
+    ];
+  };
+  CHECKS["ch-resp"] = function (d, s, css, p) {
+    var W = p[0], N = p[1];
+    var w = W ? $$(".card", W).map(rect) : [], n = N ? $$(".card", N).map(rect) : [];
+    return [
+      ["At 900px wide, the cards sit side by side", w.length === 3 && inRow(w)],
+      ["At 360px wide, they're stacked in one column", n.length === 3 && stacked(n)],
+      ["At 360px wide, nothing sticks out sideways", !!N && N.documentElement.scrollWidth <= 360],
+      ["A media query with a width condition", /@media[^{]*\(\s*(max|min)-width\s*:/i.test(css)],
+      ["The HTML is unchanged", sameHTML("ch-resp", s)]
+    ];
+  };
+  CHECKS["ch-vars"] = function (d, s, css) {
+    var root = cs(d.documentElement), h = d.querySelector("h1"), card = d.querySelector(".card"), a = d.querySelector(".card a"), b = d.querySelector("button"), tag = d.querySelector(".tag");
+    var outside = css.replace(/\/\*[\s\S]*?\*\//g, "").replace(/:root\s*\{[^}]*\}/g, "");
+    var T = "rgb(3, 79, 70)", E = "rgb(255, 169, 70)";
+    return [
+      ["<code>--brand</code> and <code>--accent</code> are defined on <code>:root</code>", /:root\s*\{/.test(css) && !!root.getPropertyValue("--brand").trim() && !!root.getPropertyValue("--accent").trim()],
+      ["Outside <code>:root</code>, every colour comes from <code>var()</code>", !/#[0-9a-f]{3,8}\b|rgba?\(|hsla?\(/i.test(outside) && (outside.match(/var\(\s*--(brand|accent)\b/g) || []).length >= 6],
+      ["The page looks exactly the same as before", !!(h && card && a && b && tag) && cs(h).color === T && cs(card).borderTopColor === T && cs(a).color === T && cs(b).borderTopColor === T && cs(b).backgroundColor === E && cs(tag).backgroundColor === E],
+      ["The HTML is unchanged", sameHTML("ch-vars", s)]
+    ];
+  };
+  CHECKS["ch-final"] = function (d, s, css, p) {
+    var W = p[0], N = p[1], e = d.querySelector(".event");
+    var w = W ? $$(".event", W).map(rect) : [], n = N ? $$(".event", N).map(rect) : [];
+    var head = W && W.querySelector(".top"), logo = W && W.querySelector(".logo"), nav = W && W.querySelector(".top nav"), headOK = false;
+    if (head && logo && nav) {
+      var cb = contentBox(head), lr = rect(logo), nr = rect(nav);
+      headOK = Math.abs(lr.left - cb.left) <= 2 && Math.abs(nr.right - cb.right) <= 2 && Math.abs(mid(lr) - mid(nr)) <= 3 && nr.left > lr.right;
+    }
+    return [
+      ["Colour variables on <code>:root</code>, used with <code>var()</code>", /:root\s*\{[^}]*--[\w-]+\s*:/.test(css) && (css.match(/var\(\s*--/g) || []).length >= 2],
+      ["<code>box-sizing: border-box</code> on every element", !!e && cs(e).boxSizing === "border-box" && cs(d.body).boxSizing === "border-box"],
+      ["The header has the name on the left and the links on the right, on one level", headOK],
+      ["At 900px wide, the three events sit side by side", w.length === 3 && inRow(w)],
+      ["At 360px wide, they're stacked in one column", n.length === 3 && stacked(n)],
+      ["At 360px wide, nothing sticks out sideways", !!N && N.documentElement.scrollWidth <= 360],
+      ["The event cards have rounded corners and a shadow", !!e && parseFloat(cs(e).borderTopLeftRadius) > 0 && cs(e).boxShadow !== "none"],
+      ["The event cards have a transition", !!e && cs(e).transitionDuration.split(",").some(function (t) { return parseFloat(t) > 0; })],
+      ["The HTML is unchanged", sameHTML("ch-final", s)]
+    ];
+  };
+
+  /* ---------- corner and shadow builder ---------- */
+  (function () {
+    var S = { r: $("#bgR"), x: $("#bgX"), y: $("#bgY"), bl: $("#bgBl"), sp: $("#bgSp"), a: $("#bgA") }, el = $("#bgEl"), inset = $("#bgIn"), fill = "solid";
+    var FILL = { solid: "white", linear: "linear-gradient(135deg, #034f46, #8fd9c9)", radial: "radial-gradient(circle, #ffe0b5, #ffa946)" };
+    var SAY = {
+      r: "border-radius rounds all four corners. At 60px, half the box's height, the short sides become semicircles, a pill. Going higher changes nothing more.",
+      x: "The first number moves the shadow sideways: positive is right, negative is left.",
+      y: "The second number moves it down. A shadow below the box looks like light from above, which is what our eyes expect.",
+      bl: "The third number blurs the edge. 0 gives a hard copy of the box.",
+      sp: "The fourth number grows or shrinks the shadow before it's blurred. A negative spread with a big y offset gives a soft, lifted look.",
+      a: "The colour here is black with an alpha (3.9). Real shadows are rarely darker than 30%.",
+      solid: "A single colour fills the box.",
+      linear: "A gradient is an image, so it goes in background or background-image, not background-color.",
+      radial: "radial-gradient spreads out from the centre.",
+      inset: "inset puts the shadow inside the box, so it looks pressed in."
+    };
+    function vals() { return { r: +S.r.value, x: +S.x.value, y: +S.y.value, bl: +S.bl.value, sp: +S.sp.value, a: +S.a.value / 100 }; }
+    function shadow(v) { return (inset.checked ? "inset " : "") + v.x + "px " + v.y + "px " + v.bl + "px " + v.sp + "px rgba(0, 0, 0, " + v.a + ")"; }
+    function css(v) { return ".card {\n  width: 170px;\n  height: 120px;\n  background: " + FILL[fill] + ";\n  border-radius: " + v.r + "px;\n  box-shadow: " + shadow(v) + ";\n}"; }
+    function paint(k) {
+      var v = vals();
+      ["r", "x", "y", "bl", "sp"].forEach(function (n) { $("#bg" + n.charAt(0).toUpperCase() + n.slice(1) + "v").textContent = v[n] + "px"; });
+      $("#bgAv").textContent = Math.round(v.a * 100) + "%";
+      el.style.background = FILL[fill];
+      el.style.color = fill === "linear" ? "#FFFFEB" : "#1A1A1A";
+      el.style.borderRadius = v.r + "px";
+      el.style.boxShadow = shadow(v);
+      $("#bgCode").innerHTML = hlCSS(css(v));
+      if (k) $("#bgSay").textContent = SAY[k];
+    }
+    Object.keys(S).forEach(function (k) { S[k].addEventListener("input", function () { paint(k); }); });
+    inset.addEventListener("change", function () { paint("inset"); });
+    wireSeg($("#bgFill"), function (v) { fill = v; paint(v); });
+    $("#bgOpen").addEventListener("click", function () {
+      openInEditor("ed-bg", { css: "body {\n  background: #eef2f7;\n  font-family: Arial, sans-serif;\n  padding: 30px;\n}\n" + css(vals()).replace("{\n", "{\n  display: grid;\n  place-items: center;\n") + "\n", html: '<div class="card">.card</div>\n' });
+    });
+    paint();
+    $("#bgSay").textContent = "Start with the y offset and the blur. Those two make most of the shadows you see on websites.";
+  })();
+
+  /* ---------- type tuner ---------- */
+  (function () {
+    var st = { family: "Arial, sans-serif", size: 17, lh: 15, ls: 0, weight: "400", transform: "none", align: "left" };
+    var ctl = $("#ttCtl"), stage = $("#ttStage");
+    ctl.innerHTML = segHTML("family", "font-family", [["Arial, sans-serif", "Arial"], ["Georgia, serif", "Georgia"], ['"Courier New", monospace', "Courier New"], ["system-ui, sans-serif", "system-ui"]], st.family) +
+      '<label class="sl-row">font-size <input type="range" min="12" max="32" value="17" data-s="size"><output></output></label>' +
+      '<label class="sl-row">line-height <input type="range" min="9" max="24" value="15" data-s="lh"><output></output></label>' +
+      '<label class="sl-row">letter-spacing <input type="range" min="-2" max="8" value="0" data-s="ls"><output></output></label>' +
+      segHTML("weight", "font-weight", ["400", "700"], st.weight) + segHTML("transform", "text-transform", ["none", "uppercase", "capitalize"], st.transform) +
+      segHTML("align", "text-align", ["left", "center", "right", "justify"], st.align);
+    function paint() {
+      stage.style.fontFamily = st.family; stage.style.fontSize = st.size + "px"; stage.style.lineHeight = st.lh / 10;
+      stage.style.letterSpacing = st.ls + "px"; stage.style.fontWeight = st.weight; stage.style.textTransform = st.transform; stage.style.textAlign = st.align;
+      $$("[data-s]", ctl).forEach(function (r) { $("output", r.parentNode).textContent = r.getAttribute("data-s") === "lh" ? (st.lh / 10).toFixed(1) : r.value + "px"; });
+      $("#ttCode").innerHTML = hlCSS("p {\n  font-family: " + st.family + ";\n  font-size: " + st.size + "px;\n  line-height: " + (st.lh / 10).toFixed(1) + ";\n  letter-spacing: " + st.ls + "px;\n  font-weight: " + st.weight +
+        ";\n  text-transform: " + st.transform + ";\n  text-align: " + st.align + ";\n}");
+    }
+    $$("[data-s]", ctl).forEach(function (r) { r.addEventListener("input", function () { st[r.getAttribute("data-s")] = +r.value; paint(); }); });
+    $$(".seg[data-k]", ctl).forEach(function (sg) { wireSeg(sg, function (v) { st[sg.getAttribute("data-k")] = v; paint(); }); });
+    paint();
+  })();
+
+  /* ---------- display switcher and hiding ---------- */
+  (function () {
+    var items = $$(".dsp-item"), say = $("#dspSay");
+    var SAY = {
+      inline: "inline: the spans flow inside the line of text. Their width and height are ignored, and their top and bottom margins push nothing away. Only the left and right margins work.",
+      block: "block: each span starts its own line and takes the width and height it was given. The text before and after is pushed onto lines of its own.",
+      "inline-block": "inline-block: the spans stay in the line of text, like words, but now width, height and every margin work. Buttons and images behave like this.",
+      none: "none: the spans are gone, and the text closes up as if they had never been in the HTML."
+    };
+    wireSeg($("#dspSeg"), function (v) { items.forEach(function (x) { x.style.display = v; }); say.textContent = SAY[v]; });
+    say.textContent = SAY.inline;
+    var hs = $("#hide3Say");
+    $$("#hide3 .h3-row").forEach(function (row, i) {
+      row.addEventListener("click", function (e) {
+        var b = e.target.closest ? e.target.closest("button") : null;
+        if (!b) {
+          hs.textContent = i === 0 ? "Nothing here. With display: none, B's space is gone, and C moved left to fill it." :
+            i === 1 ? "Nothing happened. B's space is still there, but a hidden element can't be clicked." : "You missed. Try the empty spot right between A and C.";
+          return;
+        }
+        hs.textContent = b.classList.contains("b") ? "You clicked B, even though you can't see it. opacity: 0 makes it invisible, but it's still there and still takes clicks." : "You clicked " + b.textContent + ".";
+      });
+    });
+  })();
+
+  /* ---------- position playground ---------- */
+  (function () {
+    var frame = $("#posFrame"), mode = "static", T = $("#posT"), L = $("#posL"), rel = $("#posRel"), d = null;
+    var filler = "<p>Keep scrolling. This text is only here so the page is long enough to scroll.</p>";
+    frame.srcdoc = '<!DOCTYPE html><html><head><style>body{margin:0;padding:12px;font:14px/1.5 Arial,sans-serif;color:#1a1a1a}p{margin:0 0 10px;color:#555}' +
+      ".parent{border:2px dashed #034f46;border-radius:8px;padding:8px 10px;margin:10px 0}.parent::before{content:'parent';display:block;font:700 11px monospace;color:#034f46}" +
+      ".sib{background:#CFE3DC;padding:6px 8px;border-radius:6px;margin:6px 0}.box{background:#FFA946;padding:6px 8px;border-radius:6px;margin:6px 0;width:130px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.25)}" +
+      ".cb{outline:3px solid rgba(232,137,12,.55);outline-offset:2px}</style></head><body><p>This is a page inside the demo. The dashed box is the parent of the orange box.</p>" +
+      '<div class="parent"><div class="sib">Box A</div><div class="box">Orange box</div><div class="sib">Box B</div><div class="sib">Box C</div><div class="sib">Box D</div><div class="sib">Box E</div></div>' +
+      new Array(9).join(filler) + "</body></html>";
+    function say() {
+      var t = T.value + "px", l = L.value + "px";
+      return {
+        static: "static: the box sits in the normal flow, between Box A and Box B. top and left do nothing, so try the sliders.",
+        relative: "relative: the box moves " + t + " down and " + l + " right from its normal spot. Box B doesn't move up. The box's old space is still reserved.",
+        absolute: rel.checked ? "absolute: the box leaves the flow, so Box B moves up to close the gap. top and left are measured from the parent, because the parent has position: relative. The anchor has an orange outline." :
+          "absolute: the box leaves the flow, and top and left are now measured from the top-left of the page, because no ancestor is positioned. Tick the checkbox to anchor it to the parent.",
+        fixed: "fixed: measured from the window, not the page. Scroll inside the page: the box stays where it is, like a chat button.",
+        sticky: "sticky: the box stays in the flow until you scroll it up to " + t + " from the top. Then it sticks, until the bottom of its parent pushes it away. Scroll inside the page."
+      }[mode];
+    }
+    function paint() {
+      $("#posTv").textContent = T.value + "px"; $("#posLv").textContent = L.value + "px";
+      var lines = rel.checked ? ".parent {\n  position: relative;\n}\n" : "";
+      lines += ".box {\n  position: " + mode + ";\n" + (mode === "static" ? "" : "  top: " + T.value + "px;\n" + (mode === "sticky" ? "" : "  left: " + L.value + "px;\n")) + "}";
+      $("#posCode").innerHTML = hlCSS(lines);
+      $("#posSay").textContent = say();
+      if (!d) return;
+      var box = d.querySelector(".box"), par = d.querySelector(".parent");
+      par.style.position = rel.checked ? "relative" : "";
+      box.style.position = mode;
+      box.style.top = mode === "static" ? "" : T.value + "px";
+      box.style.left = mode === "static" || mode === "sticky" ? "" : L.value + "px";
+      par.classList.toggle("cb", mode === "absolute" && rel.checked);
+    }
+    frame.addEventListener("load", function () { try { d = frame.contentDocument; } catch (e) { d = null; } paint(); });
+    wireSeg($("#posSeg"), function (v) { mode = v; if (d) d.scrollingElement.scrollTop = 0; paint(); });
+    [T, L].forEach(function (s) { s.addEventListener("input", paint); });
+    rel.addEventListener("change", paint);
+    paint();
+  })();
+
+  /* ---------- flexbox playground ---------- */
+  (function () {
+    var st = { dir: "row", jc: "flex-start", ai: "stretch", wrap: "nowrap", gap: 10, n: "3", grow: false };
+    var ctl = $("#fxCtl"), box = $("#fxBox"), say = $("#fxSay");
+    ctl.innerHTML = segHTML("dir", "flex-direction", ["row", "row-reverse", "column", "column-reverse"], st.dir) +
+      segHTML("jc", "justify-content", ["flex-start", "center", "flex-end", "space-between", "space-around", "space-evenly"], st.jc) +
+      segHTML("ai", "align-items", ["stretch", "flex-start", "center", "flex-end", "baseline"], st.ai) +
+      segHTML("wrap", "flex-wrap", ["nowrap", "wrap"], st.wrap) +
+      '<label class="sl-row">gap <input type="range" min="0" max="40" value="10" id="fxGap"><output id="fxGapv"></output></label>' +
+      segHTML("n", "number of items", ["2", "3", "4", "5", "8"], st.n) +
+      '<label class="check"><input type="checkbox" id="fxGrow"> Item 2 gets <code>flex-grow: 1</code></label>';
+    var SAY = {
+      row: "row: the main axis runs left to right, so justify-content works across and align-items works up and down.",
+      "row-reverse": "row-reverse: still a row, but the main axis runs right to left, so item 1 is on the right. The HTML didn't change.",
+      column: "column: the main axis now runs top to bottom. justify-content works up and down, and align-items works across. Both arrows turned.",
+      "column-reverse": "column-reverse: a column that starts at the bottom.",
+      "flex-start": "flex-start: the items gather at the start of the main axis.",
+      center: "center: the items gather in the middle of the axis.",
+      "flex-end": "flex-end: the items gather at the end of the axis.",
+      "space-between": "space-between: the first item at the start, the last at the end, and equal gaps between the rest.",
+      "space-around": "space-around: each item gets the same space on both sides, so the gaps at the edges are half the size of the gaps between items.",
+      "space-evenly": "space-evenly: every gap is the same, including the two at the edges.",
+      stretch: "stretch, the default: the items stretch to fill the cross axis. That's why they're all the same height in a row.",
+      baseline: "baseline: the items line up on the bottom of their first line of text. Look at the big 2.",
+      nowrap: "nowrap, the default: every item stays on one line and shrinks if it has to. With 8 items, they get squeezed.",
+      wrap: "wrap: items that don't fit move onto a new line. Try it with 8 items.",
+      gap: "gap puts space between the items, but not at the edges.",
+      n: "The same rules handle any number of items.",
+      grow: "flex-grow: 1 on item 2 hands it all the leftover space on the main axis, so justify-content has nothing left to share out."
+    };
+    function code(full) {
+      return ".container {\n  display: flex;\n  flex-direction: " + st.dir + ";\n  justify-content: " + st.jc + ";\n  align-items: " + st.ai + ";\n  flex-wrap: " + st.wrap + ";\n  gap: " + st.gap + "px;\n" +
+        (full ? "  height: 230px;\n  padding: 8px;\n  border: 2px dashed #034f46;\n" : "") + "}" +
+        (full ? "\n.item {\n  padding: 8px 12px;\n  background: #FFE0B5;\n  border: 2px solid #e8890c;\n  border-radius: 8px;\n  font: bold 15px monospace;\n}\n.big {\n  font-size: 24px;\n}" : "") +
+        (st.grow ? "\n.item:nth-child(2) {\n  flex-grow: 1;\n}" : "");
+    }
+    function items() {
+      var out = [];
+      for (var i = 1; i <= +st.n; i++) out.push('<div class="' + (i === 2 ? "pg-item big" : "pg-item") + '">' + i + (i === 3 ? "<br>two lines" : "") + "</div>");
+      return out;
+    }
+    function paint(k, v) {
+      box.innerHTML = items().join("");
+      box.style.display = "flex";
+      box.style.flexDirection = st.dir; box.style.justifyContent = st.jc; box.style.alignItems = st.ai; box.style.flexWrap = st.wrap; box.style.gap = st.gap + "px";
+      if (st.grow && box.children[1]) box.children[1].style.flexGrow = "1";
+      $("#fxGapv").textContent = st.gap + "px";
+      var row = st.dir.indexOf("row") === 0, rev = st.dir.indexOf("reverse") > 0, top = $("#fxTop"), left = $("#fxLeft");
+      top.className = "ax ax-top " + (row ? "main" : "cross") + (row && rev ? " rev" : "");
+      left.className = "ax ax-left " + (row ? "cross" : "main") + (!row && rev ? " rev" : "");
+      $("span", top).textContent = row ? "main axis · justify-content" : "cross axis · align-items";
+      $("span", left).textContent = row ? "cross axis · align-items" : "main axis · justify-content";
+      $("#fxCode").innerHTML = hlCSS(code(false));
+      if (k) say.textContent = SAY[v] || SAY[k] || "";
+      if (k === "ai" && v !== "stretch" && v !== "baseline") say.textContent = v + ": the items line up at the " + { "flex-start": "start", center: "middle", "flex-end": "end" }[v] + " of the cross axis, and keep their own size.";
+    }
+    $$(".seg[data-k]", ctl).forEach(function (sg) { wireSeg(sg, function (v) { st[sg.getAttribute("data-k")] = v; paint(sg.getAttribute("data-k"), v); }); });
+    $("#fxGap").addEventListener("input", function () { st.gap = +this.value; paint("gap"); });
+    $("#fxGrow").addEventListener("change", function () { st.grow = this.checked; paint("grow"); });
+    $("#fxOpen").addEventListener("click", function () {
+      openInEditor("ed-flex", { css: code(true) + "\n", html: '<div class="container">\n' + items().map(function (h) { return "  " + h.replace("pg-item big", "item big").replace("pg-item", "item"); }).join("\n") + "\n</div>\n" });
+    });
+    paint();
+    say.textContent = "Start with justify-content. Then switch flex-direction to column and try the same buttons again.";
+  })();
+
+  /* ---------- grid playground ---------- */
+  (function () {
+    var st = { cols: "repeat(3, 1fr)", gap: 10, n: "6", span: "none", lines: true };
+    var ctl = $("#gdCtl"), box = $("#gdBox"), ov = $("#gdOv"), stage = box.parentNode, say = $("#gdSay");
+    var PRE = [["1fr 1fr 1fr", "Three columns, each one share of the space."], ["repeat(3, 1fr)", "The same three columns, written shorter."],
+      ["1fr 2fr", "Two columns. The second gets two shares, so it's twice as wide."], ["200px 1fr", "A fixed 200px column and one that takes whatever is left, like a sidebar."],
+      ["repeat(4, 1fr)", "Four equal columns. The items fill them in order and start a new row when a row is full."],
+      ["100px auto 1fr", "auto is as wide as its content needs. 1fr takes the rest."],
+      ["repeat(auto-fit, minmax(110px, 1fr))", "As many columns as fit, each at least 110px wide. Make your browser window narrower and watch columns drop."]];
+    var SPAN = { none: "Every item takes one cell, in order.", "span 2": "Item 1 has grid-column: span 2, so it covers two columns, from line 1 to line 3. The others move along.",
+      "1 / -1": "grid-column: 1 / -1 runs from the first line to the last. -1 always means the last line, so it's a full row whatever the number of columns.",
+      row: "grid-row: span 2 makes item 1 two rows tall." };
+    ctl.innerHTML = '<div class="ctl-row"><span>grid-template-columns</span><input type="text" class="url-input" id="gdIn" spellcheck="false" autocomplete="off" value="' + st.cols + '" aria-label="grid-template-columns"></div>' +
+      '<div class="presets" id="gdPre" style="margin:0"></div>' +
+      '<label class="sl-row">gap <input type="range" min="0" max="30" value="10" id="gdGap"><output id="gdGapv"></output></label>' +
+      segHTML("n", "number of items", ["3", "5", "6", "8"], st.n) +
+      segHTML("span", "item 1 spans", [["none", "nothing"], ["span 2", "2 columns"], ["1 / -1", "full row"], ["row", "2 rows"]], st.span) +
+      '<label class="check"><input type="checkbox" id="gdLines" checked> Show the grid lines</label>';
+    PRE.forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = p[0];
+      b.addEventListener("click", function () { $("#gdIn").value = p[0]; st.cols = p[0]; paint(p[1]); });
+      $("#gdPre").appendChild(b);
+    });
+    function spanCss() { return st.span === "none" ? "" : st.span === "row" ? "  grid-row: span 2;\n" : "  grid-column: " + st.span + ";\n"; }
+    function code(full) {
+      return ".grid {\n  display: grid;\n  grid-template-columns: " + st.cols + ";\n  gap: " + st.gap + "px;\n" + (full ? "  padding: 10px;\n  border: 2px dashed #034f46;\n" : "") + "}" +
+        (full ? "\n.item {\n  padding: 14px;\n  background: #F0D7FF;\n  border: 2px solid #8e5bb8;\n  border-radius: 8px;\n  font: bold 16px monospace;\n  text-align: center;\n}" : "") +
+        (st.span === "none" ? "" : "\n.item:first-child {\n" + spanCss() + "}");
+    }
+    function lines() {
+      ov.innerHTML = "";
+      if (!st.lines) return;
+      var c = getComputedStyle(box), cols = c.gridTemplateColumns.split(" ").map(parseFloat), rows = c.gridTemplateRows.split(" ").map(parseFloat);
+      if (cols.some(isNaN) || rows.some(isNaN)) return;
+      var cg = parseFloat(c.columnGap) || 0, rg = parseFloat(c.rowGap) || 0, br = box.getBoundingClientRect(), sr = stage.getBoundingClientRect();
+      var x0 = br.left - sr.left + parseFloat(c.borderLeftWidth) + parseFloat(c.paddingLeft), y0 = br.top - sr.top + parseFloat(c.borderTopWidth) + parseFloat(c.paddingTop);
+      function stops(tracks, g, start) { var out = [start], p = start; tracks.forEach(function (t, i) { p += t; out.push(i < tracks.length - 1 ? p + g / 2 : p); p += g; }); return out; }
+      var xs = stops(cols, cg, x0), ys = stops(rows, rg, y0), H = ys[ys.length - 1] - y0, W = xs[xs.length - 1] - x0, html = "";
+      xs.forEach(function (x, i) { html += '<i class="gd-ln v" style="left:' + x + "px;top:" + y0 + "px;height:" + H + 'px"></i><b class="gd-n" style="left:' + x + 'px;top:2px">' + (i + 1) + "</b>"; });
+      ys.forEach(function (y, i) { html += '<i class="gd-ln h" style="top:' + y + "px;left:" + x0 + "px;width:" + W + 'px"></i><b class="gd-n r" style="top:' + y + 'px;left:2px">' + (i + 1) + "</b>"; });
+      ov.innerHTML = html;
+      $("#gdSizes").textContent = "The browser made the columns " + cols.map(function (v) { return Math.round(v) + "px"; }).join(" | ") + " wide.";
+    }
+    function paint(msg) {
+      var out = [];
+      for (var i = 1; i <= +st.n; i++) out.push('<div class="pg-item">' + i + "</div>");
+      box.innerHTML = out.join("");
+      box.style.gridTemplateColumns = "";
+      box.style.gridTemplateColumns = st.cols;
+      var bad = !box.style.gridTemplateColumns;
+      box.style.gap = st.gap + "px";
+      var first = box.firstElementChild;
+      if (st.span === "row") first.style.gridRow = "span 2"; else if (st.span !== "none") first.style.gridColumn = st.span;
+      $("#gdGapv").textContent = st.gap + "px";
+      $("#gdCode").innerHTML = hlCSS(code(false));
+      lines();
+      if (bad) { say.textContent = "The browser can't read that column pattern, so it ignores it and uses one column. Check the brackets and the units."; $("#gdSizes").textContent = ""; }
+      else if (msg) say.textContent = msg;
+    }
+    $("#gdIn").addEventListener("input", function () { st.cols = this.value.trim(); var p = PRE.filter(function (x) { return x[0] === st.cols; })[0]; paint(p ? p[1] : "Your own pattern: count the purple numbers along the top to see how many columns it made."); });
+    $("#gdGap").addEventListener("input", function () { st.gap = +this.value; paint("gap sets the space between tracks. The grid lines sit in the middle of each gap."); });
+    $("#gdLines").addEventListener("change", function () { st.lines = this.checked; lines(); });
+    $$(".seg[data-k]", ctl).forEach(function (sg) { wireSeg(sg, function (v) { var k = sg.getAttribute("data-k"); st[k] = v; paint(k === "span" ? SPAN[v] : "Extra items start new rows automatically. These are implicit rows: you never had to write them."); }); });
+    $("#gdOpen").addEventListener("click", function () {
+      var out = [];
+      for (var i = 1; i <= +st.n; i++) out.push('  <div class="item">' + i + "</div>");
+      openInEditor("ed-grid", { css: code(true) + "\n", html: '<div class="grid">\n' + out.join("\n") + "\n</div>\n" });
+    });
+    window.addEventListener("resize", lines);
+    window.addEventListener("load", lines);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(lines);
+    paint("Try a few column patterns from the chips. Then make item 1 span two columns.");
+  })();
+
+  /* ---------- transform sliders ---------- */
+  (function () {
+    var S = { x: $("#tfX"), y: $("#tfY"), r: $("#tfR"), s: $("#tfS"), k: $("#tfK") }, el = $("#tfEl"), swap = $("#tfSwap"), origin = "center", say = $("#tfSay");
+    el.innerHTML = dieSVG(5);
+    el.appendChild($("#tfDot"));
+    var SAY = {
+      x: "translate slides the die. The dashed outline stays where it was: as far as the layout knows, the die never moved.",
+      y: "translateY moves it up or down. Negative is up.",
+      r: "rotate turns it around the orange dot, the transform-origin.",
+      s: "scale grows or shrinks it from the orange dot. The neighbours don't make room, so a scaled element can cover them.",
+      k: "skewX slants the die sideways, like italic letters.",
+      origin: "transform-origin moves the pin. Now rotate or scale again and compare.",
+      swap: "The functions now run in a different order. Set both a translateX and a rotate, then tick and untick this box: the die ends up in a different place."
+    };
+    var POS = { center: ["50%", "50%"], "top left": ["0%", "0%"], "bottom right": ["100%", "100%"] };
+    function paint(k) {
+      var x = +S.x.value, y = +S.y.value, r = +S.r.value, s = +S.s.value / 100, sk = +S.k.value;
+      $("#tfXv").textContent = x + "px"; $("#tfYv").textContent = y + "px"; $("#tfRv").textContent = r + "°"; $("#tfSv").textContent = s.toFixed(2); $("#tfKv").textContent = sk + "°";
+      var tr = x || y ? "translate(" + x + "px, " + y + "px)" : "", ro = r ? "rotate(" + r + "deg)" : "";
+      var parts = (swap.checked ? [ro, tr] : [tr, ro]).concat([s !== 1 ? "scale(" + s.toFixed(2).replace(/0$/, "").replace(/\.0?$/, "") + ")" : "", sk ? "skewX(" + sk + "deg)" : ""]).filter(Boolean);
+      var t = parts.length ? parts.join(" ") : "none";
+      el.style.transform = t;
+      el.style.transformOrigin = origin;
+      $("#tfDot").style.left = POS[origin][0]; $("#tfDot").style.top = POS[origin][1];
+      $("#tfCode").innerHTML = hlCSS(".die {\n  transform: " + t + ";\n" + (origin === "center" ? "" : "  transform-origin: " + origin + ";\n") + "}");
+      if (k) say.textContent = SAY[k];
+    }
+    Object.keys(S).forEach(function (k) { S[k].addEventListener("input", function () { paint(k); }); });
+    swap.addEventListener("change", function () { paint("swap"); });
+    wireSeg($("#tfO"), function (v) { origin = v; paint("origin"); });
+    $("#tfReset").addEventListener("click", function () {
+      S.x.value = 0; S.y.value = 0; S.r.value = 0; S.s.value = 100; S.k.value = 0; swap.checked = false;
+      origin = "center";
+      $$("#tfO button").forEach(function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-v") === "center" ? "true" : "false"); });
+      paint();
+      say.textContent = "Back to no transform.";
+    });
+    paint();
+    say.textContent = "Move one slider at a time, and keep an eye on the two grey neighbours.";
+  })();
+
+  /* ---------- timing-function race ---------- */
+  (function () {
+    var host = $("#raceHost").attachShadow({ mode: "open" }), D = $("#raceD"), go = $("#raceGo"), on = false;
+    var LANES = [["linear", [0, 0, 1, 1]], ["ease", [0.25, 0.1, 0.25, 1]], ["ease-in", [0.42, 0, 1, 1]], ["ease-out", [0, 0, 0.58, 1]], ["ease-in-out", [0.42, 0, 0.58, 1]], ["steps(5)", null]];
+    function curve(b) {
+      var path;
+      if (b) path = "M4 40 C" + (4 + b[0] * 36) + " " + (40 - b[1] * 36) + " " + (4 + b[2] * 36) + " " + (40 - b[3] * 36) + " 40 4";
+      else { path = "M4 40"; for (var i = 1; i <= 5; i++) path += " H" + (4 + i * 7.2) + (i < 5 ? " V" + (40 - i * 7.2) : " V4"); }
+      return '<svg class="g" viewBox="0 0 44 44" aria-hidden="true"><path d="M4 40 L40 4" stroke="#DDDDDD" stroke-width="1.5" fill="none"/><path d="' + path + '" stroke="#C2410C" stroke-width="2.5" fill="none" stroke-linejoin="round"/></svg>';
+    }
+    host.innerHTML = "<style>.lanes{display:grid;gap:8px;color:var(--ink);font:13px Arial,sans-serif}.lane{display:grid;grid-template-columns:110px 44px minmax(0,1fr);gap:10px;align-items:center}" +
+      ".lane code{font:600 12px/1.2 monospace;background:var(--lav);color:var(--on-lav);border-radius:5px;padding:3px 6px;justify-self:start}" +
+      ".g{width:44px;height:44px;background:#fff;border:1px solid #ddd;border-radius:6px;display:block}" +
+      ".track{position:relative;height:44px;background:#fff;border:1px solid #ddd;border-radius:8px;color-scheme:light}.track::after{content:'';position:absolute;right:6px;top:6px;bottom:6px;border-right:2px dashed #034f46}" +
+      ".car{position:absolute;left:4px;top:4px;width:34px;height:34px;transition-property:transform}.car svg{width:100%;height:100%;display:block}.go .car{transform:translateX(var(--dist,0px))}" +
+      "@media (max-width:560px){.lane{grid-template-columns:minmax(0,1fr) 44px}.track{grid-column:1/-1}}</style>" +
+      '<div class="lanes">' + LANES.map(function (l, i) { return '<div class="lane"><code>' + l[0] + "</code>" + curve(l[1]) + '<div class="track"><div class="car" style="transition-timing-function:' + l[0] + '">' + dieSVG(i + 1) + "</div></div></div>"; }).join("") + "</div>";
+    var lanes = host.querySelector(".lanes");
+    function paint() {
+      var s = (+D.value / 10).toFixed(1) + "s";
+      $("#raceDv").textContent = s;
+      Array.prototype.forEach.call(host.querySelectorAll(".car"), function (c) { c.style.transitionDuration = s; });
+      var t = host.querySelector(".track");
+      lanes.style.setProperty("--dist", Math.max(0, t.clientWidth - 48) + "px");
+    }
+    go.addEventListener("click", function () { paint(); on = !on; lanes.classList.toggle("go", on); go.textContent = on ? "Race back" : "Race"; });
+    D.addEventListener("input", paint);
+    window.addEventListener("resize", paint);
+    paint();
+  })();
+
+  /* ---------- keyframe timeline ---------- */
+  (function () {
+    var host = $("#anHost").attachShadow({ mode: "open" }), T = $("#anT"), now = $("#anNow"), read = $("#anRead"), ctl = $("#anCtl"), playing = false, raf = 0;
+    var KF = [[0, 0], [25, 20], [50, -20], [75, 20], [100, 0]], st = { dur: "1s", iter: "1", dir: "normal", ease: "ease" };
+    host.innerHTML = "<style>.st{display:grid;place-items:center;height:170px;background:#fff;border:1px solid #ddd;border-radius:12px}.die{width:100px;height:100px}.die svg{width:100%;height:100%;display:block}" +
+      "@keyframes shake{0%{transform:rotate(0deg)}25%{transform:rotate(20deg)}50%{transform:rotate(-20deg)}75%{transform:rotate(20deg)}100%{transform:rotate(0deg)}}</style>" +
+      '<div class="st"><div class="die">' + dieSVG(3) + "</div></div>";
+    var die = host.querySelector(".die");
+    ctl.insertAdjacentHTML("beforeend", '<button class="btn btn-ember btn-small" id="anPlay" type="button" style="justify-self:start">Play</button>' +
+      segHTML("dur", "duration", ["0.5s", "1s", "3s"], st.dur) + segHTML("iter", "iteration-count", ["1", "3", "infinite"], st.iter) +
+      segHTML("dir", "direction", ["normal", "alternate"], st.dir) + segHTML("ease", "timing-function", ["ease", "linear", "ease-in-out"], st.ease) + '<pre class="snip" id="anCode"></pre>');
+    $("#anKf").insertAdjacentHTML("beforeend", KF.map(function (k) { return '<b style="left:' + k[0] + '%"><small>' + k[0] + "%<br>" + k[1] + "°</small></b>"; }).join(""));
+    function angle() {
+      var m = getComputedStyle(die).transform.match(/matrix\(([^,]+),\s*([^,]+)/);
+      return m ? Math.round(Math.atan2(parseFloat(m[2]), parseFloat(m[1])) * 180 / Math.PI) : 0;
+    }
+    function code() {
+      var parts = ["shake", st.dur, st.ease];
+      if (st.iter !== "1") parts.push(st.iter);
+      if (st.dir !== "normal") parts.push(st.dir);
+      $("#anCode").innerHTML = hlCSS(".die {\n  animation: " + parts.join(" ") + ";\n}");
+    }
+    function scrub() {
+      stop();
+      var t = +T.value;
+      $("#anTv").textContent = t + "%";
+      die.style.animation = "shake 1s linear " + (-t / 100) + "s 1 normal both paused";
+      now.style.left = t + "%";
+      var i = 0;
+      while (i < KF.length - 2 && t >= KF[i + 1][0]) i++;
+      var a = KF[i], b = KF[i + 1], deg = angle();
+      read.textContent = KF.some(function (k) { return k[0] === t; }) ? "At " + t + "%, a keyframe: the die is turned exactly " + deg + "°." :
+        "At " + t + "%, between the " + a[0] + "% keyframe (" + a[1] + "°) and the " + b[0] + "% keyframe (" + b[1] + "°), the browser works out " + deg + "°.";
+    }
+    function stop() { playing = false; cancelAnimationFrame(raf); $("#anPlay").textContent = "Play"; }
+    function tick() {
+      var a = die.getAnimations ? die.getAnimations()[0] : null, p = a ? a.effect.getComputedTiming().progress : null;
+      if (p === null || p === undefined) { stop(); read.textContent = "Done. With fill-mode none, the die goes back to how it looked before the animation."; return; }
+      now.style.left = (p * 100) + "%";
+      read.textContent = "Playing: " + Math.round(p * 100) + "% of one run, turned " + angle() + "°.";
+      raf = requestAnimationFrame(tick);
+    }
+    $("#anPlay").addEventListener("click", function () {
+      if (playing) { stop(); scrub(); return; }
+      die.style.animation = "none";
+      void die.offsetWidth;
+      die.style.animation = "shake " + st.dur + " " + st.ease + " 0s " + st.iter + " " + st.dir;
+      playing = true;
+      $("#anPlay").textContent = "Stop";
+      raf = requestAnimationFrame(tick);
+    });
+    $$(".seg[data-k]", ctl).forEach(function (sg) { wireSeg(sg, function (v) { st[sg.getAttribute("data-k")] = v; code(); }); });
+    T.addEventListener("input", scrub);
+    code();
+    scrub();
+  })();
+
+  /* ---------- CSS variables ---------- */
+  (function () {
+    var host = $("#vrHost").attachShadow({ mode: "open" }), ctl = $("#vrCtl");
+    var V = { brand: "#034f46", accent: "#ffa946", bg: "#eef2f7", card: "#ffffff", text: "#1a1a1a", radius: 12 };
+    var THEMES = { Teal: { brand: "#034f46", accent: "#ffa946", bg: "#eef2f7", card: "#ffffff", text: "#1a1a1a", radius: 12 }, Night: { brand: "#9ae6ff", accent: "#ffd166", bg: "#0f1222", card: "#1b2038", text: "#e6e6ff", radius: 18 }, Candy: { brand: "#c2185b", accent: "#ffcc80", bg: "#fce4ec", card: "#ffffff", text: "#3a0d1f", radius: 24 } };
+    host.innerHTML = "<style>.pg{background:var(--bg);color:var(--text);font:14px/1.45 Arial,sans-serif;padding:16px;border-radius:12px;border:1px solid #ddd}.pg h3{color:var(--brand);margin:0 0 10px;font-size:19px}" +
+      ".card{background:var(--card);border:2px solid var(--brand);border-radius:var(--radius);padding:12px}.tag{background:var(--accent);color:#1a1a1a;padding:2px 9px;border-radius:var(--radius);font-size:12px;font-weight:700}" +
+      ".card p{margin:8px 0}.card a{color:var(--brand)}button{background:var(--brand);color:var(--card);border:0;border-radius:var(--radius);padding:8px 14px;font:700 13px Arial,sans-serif}" +
+      ".bar{height:8px;border-radius:var(--radius);background:var(--accent);margin-top:12px}</style>" +
+      '<div class="pg"><h3>Programming Club</h3><div class="card"><span class="tag">New</span><p>Induction week starts soon. <a href="#">Read the rules</a>.</p><button type="button">Sign up</button><div class="bar"></div></div></div>';
+    var pg = host.querySelector(".pg");
+    ctl.innerHTML = ["brand", "accent", "bg", "card", "text"].map(function (k) { return '<label class="sl-row">--' + k + ' <input type="color" data-v="' + k + '"><output></output></label>'; }).join("") +
+      '<label class="sl-row">--radius <input type="range" min="0" max="30" data-v="radius"><output></output></label><div class="presets" id="vrPre" style="margin:4px 0 0"></div>';
+    function paint() {
+      $$("[data-v]", ctl).forEach(function (inp) {
+        var k = inp.getAttribute("data-v"), val = k === "radius" ? V[k] + "px" : V[k];
+        inp.value = V[k];
+        $("output", inp.parentNode).textContent = val;
+        pg.style.setProperty("--" + k, val);
+      });
+      $("#vrCode").innerHTML = hlCSS(":root {\n" + Object.keys(V).map(function (k) { return "  --" + k + ": " + V[k] + (k === "radius" ? "px" : "") + ";"; }).join("\n") + "\n}\nbutton {\n  background: var(--brand);\n  border-radius: var(--radius);\n}");
+    }
+    $$("[data-v]", ctl).forEach(function (inp) { inp.addEventListener("input", function () { V[inp.getAttribute("data-v")] = inp.type === "range" ? +inp.value : inp.value; paint(); }); });
+    Object.keys(THEMES).forEach(function (n) {
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "chip"; b.textContent = n;
+      b.addEventListener("click", function () { var t = THEMES[n]; Object.keys(t).forEach(function (k) { V[k] = t[k]; }); paint(); });
+      $("#vrPre").appendChild(b);
+    });
+    paint();
+  })();
+
+  /* ---------- styles pane ---------- */
+  (function () {
+    var host = $("#stpHost").attachShadow({ mode: "open" }), pane = $("#stpPane"), say = $("#stpSay");
+    host.innerHTML = '<button type="button" id="roll" class="btn">Roll 1 Die</button>';
+    var btn = host.querySelector("button");
+    var RULES = [
+      { sel: "element.style", src: "", d: [] },
+      { sel: "#roll", src: "style.css:31", d: [["background-color", "crimson"]] },
+      { sel: ".btn", src: "style.css:22", d: [["background-color", "#2c3e50"], ["color", "white"], ["padding", "10 px 20px"], ["border-radius", "5px"]] },
+      { sel: "button", src: "style.css:14", d: [["colour", "white"], ["font-size", "16px"], ["border", "none"], ["cursor", "pointer"]] },
+      { sel: "button", src: "user agent stylesheet", ua: true, d: [["padding", "1px 6px"], ["border", "2px outset buttonborder"], ["background-color", "buttonface"], ["color", "buttontext"], ["font-size", "13.33px"]] }
+    ];
+    var all = [];
+    RULES.forEach(function (r) { r.d = r.d.map(function (x) { var o = { p: x[0], v: x[1], on: true, rule: r }; all.push(o); return o; }); });
+    function known(p) { return window.CSS && CSS.supports ? CSS.supports(p, "initial") : true; }
+    function valid(o) { return window.CSS && CSS.supports ? CSS.supports(o.p, o.v) : true; }
+    function winners() {
+      var w = {};
+      all.forEach(function (o) { if (o.on && valid(o) && !w[o.p]) w[o.p] = o; });
+      return w;
+    }
+    function paint() {
+      var w = winners();
+      btn.removeAttribute("style");
+      Object.keys(w).forEach(function (p) { if (!w[p].rule.ua) btn.style.setProperty(p, w[p].v); });
+      pane.innerHTML = RULES.map(function (r, ri) {
+        return '<div class="stp-rule' + (r.ua ? " stp-ua" : "") + '"><div><span class="stp-src">' + esc(r.src) + '</span><span class="stp-sel">' + esc(r.sel) + "</span> {</div>" +
+          r.d.map(function (o, di) {
+            var st = !o.on ? "off" : !valid(o) ? "bad" : w[o.p] !== o ? "over" : "";
+            var warn = o.on && !valid(o) ? '<span class="warn">⚠ ' + (known(o.p) ? "invalid value" : "unknown property") + "</span>" : "";
+            return '<label class="stp-d ' + st + '">' + (r.ua ? '<span style="width:13px"></span>' : '<input type="checkbox" data-r="' + ri + '" data-d="' + di + '"' + (o.on ? " checked" : "") + ">") +
+              '<span><span class="p">' + esc(o.p) + '</span>: <span class="v">' + esc(o.v) + "</span>;</span>" + warn + "</label>";
+          }).join("") + "<div>}</div></div>";
+      }).join("");
+    }
+    pane.addEventListener("change", function (e) {
+      var t = e.target;
+      if (!t.hasAttribute("data-r")) return;
+      var o = RULES[+t.getAttribute("data-r")].d[+t.getAttribute("data-d")];
+      o.on = t.checked;
+      paint();
+      var w = winners()[o.p];
+      if (!o.on) say.textContent = "You switched off " + o.p + ": " + o.v + ". " + (w ? "Now " + w.rule.sel + (w.rule.ua ? " from the browser's own stylesheet" : "") + " wins with " + w.v + "." : "Nothing else sets " + o.p + ", so the browser's default shows.");
+      else if (!valid(o)) say.textContent = o.p + ": " + o.v + " is back, but it's invalid, so the browser still ignores it. " + (known(o.p) ? "Look at the value." : "Look at the property name.");
+      else say.textContent = w === o ? o.p + ": " + o.v + " is back, and it wins." : o.p + ": " + o.v + " is back, but it's crossed out, because " + w.rule.sel + " is higher in the list and wins.";
+    });
+    paint();
+    say.textContent = "Crossed out with no warning means something higher up won. Crossed out with ⚠ means invalid, so it's ignored. That's why this button has tiny padding: 10 px has a space in it.";
+  })();
+
+  /* ---------- CSS bug hunt ---------- */
+  (function () {
+    var BUGS = [
+      { sym: "The container isn't centred, and it isn't 500px wide either.", code: [".container {", "  max-width: 500px", "  margin: 0 auto;", "}"], bug: [1],
+        why: "The semicolon after <code>500px</code> is missing, so the browser reads <code>max-width: 500px margin: 0 auto</code> as one value. That value is invalid, so both lines are thrown away." },
+      { sym: "The HTML is <code>&lt;div class=\"dice-box\"&gt;</code>, but the dice don't line up in a row.", code: [".dicebox {", "  display: flex;", "  gap: 10px;", "}"], bug: [0],
+        why: "The selector says <code>.dicebox</code>, but the class is <code>dice-box</code>. The rule itself is fine. It just matches nothing, so DevTools doesn't list it for that div at all." },
+      { sym: "The history items have no padding at all.", code: ["#history li {", "  padding: 6 px;", "  border-bottom: 1px solid #ddd;", "}"], bug: [1],
+        why: "<code>6 px</code> has a space, so it's a number and a word instead of one length. The browser ignores the declaration, and DevTools crosses it out with a warning sign." },
+      { sym: "The HTML is <code>&lt;p id=\"result\" class=\"win\"&gt;</code>. The result never turns green.", code: ["#result {", "  color: #2c3e50;", "}", ".win {", "  color: green;", "}"], bug: [3, 4],
+        why: "Nothing is misspelled. <code>.win</code> loses to <code>#result</code>, because an id beats a class (3.7). A selector like <code>#result.win</code> is more specific, so it would win." },
+      { sym: "The die never shakes, even when the class is added.", code: [".shake {", "  animation: shake 0.5s;", "}", "@keyframes shak {", "  25% { transform: rotate(20deg); }", "}"], bug: [1, 3],
+        why: "The keyframes are called <code>shak</code>, but the animation asks for <code>shake</code>. The names must match exactly, or the animation has nothing to run." }
+    ];
+    var wrap = $("#cssBugs"), scoreEl = $("#cssBugScore"), found = 0, tries = 0;
+    BUGS.forEach(function (b, n) {
+      var el = document.createElement("div");
+      el.className = "bug";
+      el.innerHTML = '<p class="bug-n">Bug ' + (n + 1) + " of " + BUGS.length + '</p><p style="margin:0 0 8px"><b>Symptom:</b> ' + b.sym + '</p><div class="bug-code">' +
+        b.code.map(function (l, i) { return '<button type="button" class="bug-line" data-i="' + i + '">' + hlCSS(l) + "</button>"; }).join("") +
+        '</div><p class="bug-msg" aria-live="polite"></p><div class="bug-ans" hidden><p class="bug-why"></p></div>';
+      wrap.appendChild(el);
+      var msg = $(".bug-msg", el);
+      $$(".bug-line", el).forEach(function (line) {
+        line.addEventListener("click", function () {
+          if (el.classList.contains("solved")) return;
+          tries++;
+          if (b.bug.indexOf(+line.getAttribute("data-i")) < 0) { line.classList.add("miss"); msg.textContent = "Not this line. Read the symptom again."; return; }
+          line.classList.add("hit");
+          el.classList.add("solved");
+          $$(".bug-line", el).forEach(function (x) { x.disabled = true; });
+          msg.textContent = "";
+          $(".bug-why", el).innerHTML = "<b>Found it.</b> " + b.why;
+          $(".bug-ans", el).hidden = false;
+          found++;
+          scoreEl.textContent = "Found " + found + " of " + BUGS.length + (found === BUGS.length ? " in " + tries + " clicks." : ".");
+        });
+      });
+    });
   })();
 })();
 </script>
