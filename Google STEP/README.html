@@ -375,6 +375,23 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
 .resource-desc { display: block; font-size: .86rem; color: var(--muted); }
 .resource > .icon { color: var(--muted); }
 
+/* Video watchlist */
+.watch-intro { max-width: 66ch; color: var(--ink-2); }
+.watchlist { list-style: none; padding: 0; margin: 22px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.watch-card { display: flex; flex-direction: column; min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.watch-top { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.watch-number { display: grid; place-items: center; width: 34px; height: 34px; flex-shrink: 0; border-radius: 10px; background: var(--accent); color: var(--on-accent); font-family: var(--font-mono); font-weight: 600; }
+.watch-tag { padding: 3px 10px; border-radius: 999px; background: var(--lav); color: var(--on-lav); font-size: .78rem; font-weight: 700; }
+.watch-tag-local { background: var(--ember-soft); color: var(--ink); }
+.watch-card h4 { font-size: 1.2rem; line-height: 1.25; margin: 0 0 8px; }
+.watch-meta { color: var(--muted); font-size: .84rem; margin: 0 0 12px; }
+.watch-why { color: var(--ink-2); font-size: .95rem; margin: 0 0 16px; }
+.watch-chapters { display: flex; flex-wrap: wrap; gap: 6px 14px; margin: 0 0 18px; font-size: .84rem; }
+.watch-card > .btn { align-self: flex-start; margin-top: auto; }
+.watch-note { max-width: 70ch; margin-top: 18px; font-size: .88rem; color: var(--muted); }
+.watch-reflect { margin-top: 24px; }
+.watch-reflect p { margin: 0; }
+
 /* Closing note */
 .closing { max-width: 68ch; }
 .closing p { font-size: 1.06rem; color: var(--ink-2); }
@@ -421,7 +438,7 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   .hero-in { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
   .sec { padding-block: 48px; }
   .brand-text { display: none; }
-  .cols, .resources, .blocks { grid-template-columns: 1fr; }
+  .cols, .resources, .blocks, .watchlist { grid-template-columns: 1fr; }
   .phase { flex-direction: column; gap: 12px; padding: 18px; }
   .tl { grid-template-columns: 78px 24px minmax(0, 1fr); gap: 10px; }
   .sched { grid-template-columns: 74px 36px minmax(0, 1fr); gap: 10px; }
@@ -531,6 +548,7 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
       <a href="#life">Intern life</a>
       <a href="#timeline">Timeline</a>
       <a href="#resources">Resources</a>
+      <a href="#videos">Watch</a>
     </div>
     <a class="btn btn-sm" href="sprint_tracker.html">Tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
@@ -938,6 +956,95 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
         <span class="resource-text"><span class="resource-name">NeetCode on YouTube</span><span class="resource-desc">Clear video walkthroughs of classic problems</span></span>
         <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
+    </div>
+  </section>
+
+  <!-- VIDEO WATCHLIST -->
+  <section class="sec" id="videos" aria-labelledby="videosTitle">
+    <p class="kicker"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg>See it through their eyes</p>
+    <h2 id="videosTitle">From preparing to walking into Google</h2>
+    <p class="watch-intro">Vasavi, the roadmap tells you what to work on. These videos put people and places behind it. Follow this order, one video at a time; you can come back for the next one after a study session.</p>
+
+    <h3 class="sub-h">First, understand the journey</h3>
+    <p class="watch-intro">Start with Google's own introduction, then hear how students prepared, interviewed and found their feet.</p>
+    <ol class="watchlist" aria-label="Preparation videos in viewing order">
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">01</span><span class="watch-tag">Start here · Official</span></div>
+        <h4>How to land a Google internship</h4>
+        <p class="watch-meta">Google Students · February 2025 · Google internships</p>
+        <p class="watch-why"><strong>Why watch:</strong> Get a quick introduction to applying, resume advice and what happens after you send an application. A gentle first watch before the longer student conversations.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=KPD8C7c6P1w&amp;t=97s" target="_blank" rel="noopener noreferrer">1:37 · Resume advice</a>
+          <a href="https://www.youtube.com/watch?v=KPD8C7c6P1w&amp;t=120s" target="_blank" rel="noopener noreferrer">2:00 · After applying</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=KPD8C7c6P1w" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">02</span><span class="watch-tag">STEP · Bangalore</span></div>
+        <h4>What It Really Takes to Get a Google STEP Internship</h4>
+        <p class="watch-meta">A conversation with STEP interns · Picked by your brother</p>
+        <p class="watch-why"><strong>Why watch:</strong> Hear interns talk about their IIT journeys, the STEP interview process and their first impressions of working at Google's Bangalore office. Connect the preparation plan to real student experiences.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=SMXm4Gz1d6s&amp;t=110s" target="_blank" rel="noopener noreferrer">1:50 · STEP interviews</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=SMXm4Gz1d6s" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">03</span><span class="watch-tag">STEP · Student experience</span></div>
+        <h4>Google STEP Internship Interview Experience</h4>
+        <p class="watch-meta">Gantavya Malviya with Jahnavi Malhotra, IGDTUW · December 2022</p>
+        <p class="watch-why"><strong>Why watch:</strong> Take a closer look at projects, resume tips, technical rounds and DSA resources. Jahnavi also talks about the internship itself, so you can follow the journey from preparation to working there.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=Nws5vjdbZB4&amp;t=605s" target="_blank" rel="noopener noreferrer">10:05 · Technical rounds</a>
+          <a href="https://www.youtube.com/watch?v=Nws5vjdbZB4&amp;t=1263s" target="_blank" rel="noopener noreferrer">21:03 · DSA resources</a>
+          <a href="https://www.youtube.com/watch?v=Nws5vjdbZB4&amp;t=1813s" target="_blank" rel="noopener noreferrer">30:13 · Intern experience</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=Nws5vjdbZB4" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">04</span><span class="watch-tag">STEP · Another perspective</span></div>
+        <h4>Google STEP Internship 2025: Interview Experience</h4>
+        <p class="watch-meta">TechWithUpasana · September 2025</p>
+        <p class="watch-why"><strong>Why watch:</strong> Hear another student's DSA journey, resume shortlisting and interview preparation. Compare the habits that helped her with the ones you are building in your daily sprint.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=jNOlObsg2d4&amp;t=72s" target="_blank" rel="noopener noreferrer">1:12 · DSA journey</a>
+          <a href="https://www.youtube.com/watch?v=jNOlObsg2d4&amp;t=725s" target="_blank" rel="noopener noreferrer">12:05 · Preparation</a>
+          <a href="https://www.youtube.com/watch?v=jNOlObsg2d4&amp;t=856s" target="_blank" rel="noopener noreferrer">14:16 · Interviews</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=jNOlObsg2d4" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+    </ol>
+
+    <h3 class="sub-h">Then, picture a day at work</h3>
+    <p class="watch-intro">Start closer to home with Bangalore, then take a peek at Sunnyvale. These are two personal views of office life: a software engineer in India and a software engineering intern in the US.</p>
+    <ol class="watchlist" start="5" aria-label="Office life videos in viewing order">
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">05</span><span class="watch-tag watch-tag-local">Bangalore · Software engineer</span></div>
+        <h4>Day in the Life of a Software Engineer at Google</h4>
+        <p class="watch-meta">Nandika Jain · January 2025 · Bangalore, India</p>
+        <p class="watch-why"><strong>Why watch:</strong> Picture an office day in Bangalore: the morning routine, time at the office, lunch, different places to work and life after work. Get a glimpse of Google's work environment here in India.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=eDKlshg-RoU&amp;t=43s" target="_blank" rel="noopener noreferrer">0:43 · At the office</a>
+          <a href="https://www.youtube.com/watch?v=eDKlshg-RoU&amp;t=164s" target="_blank" rel="noopener noreferrer">2:44 · Places to work</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=eDKlshg-RoU" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+      <li class="watch-card">
+        <div class="watch-top"><span class="watch-number" aria-hidden="true">06</span><span class="watch-tag">Sunnyvale · SWE intern</span></div>
+        <h4>Day In My Life as a Software Engineering Intern at Google</h4>
+        <p class="watch-meta">Johnathan Mo · August 2025 · Sunnyvale, US</p>
+        <p class="watch-why"><strong>Why watch:</strong> A short look at an intern's workday, lunch, office tour and after-work routine. Enjoy another perspective on being an intern after watching the Bangalore office story.</p>
+        <div class="watch-chapters" aria-label="Useful chapters">
+          <a href="https://www.youtube.com/watch?v=BYBm7jBw4mk&amp;t=45s" target="_blank" rel="noopener noreferrer">0:45 · Work</a>
+          <a href="https://www.youtube.com/watch?v=BYBm7jBw4mk&amp;t=283s" target="_blank" rel="noopener noreferrer">4:43 · Office tour</a>
+        </div>
+        <a class="btn btn-sm" href="https://www.youtube.com/watch?v=BYBm7jBw4mk" target="_blank" rel="noopener noreferrer">Watch on YouTube<svg class="icon" aria-hidden="true"><use href="#i-external"/></svg></a>
+      </li>
+    </ol>
+    <p class="watch-note">The dates above are publication dates. Each person describes their own experience; use the <a href="https://buildyourfuture.withgoogle.com/programs/step" target="_blank" rel="noopener noreferrer">official program page</a> for current eligibility and application dates.</p>
+    <div class="callout watch-reflect">
+      <h3>One small takeaway before you close the tab</h3>
+      <p>Tell your brother one thing you learned and one habit you want to try in your next study session. It could be explaining an idea out loud, testing an edge case or describing your own project clearly.</p>
     </div>
   </section>
 

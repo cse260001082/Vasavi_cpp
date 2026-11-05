@@ -417,6 +417,23 @@ Here's what a typical day might look like:
 
 ---
 
+## 📹 Watch: From Preparation to Office Life
+
+Watch one video at a time in this order. The [HTML guide's watchlist](README.html#videos) includes why to watch each one and links to useful chapters.
+
+1. [How to land a Google internship](https://www.youtube.com/watch?v=KPD8C7c6P1w) — Google Students, February 2025. An official introduction to applications, resumes and what happens next.
+2. [What It Really Takes to Get a Google STEP Internship](https://www.youtube.com/watch?v=SMXm4Gz1d6s) — Dinesh's pick: a conversation with STEP interns about preparation, interviews and life at Google's Bangalore office.
+3. [Google STEP Internship Interview Experience — ft. Jahnavi Malhotra](https://www.youtube.com/watch?v=Nws5vjdbZB4) — Gantavya Malviya, December 2022. Projects, resumes, technical rounds, DSA resources and intern experience.
+4. [Google STEP Internship 2025: Interview Experience](https://www.youtube.com/watch?v=jNOlObsg2d4) — TechWithUpasana, September 2025. Another student's DSA journey and interview preparation.
+5. [Day in the Life of a Software Engineer at Google](https://www.youtube.com/watch?v=eDKlshg-RoU) — Nandika Jain, January 2025. A software engineer's office routine in **Bangalore, India**.
+6. [Day In My Life as a Software Engineering Intern at Google](https://www.youtube.com/watch?v=BYBm7jBw4mk) — Johnathan Mo, August 2025. An intern's workday and office tour in **Sunnyvale, US**.
+
+Dates refer to video publication. These are personal experiences; check the official program page for current eligibility and application dates.
+
+After watching, tell your brother one thing you learned and one habit you want to try in your next study session.
+
+---
+
 ## 💬 Final Words
 
 Vasavi, you're in **1st semester** at an **IIT**. That already puts you in a strong position. The students who get into STEP aren't necessarily geniuses — they're the ones who **start early and stay consistent**.
