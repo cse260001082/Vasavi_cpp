@@ -131,3 +131,5 @@
 - Reduced motion: disables all animations and transitions
 - Text size adjust: `100%`
 - Safe area insets respected for mobile notches
+- Text selection: teal `#034F46` with cream `#FFFFEB` text in light mode; lavender `#F0D7FF` with ink `#1A1A1A` text in dark mode. Teal hero sections use ember selection with ink text; dark code blocks and embedded previews use lavender with ink. Transparent editor overlays retain a translucent lavender highlight so syntax remains readable beneath them.
+- Theme controls: use sun/moon SVG icons rather than emojis, a minimum 44px hit target, a visible focus outline, and an accessible label/title describing the next action (for example, "Switch to dark mode").

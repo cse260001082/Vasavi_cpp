@@ -95,7 +95,7 @@ File: [html_css_guide.html](Development/Web%20Dev%20Guide/html_css_guide.html) (
 - [ ] **Part 2:** HTML, with live editors and 8 challenges
 - [ ] **Part 3, first half:** how CSS thinks: selectors, the cascade, colours, units, the box model. 6 challenges
 - [ ] **Part 3, second half:** how CSS looks and moves: flexbox, grid, position, transitions, animations, responsive design, variables, debugging. 7 challenges
-- Part 4 (cheat sheets and glossary) is on the way
+- [ ] **Part 4:** HTML/CSS cheat sheets, a searchable glossary and the interview lines collected in one place
 
 ---
 

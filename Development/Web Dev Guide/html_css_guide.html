@@ -48,6 +48,9 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
   --u-query: #D5E6F7;
   --u-frag: #F8D3DF;
   --wire: #C9C9B4;
+  --selection-bg: #034F46;
+  --selection-fg: #FFFFEB;
+  color-scheme: light;
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", Consolas, "Courier New", monospace;
@@ -61,6 +64,7 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
     --ok-soft: #1E3A35;
     --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
     --wire: #4A4A40;
+    --selection-bg: #F0D7FF; --selection-fg: #1A1A1A;
     color-scheme: dark;
   }
 }
@@ -72,10 +76,14 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
   --ok-soft: #1E3A35;
   --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
   --wire: #4A4A40;
+  --selection-bg: #F0D7FF; --selection-fg: #1A1A1A;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
+::selection { background: var(--selection-bg); color: var(--selection-fg); text-shadow: none; }
+.hero ::selection { background: var(--ember); color: var(--on-ember); }
+.snip::selection, .snip ::selection { background: #F0D7FF; color: #1A1A1A; }
 html { scroll-behavior: smooth; }
 [hidden] { display: none !important; }
 body {
@@ -143,7 +151,7 @@ h4 { font-size: 1.05rem; line-height: 1.3; font-weight: 700; margin: 0 0 .3em; }
 .btn-ghost:hover { background: var(--bg); filter: none; }
 .btn-small { padding: 6px 13px; font-size: .86rem; }
 .btn-ember { background: var(--ember); color: var(--on-ember); border-color: var(--ember); }
-input[type="text"], textarea {
+input[type="text"], input[type="search"], textarea {
   font: inherit;
   font-size: .95rem;
   color: var(--ink);
@@ -200,15 +208,21 @@ input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent);
   position: absolute;
   top: max(12px, env(safe-area-inset-top, 0px));
   right: max(16px, env(safe-area-inset-right, 0px));
-  font: 700 .82rem var(--font-body);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
   color: var(--hero-fg);
   background: var(--hero-chip);
   border: 1px solid var(--hero-line);
   border-radius: 999px;
-  padding: 6px 14px;
+  padding: 10px;
   cursor: pointer;
 }
 .theme-btn:hover { background: var(--hero-line); }
+.theme-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.theme-sun, .theme-btn[data-next-theme="light"] .theme-moon { display: none; }
+.theme-btn[data-next-theme="light"] .theme-sun { display: block; }
 .bm { background: #FFFFEB; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.28); }
 .bm-bar { display: flex; align-items: center; gap: 6px; padding: 9px 10px; background: #E4E4D0; }
 .bm-bar i { width: 10px; height: 10px; border-radius: 50%; background: #B8B8A4; flex: none; }
@@ -274,8 +288,6 @@ input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent);
 .rail-list a.on { background: var(--lav); color: var(--on-lav); }
 .rail-list a.ticked::after { content: "\2713"; color: var(--accent-text); }
 .rail-list a.on.ticked::after { color: inherit; }
-.rail-soon { display: block; padding: 6px 12px; color: var(--muted); font-weight: 700; font-size: .92rem; }
-.rail-soon small { font-weight: 400; }
 main { padding-block: 16px 40px; min-width: 0; }
 .sec { padding-block: 44px; border-top: 1px solid var(--border); scroll-margin-top: 8px; }
 .sec > p, .sec > ul, .sec > ol { max-width: 68ch; }
@@ -807,7 +819,7 @@ select {
   outline: none;
   z-index: 1;
 }
-.ed-ta::selection { background: rgba(240,215,255,.32); }
+.ed-ta::selection { background: rgba(240,215,255,.32); color: transparent; }
 .ed-ta:focus-visible { box-shadow: inset 0 0 0 2px var(--ember); }
 .ed-right { min-width: 0; display: flex; flex-direction: column; border-left: 1px solid var(--border); background: #FFFFFF; }
 .ed-bar { display: flex; align-items: flex-end; gap: 6px; padding: 6px 10px 0; background: #E4E4D0; min-height: 33px; }
@@ -1194,6 +1206,45 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
 .stp-d .warn { color: var(--ember); font-family: var(--font-body); font-size: 12px; }
 .stp-ua { color: var(--syn-dim); font-style: italic; }
 
+/* Part 4: a reference to return to after the lessons */
+.ref-jumps { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.ref-jumps a { display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); text-decoration: none; font-size: .88rem; font-weight: 700; }
+.ref-jumps a:hover { border-color: var(--accent); }
+.ref-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 20px 0; }
+.ref-card { min-width: 0; padding: 18px; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.ref-card h3, .ref-card h4 { margin: 0 0 10px; }
+.ref-card p:last-child, .ref-card ul:last-child { margin-bottom: 0; }
+.ref-card ul { padding-left: 20px; }
+.ref-card li + li { margin-top: 6px; }
+.ref-caption { font-size: .88rem; color: var(--muted); margin: 10px 0 0; }
+.ref-table td:first-child { width: 28%; font-weight: 700; }
+.ref-table td code { white-space: normal; overflow-wrap: anywhere; }
+.ref-formula { padding: 14px 16px; border-radius: 12px; background: var(--ember-soft); color: var(--ink); font-size: .95rem; }
+.ref-tools { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin: 22px 0 16px; }
+.ref-search { flex: 1 1 240px; }
+.ref-search label { display: block; margin-bottom: 6px; font-size: .9rem; font-weight: 700; }
+.ref-search input { width: 100%; }
+.ref-status { margin: 0 0 16px; font-size: .86rem; color: var(--muted); }
+.glossary-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 20px 0; }
+.glossary-list > div { min-width: 0; border: 1px solid var(--border); border-radius: 14px; background: var(--surface); padding: 16px 18px; }
+.glossary-list dt { font-family: var(--font-display); font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; }
+.glossary-list dd { margin: 0; color: var(--ink-2); font-size: .95rem; }
+.glossary-list dd a { display: inline-block; margin-top: 8px; font-size: .85rem; font-weight: 700; }
+.interview-list { display: grid; gap: 10px; margin: 18px 0 26px; }
+.interview-line { border: 1px solid var(--border); border-radius: 14px; background: var(--surface); }
+.interview-line summary { position: relative; padding: 16px 42px 16px 18px; list-style: none; font-family: var(--font-display); font-weight: 700; cursor: pointer; }
+.interview-line summary::-webkit-details-marker { display: none; }
+.interview-line summary::after { content: "+"; position: absolute; right: 18px; top: 13px; font-size: 1.3rem; color: var(--accent-text); }
+.interview-line[open] summary::after { content: "−"; }
+.interview-line[open] summary { border-bottom: 1px solid var(--border); }
+.interview-answer { padding: 16px 18px 18px; color: var(--ink-2); }
+.interview-answer p { margin-top: 0; }
+.interview-answer > a { font-size: .88rem; font-weight: 700; }
+.ref-finish { margin-top: 26px; border-left: 4px solid var(--ember); }
+@media (max-width: 760px) {
+  .ref-grid, .glossary-list { grid-template-columns: minmax(0, 1fr); }
+}
+
 @media (max-width: 860px) {
   .sp, .sb, .sb-foot, .cc, .inh, .cm, .bmi, .pl, .stp { grid-template-columns: minmax(0, 1fr); }
   .hide3 > div { grid-template-columns: minmax(0, 1fr); gap: 4px; }
@@ -1230,7 +1281,7 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
     scrollbar-width: none;
   }
   .rail::-webkit-scrollbar { display: none; }
-  .rail-group, .rail-soon { display: none; }
+  .rail-group { display: none; }
   .rail-list { display: flex; gap: 6px; flex: none; }
   .rail-list a { white-space: nowrap; background: var(--surface); border: 1px solid var(--border); padding: 5px 12px; border-radius: 999px; font-size: .86rem; }
   .rail-list a.on { border-color: var(--lav); }
@@ -1265,7 +1316,10 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
 </head>
 <body>
 <header class="hero">
-  <button class="theme-btn" id="themeBtn" type="button">Dark mode</button>
+  <button class="theme-btn" id="themeBtn" type="button" data-next-theme="dark" aria-label="Switch to dark mode" title="Switch to dark mode">
+    <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 13.2A8.5 8.5 0 0 1 10.8 3.5a8.5 8.5 0 1 0 9.7 9.7Z"/></svg>
+    <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+  </button>
   <div class="hero-in">
     <div>
       <p class="eyebrow">Web basics · made for Vasavi</p>
@@ -1273,8 +1327,8 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
       <p class="lede">Hi Vasavi! Before you write a single tag, this guide shows what happens when anyone opens a website. Then it teaches HTML and CSS with demos you can click, drag and edit. Go top to bottom, and tick each section once you can explain it out loud.</p>
       <div class="hero-stats">
         <div class="stat"><div class="stat-label">Ready now</div><div class="stat-val">Web, HTML, CSS</div></div>
-        <div class="stat"><div class="stat-label">Coming next</div><div class="stat-val">Cheat sheets, glossary</div></div>
-        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 46</div><div class="meter"><i id="progBar"></i></div></div>
+        <div class="stat"><div class="stat-label">Part 4 · Revision</div><div class="stat-val">Cheat sheets, glossary</div></div>
+        <div class="stat"><div class="stat-label">Sections done</div><div class="stat-val" id="progVal">0 of 50 sections</div><div class="meter"><i id="progBar"></i></div></div>
         <div class="stat"><div class="stat-label">Challenges done</div><div class="stat-val" id="chVal">0 of 21</div><div class="meter"><i id="chBar"></i></div></div>
       </div>
     </div>
@@ -1356,8 +1410,13 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
       <li><a href="#debugcss" data-sec="debugcss">3.24 Debugging CSS</a></li>
       <li><a href="#recap3" data-sec="recap3">Recap</a></li>
     </ul>
-    <p class="rail-group">Coming next</p>
-    <span class="rail-soon">Part 4 · Wrap-up <small>soon</small></span>
+    <p class="rail-group">Part 4 · Keep it handy</p>
+    <ul class="rail-list">
+      <li><a href="#htmlref" data-sec="htmlref">4.1 HTML cheat sheet</a></li>
+      <li><a href="#cssref" data-sec="cssref">4.2 CSS cheat sheet</a></li>
+      <li><a href="#glossary" data-sec="glossary">4.3 Glossary</a></li>
+      <li><a href="#interview" data-sec="interview">4.4 Interview lines</a></li>
+    </ul>
   </nav>
 
   <main id="main">
@@ -5446,8 +5505,225 @@ button {
         </ol>
       </div>
       <div class="say"><b>Say it in an interview</b><p>CSS is a list of rules: a selector picks elements, and declarations style them. When rules clash, the cascade decides by importance, specificity and order. Every element is a box with content, padding, border and margin. I lay out pages with flexbox for one direction and grid for two, make them responsive with flexible sizes and media queries, keep colours in variables, and use transitions and keyframe animations for motion. When something looks wrong, I inspect it in DevTools.</p></div>
-      <p>Next is Part 4, the wrap-up: cheat sheets, a glossary, and every interview line in one place.</p>
+      <p>Next is <a href="#part4">Part 4, your revision corner</a>: cheat sheets, a glossary, and every interview line in one place.</p>
       <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="recap3" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <!-- ============ PART 4 ============ -->
+    <section id="part4" class="part" aria-labelledby="part4Title">
+      <p class="part-num">Part 4</p>
+      <h2 id="part4Title">Keep it handy. Make it yours.</h2>
+      <p>You have met the browser, built the HTML and shaped it with CSS. This is your revision corner, Vasavi: find a tag, untangle a word or practise explaining one idea to your brother.</p>
+      <p>Read the lessons first. Come back here when you remember the idea but need a small reminder of the syntax.</p>
+      <div class="ref-jumps" aria-label="Part 4 shortcuts">
+        <a href="#htmlref">HTML cheat sheet</a><a href="#cssref">CSS cheat sheet</a><a href="#glossary">Find a word</a><a href="#interview">Practise explaining</a>
+      </div>
+    </section>
+
+    <section id="htmlref" class="sec reference-sec" aria-labelledby="htmlrefTitle">
+      <p class="kicker">4.1 · Structure and meaning</p>
+      <h2 id="htmlrefTitle">HTML, at a glance</h2>
+      <p class="hook">“I know what I want on the page. Which tag says it best?” Start with the meaning of the content, then pick the element.</p>
+
+      <h3>The page skeleton</h3>
+      <pre class="snip" data-lang="html"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;title&gt;My page&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;!-- The content people see goes here. --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+      <p class="ref-caption"><code>head</code> holds page information; <code>body</code> holds the content. <code>title</code> names the browser tab; <code>h1</code> is a heading in the page. <a href="#skeleton">Revisit the skeleton lesson →</a></p>
+
+      <h3>Pick a tag by its job</h3>
+      <div class="table-wrap ref-table">
+        <table>
+          <caption class="small">Common elements from Part 2</caption>
+          <thead><tr><th scope="col">Job</th><th scope="col">Reach for</th><th scope="col">Remember</th></tr></thead>
+          <tbody>
+            <tr><td>A heading</td><td><code>h1</code> to <code>h6</code></td><td>Follow the content hierarchy; use CSS to change the size.</td></tr>
+            <tr><td>Text with meaning</td><td><code>p</code>, <code>strong</code>, <code>em</code></td><td>A paragraph, importance and emphasis.</td></tr>
+            <tr><td>Go somewhere</td><td><code>&lt;a href="about.html"&gt;About me&lt;/a&gt;</code></td><td>A link navigates. Give it text that says where it goes.</td></tr>
+            <tr><td>Do something</td><td><code>&lt;button type="button"&gt;Roll&lt;/button&gt;</code></td><td>A button performs an action. JavaScript supplies the roll behavior.</td></tr>
+            <tr><td>An image</td><td><code>&lt;img src="images/dice1.svg" alt="Die showing one"&gt;</code></td><td>Describe a meaningful image with <code>alt</code>; use <code>alt=""</code> for decoration.</td></tr>
+            <tr><td>A list</td><td><code>ul</code> or <code>ol</code>, with <code>li</code></td><td>Choose <code>ol</code> when the order matters, such as numbered steps.</td></tr>
+            <tr><td>Tabular data</td><td><code>table</code>, <code>caption</code>, <code>tr</code>, <code>th</code>, <code>td</code></td><td>Use header cells to name columns or rows. Tables describe data.</td></tr>
+            <tr><td>A form field</td><td><code>label</code> with <code>input</code> or <code>textarea</code></td><td>Match the label's <code>for</code> to the field's <code>id</code>. A placeholder is only a hint.</td></tr>
+            <tr><td>Page regions</td><td><code>header</code>, <code>nav</code>, <code>main</code>, <code>section</code>, <code>footer</code></td><td>Choose names that explain the structure. Give a section a useful heading.</td></tr>
+            <tr><td>A generic wrapper</td><td><code>div</code> or <code>span</code></td><td>Use when no meaningful element fits; <code>div</code> is block and <code>span</code> inline by default.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h3>Three paths you will use</h3>
+          <ul>
+            <li><code>images/dice1.svg</code> goes into a child folder.</li>
+            <li><code>../index.html</code> goes up one folder first.</li>
+            <li><code>#history</code> jumps to <code>id="history"</code> in this page.</li>
+          </ul>
+          <p class="ref-caption">Relative file paths start from the HTML file. A CSS <code>url(...)</code> starts from the stylesheet. <a href="#links">Revisit paths →</a></p>
+        </div>
+        <div class="ref-card">
+          <h3>id, class and name</h3>
+          <ul>
+            <li><code>id</code> identifies one element in a document.</li>
+            <li><code>class</code> groups elements; one element can have several classes.</li>
+            <li><code>name</code> names a field's value when a form is submitted.</li>
+          </ul>
+          <p class="ref-caption">These attributes have different jobs. <a href="#attributes">Revisit attributes →</a></p>
+        </div>
+      </div>
+      <div class="hint"><b>Before you blame CSS</b>Check the nesting, spelling, quotes and file paths first. Then inspect the element in DevTools to see the structure the browser actually built.</div>
+      <p class="small">For a tag you have not met yet, use the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements" target="_blank" rel="noopener noreferrer">MDN HTML elements reference</a>.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="htmlref" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <section id="cssref" class="sec reference-sec" aria-labelledby="cssrefTitle">
+      <p class="kicker">4.2 · Pick the right tool</p>
+      <h2 id="cssrefTitle">CSS, at a glance</h2>
+      <p class="hook">“Which elements? Which property? Which rule wins?” Those three questions take you a long way.</p>
+
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h3>Read a rule</h3>
+          <pre class="snip" data-lang="css"><code>.note {
+  color: teal;
+  padding: 12px;
+}</code></pre>
+          <p class="ref-caption"><code>.note</code> is the selector. <code>color</code> is a property, <code>teal</code> its value, and <code>color: teal;</code> a declaration.</p>
+        </div>
+        <div class="ref-card">
+          <h3>When rules disagree</h3>
+          <p>For normal stylesheet rules in the examples here, compare specificity first. If specificity ties, the later declaration wins.</p>
+          <p><code>#id</code> outranks <code>.class</code>, an attribute or a pseudo-class; those outrank an element selector. Normal inline styles outrank normal stylesheet rules.</p>
+          <p class="ref-caption"><code>!important</code> changes priority; avoid using it as the first fix. <a href="#cascade">Revisit the full cascade demo →</a></p>
+        </div>
+      </div>
+
+      <h3>Selector reminders</h3>
+      <div class="table-wrap ref-table">
+        <table>
+          <thead><tr><th scope="col">Selector</th><th scope="col">What it picks</th><th scope="col">Small distinction</th></tr></thead>
+          <tbody>
+            <tr><td><code>p</code></td><td>Every paragraph.</td><td>An element selector.</td></tr>
+            <tr><td><code>.card</code> / <code>#result</code></td><td>A class / a unique id.</td><td>The dot and hash are CSS syntax, not part of the HTML attribute value.</td></tr>
+            <tr><td><code>.card p</code></td><td>Paragraphs anywhere inside a card.</td><td>The space means descendant.</td></tr>
+            <tr><td><code>.card &gt; p</code></td><td>Paragraphs directly inside a card.</td><td><code>&gt;</code> means direct child.</td></tr>
+            <tr><td><code>.card.active</code></td><td>One element with both classes.</td><td>No space between the selectors.</td></tr>
+            <tr><td><code>h2 + p</code></td><td>A paragraph immediately after an <code>h2</code>.</td><td>Both have the same parent.</td></tr>
+            <tr><td><code>button:hover</code> / <code>:focus-visible</code></td><td>An element in a particular state.</td><td>A pseudo-class. Keep keyboard focus visible.</td></tr>
+            <tr><td><code>li:nth-child(2)</code></td><td>An <code>li</code> that is its parent's second element child.</td><td>Counting starts at 1.</td></tr>
+            <tr><td><code>::before</code> / <code>::selection</code></td><td>A generated part / the highlighted text.</td><td>A pseudo-element.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>From the problem to the property</h3>
+      <div class="table-wrap ref-table">
+        <table>
+          <thead><tr><th scope="col">I want to…</th><th scope="col">Try</th><th scope="col">Return to</th></tr></thead>
+          <tbody>
+            <tr><td>Make a row or column</td><td><code>display: flex</code>, <code>gap</code>, <code>justify-content</code>, <code>align-items</code></td><td><a href="#flexbox">Flexbox and its axes</a></td></tr>
+            <tr><td>Lay out rows and columns</td><td><code>display: grid</code>, <code>grid-template-columns</code>, <code>gap</code></td><td><a href="#grid">Grid</a></td></tr>
+            <tr><td>Centre a reading column</td><td><code>max-width</code> and <code>margin-inline: auto</code></td><td><a href="#margins">Margins and centring</a></td></tr>
+            <tr><td>Add inside / outside space</td><td><code>padding</code> / <code>margin</code></td><td><a href="#boxmodel">Box model</a></td></tr>
+            <tr><td>Pin something in a corner</td><td><code>position: relative</code> on its container, <code>position: absolute</code> on the item</td><td><a href="#position">Containing blocks</a></td></tr>
+            <tr><td>Adapt to a narrow screen</td><td>Flexible widths, flex wrapping, grid or a <code>@media</code> query</td><td><a href="#responsive">Responsive design</a></td></tr>
+            <tr><td>Animate a state change</td><td><code>transition</code> on the base rule</td><td><a href="#transitions">Transitions</a></td></tr>
+            <tr><td>Define several motion steps</td><td><code>@keyframes</code> and <code>animation</code></td><td><a href="#animations">Animations</a></td></tr>
+            <tr><td>Reuse a colour</td><td><code>--brand: teal</code>, then <code>color: var(--brand)</code></td><td><a href="#variables">CSS variables</a></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ref-grid">
+        <div class="ref-card">
+          <h3>Units worth remembering</h3>
+          <p><code>px</code> is a CSS pixel. <code>rem</code> follows the root font size. For <code>font-size</code>, <code>em</code> follows the parent's font size; for padding it follows the element's own font size.</p>
+          <p><code>%</code> depends on the property and its reference size. <code>vw</code> and <code>vh</code> use the viewport. <code>fr</code> shares the available space in a grid.</p>
+          <p class="ref-caption"><a href="#units">Try the units demo again →</a></p>
+        </div>
+        <div class="ref-card">
+          <h3>Where did the width go?</h3>
+          <p>With <code>content-box</code>, declared width covers content; padding and borders add to it. With <code>border-box</code>, declared width includes content, padding and borders.</p>
+          <p class="ref-formula">Content → padding → border → margin</p>
+          <p class="ref-caption">Margin sits outside the border in both cases. <a href="#boxmodel">Revisit the box model →</a></p>
+        </div>
+      </div>
+      <div class="callout"><h3>Something looks wrong? Follow the evidence.</h3><ol><li>Check that the stylesheet loaded and the selector matches.</li><li>Inspect the rule: crossed out, invalid, or active?</li><li>Check computed values, the box model and the parent layout.</li><li>Try one small change, then save it in your file.</li></ol><p><a href="#debugcss">Return to the CSS debugging lesson →</a></p></div>
+      <p class="small">Look up an unfamiliar property in the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Reference" target="_blank" rel="noopener noreferrer">MDN CSS reference</a>. Predict its effect, then try it in a small demo.</p>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="cssref" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <section id="glossary" class="sec reference-sec" aria-labelledby="glossaryTitle">
+      <p class="kicker">4.3 · Words without the mystery</p>
+      <h2 id="glossaryTitle">“What did that word mean?”</h2>
+      <p class="hook">A definition, a familiar example and a way back to the lesson. You do not have to memorise the dictionary.</p>
+      <div class="ref-tools" id="glossaryTools" hidden>
+        <div class="ref-search"><label for="glossarySearch">Find a term or an idea</label><input id="glossarySearch" type="search" placeholder="Try padding, server or keyboard" autocomplete="off" aria-controls="glossaryList"></div>
+        <button class="btn btn-ghost btn-small" id="glossaryClear" type="button">Clear search</button>
+      </div>
+      <p class="ref-status" id="glossaryCount" role="status" aria-live="polite"></p>
+      <p class="hint" id="glossaryEmpty" hidden>No matching words yet. Try a shorter word, or clear the search to see everything.</p>
+      <dl class="glossary-list" id="glossaryList">
+        <div><dt>Accessibility</dt><dd>Making a page usable by people with different abilities and ways of interacting, including a keyboard or screen reader.<br><a href="#forms">Example: a labelled form field →</a></dd></div>
+        <div><dt>Attribute</dt><dd>Extra information in an HTML opening tag, such as <code>href</code>, <code>alt</code> or <code>class</code>.<br><a href="#attributes">Revisit attributes →</a></dd></div>
+        <div><dt>Block and inline</dt><dd>Default layout behaviors. A block box starts on a new line; an inline box flows with surrounding text. CSS can change the display behavior.<br><a href="#blockinline">See the boxes →</a></dd></div>
+        <div><dt>Box model</dt><dd>The layers around content: padding, border and margin. They explain the space an element uses.<br><a href="#boxmodel">Try the box model →</a></dd></div>
+        <div><dt>Breakpoint</dt><dd>A condition where a responsive layout changes. For example, cards stack when a width media query matches.<br><a href="#responsive">See responsive layouts →</a></dd></div>
+        <div><dt>Cascade</dt><dd>The process that decides which CSS declaration wins when several apply to the same property on an element.<br><a href="#cascade">Compare competing rules →</a></dd></div>
+        <div><dt>Class</dt><dd>A reusable label on HTML elements. <code>class="card"</code> is selected with <code>.card</code> in CSS.<br><a href="#classes">Explore classes →</a></dd></div>
+        <div><dt>Client and server</dt><dd>The client asks for a resource; the server responds. Your browser is the client when it requests a page.<br><a href="#client">Follow the conversation →</a></dd></div>
+        <div><dt>Containing block</dt><dd>The reference box used to work out certain sizes and positions. An absolutely positioned item often uses its nearest positioned ancestor.<br><a href="#position">Try positioning →</a></dd></div>
+        <div><dt>CSS</dt><dd>Cascading Style Sheets: rules for how a document is presented, such as colours, spacing and layout.<br><a href="#cssadd">See ways to add CSS →</a></dd></div>
+        <div><dt>CSS variable</dt><dd>A custom property such as <code>--brand</code>. Read its value with <code>var(--brand)</code> and override it where needed.<br><a href="#variables">Try custom properties →</a></dd></div>
+        <div><dt>Declaration</dt><dd>A CSS property and value together, such as <code>color: teal;</code>.<br><a href="#rule">Read a CSS rule →</a></dd></div>
+        <div><dt>DNS</dt><dd>Domain Name System: helps resolve a hostname such as <code>example.com</code> to an IP address.<br><a href="#dns">Follow a DNS lookup →</a></dd></div>
+        <div><dt>DOM</dt><dd>Document Object Model: the browser's tree of objects representing the document. JavaScript can read or change that tree.<br><a href="#render">Follow text turning into pixels →</a></dd></div>
+        <div><dt>Element and tag</dt><dd>A tag is markup such as <code>&lt;p&gt;</code>. A paragraph element includes its opening tag, content and closing tag. Void elements such as <code>img</code> have no closing tag.<br><a href="#anatomy">Explore an element →</a></dd></div>
+        <div><dt>Flexbox</dt><dd>A layout system that arranges items along a main axis, in a row or a column, with alignment and wrapping controls.<br><a href="#flexbox">Move the flex items →</a></dd></div>
+        <div><dt>Grid</dt><dd>A layout system with rows and columns. Tracks and gaps let you organise a two-dimensional layout.<br><a href="#grid">Try a grid →</a></dd></div>
+        <div><dt>HTML</dt><dd>HyperText Markup Language: markup that gives web content structure and meaning.<br><a href="#anatomy">Start with an element →</a></dd></div>
+        <div><dt>HTTP and HTTPS</dt><dd>HTTP is the protocol for requests and responses. HTTPS protects HTTP traffic using TLS encryption and server authentication.<br><a href="#https">See the lock and what it means →</a></dd></div>
+        <div><dt>id</dt><dd>An identifier that should be unique within a document. It can be a fragment-link destination and a CSS or JavaScript lookup target.<br><a href="#attributes">Compare id and class →</a></dd></div>
+        <div><dt>Inheritance</dt><dd>How some CSS property values pass from a parent to its children when the child has no overriding value. Text colour commonly inherits; margin does not.<br><a href="#inherit">Watch values pass down →</a></dd></div>
+        <div><dt>Media query</dt><dd>A conditional CSS rule, such as <code>@media (max-width: 500px)</code>, that applies styles when its condition matches.<br><a href="#responsive">Try a phone-sized preview →</a></dd></div>
+        <div><dt>Normal flow</dt><dd>The usual way boxes are laid out before positioning changes it. Absolute positioning removes an item from that flow.<br><a href="#position">See normal flow and positioning →</a></dd></div>
+        <div><dt>Padding and margin</dt><dd>Padding is inside an element's border. Margin adds space outside the border; vertical margins can sometimes collapse.<br><a href="#margins">Compare the spaces →</a></dd></div>
+        <div><dt>Path</dt><dd>The part of an address that identifies a resource. A relative file path is worked out from a base location, such as the current HTML file.<br><a href="#links">Try links and paths →</a></dd></div>
+        <div><dt>Property and value</dt><dd>The property says what to change; the value says how. In <code>padding: 12px</code>, they are <code>padding</code> and <code>12px</code>.<br><a href="#rule">Read declarations →</a></dd></div>
+        <div><dt>Pseudo-class</dt><dd>A selector for a state or condition, such as <code>:hover</code>, <code>:focus-visible</code> or <code>:nth-child(2)</code>.<br><a href="#pseudo">Try states and conditions →</a></dd></div>
+        <div><dt>Pseudo-element</dt><dd>A selector for a part of an element, such as <code>::first-letter</code>, or generated content such as <code>::before</code>.<br><a href="#pseudo">Compare pseudo-elements →</a></dd></div>
+        <div><dt>Request and response</dt><dd>A request asks a server for something; the response returns a status, headers and often a body such as an HTML file.<br><a href="#http">Inspect the exchange →</a></dd></div>
+        <div><dt>Responsive design</dt><dd>Designing a page to work across different viewport sizes, using flexible layouts, sensible sizing and conditional styles.<br><a href="#responsive">Resize the page →</a></dd></div>
+        <div><dt>Selector</dt><dd>The part of a CSS rule that matches elements. <code>#history li</code> matches list items inside the element with id <code>history</code>.<br><a href="#selectors">Practise picking elements →</a></dd></div>
+        <div><dt>Semantic HTML</dt><dd>Choosing elements for their meaning. A navigation region is a <code>nav</code>; a real button is a <code>button</code>.<br><a href="#semantic">Explore page landmarks →</a></dd></div>
+        <div><dt>Specificity</dt><dd>The weight of a selector, used within the cascade to compare competing declarations. An id selector weighs more than a class selector.<br><a href="#cascade">Try the specificity demo →</a></dd></div>
+        <div><dt>Transition and animation</dt><dd>A transition interpolates a property change. A keyframe animation defines named steps that can repeat.<br><a href="#transitions">Compare motion tools →</a></dd></div>
+        <div><dt>URL</dt><dd>Uniform Resource Locator: an address with parts such as scheme, hostname and path, plus optional query and fragment.<br><a href="#url">Take a URL apart →</a></dd></div>
+        <div><dt>Viewport</dt><dd>The area through which the browser shows a page. The viewport meta tag helps mobile browsers lay it out at the device's width.<br><a href="#responsive">Compare phone views →</a></dd></div>
+      </dl>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="glossary" aria-pressed="false">I can explain this</button></div>
+    </section>
+
+    <section id="interview" class="sec reference-sec" aria-labelledby="interviewTitle">
+      <p class="kicker">4.4 · Say it in your own words</p>
+      <h2 id="interviewTitle">Your interview lines, together</h2>
+      <p class="hook">Pick a topic, explain it without opening the answer, then compare. These are reminders of the lessons you have already read. Your own words and a small example matter more than matching the wording.</p>
+      <div class="callout"><h3>A simple revision rhythm</h3><ol><li>Choose one web, one HTML and one CSS topic.</li><li>Explain each to your brother in about 30 seconds.</li><li>Open its answer, find one missing idea, and try again.</li></ol></div>
+      <button class="btn btn-ghost btn-small" type="button" id="interviewToggle" hidden>Open all answers</button>
+      <p class="ref-status" id="interviewCount"></p>
+      <div id="interviewLines"></div>
+      <noscript><div class="hint"><b>Interview lines are in the lessons too</b>Enable JavaScript to collect them here, or use the “Say it in an interview” boxes throughout <a href="#part1">Part 1</a>, <a href="#part2">Part 2</a> and <a href="#part3">Part 3</a>.</div></noscript>
+      <div class="callout ref-finish"><h3>You have a foundation. Now use it.</h3><p>Return to your <a href="../Playground/vasavi.html">About me page</a> and explain one HTML choice and one CSS choice. For JavaScript and your induction project, continue with the <a href="../Dice%20Roll/prep/practice/README.md">Dice Roll practice tasks</a> and <a href="../Dice%20Roll/prep/study_guide.html">interview study guide</a>.</p><p>You can come back here whenever a word or a line of syntax slips your mind. That is what a reference is for.</p></div>
+      <div class="done-row"><button class="btn btn-ghost done-btn" type="button" data-done="interview" aria-pressed="false">I can explain this</button></div>
     </section>
 
   </main>
@@ -5455,7 +5731,7 @@ button {
 
 <footer class="foot">
   <div class="foot-in">
-    <p>Parts 1 to 3. Ticks, challenges, your code and the theme are saved only in this browser.</p>
+    <p>Parts 1 to 4. Ticks, challenges, your code and the theme are saved only in this browser.</p>
     <button class="btn btn-ghost btn-small" id="resetBtn" type="button">Clear my ticks</button>
   </div>
 </footer>
@@ -5471,17 +5747,23 @@ button {
   };
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
+  var SELECTION_CSS = "::selection{background:#F0D7FF;color:#1A1A1A;text-shadow:none}";
 
   /* ---------- theme ---------- */
   var root = document.documentElement;
   var themeBtn = $("#themeBtn");
+  var systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
   function isDark() {
     var t = root.getAttribute("data-theme");
     if (t) return t === "dark";
-    return window.matchMedia("(prefers-color-scheme: dark)").matches;
+    return systemTheme.matches;
   }
   function paintTheme() {
-    themeBtn.textContent = isDark() ? "Light mode" : "Dark mode";
+    var next = isDark() ? "light" : "dark";
+    var label = "Switch to " + next + " mode";
+    themeBtn.setAttribute("data-next-theme", next);
+    themeBtn.setAttribute("aria-label", label);
+    themeBtn.title = label;
   }
   themeBtn.addEventListener("click", function () {
     var next = isDark() ? "light" : "dark";
@@ -5490,6 +5772,7 @@ button {
     paintTheme();
   });
   paintTheme();
+  systemTheme.addEventListener("change", paintTheme);
 
   /* ---------- syntax colouring ---------- */
   function hlAttrs(s) {
@@ -5551,7 +5834,8 @@ button {
   var SECS = ["client", "url", "dns", "http", "https", "render", "hosting", "recap1",
     "anatomy", "skeleton", "text", "links", "images", "lists", "forms", "semantic", "blockinline", "attributes", "rules", "devtools", "recap2",
     "cssadd", "rule", "selectors", "classes", "hierarchy", "inherit", "cascade", "pseudo", "colors", "units", "boxmodel", "margins",
-    "backgrounds", "type", "display", "position", "flexbox", "grid", "transforms", "transitions", "animations", "responsive", "variables", "debugcss", "recap3"];
+    "backgrounds", "type", "display", "position", "flexbox", "grid", "transforms", "transitions", "animations", "responsive", "variables", "debugcss", "recap3",
+    "htmlref", "cssref", "glossary", "interview"];
   var done = store.get("wg-done", {});
   function paintDone() {
     $$(".done-btn").forEach(function (b) {
@@ -5595,6 +5879,75 @@ button {
     }, { rootMargin: "-30% 0px -60% 0px" });
     $$("main .sec").forEach(function (s) { io.observe(s); });
   }
+
+  /* ---------- Part 4 reference tools ---------- */
+  var glossaryItems = $$("#glossaryList > div");
+  var glossarySearch = $("#glossarySearch");
+  function filterGlossary() {
+    var query = glossarySearch.value.trim().toLowerCase();
+    var shown = 0;
+    glossaryItems.forEach(function (item) {
+      var match = item.textContent.toLowerCase().indexOf(query) !== -1;
+      item.hidden = !match;
+      if (match) shown++;
+    });
+    $("#glossaryCount").textContent = shown + " of " + glossaryItems.length + " terms";
+    $("#glossaryEmpty").hidden = shown !== 0;
+  }
+  $("#glossaryTools").hidden = false;
+  glossarySearch.addEventListener("input", filterGlossary);
+  $("#glossaryClear").addEventListener("click", function () {
+    glossarySearch.value = "";
+    filterGlossary();
+    glossarySearch.focus();
+  });
+  filterGlossary();
+
+  // Collect the original interview lines so there is only one copy to maintain.
+  var interviewLines = $("#interviewLines"), interviewList = null, interviewTotal = 0;
+  $$("main > section").forEach(function (section) {
+    if (section.classList.contains("part")) {
+      interviewList = null;
+      if (!/^part[123]$/.test(section.id)) return;
+      var heading = document.createElement("h3");
+      heading.textContent = $(".part-num", section).textContent + " · " + $("h2", section).textContent;
+      interviewLines.appendChild(heading);
+      interviewList = document.createElement("div");
+      interviewList.className = "interview-list";
+      interviewLines.appendChild(interviewList);
+      return;
+    }
+    if (!interviewList) return;
+    var answer = $(".say", section);
+    if (!answer) return;
+    var card = document.createElement("details"), summary = document.createElement("summary"), body = document.createElement("div");
+    card.className = "interview-line";
+    var railLink = $('.rail-list a[data-sec="' + section.id + '"]');
+    summary.textContent = railLink ? railLink.textContent : $("h2", section).textContent;
+    body.className = "interview-answer";
+    $$("p", answer).forEach(function (p) { body.appendChild(p.cloneNode(true)); });
+    var back = document.createElement("a");
+    back.href = "#" + section.id;
+    back.textContent = "Revisit the lesson and demo →";
+    body.appendChild(back);
+    card.appendChild(summary);
+    card.appendChild(body);
+    interviewList.appendChild(card);
+    interviewTotal++;
+  });
+  $("#interviewCount").textContent = interviewTotal + " interview lines from Parts 1–3";
+  var interviewToggle = $("#interviewToggle");
+  var interviewCards = $$(".interview-line", interviewLines);
+  function paintInterviewToggle() {
+    interviewToggle.textContent = interviewCards.every(function (card) { return card.open; }) ? "Close all answers" : "Open all answers";
+  }
+  interviewToggle.hidden = false;
+  interviewToggle.addEventListener("click", function () {
+    var open = interviewCards.some(function (card) { return !card.open; });
+    interviewCards.forEach(function (card) { card.open = open; });
+    paintInterviewToggle();
+  });
+  interviewCards.forEach(function (card) { card.addEventListener("toggle", paintInterviewToggle); });
 
   /* ---------- quizzes ---------- */
   $$(".quiz").forEach(function (q) {
@@ -6302,7 +6655,7 @@ button {
     "span,a,strong,em,b,i,u,small,mark,code,kbd,img,label,input,button,select,textarea,sub,sup,q,abbr,time{outline:2px dashed rgba(230,120,0,.95);outline-offset:-2px}";
   function buildDoc(html, css, boxes) {
     html = html.replace(/(\b(?:src|href)\s*=\s*)(["'])([^"']*)\2/gi, function (m, a, q, p) { return VFS[p] ? a + q + VFS[p] + q : m; });
-    var style = "<style>" + (boxes ? BOX_CSS : "") + "\n" + (css || "") + "\n</style>";
+    var style = "<style>" + SELECTION_CSS + (boxes ? BOX_CSS : "") + "\n" + (css || "") + "\n</style>";
     if (/<\/head\s*>/i.test(html)) return html.replace(/<\/head\s*>/i, function () { return style + "</head>"; });
     if (/<!doctype|<html[\s>]/i.test(html)) return html + style;
     return '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' + style + "</head><body>\n" + html + "\n<\/body></html>";
@@ -6716,7 +7069,7 @@ button {
   (function () {
     function page(vp) {
       return '<!DOCTYPE html><html><head><meta charset="utf-8">' + (vp ? '<meta name="viewport" content="width=device-width, initial-scale=1.0">' : "") +
-        "<style>body{font-family:Arial,sans-serif;margin:14px;color:#1a1a1a}h1{font-size:28px;margin:0 0 8px}p{font-size:16px;line-height:1.45}" +
+        "<style>" + SELECTION_CSS + "body{font-family:Arial,sans-serif;margin:14px;color:#1a1a1a}h1{font-size:28px;margin:0 0 8px}p{font-size:16px;line-height:1.45}" +
         "button{font-size:16px;padding:8px 14px;margin:0 4px 6px 0;background:#2c3e50;color:#fff;border:0;border-radius:5px}</style></head>" +
         "<body><h1>Dice Roll</h1><p>Roll one die or two. Your last ten rolls show up below the buttons.</p><button>Roll 1 Die</button><button>Roll 2 Dice</button><\/body></html>";
     }
@@ -6921,7 +7274,7 @@ button {
       "h1{margin:4px 0 8px;font-size:26px}.dice img{width:64px;margin:6px}#result{font-size:20px;font-weight:bold;margin:8px 0}" +
       "button{padding:8px 14px;margin:4px;font-size:14px;color:#fff;background:#2c3e50;border:0;border-radius:5px}" +
       "h2{font-size:18px;margin:12px 0 4px}#history{list-style:none;padding:0;margin:0}#history li{padding:4px;border-bottom:1px solid #ddd}";
-    var PAGE = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Dice Roll</title><style>' + css + "</style></head><body>" +
+    var PAGE = '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Dice Roll</title><style>' + SELECTION_CSS + css + "</style></head><body>" +
       '<div class="container"><h1>Dice Roll</h1><div class="dice"><img id="dice1" src="' + VFS["images/dice4.svg"] + '" alt="Dice"><img id="dice2" src="' + VFS["images/dice2.svg"] + '" alt="Dice"></div>' +
       '<p id="result">4 + 2 = 6</p><button id="btn1">Roll 1 Die</button><button id="btn2">Roll 2 Dice</button><h2>History</h2><ul id="history"><li>4 + 2 = 6</li><li>3</li></ul></div><\/body></html>';
     var d = null, sel = null, picking = false, rows = [];
@@ -7228,7 +7581,7 @@ button {
         '<button class="btn btn-small" type="button">Open in editor</button></div><div class="presets"></div><p class="sp-msg" aria-live="polite"></p>' +
         '<div class="sp"><div class="sp-host"></div><div class="sp-tree" aria-label="The page as a tree"></div></div>';
       var root = $(".sp-host", wrap).attachShadow({ mode: "open" });
-      root.innerHTML = "<style>" + SP_CSS + '</style><div class="pg">' + SP_HTML + "</div>";
+      root.innerHTML = "<style>" + SELECTION_CSS + SP_CSS + '</style><div class="pg">' + SP_HTML + "</div>";
       var pg = root.querySelector(".pg"), input = $("input", wrap), msg = $(".sp-msg", wrap), tree = $(".sp-tree", wrap), rows = [];
       (function walk(el, depth) {
         Array.prototype.forEach.call(el.children, function (c) {
@@ -7288,7 +7641,7 @@ button {
   }
   (function () {
     var host = $("#sbHost").attachShadow({ mode: "open" });
-    host.innerHTML = "<style>main{display:block;font:700 21px/1.3 Arial,sans-serif;text-align:center;padding:20px 14px;background:#fff;color:#1a1a1a}p{margin:0}</style>" +
+    host.innerHTML = "<style>" + SELECTION_CSS + "main{display:block;font:700 21px/1.3 Arial,sans-serif;text-align:center;padding:20px 14px;background:#fff;color:#1a1a1a}p{margin:0}</style>" +
       '<main><div class="card"><p id="intro" class="note">Who colours me?</p></div></main>';
     var target = host.querySelector("p"), mainEl = host.querySelector("main");
     var boxA = $("#sbA"), boxB = $("#sbB"), inline = $("#sbInline"), verdict = $("#sbVerdict");
@@ -7767,7 +8120,7 @@ button {
   (function () {
     var frame = $("#posFrame"), mode = "static", T = $("#posT"), L = $("#posL"), rel = $("#posRel"), d = null;
     var filler = "<p>Keep scrolling. This text is only here so the page is long enough to scroll.</p>";
-    frame.srcdoc = '<!DOCTYPE html><html><head><style>body{margin:0;padding:12px;font:14px/1.5 Arial,sans-serif;color:#1a1a1a}p{margin:0 0 10px;color:#555}' +
+    frame.srcdoc = '<!DOCTYPE html><html><head><style>' + SELECTION_CSS + 'body{margin:0;padding:12px;font:14px/1.5 Arial,sans-serif;color:#1a1a1a}p{margin:0 0 10px;color:#555}' +
       ".parent{border:2px dashed #034f46;border-radius:8px;padding:8px 10px;margin:10px 0}.parent::before{content:'parent';display:block;font:700 11px monospace;color:#034f46}" +
       ".sib{background:#CFE3DC;padding:6px 8px;border-radius:6px;margin:6px 0}.box{background:#FFA946;padding:6px 8px;border-radius:6px;margin:6px 0;width:130px;font-weight:700;box-shadow:0 2px 6px rgba(0,0,0,.25)}" +
       ".cb{outline:3px solid rgba(232,137,12,.55);outline-offset:2px}</style></head><body><p>This is a page inside the demo. The dashed box is the parent of the orange box.</p>" +
@@ -7997,7 +8350,7 @@ button {
       else { path = "M4 40"; for (var i = 1; i <= 5; i++) path += " H" + (4 + i * 7.2) + (i < 5 ? " V" + (40 - i * 7.2) : " V4"); }
       return '<svg class="g" viewBox="0 0 44 44" aria-hidden="true"><path d="M4 40 L40 4" stroke="#DDDDDD" stroke-width="1.5" fill="none"/><path d="' + path + '" stroke="#C2410C" stroke-width="2.5" fill="none" stroke-linejoin="round"/></svg>';
     }
-    host.innerHTML = "<style>.lanes{display:grid;gap:8px;color:var(--ink);font:13px Arial,sans-serif}.lane{display:grid;grid-template-columns:110px 44px minmax(0,1fr);gap:10px;align-items:center}" +
+    host.innerHTML = "<style>" + SELECTION_CSS + ".lanes{display:grid;gap:8px;color:var(--ink);font:13px Arial,sans-serif}.lane{display:grid;grid-template-columns:110px 44px minmax(0,1fr);gap:10px;align-items:center}" +
       ".lane code{font:600 12px/1.2 monospace;background:var(--lav);color:var(--on-lav);border-radius:5px;padding:3px 6px;justify-self:start}" +
       ".g{width:44px;height:44px;background:#fff;border:1px solid #ddd;border-radius:6px;display:block}" +
       ".track{position:relative;height:44px;background:#fff;border:1px solid #ddd;border-radius:8px;color-scheme:light}.track::after{content:'';position:absolute;right:6px;top:6px;bottom:6px;border-right:2px dashed #034f46}" +
@@ -8022,7 +8375,7 @@ button {
   (function () {
     var host = $("#anHost").attachShadow({ mode: "open" }), T = $("#anT"), now = $("#anNow"), read = $("#anRead"), ctl = $("#anCtl"), playing = false, raf = 0;
     var KF = [[0, 0], [25, 20], [50, -20], [75, 20], [100, 0]], st = { dur: "1s", iter: "1", dir: "normal", ease: "ease" };
-    host.innerHTML = "<style>.st{display:grid;place-items:center;height:170px;background:#fff;border:1px solid #ddd;border-radius:12px}.die{width:100px;height:100px}.die svg{width:100%;height:100%;display:block}" +
+    host.innerHTML = "<style>" + SELECTION_CSS + ".st{display:grid;place-items:center;height:170px;background:#fff;border:1px solid #ddd;border-radius:12px}.die{width:100px;height:100px}.die svg{width:100%;height:100%;display:block}" +
       "@keyframes shake{0%{transform:rotate(0deg)}25%{transform:rotate(20deg)}50%{transform:rotate(-20deg)}75%{transform:rotate(20deg)}100%{transform:rotate(0deg)}}</style>" +
       '<div class="st"><div class="die">' + dieSVG(3) + "</div></div>";
     var die = host.querySelector(".die");
@@ -8080,7 +8433,7 @@ button {
     var host = $("#vrHost").attachShadow({ mode: "open" }), ctl = $("#vrCtl");
     var V = { brand: "#034f46", accent: "#ffa946", bg: "#eef2f7", card: "#ffffff", text: "#1a1a1a", radius: 12 };
     var THEMES = { Teal: { brand: "#034f46", accent: "#ffa946", bg: "#eef2f7", card: "#ffffff", text: "#1a1a1a", radius: 12 }, Night: { brand: "#9ae6ff", accent: "#ffd166", bg: "#0f1222", card: "#1b2038", text: "#e6e6ff", radius: 18 }, Candy: { brand: "#c2185b", accent: "#ffcc80", bg: "#fce4ec", card: "#ffffff", text: "#3a0d1f", radius: 24 } };
-    host.innerHTML = "<style>.pg{background:var(--bg);color:var(--text);font:14px/1.45 Arial,sans-serif;padding:16px;border-radius:12px;border:1px solid #ddd}.pg h3{color:var(--brand);margin:0 0 10px;font-size:19px}" +
+    host.innerHTML = "<style>" + SELECTION_CSS + ".pg{background:var(--bg);color:var(--text);font:14px/1.45 Arial,sans-serif;padding:16px;border-radius:12px;border:1px solid #ddd}.pg h3{color:var(--brand);margin:0 0 10px;font-size:19px}" +
       ".card{background:var(--card);border:2px solid var(--brand);border-radius:var(--radius);padding:12px}.tag{background:var(--accent);color:#1a1a1a;padding:2px 9px;border-radius:var(--radius);font-size:12px;font-weight:700}" +
       ".card p{margin:8px 0}.card a{color:var(--brand)}button{background:var(--brand);color:var(--card);border:0;border-radius:var(--radius);padding:8px 14px;font:700 13px Arial,sans-serif}" +
       ".bar{height:8px;border-radius:var(--radius);background:var(--accent);margin-top:12px}</style>" +
@@ -8110,7 +8463,7 @@ button {
   /* ---------- styles pane ---------- */
   (function () {
     var host = $("#stpHost").attachShadow({ mode: "open" }), pane = $("#stpPane"), say = $("#stpSay");
-    host.innerHTML = '<button type="button" id="roll" class="btn">Roll 1 Die</button>';
+    host.innerHTML = '<style>' + SELECTION_CSS + '</style><button type="button" id="roll" class="btn">Roll 1 Die</button>';
     var btn = host.querySelector("button");
     var RULES = [
       { sel: "element.style", src: "", d: [] },

@@ -32,7 +32,9 @@ It is being built one part at a time:
 1. How the web works: client and server, URLs, DNS, HTTP, HTTPS, how the browser draws a page, and opening your page three ways. Ready.
 2. HTML: tags, the page skeleton, links and paths, images, lists, tables, forms, semantic layout, id and class, and the Elements panel. Live editors and 8 challenges. Ready.
 3. CSS. Ready. The first half is how CSS thinks: rules, selectors, classes, combinators, inheritance, the cascade and specificity, pseudo-classes, colours, units, the box model and margins. The second half is how it looks and moves: backgrounds, text, display, position, flexbox, grid, transforms, transitions, animations, responsive design, variables and debugging. 13 challenges in all.
-4. Wrap-up: cheat sheets and glossary. Coming next.
+4. Wrap-up. Ready. HTML and CSS cheat sheets, a searchable 36-term glossary, and all 44 interview lines collected from the lessons with expandable answers and links back to the demos. Four revision sections bring the guide to 50 sections; the 21 challenges remain unchanged.
+
+The guide uses an accessible sun/moon SVG theme button and text-selection colours that match its light and dark themes. Existing browser-saved code, ticks and theme preferences keep their storage keys.
 
 ## Playground
 
