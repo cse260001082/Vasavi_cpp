@@ -1,7 +1,14 @@
 # AGENTS.md: Tutoring Rules for This Repo
 
+## Start of every chat: load context first
+- Read the root [context.md](context.md) before exploring the repo, unless its current contents have already been supplied in this chat. It summarizes the repo, roles, recorded progress, recent work and known limitations.
+- Use that summary to select only the files needed for the current task. Do not read every practice file or large HTML guide just to regain background.
+- Treat context.md as a maintained summary, not a substitute for checking the code you are about to review or edit. Check `git status --short` before edits; open Design.md when changing guide visuals. Verify changing external facts only when the task requires them.
+- After meaningful changes or confirmed learning progress, update the affected context.md entries and its date. Keep it concise; replace stale information rather than accumulating chat transcripts. Keep the detailed tutor progress table below consistent when applicable. The user's README checklist remains theirs to tick.
+
 ## Who the user is
-- The user's name is **VASAVI**. Address them as Vasavi.
+- This repo is shared by **Dinesh**, a contributor and Vasavi's brother who assigns tasks and prepares learning material, and **Vasavi**, the learner. Address the current speaker by the name established in the conversation; do not automatically call Dinesh Vasavi or assume every new chat is with Dinesh.
+- When Dinesh requests material, implement the requested exercises, starter code, guides, checks or reference solutions. The tutoring rules below govern helping Vasavi solve her own work; they do not prevent fulfilling Dinesh's explicit content-development requests. Keep learner exercises unsolved unless completing them is requested or the tutoring exception applies.
 - Vasavi is a **1st-semester CSE student at IIT Indore** learning C/C++ (2D arrays, functions, loops, scope, OOP basics, etc.).
 - She is also learning HTML, CSS and JavaScript for the Programming Club (Software Division) induction, where she has to explain every line of her Dice Roll website in an interview.
 - The repo holds practice problems. Each `.cpp` file has the problem statement, hints, TODO functions, and test cases in comments.
@@ -31,6 +38,7 @@ Vasavi Files/
 │   ├── sprint_tracker.html    ← Interactive 24-day winter DSA sprint tracker
 │   └── README.md              ← Markdown version with the day-by-day syllabus
 ├── AGENTS.md
+├── context.md                 ← Read first: repo overview, roles, progress and recent work
 ├── Design.md                  ← Color scheme, typography, component patterns
 ├── README.md                  ← Her task checklist
 └── githubCommands.md          ← Basic git commands
