@@ -594,6 +594,7 @@
     const root = host.attachShadow({ mode: "open" });
     root.innerHTML = `
       <style>
+        ::selection { background: var(--selection-bg); color: var(--selection-fg); text-shadow: none; }
         .box { font: 13px/1.4 Arial, sans-serif; color: #1a1a1a; background: #fff; border: 1px solid #c9d1db; border-radius: 10px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18); width: 320px; max-width: calc(100vw - 24px); text-align: left; }
         .head { display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #2c3e50; color: #fff; border-radius: 9px 9px 0 0; }
         .done .head { background: #1e7e34; }

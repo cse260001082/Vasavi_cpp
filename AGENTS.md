@@ -39,6 +39,7 @@ Vasavi Files/
 │   └── README.md              ← Markdown version with the day-by-day syllabus
 ├── AGENTS.md
 ├── context.md                 ← Read first: repo overview, roles, progress and recent work
+├── assets/                    ← Shared selection CSS for all HTML; guide-only UI and theme assets
 ├── Design.md                  ← Color scheme, typography, component patterns
 ├── README.md                  ← Her task checklist
 └── githubCommands.md          ← Basic git commands
@@ -84,6 +85,8 @@ Vasavi Files/
 - The repo has a shared visual identity documented in `Design.md`.
 - **Whenever creating any summary, guide, or important artifact HTML made *for* Vasavi, use the color scheme, typography, and component patterns defined in `Design.md`.** This includes teal hero sections, warm cream backgrounds, lavender callouts, ember accents, Bricolage Grotesque headings, Atkinson Hyperlegible body text, and both light/dark mode support.
 - **Never apply Design.md to her own project code.** The Dice Roll `style.css` and the practice task files stay in her own plain style.
+- **Selection-only exception explicitly requested by Dinesh:** every HTML page, including Dice Roll, practice tasks and Playground, loads the root `assets/selection.css` through the correct relative path. Include it in every new HTML file. This shared selection layer is the only design styling applied to learner pages; keep their existing layout, code and exercise state intact.
+- Authored guides also use `data-guide-ui` on `<html>`, `assets/guide-ui.css` and `assets/guide-theme.js` as documented in Design.md. Reuse those assets for theme icons and shared UI behavior instead of copying theme implementations into new guides.
 - The design was originally extracted from `Development/Dice Roll/prep/study_guide.html`.
 
 ## Progress so far (update as she goes)

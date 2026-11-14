@@ -2,6 +2,8 @@
 
 Web projects, built with plain HTML, CSS and JavaScript.
 
+All HTML pages load the repo's shared `assets/selection.css` for teal selection in light mode and lavender in dark mode. The authored guides also share sun/moon SVG theme controls, accessible focus styling and theme preferences through `assets/guide-ui.css` and `assets/guide-theme.js`. Learner projects and task pages receive only the selection styling. See `../Design.md` for the required includes when adding a new page.
+
 ## Dice Roll
 
 Your project for the Programming Club (Software Division) induction.

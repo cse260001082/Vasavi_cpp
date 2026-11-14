@@ -1,0 +1,84 @@
+/* Shared presentation for authored guides; never included in learner projects. */
+:root[data-guide-ui] { color-scheme: light; }
+@media (prefers-color-scheme: dark) {
+  :root[data-guide-ui]:not([data-theme="light"]) { color-scheme: dark; }
+}
+:root[data-guide-ui][data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #1A1A1A;
+  --surface: #222222;
+  --border: #36362F;
+  --ink: #FFFFEB;
+  --ink-2: #DADAC8;
+  --muted: #A3A397;
+  --accent: #F0D7FF;
+  --on-accent: #1A1A1A;
+  --accent-text: #F0D7FF;
+  --lav: #3A2D47;
+  --on-lav: #FFFFEB;
+  --ember: #FFA946;
+  --ember-soft: #3B2C18;
+  --on-ember: #1A1A1A;
+  --code-bg: #121212;
+  --code-fg: #FFFFEB;
+}
+
+[data-guide-ui] .hero { position: relative; }
+[data-guide-ui] .hero-in { padding-top: max(64px, env(safe-area-inset-top, 0px)); }
+[data-guide-ui] .hero .eyebrow { color: #F0D7FF; }
+[data-guide-ui] :focus-visible { outline: 3px solid #FFA946; outline-offset: 3px; }
+[data-guide-ui] .rail,
+[data-guide-ui] .navlinks,
+[data-guide-ui] .table-wrap,
+[data-guide-ui] .snip { scrollbar-color: var(--muted) var(--bg); }
+
+.guide-icon {
+  display: inline-block;
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+  vertical-align: -.18em;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+[data-guide-ui] h2 > .guide-icon,
+[data-guide-ui] h4 > .guide-icon { color: var(--accent-text); margin-right: .2em; }
+.timer-icon .guide-icon { width: 2rem; height: 2rem; }
+[data-guide-ui] .rail-item .rail-icon-link { justify-content: flex-start; gap: 8px; }
+.arr .guide-icon { transition: transform .15s ease; }
+.arr.is-open .guide-icon { transform: rotate(180deg); }
+
+.guide-theme-button {
+  position: absolute;
+  z-index: 2;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid #2F7A70;
+  border-radius: 999px;
+  background: #0A5F55;
+  color: #FFFFEB;
+  cursor: pointer;
+  transition: background-color .15s ease, border-color .15s ease;
+}
+.guide-theme-button:hover { background: #2F7A70; border-color: #CFE3DC; }
+.guide-theme-button:focus-visible { outline: 3px solid #FFA946; outline-offset: 3px; }
+.guide-theme-button svg { display: block; width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.guide-theme-button .theme-sun,
+.guide-theme-button[data-next-theme="light"] .theme-moon { display: none; }
+.guide-theme-button[data-next-theme="light"] .theme-sun { display: block; }
+.guide-theme-button[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-guide-ui] { scroll-behavior: auto; }
+  [data-guide-ui] *,
+  [data-guide-ui] *::before,
+  [data-guide-ui] *::after { animation: none !important; transition: none !important; }
+}

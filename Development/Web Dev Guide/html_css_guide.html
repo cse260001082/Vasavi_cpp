@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-guide-ui>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Web Basics Guide</title>
+<script src="../../assets/guide-theme.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
-<script>
-try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.setAttribute("data-theme", JSON.parse(t)); } catch (e) {}
-</script>
+
 <style>
 /* Layout: teal hero with an animated browser, then a sticky rail of parts and sections beside one reading column; on phones the rail becomes a chip bar */
 :root {
@@ -48,8 +47,6 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
   --u-query: #D5E6F7;
   --u-frag: #F8D3DF;
   --wire: #C9C9B4;
-  --selection-bg: #034F46;
-  --selection-fg: #FFFFEB;
   color-scheme: light;
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
@@ -64,7 +61,6 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
     --ok-soft: #1E3A35;
     --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
     --wire: #4A4A40;
-    --selection-bg: #F0D7FF; --selection-fg: #1A1A1A;
     color-scheme: dark;
   }
 }
@@ -76,14 +72,10 @@ try { var t = localStorage.getItem("wg-theme"); if (t) document.documentElement.
   --ok-soft: #1E3A35;
   --u-scheme: #4A3560; --u-host: #1F4A41; --u-port: #45432F; --u-path: #57401C; --u-query: #23405A; --u-frag: #5A2A3A;
   --wire: #4A4A40;
-  --selection-bg: #F0D7FF; --selection-fg: #1A1A1A;
   color-scheme: dark;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
-::selection { background: var(--selection-bg); color: var(--selection-fg); text-shadow: none; }
-.hero ::selection { background: var(--ember); color: var(--on-ember); }
-.snip::selection, .snip ::selection { background: #F0D7FF; color: #1A1A1A; }
 html { scroll-behavior: smooth; }
 [hidden] { display: none !important; }
 body {
@@ -204,25 +196,6 @@ input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent);
 .stat-val { font-weight: 700; font-size: 1.05rem; font-variant-numeric: tabular-nums; }
 .meter { height: 6px; border-radius: 99px; background: var(--hero-line); margin-top: 6px; overflow: hidden; }
 .meter i { display: block; height: 100%; width: 0; background: var(--ember); border-radius: 99px; transition: width .3s; }
-.theme-btn {
-  position: absolute;
-  top: max(12px, env(safe-area-inset-top, 0px));
-  right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  color: var(--hero-fg);
-  background: var(--hero-chip);
-  border: 1px solid var(--hero-line);
-  border-radius: 999px;
-  padding: 10px;
-  cursor: pointer;
-}
-.theme-btn:hover { background: var(--hero-line); }
-.theme-btn svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.theme-sun, .theme-btn[data-next-theme="light"] .theme-moon { display: none; }
-.theme-btn[data-next-theme="light"] .theme-sun { display: block; }
 .bm { background: #FFFFEB; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(0,0,0,.28); }
 .bm-bar { display: flex; align-items: center; gap: 6px; padding: 9px 10px; background: #E4E4D0; }
 .bm-bar i { width: 10px; height: 10px; border-radius: 50%; background: #B8B8A4; flex: none; }
@@ -819,7 +792,6 @@ select {
   outline: none;
   z-index: 1;
 }
-.ed-ta::selection { background: rgba(240,215,255,.32); color: transparent; }
 .ed-ta:focus-visible { box-shadow: inset 0 0 0 2px var(--ember); }
 .ed-right { min-width: 0; display: flex; flex-direction: column; border-left: 1px solid var(--border); background: #FFFFFF; }
 .ed-bar { display: flex; align-items: flex-end; gap: 6px; padding: 6px 10px 0; background: #E4E4D0; min-height: 33px; }
@@ -1313,10 +1285,12 @@ input[type="range"] { accent-color: var(--accent); width: 100%; margin: 0; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
+<link rel="stylesheet" href="../../assets/selection.css">
+<link rel="stylesheet" href="../../assets/guide-ui.css">
 </head>
 <body>
 <header class="hero">
-  <button class="theme-btn" id="themeBtn" type="button" data-next-theme="dark" aria-label="Switch to dark mode" title="Switch to dark mode">
+  <button class="guide-theme-button" id="themeBtn" type="button" data-next-theme="dark" aria-label="Switch to dark mode" title="Switch to dark mode" hidden>
     <svg class="theme-moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.5 13.2A8.5 8.5 0 0 1 10.8 3.5a8.5 8.5 0 1 0 9.7 9.7Z"/></svg>
     <svg class="theme-sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
   </button>
@@ -2220,7 +2194,7 @@ This line break in my code does not show.</p>
       <p>A file is just bytes. The charset tells the browser how to turn those bytes back into letters. Type anything below, in any language, and see what happens when the browser guesses the wrong charset.</p>
       <div class="demo">
         <label for="encIn" class="small">Type here</label>
-        <input type="text" id="encIn" value="₹500 · café · నమస్తే · 🎲" style="width:100%">
+        <input type="text" id="encIn" value="₹500 · café · నమస్తే · 漢字" style="width:100%">
         <div class="enc">
           <div><b>Read as UTF-8 (correct)</b><output id="encOk"></output></div>
           <div class="bad"><b>Read with a wrong guess (Windows-1252)</b><output id="encBad"></output></div>
@@ -3851,7 +3825,7 @@ input:focus {
   content: "☐ ";
 }
 .todo li.done::before {
-  content: "✔ ";
+  content: "✓ ";
 }
 .todo li:not(.done) {
   font-weight: bold;
@@ -5748,31 +5722,6 @@ button {
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
   var SELECTION_CSS = "::selection{background:#F0D7FF;color:#1A1A1A;text-shadow:none}";
-
-  /* ---------- theme ---------- */
-  var root = document.documentElement;
-  var themeBtn = $("#themeBtn");
-  var systemTheme = window.matchMedia("(prefers-color-scheme: dark)");
-  function isDark() {
-    var t = root.getAttribute("data-theme");
-    if (t) return t === "dark";
-    return systemTheme.matches;
-  }
-  function paintTheme() {
-    var next = isDark() ? "light" : "dark";
-    var label = "Switch to " + next + " mode";
-    themeBtn.setAttribute("data-next-theme", next);
-    themeBtn.setAttribute("aria-label", label);
-    themeBtn.title = label;
-  }
-  themeBtn.addEventListener("click", function () {
-    var next = isDark() ? "light" : "dark";
-    root.setAttribute("data-theme", next);
-    store.set("wg-theme", next);
-    paintTheme();
-  });
-  paintTheme();
-  systemTheme.addEventListener("change", paintTheme);
 
   /* ---------- syntax colouring ---------- */
   function hlAttrs(s) {
@@ -8489,7 +8438,7 @@ button {
         return '<div class="stp-rule' + (r.ua ? " stp-ua" : "") + '"><div><span class="stp-src">' + esc(r.src) + '</span><span class="stp-sel">' + esc(r.sel) + "</span> {</div>" +
           r.d.map(function (o, di) {
             var st = !o.on ? "off" : !valid(o) ? "bad" : w[o.p] !== o ? "over" : "";
-            var warn = o.on && !valid(o) ? '<span class="warn">⚠ ' + (known(o.p) ? "invalid value" : "unknown property") + "</span>" : "";
+            var warn = o.on && !valid(o) ? '<span class="warn"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m12 3 10 18H2L12 3Z"/><path d="M12 9v5m0 3h.01"/></svg> ' + (known(o.p) ? "invalid value" : "unknown property") + "</span>" : "";
             return '<label class="stp-d ' + st + '">' + (r.ua ? '<span style="width:13px"></span>' : '<input type="checkbox" data-r="' + ri + '" data-d="' + di + '"' + (o.on ? " checked" : "") + ">") +
               '<span><span class="p">' + esc(o.p) + '</span>: <span class="v">' + esc(o.v) + "</span>;</span>" + warn + "</label>";
           }).join("") + "<div>}</div></div>";
@@ -8507,7 +8456,7 @@ button {
       else say.textContent = w === o ? o.p + ": " + o.v + " is back, and it wins." : o.p + ": " + o.v + " is back, but it's crossed out, because " + w.rule.sel + " is higher in the list and wins.";
     });
     paint();
-    say.textContent = "Crossed out with no warning means something higher up won. Crossed out with ⚠ means invalid, so it's ignored. That's why this button has tiny padding: 10 px has a space in it.";
+    say.textContent = "Crossed out with no warning means something higher up won. Crossed out with a warning icon means invalid, so it's ignored. That's why this button has tiny padding: 10 px has a space in it.";
   })();
 
   /* ---------- CSS bug hunt ---------- */

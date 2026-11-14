@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-guide-ui>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Dice Roll Interview Prep</title>
+<script src="../../../assets/guide-theme.js"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -568,6 +569,8 @@ td:first-child { font-weight: 700; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
+<link rel="stylesheet" href="../../../assets/selection.css">
+<link rel="stylesheet" href="../../../assets/guide-ui.css">
 </head>
 <body>
 <header class="hero">
@@ -1687,7 +1690,7 @@ why every face is equally likely, and that it is pseudo-random.)
       '<p class="q-text">' + esc(q.q) + "</p>" +
       '<div class="q-actions">' +
       '<button type="button" class="btn btn-small btn-ghost" data-act="show" aria-expanded="false">Show answer</button>' +
-      '<button type="button" class="btn btn-small btn-ghost btn-got" data-act="got" aria-pressed="' + (s === "got") + '">' + (s === "got" ? "✓ I can answer this" : "I can answer this") + "</button>" +
+      '<button type="button" class="btn btn-small btn-ghost btn-got" data-act="got" aria-pressed="' + (s === "got") + '">' + (s === "got" ? '<svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg> I can answer this' : "I can answer this") + "</button>" +
       '<button type="button" class="btn btn-small btn-ghost btn-again" data-act="again" aria-pressed="' + (s === "again") + '">Revise again</button>' +
       "</div>" +
       '<div class="ans" hidden>' + q.a + (q.say ? '<div class="say"><b>Say it like this</b>' + esc(q.say) + "</div>" : "") + "</div>" +

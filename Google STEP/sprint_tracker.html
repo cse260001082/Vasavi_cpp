@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-guide-ui>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Vasavi's 24-Day Winter DSA Sprint Tracker · IIT Indore</title>
+<script src="../assets/guide-theme.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap">
@@ -136,6 +137,7 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
 /* Sidebar Rail */
 .rail {
   position: sticky; top: 20px;
+  min-width: 0;
   padding-block: 30px 24px; max-height: calc(100vh - 40px); overflow-y: auto;
   scrollbar-width: thin;
 }
@@ -167,7 +169,7 @@ main { padding-block: 28px 48px; min-width: 0; }
 .timer-icon { font-size: 2rem; }
 .timer-display { font-family: var(--font-mono); font-size: 2.2rem; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
 .timer-label { font-size: .8rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
-.timer-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.timer-controls { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; max-width: 100%; }
 
 /* Search & Filter Toolbar */
 .toolbar {
@@ -175,7 +177,7 @@ main { padding-block: 28px 48px; min-width: 0; }
   border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
   display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center;
 }
-.search-input-wrap { flex: 1 1 260px; position: relative; }
+.search-input-wrap { flex: 1 1 260px; position: relative; min-width: 0; }
 .search-input {
   width: 100%; font: inherit; font-size: .92rem; padding: 8px 12px 8px 34px;
   border: 1px solid var(--border); border-radius: 8px; background: var(--bg); color: var(--ink);
@@ -226,7 +228,7 @@ main { padding-block: 28px 48px; min-width: 0; }
 .problem-row input[type="checkbox"]:checked ~ .problem-title {
   text-decoration: line-through; color: var(--muted); font-weight: 400;
 }
-.problem-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.problem-right { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex-shrink: 0; }
 .lvl { font-size: .72rem; font-weight: 700; border-radius: 999px; padding: 2px 8px; font-family: var(--font-mono); }
 .lvl-easy { background: var(--lav); color: var(--on-lav); }
 .lvl-med { background: var(--ember-soft); color: var(--ink); border: 1px solid var(--ember); }
@@ -269,7 +271,7 @@ main { padding-block: 28px 48px; min-width: 0; }
 
 /* Responsive */
 @media (max-width: 980px) {
-  .layout { grid-template-columns: 1fr; gap: 0; }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .rail {
     position: sticky; top: 0; z-index: 20; background: var(--bg);
     padding-block: 10px; max-height: none; overflow: visible;
@@ -290,6 +292,8 @@ main { padding-block: 28px 48px; min-width: 0; }
   .problem-right { width: 100%; justify-content: space-between; }
 }
 </style>
+<link rel="stylesheet" href="../assets/selection.css">
+<link rel="stylesheet" href="../assets/guide-ui.css">
 </head>
 <body>
 
@@ -301,7 +305,7 @@ main { padding-block: 28px 48px; min-width: 0; }
       <h1>24-Day DSA Sprint Tracker</h1>
       <p class="lede">Every day is a stepping stone to your Google dream. Commit 3–4 focused hours, solve with curiosity, and track your progress in real time.</p>
       <div class="hero-nav">
-        <a href="README.html">← Google STEP Program Guide</a>
+        <a href="README.html"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20 12H4m6-6-6 6 6 6"/></svg> Google STEP Program Guide</a>
         <a href="#phase1">Phase 1: Arrays</a>
         <a href="#phase2">Phase 2: Strings</a>
         <a href="#phase3">Phase 3: Linked Lists</a>
@@ -327,26 +331,26 @@ main { padding-block: 28px 48px; min-width: 0; }
   <aside class="rail" aria-label="Sprint Phases">
     <p class="rail-title">Sprint Roadmap</p>
     <ul class="rail-list">
-      <li class="rail-item"><a href="#phase1" id="nav-p1"><span>📦 Phase 1: Arrays</span> <span class="rail-badge" id="badge-p1">0/24</span></a></li>
-      <li class="rail-item"><a href="#phase2" id="nav-p2"><span>🔤 Phase 2: Strings</span> <span class="rail-badge" id="badge-p2">0/15</span></a></li>
-      <li class="rail-item"><a href="#phase3" id="nav-p3"><span>🔗 Phase 3: Linked Lists</span> <span class="rail-badge" id="badge-p3">0/18</span></a></li>
-      <li class="rail-item"><a href="#phase4" id="nav-p4"><span>🥞 Phase 4: Stacks & Queues</span> <span class="rail-badge" id="badge-p4">0/18</span></a></li>
-      <li class="rail-item"><a href="#phase5" id="nav-p5"><span>🎓 Phase 5: Grand Review</span> <span class="rail-badge" id="badge-p5">0/5</span></a></li>
+      <li class="rail-item"><a href="#phase1" id="nav-p1"><span><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14m6-14v14"/></svg> Phase 1: Arrays</span> <span class="rail-badge" id="badge-p1">0/24</span></a></li>
+      <li class="rail-item"><a href="#phase2" id="nav-p2"><span><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 18 4-12 4 12M4.5 14h5M15 7h6m-6 5h6m-6 5h6"/></svg> Phase 2: Strings</span> <span class="rail-badge" id="badge-p2">0/15</span></a></li>
+      <li class="rail-item"><a href="#phase3" id="nav-p3"><span><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 13 4-4m-6 7-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 1 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0"/></svg> Phase 3: Linked Lists</span> <span class="rail-badge" id="badge-p3">0/18</span></a></li>
+      <li class="rail-item"><a href="#phase4" id="nav-p4"><span><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4m-18 5 9 4 9-4"/></svg> Phase 4: Stacks & Queues</span> <span class="rail-badge" id="badge-p4">0/18</span></a></li>
+      <li class="rail-item"><a href="#phase5" id="nav-p5"><span><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> Phase 5: Grand Review</span> <span class="rail-badge" id="badge-p5">0/5</span></a></li>
     </ul>
 
     <div class="rail-divider"></div>
 
     <p class="rail-title">Daily Tools</p>
     <ul class="rail-list">
-      <li class="rail-item"><a href="#study-timer">⏱️ Focus Study Timer</a></li>
-      <li class="rail-item"><a href="#daily-flow">💡 3–4 Hr Study Flow</a></li>
-      <li class="rail-item"><a href="README.html">🌐 Google STEP Guide</a></li>
+      <li class="rail-item"><a class="rail-icon-link" href="#study-timer"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="14" r="8"/><path d="M12 10v4l3 2M9 2h6m-3 0v4m6-2 2 2"/></svg> Focus Study Timer</a></li>
+      <li class="rail-item"><a class="rail-icon-link" href="README.html#routine"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> 3–4 Hr Study Flow</a></li>
+      <li class="rail-item"><a class="rail-icon-link" href="README.html"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a18 18 0 0 1 0 18 18 18 0 0 1 0-18Z"/></svg> Google STEP Guide</a></li>
     </ul>
 
     <div class="rail-divider"></div>
 
     <div style="padding: 0 10px;">
-      <button type="button" class="btn btn-ghost btn-small" id="resetBtn" style="width: 100%; justify-content: center; font-size: .8rem;">🔄 Reset Progress</button>
+      <button type="button" class="btn btn-ghost btn-small" id="resetBtn" style="width: 100%; justify-content: center; font-size: .8rem;"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></svg> Reset Progress</button>
     </div>
   </aside>
 
@@ -356,16 +360,16 @@ main { padding-block: 28px 48px; min-width: 0; }
     <!-- Focus Study Timer -->
     <div class="timer-widget" id="study-timer">
       <div class="timer-left">
-        <div class="timer-icon">⏳</div>
+        <div class="timer-icon"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="14" r="8"/><path d="M12 10v4l3 2M9 2h6m-3 0v4m6-2 2 2"/></svg></div>
         <div>
           <div class="timer-label">Daily Focus Timer</div>
           <div class="timer-display" id="timerDisplay">45:00</div>
         </div>
       </div>
       <div class="timer-controls">
-        <button type="button" class="btn btn-small" id="startTimerBtn">▶ Start</button>
-        <button type="button" class="btn btn-ghost btn-small" id="pauseTimerBtn">⏸ Pause</button>
-        <button type="button" class="btn btn-ghost btn-small" id="resetTimerBtn">↺ Reset</button>
+        <button type="button" class="btn btn-small" id="startTimerBtn"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m8 4 12 8-12 8V4Z"/></svg> Start</button>
+        <button type="button" class="btn btn-ghost btn-small" id="pauseTimerBtn"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M8 4v16m8-16v16"/></svg> Pause</button>
+        <button type="button" class="btn btn-ghost btn-small" id="resetTimerBtn"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 11a9 9 0 1 1 2 7M3 4v7h7"/></svg> Reset</button>
         <span style="border-left: 1px solid var(--border); height: 20px; margin: 0 4px;"></span>
         <button type="button" class="btn btn-ghost btn-small" data-mins="45">45 min</button>
         <button type="button" class="btn btn-ghost btn-small" data-mins="90">90 min</button>
@@ -375,8 +379,8 @@ main { padding-block: 28px 48px; min-width: 0; }
     <!-- Search & Filter Bar -->
     <div class="toolbar">
       <div class="search-input-wrap">
-        <span class="search-icon">🔍</span>
-        <input type="search" class="search-input" id="searchInput" placeholder="Search questions (e.g. Kadane, Zero, Spiral, Loop)...">
+        <span class="search-icon"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></span>
+        <input type="search" class="search-input" id="searchInput" aria-label="Search sprint questions" placeholder="Search questions (e.g. Kadane, Zero, Spiral, Loop)...">
       </div>
       <div class="filter-chips">
         <button type="button" class="chip" data-status="all" aria-pressed="true">All (70)</button>
@@ -388,7 +392,7 @@ main { padding-block: 28px 48px; min-width: 0; }
     <!-- ═══════════════════ PHASE 1: ARRAYS ═══════════════════ -->
     <section class="sec" id="phase1">
       <p class="kicker">Day 1 to Day 7 · 26 Problems</p>
-      <h2>📦 Phase 1: Arrays Mastery</h2>
+      <h2><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14m6-14v14"/></svg> Phase 1: Arrays Mastery</h2>
       <p>Arrays form the backbone of memory and indexing. Master two-pointer moves, prefix sums, and in-place transformations.</p>
 
       <!-- Day 1 -->
@@ -404,24 +408,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_1_1"><span class="problem-title">Largest Element in an Array</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/largest-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/largest-element" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_1_2"><span class="problem-title">Second Largest Element in an Array without sorting</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/second-largest-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/second-largest-element" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_1_3"><span class="problem-title">Check if the array is sorted</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-an-array-is-sorted" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-the-array-is-sorted-i" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_1_4"><span class="problem-title">Remove duplicates from sorted array</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/remove-duplicates-from-sorted-array" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Avoid sorting ($O(N \log N)$) when a single pass ($O(N)$) tracking two variables finds the 2nd largest.</div>
-          <button type="button" class="notes-toggle" data-target="notes-1">✍️ My Day 1 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Avoid sorting ($O(N \log N)$) when a single pass ($O(N)$) tracking two variables finds the 2nd largest.</div>
+          <button type="button" class="notes-toggle" data-target="notes-1"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 1 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-1"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 1..."></textarea></div>
         </div>
       </div>
@@ -439,24 +443,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_2_1"><span class="problem-title">Left Rotate an array by one place</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/left-rotate-array-by-one" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/left-rotate-array-by-one" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_2_2"><span class="problem-title">Left rotate an array by D places (The 3-reverse trick!)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rotate-array-by-k-elements" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/left-rotate-array" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_2_3"><span class="problem-title">Move Zeros to the end (In-place two-pointer swap)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/move-zeros-to-end" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/move-zeros-to-end" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_2_4"><span class="problem-title">Linear Search</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/search-x-in-sorted-array" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/linear-search" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> The 3-reverse algorithm rotates an array in $O(N)$ time and $O(1)$ space. Reverse(0, d-1), Reverse(d, n-1), Reverse(0, n-1)!</div>
-          <button type="button" class="notes-toggle" data-target="notes-2">✍️ My Day 2 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> The 3-reverse algorithm rotates an array in $O(N)$ time and $O(1)$ space. Reverse(0, d-1), Reverse(d, n-1), Reverse(0, n-1)!</div>
+          <button type="button" class="notes-toggle" data-target="notes-2"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 2 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-2"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 2..."></textarea></div>
         </div>
       </div>
@@ -474,24 +478,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_3_1"><span class="problem-title">Find the Union of two sorted arrays</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/union-of-two-sorted-arrays" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/union-of-two-sorted-arrays" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_3_2"><span class="problem-title">Intersection of two sorted arrays</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/intersection-of-two-sorted-arrays" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/intersection-of-two-sorted-arrays" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_3_3"><span class="problem-title">Find the number that appears once, others twice</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/single-number" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/single-number---i" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_3_4"><span class="problem-title">Find missing number in an array</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-missing-number" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-missing-number" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> XOR is your secret superpower: identical numbers cancel out to zero ($a \oplus a = 0$).</div>
-          <button type="button" class="notes-toggle" data-target="notes-3">✍️ My Day 3 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> XOR is your secret superpower: identical numbers cancel out to zero ($a \oplus a = 0$).</div>
+          <button type="button" class="notes-toggle" data-target="notes-3"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 3 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-3"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 3..."></textarea></div>
         </div>
       </div>
@@ -509,20 +513,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_4_1"><span class="problem-title">Two Sum (Check pair exists & return indices)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/two-sum" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/two-sum" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_4_2"><span class="problem-title">Longest Subarray with given sum K (Positives & Zeros)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-subarray-with-given-sum-k" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-subarray-with-given-sum-k" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_4_3"><span class="problem-title">Longest Subarray with sum K (Positives + Negatives)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-subarray-with-sum-k-postives-and-negatives" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-subarray-with-sum-k" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Two pointers sliding window works for positive numbers. When negatives exist, Prefix Sum with Hash Map is mandatory!</div>
-          <button type="button" class="notes-toggle" data-target="notes-4">✍️ My Day 4 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Two pointers sliding window works for positive numbers. When negatives exist, Prefix Sum with Hash Map is mandatory!</div>
+          <button type="button" class="notes-toggle" data-target="notes-4"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 4 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-4"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 4..."></textarea></div>
         </div>
       </div>
@@ -540,24 +544,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_5_1"><span class="problem-title">Sort an array of 0s, 1s and 2s (Dutch National Flag)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sort-an-array-of-0s-1s-and-2s" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sort-an-array-of-0s-1s-and-2s" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_5_2"><span class="problem-title">Find the Majority Element (> N/2 times - Moore's Voting)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/majority-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/majority-element-i" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_5_3"><span class="problem-title">Kadane’s Algorithm (Maximum Subarray Sum in $O(N)$)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadanes-algorithm" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadane%27s-algorithm" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
-            <div class="problem-left"><input type="checkbox" id="q_5_4"><span class="problem-title">Print subarray with maximum subarray sum</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadanes-algorithm" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-left"><input type="checkbox" id="q_5_4"><span class="problem-title">Print subarray with maximum subarray sum (extend the sum-only exercise)</span></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadane%27s-algorithm" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In Kadane's algorithm, whenever `sum < 0`, reset `sum = 0`. To print the subarray, remember where `sum` was reset!</div>
-          <button type="button" class="notes-toggle" data-target="notes-5">✍️ My Day 5 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> In Kadane's algorithm, whenever `sum < 0`, reset `sum = 0`. To print the subarray, remember where `sum` was reset!</div>
+          <button type="button" class="notes-toggle" data-target="notes-5"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 5 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-5"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 5..."></textarea></div>
         </div>
       </div>
@@ -575,24 +579,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_6_1"><span class="problem-title">Stock Buy and Sell</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/best-time-to-buy-and-sell-stock" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/best-time-to-buy-and-sell-stock" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_6_2"><span class="problem-title">Rearrange array in alternating positive and negative items</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rearrange-array-elements-by-sign" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rearrange-array-elements-by-sign" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_6_3"><span class="problem-title">Leaders in an Array (Scan right to left)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/leaders-in-an-array" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/leaders-in-an-array" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_6_4"><span class="problem-title">Longest Consecutive Sequence in an Array ($O(N)$ with Set)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-consecutive-sequence" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-consecutive-sequence-in-an-array" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Scanning from right to left often turns an $O(N^2)$ problem into clean $O(N)$!</div>
-          <button type="button" class="notes-toggle" data-target="notes-6">✍️ My Day 6 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Scanning from right to left often turns an $O(N^2)$ problem into clean $O(N)$!</div>
+          <button type="button" class="notes-toggle" data-target="notes-6"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 6 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-6"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 6..."></textarea></div>
         </div>
       </div>
@@ -610,20 +614,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_7_1"><span class="problem-title">Set Matrix Zeroes</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/set-matrix-zero" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/set-matrix-zeroes" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_7_2"><span class="problem-title">Rotate Matrix by 90 degrees (Transpose + Reverse)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rotate-matrix-by-90-degrees" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rotate-matrix-by-90-degrees" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_7_3"><span class="problem-title">Print matrix in spiral manner (Four boundaries)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/spiral-matrix" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/print-the-matrix-in-spiral-manner" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> You already completed row, col, and diagonal! Now transpose + reverse rows = 90° clockwise rotation.</div>
-          <button type="button" class="notes-toggle" data-target="notes-7">✍️ My Day 7 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> You already completed row, col, and diagonal! Now transpose + reverse rows = 90° clockwise rotation.</div>
+          <button type="button" class="notes-toggle" data-target="notes-7"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 7 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-7"><textarea class="notes-textarea" placeholder="Jot down edge cases, tricky bugs, or insights for Day 7..."></textarea></div>
         </div>
       </div>
@@ -631,14 +635,14 @@ main { padding-block: 28px 48px; min-width: 0; }
 
     <!-- Motivational Callout 1 -->
     <div class="callout">
-      <h4>🎉 Phase 1 Milestone Check!</h4>
+      <h4><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> Phase 1 Milestone Check!</h4>
       <p>Vasavi, when you finish Day 7, you've conquered 24 fundamental array problems! You are already ahead of 90% of 1st-year students nationwide. Take a deep breath and step boldly into Strings.</p>
     </div>
 
     <!-- ═══════════════════ PHASE 2: STRINGS ═══════════════════ -->
     <section class="sec" id="phase2">
       <p class="kicker">Day 8 to Day 12 · 15 Problems</p>
-      <h2>🔤 Phase 2: Strings Mastery</h2>
+      <h2><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 18 4-12 4 12M4.5 14h5M15 7h6m-6 5h6m-6 5h6"/></svg> Phase 2: Strings Mastery</h2>
       <p>Strings are simply arrays of characters with ASCII values. Master tokenization, frequency tables of size 26, and center-expansion palindromes.</p>
 
       <!-- Day 8 -->
@@ -654,20 +658,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_8_1"><span class="problem-title">Remove Outermost Parentheses</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/remove-outermost-parentheses" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/remove-outermost-parentheses" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_8_2"><span class="problem-title">Reverse Words in a String</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-words-in-a-string" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-every-word-in-a-string" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_8_3"><span class="problem-title">Largest Odd Number in a String</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/largest-odd-number-in-a-string" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/largest-odd-number-in-a-string" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Characters are integers under the hood: `'9' - '0' == 9`!</div>
-          <button type="button" class="notes-toggle" data-target="notes-8">✍️ My Day 8 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Characters are integers under the hood: `'9' - '0' == 9`!</div>
+          <button type="button" class="notes-toggle" data-target="notes-8"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 8 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-8"><textarea class="notes-textarea" placeholder="Notes for Day 8..."></textarea></div>
         </div>
       </div>
@@ -685,20 +689,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_9_1"><span class="problem-title">Longest Common Prefix</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-common-prefix" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-common-prefix" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_9_2"><span class="problem-title">Isomorphic Strings (Dual character mapping)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/isomorphic-string" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/isomorphic-string" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_9_3"><span class="problem-title">Check if One String is a Rotation of Another ($s_1 + s_1$ trick)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-one-string-is-a-rotation-of-another" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/rotate-string" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Concatenating `s1 + s1` contains every possible circular rotation of `s1`. Brilliant shortcut!</div>
-          <button type="button" class="notes-toggle" data-target="notes-9">✍️ My Day 9 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Concatenating `s1 + s1` contains every possible circular rotation of `s1`. Brilliant shortcut!</div>
+          <button type="button" class="notes-toggle" data-target="notes-9"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 9 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-9"><textarea class="notes-textarea" placeholder="Notes for Day 9..."></textarea></div>
         </div>
       </div>
@@ -716,20 +720,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_10_1"><span class="problem-title">Check if Two Strings are Anagram of Each Other</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/valid-anagram" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/valid-anagram" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_10_2"><span class="problem-title">Sort Characters by Frequency</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sort-characters-by-frequency" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sort-characters-by-frequency" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_10_3"><span class="problem-title">Maximum Nesting Depth of the Parentheses</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/maximum-nesting-depth-of-the-parentheses" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/maximum-nesting-depth-of-the-parentheses" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> An array of size 26 `int freq[26] = {0}` acts as a blazing fast $O(1)$ space hash map for lowercase English letters.</div>
-          <button type="button" class="notes-toggle" data-target="notes-10">✍️ My Day 10 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> An array of size 26 `int freq[26] = {0}` acts as a blazing fast $O(1)$ space hash map for lowercase English letters.</div>
+          <button type="button" class="notes-toggle" data-target="notes-10"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 10 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-10"><textarea class="notes-textarea" placeholder="Notes for Day 10..."></textarea></div>
         </div>
       </div>
@@ -747,20 +751,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_11_1"><span class="problem-title">Roman Number to Integer</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/roman-to-integer" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/roman-to-integer" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_11_2"><span class="problem-title">Integer to Roman (Greedy lookup table)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/integer-to-roman" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://www.geeksforgeeks.org/problems/convert-to-roman-no/1" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_11_3"><span class="problem-title">Implement Atoi (String to Integer with overflow handling)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-atoi" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/string-to-integer-atoi" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In Atoi, always check if `ans > (INT_MAX - digit) / 10` before multiplying to avoid runtime overflow errors!</div>
-          <button type="button" class="notes-toggle" data-target="notes-11">✍️ My Day 11 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> In Atoi, always check if `ans > (INT_MAX - digit) / 10` before multiplying to avoid runtime overflow errors!</div>
+          <button type="button" class="notes-toggle" data-target="notes-11"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 11 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-11"><textarea class="notes-textarea" placeholder="Notes for Day 11..."></textarea></div>
         </div>
       </div>
@@ -778,20 +782,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_12_1"><span class="problem-title">Check if String is Palindrome</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-a-given-string-is-palindrome" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-string-is-palindrome-or-not-" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_12_2"><span class="problem-title">Longest Palindromic Substring</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-palindromic-substring" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-palindromic-substring" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_12_3"><span class="problem-title">Count Number of Substrings with K distinct characters</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/count-number-of-substrings-with-k-distinct-characters" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://www.geeksforgeeks.org/problems/count-number-of-substrings4528/1" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Expand around center avoids DP table overhead and runs in $O(1)$ auxiliary space. Check both odd centers `(i, i)` and even centers `(i, i+1)`.</div>
-          <button type="button" class="notes-toggle" data-target="notes-12">✍️ My Day 12 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Expand around center avoids DP table overhead and runs in $O(1)$ auxiliary space. Check both odd centers `(i, i)` and even centers `(i, i+1)`.</div>
+          <button type="button" class="notes-toggle" data-target="notes-12"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 12 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-12"><textarea class="notes-textarea" placeholder="Notes for Day 12..."></textarea></div>
         </div>
       </div>
@@ -800,7 +804,7 @@ main { padding-block: 28px 48px; min-width: 0; }
     <!-- ═══════════════════ PHASE 3: LINKED LISTS ═══════════════════ -->
     <section class="sec" id="phase3">
       <p class="kicker">Day 13 to Day 18 · 22 Problems</p>
-      <h2>🔗 Phase 3: Linked Lists</h2>
+      <h2><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m10 13 4-4m-6 7-2 2a4 4 0 0 1-6-6l5-5a4 4 0 0 1 6 0m2 1 2-2a4 4 0 0 1 6 6l-5 5a4 4 0 0 1-6 0"/></svg> Phase 3: Linked Lists</h2>
       <p>Transition from contiguous arrays to dynamic pointer chains in heap memory. Draw every node and pointer on paper first!</p>
 
       <!-- Day 13 -->
@@ -816,24 +820,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_13_1"><span class="problem-title">Introduction to Linked List & Struct Node Creation in C++</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/introduction-to-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/blogs/data-structure-and-algorithm/singly-linked-list" target="_blank" rel="noopener">Read <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_13_2"><span class="problem-title">Traversal in a Linked List (Iterate until `temp == nullptr`)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/traversal-in-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/traversal-in-linked-list" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_13_3"><span class="problem-title">Find the Length of a Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-the-length-of-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-the-length-of-the-linked-list" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_13_4"><span class="problem-title">Search an Element in a Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/search-an-element-in-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/search-in-linked-list" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A linked list node is simply a box with 2 compartments: `data` and a `next` address pointing to another box!</div>
-          <button type="button" class="notes-toggle" data-target="notes-13">✍️ My Day 13 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> A linked list node is simply a box with 2 compartments: `data` and a `next` address pointing to another box!</div>
+          <button type="button" class="notes-toggle" data-target="notes-13"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 13 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-13"><textarea class="notes-textarea" placeholder="Notes for Day 13..."></textarea></div>
         </div>
       </div>
@@ -851,24 +855,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_14_1"><span class="problem-title">Insertion at Head of LL</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insert-node-at-the-head-of-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insertion-at-the-head-of-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_14_2"><span class="problem-title">Insertion at Tail & K-th Position of LL</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insert-node-at-the-end-of-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insertion-at-the-tail-of-ll" target="_blank" rel="noopener noreferrer">Tail <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/insertion-at-the-kth-position-of-ll" target="_blank" rel="noopener noreferrer">Kth position <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_14_3"><span class="problem-title">Deletion of Head & Tail of LL</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/delete-last-node-of-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/deletion-of-the-head-of-ll" target="_blank" rel="noopener noreferrer">Head <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/deletion-of-the-tail-of-ll" target="_blank" rel="noopener noreferrer">Tail <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_14_4"><span class="problem-title">Deletion of K-th Node & Node with Value X</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/delete-k-th-node-of-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/deletion-of-the-kth-element-of-ll" target="_blank" rel="noopener noreferrer">Kth node <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/delete-the-element-with-value-x" target="_blank" rel="noopener noreferrer">Value X <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always check if deleting the head node first — it requires updating the `head` pointer itself!</div>
-          <button type="button" class="notes-toggle" data-target="notes-14">✍️ My Day 14 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Always check if deleting the head node first — it requires updating the `head` pointer itself!</div>
+          <button type="button" class="notes-toggle" data-target="notes-14"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 14 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-14"><textarea class="notes-textarea" placeholder="Notes for Day 14..."></textarea></div>
         </div>
       </div>
@@ -886,20 +890,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_15_1"><span class="problem-title">Introduction to Doubly Linked List & Representation</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/introduction-to-doubly-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/blogs/data-structure-and-algorithm/doubly-linked-list" target="_blank" rel="noopener">Read <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_15_2"><span class="problem-title">Insert and Delete in Doubly Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insert-a-node-in-doubly-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/insert-node-before-head-in-dll" target="_blank" rel="noopener noreferrer">Insert <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/delete-head-of-dll" target="_blank" rel="noopener noreferrer">Delete <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_15_3"><span class="problem-title">Reverse a Doubly Linked List (Swap `prev` and `next`)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-doubly-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-doubly-linked-list" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> In DLL, whenever inserting or deleting, update 4 pointer links instead of 2.</div>
-          <button type="button" class="notes-toggle" data-target="notes-15">✍️ My Day 15 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> In DLL, whenever inserting or deleting, update 4 pointer links instead of 2.</div>
+          <button type="button" class="notes-toggle" data-target="notes-15"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 15 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-15"><textarea class="notes-textarea" placeholder="Notes for Day 15..."></textarea></div>
         </div>
       </div>
@@ -917,24 +921,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_16_1"><span class="problem-title">Middle of a Linked List (`slow` +1, `fast` +2)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-middle-element-in-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-middle-of-linked-list" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_16_2"><span class="problem-title">Detect a Loop/Cycle in a Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/detect-a-loop-in-ll" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/detect-a-loop-in-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_16_3"><span class="problem-title">Find the Starting Point of a Loop in LL</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/starting-point-of-loop-in-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-the-starting-point-in-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_16_4"><span class="problem-title">Length of a Loop in Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-length-of-loop-in-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/length-of-loop-in-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> If fast and slow meet, there is a cycle. Reset slow to head, move both by 1 — the node where they meet is the start of the loop!</div>
-          <button type="button" class="notes-toggle" data-target="notes-16">✍️ My Day 16 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> If fast and slow meet, there is a cycle. Reset slow to head, move both by 1 — the node where they meet is the start of the loop!</div>
+          <button type="button" class="notes-toggle" data-target="notes-16"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 16 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-16"><textarea class="notes-textarea" placeholder="Notes for Day 16..."></textarea></div>
         </div>
       </div>
@@ -952,24 +956,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_17_1"><span class="problem-title">Reverse a Linked List (Iterative with `prev`, `curr`, `next`)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_17_2"><span class="problem-title">Check if a Linked List is a Palindrome</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-given-linked-list-is-palindrome" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-if-ll-is-palindrome-or-not" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_17_3"><span class="problem-title">Odd Even Linked List (Group odd indices, then even)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/segregate-even-and-odd-nodes-in-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/segregate-odd-and-even-nodes-in-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_17_4"><span class="problem-title">Remove the Nth Node from End of List</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/delete-nth-node-from-the-end-of-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/remove-nth-node-from-the-back-of-the-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Always store `next = curr->next` before severing the link `curr->next = prev`!</div>
-          <button type="button" class="notes-toggle" data-target="notes-17">✍️ My Day 17 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Always store `next = curr->next` before severing the link `curr->next = prev`!</div>
+          <button type="button" class="notes-toggle" data-target="notes-17"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 17 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-17"><textarea class="notes-textarea" placeholder="Notes for Day 17..."></textarea></div>
         </div>
       </div>
@@ -987,20 +991,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_18_1"><span class="problem-title">Add 1 to a number represented as a Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/add-1-to-a-number-represented-by-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/add-one-to-a-number-represented-by-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_18_2"><span class="problem-title">Add two numbers represented as Linked Lists</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/add-two-numbers-represented-as-linked-lists" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/add-two-numbers-in-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_18_3"><span class="problem-title">Intersection point of two Y-shaped Linked Lists</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-intersection-of-two-linked-lists" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/find-the-intersection-point-of-y-ll" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> A `dummyNode` completely eliminates edge case `if (head == nullptr)` when creating new result lists.</div>
-          <button type="button" class="notes-toggle" data-target="notes-18">✍️ My Day 18 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> A `dummyNode` completely eliminates edge case `if (head == nullptr)` when creating new result lists.</div>
+          <button type="button" class="notes-toggle" data-target="notes-18"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 18 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-18"><textarea class="notes-textarea" placeholder="Notes for Day 18..."></textarea></div>
         </div>
       </div>
@@ -1008,14 +1012,14 @@ main { padding-block: 28px 48px; min-width: 0; }
 
     <!-- Motivational Callout 2 -->
     <div class="callout">
-      <h4>🔥 Over Halfway There!</h4>
+      <h4><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 19V5m0 14h16M8 14l4-4 3 2 5-7"/></svg> Over Halfway There!</h4>
       <p>Vasavi, completing Linked Lists is a huge watershed moment. Pointers intimidate most engineers, but you have wrestled with memory directly. Stacks & Queues will feel natural and intuitive now.</p>
     </div>
 
     <!-- ═══════════════════ PHASE 4: STACKS & QUEUES ═══════════════════ -->
     <section class="sec" id="phase4">
       <p class="kicker">Day 19 to Day 23 · 18 Problems</p>
-      <h2>🥞 Phase 4: Stacks & Queues</h2>
+      <h2><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m3 7 9-4 9 4-9 4-9-4Zm0 5 9 4 9-4m-18 5 9 4 9-4"/></svg> Phase 4: Stacks & Queues</h2>
       <p>LIFO (Last-In-First-Out) and FIFO (First-In-First-Out) power expression parsers, browser history, and the famous Monotonic Stack pattern.</p>
 
       <!-- Day 19 -->
@@ -1031,24 +1035,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_19_1"><span class="problem-title">Implement Stack using Arrays (`top` index pointer)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-array" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-arrays" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_19_2"><span class="problem-title">Implement Queue using Arrays (Circular buffer with `% N`)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-array" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-arrays" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_19_3"><span class="problem-title">Implement Stack using Queue (Rotation technique)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-single-queue" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-queue" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_19_4"><span class="problem-title">Implement Queue using Stack (Amortized $O(1)$ dual stacks)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-stack" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-stack" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Stack = pile of plates (LIFO); Queue = ticket line (FIFO). Implementing one with the other tests data structure mechanics!</div>
-          <button type="button" class="notes-toggle" data-target="notes-19">✍️ My Day 19 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Stack = pile of plates (LIFO); Queue = ticket line (FIFO). Implementing one with the other tests data structure mechanics!</div>
+          <button type="button" class="notes-toggle" data-target="notes-19"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 19 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-19"><textarea class="notes-textarea" placeholder="Notes for Day 19..."></textarea></div>
         </div>
       </div>
@@ -1066,24 +1070,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_20_1"><span class="problem-title">Implement Stack using Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-stack-using-linkedlist" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_20_2"><span class="problem-title">Implement Queue using Linked List</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-queue-using-linkedlist" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_20_3"><span class="problem-title">Check for Balanced Parentheses (Valid Parentheses)</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/check-for-balanced-parentheses" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/balanced-paranthesis" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_20_4"><span class="problem-title">Implement Min Stack ($O(1)$ getMin operation)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-min-stack" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/implement-min-stack" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Balanced parentheses is Google's all-time favorite screening question! Push opens, match and pop closings.</div>
-          <button type="button" class="notes-toggle" data-target="notes-20">✍️ My Day 20 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Balanced parentheses is Google's all-time favorite screening question! Push opens, match and pop closings.</div>
+          <button type="button" class="notes-toggle" data-target="notes-20"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 20 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-20"><textarea class="notes-textarea" placeholder="Notes for Day 20..."></textarea></div>
         </div>
       </div>
@@ -1101,24 +1105,24 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_21_1"><span class="problem-title">Next Greater Element I (NGE - Decreasing monotonic stack)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_21_2"><span class="problem-title">Next Greater Element II (Circular Array via $2N$ traversal)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element-ii" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element---2" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_21_3"><span class="problem-title">Next Smaller Element</span></div>
-            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-smaller-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-easy">Easy</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-smaller-element" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_21_4"><span class="problem-title">Number of NGEs to the right</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/count-of-greater-elements-to-the-right" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/number-of-greater-elements-to-the-right" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Monotonic stacks collapse $O(N^2)$ brute forces into clean $O(N)$ linear scans. Remember: each element is pushed and popped at most once!</div>
-          <button type="button" class="notes-toggle" data-target="notes-21">✍️ My Day 21 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Monotonic stacks collapse $O(N^2)$ brute forces into clean $O(N)$ linear scans. Remember: each element is pushed and popped at most once!</div>
+          <button type="button" class="notes-toggle" data-target="notes-21"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 21 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-21"><textarea class="notes-textarea" placeholder="Notes for Day 21..."></textarea></div>
         </div>
       </div>
@@ -1136,20 +1140,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_22_1"><span class="problem-title">Trapping Rain Water (Two pointer OR monotonic stack)</span></div>
-            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/trapping-rainwater" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/trapping-rainwater" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_22_2"><span class="problem-title">Asteroid Collision (Positive/negative rock simulation)</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/asteroid-collision" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/asteroid-collision" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_22_3"><span class="problem-title">Stock Span Problem</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/stock-span-problem" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/stock-span-problem" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Trapping water at column $i$ is determined by $\min(\text{leftMax}, \text{rightMax}) - \text{height}[i]$. Master this classic!</div>
-          <button type="button" class="notes-toggle" data-target="notes-22">✍️ My Day 22 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Trapping water at column $i$ is determined by $\min(\text{leftMax}, \text{rightMax}) - \text{height}[i]$. Master this classic!</div>
+          <button type="button" class="notes-toggle" data-target="notes-22"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 22 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-22"><textarea class="notes-textarea" placeholder="Notes for Day 22..."></textarea></div>
         </div>
       </div>
@@ -1167,20 +1171,20 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_23_1"><span class="problem-title">Largest Rectangle in a Histogram</span></div>
-            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/area-of-largest-rectangle-in-histogram" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/largest-rectangle-in-a-histogram" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_23_2"><span class="problem-title">Maximal Rectangles in Binary Matrix</span></div>
-            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/maximum-rectangle-area-with-all-1s" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/maximum-rectangle-area-with-all-1s" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_23_3"><span class="problem-title">Sliding Window Maximum (Monotonic deque)</span></div>
-            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sliding-window-maximum" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Hard</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/sliding-window-maximum" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
-          <div class="day-tip">💡 <strong>Daily Takeaway:</strong> Maximal rectangle in a matrix is just the histogram algorithm run on every row of accumulating heights!</div>
-          <button type="button" class="notes-toggle" data-target="notes-23">✍️ My Day 23 Notes <span class="arr">▾</span></button>
+          <div class="day-tip"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 18v-2a6 6 0 1 1 6 0v2m-6 0h6m-6 3h6"/></svg> <strong>Daily Takeaway:</strong> Maximal rectangle in a matrix is just the histogram algorithm run on every row of accumulating heights!</div>
+          <button type="button" class="notes-toggle" data-target="notes-23"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Day 23 Notes <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-23"><textarea class="notes-textarea" placeholder="Notes for Day 23..."></textarea></div>
         </div>
       </div>
@@ -1189,7 +1193,7 @@ main { padding-block: 28px 48px; min-width: 0; }
     <!-- ═══════════════════ PHASE 5: GRAND REVIEW ═══════════════════ -->
     <section class="sec" id="phase5">
       <p class="kicker">Day 24 · 5 Milestones</p>
-      <h2>🎓 Phase 5: Grand Review & Mock Simulation</h2>
+      <h2><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> Phase 5: Grand Review & Mock Simulation</h2>
       <p>You have laid a foundation that few freshmen in the country possess. Consolidate your confidence, simulate a live interview, and celebrate your victory!</p>
 
       <div class="day-card" data-day="24" data-phase="5" style="border: 2px solid var(--accent); background: var(--bg);">
@@ -1204,30 +1208,30 @@ main { padding-block: 28px 48px; min-width: 0; }
         <ul class="problem-list">
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_24_1"><span class="problem-title">Signature Solve 1 (Array): Kadane's Algorithm from scratch</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadanes-algorithm" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/kadane%27s-algorithm" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_24_2"><span class="problem-title">Signature Solve 2 (String): Longest Palindromic Substring</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-palindromic-substring" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/longest-palindromic-substring" target="_blank" rel="noopener">Solve <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_24_3"><span class="problem-title">Signature Solve 3 (Linked List): Reverse LL & Detect Cycle</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-linked-list" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/reverse-a-ll" target="_blank" rel="noopener noreferrer">Reverse <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/detect-a-loop-in-ll" target="_blank" rel="noopener noreferrer">Cycle <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_24_4"><span class="problem-title">Signature Solve 4 (Stack): Valid Parentheses & Next Greater Element</span></div>
-            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element" target="_blank" rel="noopener">Solve ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-med">Medium</span><a class="solve-link" href="https://takeuforward.org/practice/dsa/balanced-paranthesis" target="_blank" rel="noopener noreferrer">Parentheses <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a><a class="solve-link" href="https://takeuforward.org/practice/dsa/next-greater-element" target="_blank" rel="noopener noreferrer">Next greater <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
           <li class="problem-row">
             <div class="problem-left"><input type="checkbox" id="q_24_5"><span class="problem-title">Think-Out-Loud Simulation: Explain 1 complete problem to your brother!</span></div>
-            <div class="problem-right"><span class="lvl lvl-hard">Mock</span><a class="solve-link" href="README.html#interview" target="_blank">Interview Guide ↗</a></div>
+            <div class="problem-right"><span class="lvl lvl-hard">Mock</span><a class="solve-link" href="README.html#selection" target="_blank" rel="noopener noreferrer">Interview Guide <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M14 3h7v7m0-7L10 14M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/></svg></a></div>
           </li>
         </ul>
         <div class="day-footer">
           <div class="day-tip" style="background: var(--lav); color: var(--on-lav); border-left-color: var(--accent);">
-            🎓 <strong>A Brother's Proud Note:</strong> Vasavi, you completed 70 interview-grade problems across 4 major data structures during your 1st-year winter break. Keep this grit and consistency alive in Semester 2. Google is waiting for you!
+            <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> <strong>A Brother's Proud Note:</strong> Vasavi, you completed 70 interview-grade problems across 4 major data structures during your 1st-year winter break. Keep this grit and consistency alive in Semester 2. Google is waiting for you!
           </div>
-          <button type="button" class="notes-toggle" data-target="notes-24">✍️ My Final Reflections <span class="arr">▾</span></button>
+          <button type="button" class="notes-toggle" data-target="notes-24"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Final Reflections <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-24"><textarea class="notes-textarea" placeholder="How did this sprint transform your confidence? Write your thoughts here..."></textarea></div>
         </div>
       </div>
@@ -1288,7 +1292,7 @@ main { padding-block: 28px 48px; min-width: 0; }
       if (daySolved === dayCbs.length && dayCbs.length > 0) {
         card.classList.add('completed');
         if (dayStatus) {
-          dayStatus.textContent = 'Completed 🎉';
+          dayStatus.innerHTML = '<svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m5 12 4 4L19 6"/></svg> Completed';
           dayStatus.className = 'day-status status-done';
         }
         completedDays++;
@@ -1339,7 +1343,7 @@ main { padding-block: 28px 48px; min-width: 0; }
       const drawer = document.getElementById(targetId);
       drawer.classList.toggle('open');
       const arr = btn.querySelector('.arr');
-      if (arr) arr.textContent = drawer.classList.contains('open') ? '▴' : '▾';
+      if (arr) arr.classList.toggle('is-open', drawer.classList.contains('open'));
     });
   });
 
@@ -1428,7 +1432,7 @@ main { padding-block: 28px 48px; min-width: 0; }
       } else {
         clearInterval(timerInterval);
         timerInterval = null;
-        alert("🎉 Focus session completed! Great work, Vasavi! Take a 5-minute stretch break.");
+        alert("Focus session completed! Great work, Vasavi! Take a 5-minute stretch break.");
       }
     }, 1000);
   });

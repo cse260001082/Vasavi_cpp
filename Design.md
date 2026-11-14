@@ -2,6 +2,33 @@
 
 > Extracted from the Dice Roll study guide. Use this color scheme and typography for **every HTML artifact** created in this repo (summaries, guides, study pages, etc.).
 
+## Required shared assets for new HTML pages
+
+`Design.md` is the specification; the shared CSS files apply the styling in the browser. Every new HTML page must load **`assets/selection.css`**, using a path relative to that page. Updating this one file updates selection colours across all pages that load it.
+
+For a page one folder below the repo root, include this after its other styles:
+
+```html
+<link rel="stylesheet" href="../assets/selection.css">
+```
+
+This selection-only layer applies to **all HTML pages**, including Dice Roll, its practice tasks and Playground, as explicitly requested by Dinesh. It does not style their layouts, typography or exercise answers.
+
+For guides and other authored learning material, also mark the root and load the shared theme control. This example is for a guide one folder below the repo root; adjust the paths for deeper folders:
+
+```html
+<html lang="en" data-guide-ui>
+<head>
+  <!-- Load the theme script before styles so the saved theme is applied early. -->
+  <script src="../assets/guide-theme.js"></script>
+  <!-- The page's existing metadata and styles go here. -->
+  <link rel="stylesheet" href="../assets/selection.css">
+  <link rel="stylesheet" href="../assets/guide-ui.css">
+</head>
+```
+
+The theme script adds a sun/moon SVG button to `header.hero`, or reuses `#themeBtn`. It preserves the existing `wg-theme` preference, follows the system until a preference is chosen, and keeps accessible labels in sync. `guide-ui.css` supplies its styling, focus rings, hero-label contrast, themed scrollbars and reduced-motion support. **Do not include these two guide assets in learner projects or practice tasks.**
+
 ---
 
 ## Colors (Light Mode — default)

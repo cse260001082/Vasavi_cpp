@@ -1,0 +1,1562 @@
+{
+  "checked_at": "2026-11-05T17:36:55+00:00",
+  "online": true,
+  "summary": {
+    "references": 115,
+    "unique_urls": 101,
+    "problem_rows": 86,
+    "ok": 101,
+    "broken": 0,
+    "blocked": 0,
+    "unverified": 0,
+    "unchecked": 0
+  },
+  "findings": [],
+  "problems": [
+    {
+      "id": "q_1_1",
+      "day": 1,
+      "title": "Largest Element in an Array",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/largest-element"
+      ]
+    },
+    {
+      "id": "q_1_2",
+      "day": 1,
+      "title": "Second Largest Element in an Array without sorting",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/second-largest-element"
+      ]
+    },
+    {
+      "id": "q_1_3",
+      "day": 1,
+      "title": "Check if the array is sorted",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/check-if-the-array-is-sorted-i"
+      ]
+    },
+    {
+      "id": "q_1_4",
+      "day": 1,
+      "title": "Remove duplicates from sorted array",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/remove-duplicates-from-sorted-array"
+      ]
+    },
+    {
+      "id": "q_2_1",
+      "day": 2,
+      "title": "Left Rotate an array by one place",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/left-rotate-array-by-one"
+      ]
+    },
+    {
+      "id": "q_2_2",
+      "day": 2,
+      "title": "Left rotate an array by D places (The 3-reverse trick!)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/left-rotate-array"
+      ]
+    },
+    {
+      "id": "q_2_3",
+      "day": 2,
+      "title": "Move Zeros to the end (In-place two-pointer swap)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/move-zeros-to-end"
+      ]
+    },
+    {
+      "id": "q_2_4",
+      "day": 2,
+      "title": "Linear Search",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/linear-search"
+      ]
+    },
+    {
+      "id": "q_3_1",
+      "day": 3,
+      "title": "Find the Union of two sorted arrays",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/union-of-two-sorted-arrays"
+      ]
+    },
+    {
+      "id": "q_3_2",
+      "day": 3,
+      "title": "Intersection of two sorted arrays",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/intersection-of-two-sorted-arrays"
+      ]
+    },
+    {
+      "id": "q_3_3",
+      "day": 3,
+      "title": "Find the number that appears once, others twice",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/single-number---i"
+      ]
+    },
+    {
+      "id": "q_3_4",
+      "day": 3,
+      "title": "Find missing number in an array",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/find-missing-number"
+      ]
+    },
+    {
+      "id": "q_4_1",
+      "day": 4,
+      "title": "Two Sum (Check pair exists & return indices)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/two-sum"
+      ]
+    },
+    {
+      "id": "q_4_2",
+      "day": 4,
+      "title": "Longest Subarray with given sum K (Positives & Zeros)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-subarray-with-given-sum-k"
+      ]
+    },
+    {
+      "id": "q_4_3",
+      "day": 4,
+      "title": "Longest Subarray with sum K (Positives + Negatives)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-subarray-with-sum-k"
+      ]
+    },
+    {
+      "id": "q_5_1",
+      "day": 5,
+      "title": "Sort an array of 0s, 1s and 2s (Dutch National Flag)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/sort-an-array-of-0s-1s-and-2s"
+      ]
+    },
+    {
+      "id": "q_5_2",
+      "day": 5,
+      "title": "Find the Majority Element (> N/2 times - Moore's Voting)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/majority-element-i"
+      ]
+    },
+    {
+      "id": "q_5_3",
+      "day": 5,
+      "title": "Kadane’s Algorithm (Maximum Subarray Sum in $O(N)$)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/kadane%27s-algorithm"
+      ]
+    },
+    {
+      "id": "q_5_4",
+      "day": 5,
+      "title": "Print subarray with maximum subarray sum (extend the sum-only exercise)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/kadane%27s-algorithm"
+      ]
+    },
+    {
+      "id": "q_6_1",
+      "day": 6,
+      "title": "Stock Buy and Sell",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/best-time-to-buy-and-sell-stock"
+      ]
+    },
+    {
+      "id": "q_6_2",
+      "day": 6,
+      "title": "Rearrange array in alternating positive and negative items",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/rearrange-array-elements-by-sign"
+      ]
+    },
+    {
+      "id": "q_6_3",
+      "day": 6,
+      "title": "Leaders in an Array (Scan right to left)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/leaders-in-an-array"
+      ]
+    },
+    {
+      "id": "q_6_4",
+      "day": 6,
+      "title": "Longest Consecutive Sequence in an Array ($O(N)$ with Set)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-consecutive-sequence-in-an-array"
+      ]
+    },
+    {
+      "id": "q_7_1",
+      "day": 7,
+      "title": "Set Matrix Zeroes",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/set-matrix-zeroes"
+      ]
+    },
+    {
+      "id": "q_7_2",
+      "day": 7,
+      "title": "Rotate Matrix by 90 degrees (Transpose + Reverse)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/rotate-matrix-by-90-degrees"
+      ]
+    },
+    {
+      "id": "q_7_3",
+      "day": 7,
+      "title": "Print matrix in spiral manner (Four boundaries)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/print-the-matrix-in-spiral-manner"
+      ]
+    },
+    {
+      "id": "q_8_1",
+      "day": 8,
+      "title": "Remove Outermost Parentheses",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/remove-outermost-parentheses"
+      ]
+    },
+    {
+      "id": "q_8_2",
+      "day": 8,
+      "title": "Reverse Words in a String",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/reverse-every-word-in-a-string"
+      ]
+    },
+    {
+      "id": "q_8_3",
+      "day": 8,
+      "title": "Largest Odd Number in a String",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/largest-odd-number-in-a-string"
+      ]
+    },
+    {
+      "id": "q_9_1",
+      "day": 9,
+      "title": "Longest Common Prefix",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-common-prefix"
+      ]
+    },
+    {
+      "id": "q_9_2",
+      "day": 9,
+      "title": "Isomorphic Strings (Dual character mapping)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/isomorphic-string"
+      ]
+    },
+    {
+      "id": "q_9_3",
+      "day": 9,
+      "title": "Check if One String is a Rotation of Another ($s_1 + s_1$ trick)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/rotate-string"
+      ]
+    },
+    {
+      "id": "q_10_1",
+      "day": 10,
+      "title": "Check if Two Strings are Anagram of Each Other",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/valid-anagram"
+      ]
+    },
+    {
+      "id": "q_10_2",
+      "day": 10,
+      "title": "Sort Characters by Frequency",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/sort-characters-by-frequency"
+      ]
+    },
+    {
+      "id": "q_10_3",
+      "day": 10,
+      "title": "Maximum Nesting Depth of the Parentheses",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/maximum-nesting-depth-of-the-parentheses"
+      ]
+    },
+    {
+      "id": "q_11_1",
+      "day": 11,
+      "title": "Roman Number to Integer",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/roman-to-integer"
+      ]
+    },
+    {
+      "id": "q_11_2",
+      "day": 11,
+      "title": "Integer to Roman (Greedy lookup table)",
+      "urls": [
+        "https://www.geeksforgeeks.org/problems/convert-to-roman-no/1"
+      ]
+    },
+    {
+      "id": "q_11_3",
+      "day": 11,
+      "title": "Implement Atoi (String to Integer with overflow handling)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/string-to-integer-atoi"
+      ]
+    },
+    {
+      "id": "q_12_1",
+      "day": 12,
+      "title": "Check if String is Palindrome",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/check-if-string-is-palindrome-or-not-"
+      ]
+    },
+    {
+      "id": "q_12_2",
+      "day": 12,
+      "title": "Longest Palindromic Substring",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-palindromic-substring"
+      ]
+    },
+    {
+      "id": "q_12_3",
+      "day": 12,
+      "title": "Count Number of Substrings with K distinct characters",
+      "urls": [
+        "https://www.geeksforgeeks.org/problems/count-number-of-substrings4528/1"
+      ]
+    },
+    {
+      "id": "q_13_1",
+      "day": 13,
+      "title": "Introduction to Linked List & Struct Node Creation in C++",
+      "urls": [
+        "https://takeuforward.org/blogs/data-structure-and-algorithm/singly-linked-list"
+      ]
+    },
+    {
+      "id": "q_13_2",
+      "day": 13,
+      "title": "Traversal in a Linked List (Iterate until `temp == nullptr`)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/traversal-in-linked-list"
+      ]
+    },
+    {
+      "id": "q_13_3",
+      "day": 13,
+      "title": "Find the Length of a Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/find-the-length-of-the-linked-list"
+      ]
+    },
+    {
+      "id": "q_13_4",
+      "day": 13,
+      "title": "Search an Element in a Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/search-in-linked-list"
+      ]
+    },
+    {
+      "id": "q_14_1",
+      "day": 14,
+      "title": "Insertion at Head of LL",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/insertion-at-the-head-of-ll"
+      ]
+    },
+    {
+      "id": "q_14_2",
+      "day": 14,
+      "title": "Insertion at Tail & K-th Position of LL",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/insertion-at-the-tail-of-ll",
+        "https://takeuforward.org/practice/dsa/insertion-at-the-kth-position-of-ll"
+      ]
+    },
+    {
+      "id": "q_14_3",
+      "day": 14,
+      "title": "Deletion of Head & Tail of LL",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/deletion-of-the-head-of-ll",
+        "https://takeuforward.org/practice/dsa/deletion-of-the-tail-of-ll"
+      ]
+    },
+    {
+      "id": "q_14_4",
+      "day": 14,
+      "title": "Deletion of K-th Node & Node with Value X",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/deletion-of-the-kth-element-of-ll",
+        "https://takeuforward.org/practice/dsa/delete-the-element-with-value-x"
+      ]
+    },
+    {
+      "id": "q_15_1",
+      "day": 15,
+      "title": "Introduction to Doubly Linked List & Representation",
+      "urls": [
+        "https://takeuforward.org/blogs/data-structure-and-algorithm/doubly-linked-list"
+      ]
+    },
+    {
+      "id": "q_15_2",
+      "day": 15,
+      "title": "Insert and Delete in Doubly Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/insert-node-before-head-in-dll",
+        "https://takeuforward.org/practice/dsa/delete-head-of-dll"
+      ]
+    },
+    {
+      "id": "q_15_3",
+      "day": 15,
+      "title": "Reverse a Doubly Linked List (Swap `prev` and `next`)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/reverse-a-doubly-linked-list"
+      ]
+    },
+    {
+      "id": "q_16_1",
+      "day": 16,
+      "title": "Middle of a Linked List (`slow` +1, `fast` +2)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/find-middle-of-linked-list"
+      ]
+    },
+    {
+      "id": "q_16_2",
+      "day": 16,
+      "title": "Detect a Loop/Cycle in a Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/detect-a-loop-in-ll"
+      ]
+    },
+    {
+      "id": "q_16_3",
+      "day": 16,
+      "title": "Find the Starting Point of a Loop in LL",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/find-the-starting-point-in-ll"
+      ]
+    },
+    {
+      "id": "q_16_4",
+      "day": 16,
+      "title": "Length of a Loop in Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/length-of-loop-in-ll"
+      ]
+    },
+    {
+      "id": "q_17_1",
+      "day": 17,
+      "title": "Reverse a Linked List (Iterative with `prev`, `curr`, `next`)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/reverse-a-ll"
+      ]
+    },
+    {
+      "id": "q_17_2",
+      "day": 17,
+      "title": "Check if a Linked List is a Palindrome",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/check-if-ll-is-palindrome-or-not"
+      ]
+    },
+    {
+      "id": "q_17_3",
+      "day": 17,
+      "title": "Odd Even Linked List (Group odd indices, then even)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/segregate-odd-and-even-nodes-in-ll"
+      ]
+    },
+    {
+      "id": "q_17_4",
+      "day": 17,
+      "title": "Remove the Nth Node from End of List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/remove-nth-node-from-the-back-of-the-ll"
+      ]
+    },
+    {
+      "id": "q_18_1",
+      "day": 18,
+      "title": "Add 1 to a number represented as a Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/add-one-to-a-number-represented-by-ll"
+      ]
+    },
+    {
+      "id": "q_18_2",
+      "day": 18,
+      "title": "Add two numbers represented as Linked Lists",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/add-two-numbers-in-ll"
+      ]
+    },
+    {
+      "id": "q_18_3",
+      "day": 18,
+      "title": "Intersection point of two Y-shaped Linked Lists",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/find-the-intersection-point-of-y-ll"
+      ]
+    },
+    {
+      "id": "q_19_1",
+      "day": 19,
+      "title": "Implement Stack using Arrays (`top` index pointer)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-stack-using-arrays"
+      ]
+    },
+    {
+      "id": "q_19_2",
+      "day": 19,
+      "title": "Implement Queue using Arrays (Circular buffer with `% N`)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-queue-using-arrays"
+      ]
+    },
+    {
+      "id": "q_19_3",
+      "day": 19,
+      "title": "Implement Stack using Queue (Rotation technique)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-stack-using-queue"
+      ]
+    },
+    {
+      "id": "q_19_4",
+      "day": 19,
+      "title": "Implement Queue using Stack (Amortized $O(1)$ dual stacks)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-queue-using-stack"
+      ]
+    },
+    {
+      "id": "q_20_1",
+      "day": 20,
+      "title": "Implement Stack using Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-stack-using-linkedlist"
+      ]
+    },
+    {
+      "id": "q_20_2",
+      "day": 20,
+      "title": "Implement Queue using Linked List",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-queue-using-linkedlist"
+      ]
+    },
+    {
+      "id": "q_20_3",
+      "day": 20,
+      "title": "Check for Balanced Parentheses (Valid Parentheses)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/balanced-paranthesis"
+      ]
+    },
+    {
+      "id": "q_20_4",
+      "day": 20,
+      "title": "Implement Min Stack ($O(1)$ getMin operation)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/implement-min-stack"
+      ]
+    },
+    {
+      "id": "q_21_1",
+      "day": 21,
+      "title": "Next Greater Element I (NGE - Decreasing monotonic stack)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/next-greater-element"
+      ]
+    },
+    {
+      "id": "q_21_2",
+      "day": 21,
+      "title": "Next Greater Element II (Circular Array via $2N$ traversal)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/next-greater-element---2"
+      ]
+    },
+    {
+      "id": "q_21_3",
+      "day": 21,
+      "title": "Next Smaller Element",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/next-smaller-element"
+      ]
+    },
+    {
+      "id": "q_21_4",
+      "day": 21,
+      "title": "Number of NGEs to the right",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/number-of-greater-elements-to-the-right"
+      ]
+    },
+    {
+      "id": "q_22_1",
+      "day": 22,
+      "title": "Trapping Rain Water (Two pointer OR monotonic stack)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/trapping-rainwater"
+      ]
+    },
+    {
+      "id": "q_22_2",
+      "day": 22,
+      "title": "Asteroid Collision (Positive/negative rock simulation)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/asteroid-collision"
+      ]
+    },
+    {
+      "id": "q_22_3",
+      "day": 22,
+      "title": "Stock Span Problem",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/stock-span-problem"
+      ]
+    },
+    {
+      "id": "q_23_1",
+      "day": 23,
+      "title": "Largest Rectangle in a Histogram",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/largest-rectangle-in-a-histogram"
+      ]
+    },
+    {
+      "id": "q_23_2",
+      "day": 23,
+      "title": "Maximal Rectangles in Binary Matrix",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/maximum-rectangle-area-with-all-1s"
+      ]
+    },
+    {
+      "id": "q_23_3",
+      "day": 23,
+      "title": "Sliding Window Maximum (Monotonic deque)",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/sliding-window-maximum"
+      ]
+    },
+    {
+      "id": "q_24_1",
+      "day": 24,
+      "title": "Signature Solve 1 (Array): Kadane's Algorithm from scratch",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/kadane%27s-algorithm"
+      ]
+    },
+    {
+      "id": "q_24_2",
+      "day": 24,
+      "title": "Signature Solve 2 (String): Longest Palindromic Substring",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/longest-palindromic-substring"
+      ]
+    },
+    {
+      "id": "q_24_3",
+      "day": 24,
+      "title": "Signature Solve 3 (Linked List): Reverse LL & Detect Cycle",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/reverse-a-ll",
+        "https://takeuforward.org/practice/dsa/detect-a-loop-in-ll"
+      ]
+    },
+    {
+      "id": "q_24_4",
+      "day": 24,
+      "title": "Signature Solve 4 (Stack): Valid Parentheses & Next Greater Element",
+      "urls": [
+        "https://takeuforward.org/practice/dsa/balanced-paranthesis",
+        "https://takeuforward.org/practice/dsa/next-greater-element"
+      ]
+    },
+    {
+      "id": "q_24_5",
+      "day": 24,
+      "title": "Think-Out-Loud Simulation: Explain 1 complete problem to your brother!",
+      "urls": [
+        "README.html#selection"
+      ]
+    }
+  ],
+  "results": [
+    {
+      "url": "../assets/guide-theme.js",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=JetBrains+Mono:wght@400;600&display=swap"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
+    },
+    {
+      "url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
+    },
+    {
+      "url": "../assets/selection.css",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "../assets/guide-ui.css",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "README.html",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#phase1",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#phase2",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#phase3",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#phase4",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#phase5",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "#study-timer",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "README.html#routine",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/largest-element",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/largest-element",
+      "title": "Largest Element - DSA Practice | takeUforward",
+      "heading": "702. Largest Element"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/second-largest-element",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/second-largest-element",
+      "title": "Second Largest Element - DSA Practice | takeUforward",
+      "heading": "695. Second Largest Element"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/check-if-the-array-is-sorted-i",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/check-if-the-array-is-sorted-i",
+      "title": "Check if the Array is Sorted I - DSA Practice | takeUforward",
+      "heading": "743. Check if the Array is Sorted I"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/remove-duplicates-from-sorted-array",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/remove-duplicates-from-sorted-array",
+      "title": "Remove duplicates from sorted array - DSA Practice | takeUforward",
+      "heading": "196. Remove duplicates from sorted array"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/left-rotate-array-by-one",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/left-rotate-array-by-one",
+      "title": "Left Rotate Array by One - DSA Practice | takeUforward",
+      "heading": "832. Left Rotate Array by One"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/left-rotate-array",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/left-rotate-array",
+      "title": "Left Rotate Array by K Places - DSA Practice | takeUforward",
+      "heading": "237. Left Rotate Array by K Places"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/move-zeros-to-end",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/move-zeros-to-end",
+      "title": "Move Zeros to End - DSA Practice | takeUforward",
+      "heading": "248. Move Zeros to End"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/linear-search",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/linear-search",
+      "title": "Linear Search - DSA Practice | takeUforward",
+      "heading": "838. Linear Search"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/union-of-two-sorted-arrays",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/union-of-two-sorted-arrays",
+      "title": "Union of two sorted arrays - DSA Practice | takeUforward",
+      "heading": "713. Union of two sorted arrays"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/intersection-of-two-sorted-arrays",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/intersection-of-two-sorted-arrays",
+      "title": "Intersection of two sorted arrays - DSA Practice | takeUforward",
+      "heading": "706. Intersection of two sorted arrays"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/single-number---i",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/single-number---i",
+      "title": "Single Number - I - DSA Practice | takeUforward",
+      "heading": "63. Single Number - I"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/find-missing-number",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/find-missing-number",
+      "title": "Find missing number - DSA Practice | takeUforward",
+      "heading": "116. Find missing number"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/two-sum",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/two-sum",
+      "title": "Two Sum - DSA Practice | takeUforward",
+      "heading": "1. Two Sum"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/longest-subarray-with-given-sum-k",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/longest-subarray-with-given-sum-k",
+      "title": "Longest subarray with given sum K(positives) - DSA Practice | takeUforward",
+      "heading": "Longest subarray with given sum K(positives)"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/longest-subarray-with-sum-k",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/longest-subarray-with-sum-k",
+      "title": "Longest subarray with sum K - DSA Practice | takeUforward",
+      "heading": "178. Longest subarray with sum K"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/sort-an-array-of-0s-1s-and-2s",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/sort-an-array-of-0s-1s-and-2s",
+      "title": "Sort an array of 0's 1's and 2's - DSA Practice | takeUforward",
+      "heading": "Sort an array of 0's 1's and 2's"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/majority-element-i",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/majority-element-i",
+      "title": "Majority Element-I - DSA Practice | takeUforward",
+      "heading": "83. Majority Element-I"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/kadane%27s-algorithm",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/kadane%27s-algorithm",
+      "title": "Kadane's Algorithm - DSA Practice | takeUforward",
+      "heading": "12. Kadane's Algorithm"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/best-time-to-buy-and-sell-stock",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/best-time-to-buy-and-sell-stock",
+      "title": "Best time to buy and sell stock - DSA Practice | takeUforward",
+      "heading": "50. Best time to buy and sell stock"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/rearrange-array-elements-by-sign",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/rearrange-array-elements-by-sign",
+      "title": "Rearrange array elements by sign - DSA Practice | takeUforward",
+      "heading": "375. Rearrange array elements by sign"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/leaders-in-an-array",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/leaders-in-an-array",
+      "title": "Leaders in an Array - DSA Practice | takeUforward",
+      "heading": "512. Leaders in an Array"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/longest-consecutive-sequence-in-an-array",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/longest-consecutive-sequence-in-an-array",
+      "title": "Longest Consecutive Sequence in an Array - DSA Practice | takeUforward",
+      "heading": "97. Longest Consecutive Sequence in an Array"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/set-matrix-zeroes",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/set-matrix-zeroes",
+      "title": "Set Matrix Zeroes - DSA Practice | takeUforward",
+      "heading": "34. Set Matrix Zeroes"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/rotate-matrix-by-90-degrees",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/rotate-matrix-by-90-degrees",
+      "title": "Rotate matrix by 90 degrees - DSA Practice | takeUforward",
+      "heading": "70. Rotate matrix by 90 degrees"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/print-the-matrix-in-spiral-manner",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/print-the-matrix-in-spiral-manner",
+      "title": "Print the matrix in spiral manner - DSA Practice | takeUforward",
+      "heading": "107. Print the matrix in spiral manner"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/remove-outermost-parentheses",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/remove-outermost-parentheses",
+      "title": "Remove Outermost Parentheses - DSA Practice | takeUforward",
+      "heading": "420. Remove Outermost Parentheses"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/reverse-every-word-in-a-string",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/reverse-every-word-in-a-string",
+      "title": "Reverse every word in a string - DSA Practice | takeUforward",
+      "heading": "189. Reverse every word in a string"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/largest-odd-number-in-a-string",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/largest-odd-number-in-a-string",
+      "title": "Largest Odd Number in a String - DSA Practice | takeUforward",
+      "heading": "341. Largest Odd Number in a String"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/longest-common-prefix",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/longest-common-prefix",
+      "title": "Longest Common Prefix - DSA Practice | takeUforward",
+      "heading": "79. Longest Common Prefix"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/isomorphic-string",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/isomorphic-string",
+      "title": "Isomorphic Strings - DSA Practice | takeUforward",
+      "heading": "252. Isomorphic Strings"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/rotate-string",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/rotate-string",
+      "title": "Rotate String - DSA Practice | takeUforward",
+      "heading": "324. Rotate String"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/valid-anagram",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/valid-anagram",
+      "title": "Valid Anagram - DSA Practice | takeUforward",
+      "heading": "52. Valid Anagram"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/sort-characters-by-frequency",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/sort-characters-by-frequency",
+      "title": "Sort Characters by Frequency - DSA Practice | takeUforward",
+      "heading": "303. Sort Characters by Frequency"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/maximum-nesting-depth-of-the-parentheses",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/maximum-nesting-depth-of-the-parentheses",
+      "title": "Maximum Nesting Depth of the Parentheses - DSA Practice | takeUforward",
+      "heading": "392. Maximum Nesting Depth of the Parentheses"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/roman-to-integer",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/roman-to-integer",
+      "title": "Roman to Integer - DSA Practice | takeUforward",
+      "heading": "87. Roman to Integer"
+    },
+    {
+      "url": "https://www.geeksforgeeks.org/problems/convert-to-roman-no/1",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://www.geeksforgeeks.org/problems/convert-to-roman-no/1",
+      "title": "Decimal to Roman | Practice | GeeksforGeeks",
+      "heading": ""
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/string-to-integer-atoi",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/string-to-integer-atoi",
+      "title": "String to Integer (atoi) - DSA Practice | takeUforward",
+      "heading": "49. String to Integer (atoi)"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/check-if-string-is-palindrome-or-not-",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/check-if-string-is-palindrome-or-not-",
+      "title": "Check if String is Palindrome or Not - DSA Practice | takeUforward",
+      "heading": "278. Check if String is Palindrome or Not"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/longest-palindromic-substring",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/longest-palindromic-substring",
+      "title": "Longest Palindromic Substring - DSA Practice | takeUforward",
+      "heading": "30. Longest Palindromic Substring"
+    },
+    {
+      "url": "https://www.geeksforgeeks.org/problems/count-number-of-substrings4528/1",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://www.geeksforgeeks.org/problems/count-number-of-substrings4528/1",
+      "title": "Substrings with K Distinct | Practice | GeeksforGeeks",
+      "heading": ""
+    },
+    {
+      "url": "https://takeuforward.org/blogs/data-structure-and-algorithm/singly-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/blogs/data-structure-and-algorithm/singly-linked-list",
+      "title": "Singly Linked List: Structure and Basic Operations | takeUforward",
+      "heading": "Singly Linked List: Structure and Basic Operations"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/traversal-in-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/traversal-in-linked-list",
+      "title": "Traversal in Linked List - DSA Practice | takeUforward",
+      "heading": "1014. Traversal in Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/find-the-length-of-the-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/find-the-length-of-the-linked-list",
+      "title": "Find the length of the Linked List - DSA Practice | takeUforward",
+      "heading": "998. Find the length of the Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/search-in-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/search-in-linked-list",
+      "title": "Search in Linked List - DSA Practice | takeUforward",
+      "heading": "1039. Search in Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/insertion-at-the-head-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/insertion-at-the-head-of-ll",
+      "title": "Insertion at the head of Linked List - DSA Practice | takeUforward",
+      "heading": "941. Insertion at the head of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/insertion-at-the-tail-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/insertion-at-the-tail-of-ll",
+      "title": "Insertion at the tail of Linked List - DSA Practice | takeUforward",
+      "heading": "958. Insertion at the tail of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/insertion-at-the-kth-position-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/insertion-at-the-kth-position-of-ll",
+      "title": "Insertion at the Kth position of Linked List - DSA Practice | takeUforward",
+      "heading": "954. Insertion at the Kth position of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/deletion-of-the-head-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/deletion-of-the-head-of-ll",
+      "title": "Deletion of the head of LL - DSA Practice | takeUforward",
+      "heading": "901. Deletion of the head of LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/deletion-of-the-tail-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/deletion-of-the-tail-of-ll",
+      "title": "Deletion of the tail of Linked List - DSA Practice | takeUforward",
+      "heading": "914. Deletion of the tail of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/deletion-of-the-kth-element-of-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/deletion-of-the-kth-element-of-ll",
+      "title": "Deletion of the Kth element of Linked List - DSA Practice | takeUforward",
+      "heading": "905. Deletion of the Kth element of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/delete-the-element-with-value-x",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/delete-the-element-with-value-x",
+      "title": "Delete the element with value X - DSA Practice | takeUforward",
+      "heading": "891. Delete the element with value X"
+    },
+    {
+      "url": "https://takeuforward.org/blogs/data-structure-and-algorithm/doubly-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/blogs/data-structure-and-algorithm/doubly-linked-list",
+      "title": "Doubly Linked List: Structure and Basic Operations | takeUforward",
+      "heading": "Doubly Linked List: Structure and Basic Operations"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/insert-node-before-head-in-dll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/insert-node-before-head-in-dll",
+      "title": "Insert node before head in Doubly Linked List - DSA Practice | takeUforward",
+      "heading": "980. Insert node before head in Doubly Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/delete-head-of-dll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/delete-head-of-dll",
+      "title": "Delete head of Doubly Linked List - DSA Practice | takeUforward",
+      "heading": "879. Delete head of Doubly Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/reverse-a-doubly-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/reverse-a-doubly-linked-list",
+      "title": "Reverse a Doubly Linked List - DSA Practice | takeUforward",
+      "heading": "601. Reverse a Doubly Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/find-middle-of-linked-list",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/find-middle-of-linked-list",
+      "title": "Find Middle of Linked List - DSA Practice | takeUforward",
+      "heading": "157. Find Middle of Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/detect-a-loop-in-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/detect-a-loop-in-ll",
+      "title": "Detect a loop in LL - DSA Practice | takeUforward",
+      "heading": "22. Detect a loop in LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/find-the-starting-point-in-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/find-the-starting-point-in-ll",
+      "title": "Find the starting point in LL - DSA Practice | takeUforward",
+      "heading": "220. Find the starting point in LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/length-of-loop-in-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/length-of-loop-in-ll",
+      "title": "Length of loop in LL - DSA Practice | takeUforward",
+      "heading": "769. Length of loop in LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/reverse-a-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/reverse-a-ll",
+      "title": "Reverse a LL - DSA Practice | takeUforward",
+      "heading": "3. Reverse a LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/check-if-ll-is-palindrome-or-not",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/check-if-ll-is-palindrome-or-not",
+      "title": "Check if LL is palindrome or not - DSA Practice | takeUforward",
+      "heading": "198. Check if LL is palindrome or not"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/segregate-odd-and-even-nodes-in-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/segregate-odd-and-even-nodes-in-ll",
+      "title": "Segregate odd and even nodes in Linked List - DSA Practice | takeUforward",
+      "heading": "110. Segregate odd and even nodes in Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/remove-nth-node-from-the-back-of-the-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/remove-nth-node-from-the-back-of-the-ll",
+      "title": "Remove Nth node from the back of the LL - DSA Practice | takeUforward",
+      "heading": "81. Remove Nth node from the back of the LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/add-one-to-a-number-represented-by-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/add-one-to-a-number-represented-by-ll",
+      "title": "Add one to a number represented by LL - DSA Practice | takeUforward",
+      "heading": "767. Add one to a number represented by LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/add-two-numbers-in-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/add-two-numbers-in-ll",
+      "title": "Add two numbers in Linked List - DSA Practice | takeUforward",
+      "heading": "93. Add two numbers in Linked List"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/find-the-intersection-point-of-y-ll",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/find-the-intersection-point-of-y-ll",
+      "title": "Find the intersection point of Y LL - DSA Practice | takeUforward",
+      "heading": "167. Find the intersection point of Y LL"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-stack-using-arrays",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-stack-using-arrays",
+      "title": "Implement Stack using Arrays - DSA Practice | takeUforward",
+      "heading": "144. Implement Stack using Arrays"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-queue-using-arrays",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-queue-using-arrays",
+      "title": "Implement Queue using Arrays - DSA Practice | takeUforward",
+      "heading": "147. Implement Queue using Arrays"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-stack-using-queue",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-stack-using-queue",
+      "title": "Implement Stack using Queue - DSA Practice | takeUforward",
+      "heading": "155. Implement Stack using Queue"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-queue-using-stack",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-queue-using-stack",
+      "title": "Implement Queue using Stack - DSA Practice | takeUforward",
+      "heading": "68. Implement Queue using Stack"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-stack-using-linkedlist",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-stack-using-linkedlist",
+      "title": "Implement stack using Linkedlist - DSA Practice | takeUforward",
+      "heading": "919. Implement stack using Linkedlist"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-queue-using-linkedlist",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-queue-using-linkedlist",
+      "title": "Implement queue using Linkedlist - DSA Practice | takeUforward",
+      "heading": "894. Implement queue using Linkedlist"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/balanced-paranthesis",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/balanced-paranthesis",
+      "title": "Balanced Paranthesis - DSA Practice | takeUforward",
+      "heading": "164. Balanced Paranthesis"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/implement-min-stack",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/implement-min-stack",
+      "title": "Implement Min Stack - DSA Practice | takeUforward",
+      "heading": "23. Implement Min Stack"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/next-greater-element",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/next-greater-element",
+      "title": "Next Greater Element - DSA Practice | takeUforward",
+      "heading": "102. Next Greater Element"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/next-greater-element---2",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/next-greater-element---2",
+      "title": "Next Greater Element - 2 - DSA Practice | takeUforward",
+      "heading": "300. Next Greater Element - 2"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/next-smaller-element",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/next-smaller-element",
+      "title": "Next Smaller Element - DSA Practice | takeUforward",
+      "heading": "194. Next Smaller Element"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/number-of-greater-elements-to-the-right",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/number-of-greater-elements-to-the-right",
+      "title": "Number of Greater Elements to the Right - DSA Practice | takeUforward",
+      "heading": "864. Number of Greater Elements to the Right"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/trapping-rainwater",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/trapping-rainwater",
+      "title": "Trapping Rainwater - DSA Practice | takeUforward",
+      "heading": "8. Trapping Rainwater"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/asteroid-collision",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/asteroid-collision",
+      "title": "Asteroid Collision - DSA Practice | takeUforward",
+      "heading": "85. Asteroid Collision"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/stock-span-problem",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/stock-span-problem",
+      "title": "Stock span problem - DSA Practice | takeUforward",
+      "heading": "217. Stock span problem"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/largest-rectangle-in-a-histogram",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/largest-rectangle-in-a-histogram",
+      "title": "Largest rectangle in a histogram - DSA Practice | takeUforward",
+      "heading": "39. Largest rectangle in a histogram"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/maximum-rectangle-area-with-all-1s",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/maximum-rectangle-area-with-all-1s",
+      "title": "Maximum Rectangle Area with all 1's|(DP-55) - DSA Practice | takeUforward",
+      "heading": "Maximum Rectangle Area with all 1's|(DP-55)"
+    },
+    {
+      "url": "https://takeuforward.org/practice/dsa/sliding-window-maximum",
+      "kind": "external",
+      "status": "ok",
+      "http_status": 200,
+      "final_url": "https://takeuforward.org/practice/dsa/sliding-window-maximum",
+      "title": "Sliding Window Maximum - DSA Practice | takeUforward",
+      "heading": "57. Sliding Window Maximum"
+    },
+    {
+      "url": "README.html#selection",
+      "kind": "local",
+      "status": "ok"
+    },
+    {
+      "url": "../Development/Dice Roll/prep/study_guide.html",
+      "kind": "local",
+      "status": "ok"
+    }
+  ]
+}
