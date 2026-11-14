@@ -171,7 +171,8 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; min-height: 44px;
   font-family: var(--font-display); font-weight: 800; color: var(--ink); text-decoration: none;
 }
-.brand-dot { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--lav); color: var(--on-lav); }
+.brand-dot { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: #FFFFFF; border: 1px solid var(--border); }
+.brand-dot img { display: block; width: 24px; height: 24px; }
 .section-menu { flex: 0 1 320px; min-width: 0; margin-left: auto; }
 .section-menu summary {
   display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 6px 14px;
@@ -396,6 +397,8 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
 .resource-name { display: block; font-weight: 700; }
 .resource-desc { display: block; font-size: .86rem; color: var(--muted); }
 .resource > .icon { color: var(--muted); }
+.dev-basics { margin-top: 24px; }
+.dev-basics p { max-width: 70ch; margin-bottom: 18px; }
 
 /* Video watchlist */
 .watch-intro { max-width: 66ch; color: var(--ink-2); }
@@ -526,6 +529,7 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="m10 8 6 4-6 4z"/></symbol>
   <symbol id="i-external" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-terminal" viewBox="0 0 24 24"><path d="m4 6 6 6-6 6"/><path d="M13 18h7"/></symbol>
   <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
 </svg>
 
@@ -566,7 +570,7 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
 
 <nav class="topnav" aria-label="Roadmap navigation">
   <div class="topnav-in">
-    <a class="brand" href="#top" aria-label="STEP roadmap, back to top"><span class="brand-dot"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="brand-text">STEP roadmap</span></a>
+    <a class="brand" href="#top" aria-label="STEP roadmap, back to top"><span class="brand-dot" aria-hidden="true"><img src="../assets/google-g.png" width="24" height="24" alt=""></span><span class="brand-text">STEP roadmap</span></a>
     <details class="section-menu" id="sectionMenu">
       <summary aria-controls="navlinks"><span><span class="nav-caption">On this page</span><strong class="nav-current" id="navCurrent">Overview</strong></span><svg class="icon nav-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
       <div class="navlinks" id="navlinks">
@@ -1000,6 +1004,15 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
       <a class="resource" href="https://www.youtube.com/@NeetCode" target="_blank" rel="noopener">
         <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-play"/></svg></span>
         <span class="resource-text"><span class="resource-name">NeetCode on YouTube</span><span class="resource-desc">Clear video walkthroughs of classic problems</span></span>
+        <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
+      </a>
+    </div>
+    <div class="callout dev-basics" aria-labelledby="devBasicsTitle">
+      <h3 id="devBasicsTitle">A little beyond DSA</h3>
+      <p>STEP also involves <a href="https://blog.google/company-news/inside-google/googlers/how-a-love-of-computer-science-led-sumin-to-google/" target="_blank" rel="noopener noreferrer">software-project work</a>. Alongside DSA, build useful dev habits: <a href="https://docs.github.com/en/get-started/start-your-journey/what-is-github" target="_blank" rel="noopener noreferrer">Git/GitHub</a> for tracking and sharing code, Linux/terminal basics, and debugging and testing.</p>
+      <a class="resource" href="https://www.youtube.com/watch?v=ldgl9Bd3lLg" target="_blank" rel="noopener noreferrer" title="Linux Tutorial For Beginners | Complete Linux Course for DevOps">
+        <span class="tile" style="--c:var(--ember);--on:var(--on-ember)"><svg class="icon" aria-hidden="true"><use href="#i-terminal"/></svg></span>
+        <span class="resource-text"><span class="resource-name">Watch: Linux basics</span><span class="resource-desc">CodeWithHarry · Beginner course on YouTube</span></span>
         <svg class="icon" aria-hidden="true"><use href="#i-external"/></svg>
       </a>
     </div>

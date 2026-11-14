@@ -415,6 +415,12 @@ Here's what a typical day might look like:
 - 📹 [NeetCode on YouTube](https://www.youtube.com/@NeetCode) — LeetCode problem walkthroughs
 - 📘 *Cracking the Coding Interview* by Gayle McDowell — The interview prep bible
 
+### A little beyond DSA
+
+STEP also involves [software-project work](https://blog.google/company-news/inside-google/googlers/how-a-love-of-computer-science-led-sumin-to-google/). Alongside DSA, build useful dev habits: [Git/GitHub](https://docs.github.com/en/get-started/start-your-journey/what-is-github) for tracking and sharing code, Linux/terminal basics, and debugging and testing.
+
+[Watch: Linux basics](https://www.youtube.com/watch?v=ldgl9Bd3lLg) — CodeWithHarry, *Linux Tutorial For Beginners | Complete Linux Course for DevOps*.
+
 ---
 
 ## 📹 Watch: From Preparation to Office Life
