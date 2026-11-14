@@ -294,6 +294,7 @@ main { padding-block: 28px 48px; min-width: 0; }
 </style>
 <link rel="stylesheet" href="../assets/selection.css">
 <link rel="stylesheet" href="../assets/guide-ui.css">
+<link rel="stylesheet" href="sprint-learning.css">
 </head>
 <body>
 
@@ -318,7 +319,7 @@ main { padding-block: 28px 48px; min-width: 0; }
       <div class="hero-pct" id="heroPct">0%</div>
       <div class="hero-bar-bg"><div class="hero-bar-fill" id="heroBar"></div></div>
       <div class="hero-metrics">
-        <div><div class="h-stat">Problems Solved</div><div class="h-val" id="heroSolvedCount">0 / 70</div></div>
+        <div><div class="h-stat">Items completed</div><div class="h-val" id="heroSolvedCount">0 / 86</div></div>
         <div><div class="h-stat">Days Finished</div><div class="h-val" id="heroDaysCount">0 / 24</div></div>
       </div>
     </div>
@@ -383,11 +384,14 @@ main { padding-block: 28px 48px; min-width: 0; }
         <input type="search" class="search-input" id="searchInput" aria-label="Search sprint questions" placeholder="Search questions (e.g. Kadane, Zero, Spiral, Loop)...">
       </div>
       <div class="filter-chips">
-        <button type="button" class="chip" data-status="all" aria-pressed="true">All (70)</button>
+        <button type="button" class="chip" data-status="all" aria-pressed="true">All (86)</button>
         <button type="button" class="chip" data-status="pending" aria-pressed="false">Pending</button>
         <button type="button" class="chip" data-status="done" aria-pressed="false">Done</button>
       </div>
     </div>
+
+    <p class="learning-note">Solved and tested it? Tick the box for a quick understanding check, then unlock the animated walkthrough. You can untick an item whenever you want to revisit it.</p>
+    <noscript><p class="learning-note">Enable JavaScript for checks, saved progress and walkthroughs. The problem links remain available below.</p></noscript>
 
     <!-- ═══════════════════ PHASE 1: ARRAYS ═══════════════════ -->
     <section class="sec" id="phase1">
@@ -1229,7 +1233,7 @@ main { padding-block: 28px 48px; min-width: 0; }
         </ul>
         <div class="day-footer">
           <div class="day-tip" style="background: var(--lav); color: var(--on-lav); border-left-color: var(--accent);">
-            <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> <strong>A Brother's Proud Note:</strong> Vasavi, you completed 70 interview-grade problems across 4 major data structures during your 1st-year winter break. Keep this grit and consistency alive in Semester 2. Google is waiting for you!
+            <svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="8" r="5"/><path d="m8.5 12-2 9 5.5-3 5.5 3-2-9m-5-4 1 1 2-2"/></svg> <strong>A Brother's Proud Note:</strong> Vasavi, this sprint brings together 81 problems and 5 review milestones. Every tested solution and clear explanation is something to be proud of. Keep that consistency going in Semester 2!
           </div>
           <button type="button" class="notes-toggle" data-target="notes-24"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m16 3 5 5-11 11-6 1 1-6L16 3Zm-2 2 5 5M3 6v15h15"/></svg> My Final Reflections <span class="arr" aria-hidden="true"><svg class="guide-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 9 6 6 6-6"/></svg></span></button>
           <div class="notes-drawer" id="notes-24"><textarea class="notes-textarea" placeholder="How did this sprint transform your confidence? Write your thoughts here..."></textarea></div>
@@ -1249,9 +1253,25 @@ main { padding-block: 28px 48px; min-width: 0; }
 </footer>
 
 <!-- ═══════════════════ INTERACTIVE JS ═══════════════════ -->
+<script src="sprint-learning-data.js"></script>
+<script src="sprint-learning.js"></script>
 <script>
 (function() {
   const checkboxes = document.querySelectorAll('.problem-row input[type="checkbox"]');
+  let learning;
+  let storageAvailable = true;
+  function readSaved(key) {
+    try { return localStorage.getItem(key); }
+    catch (error) { storageAvailable = false; return null; }
+  }
+  function writeSaved(key, value) {
+    try { localStorage.setItem(key, value); }
+    catch (error) { storageAvailable = false; }
+  }
+  function removeSaved(key) {
+    try { localStorage.removeItem(key); }
+    catch (error) { storageAvailable = false; }
+  }
   const heroPct = document.getElementById('heroPct');
   const heroBar = document.getElementById('heroBar');
   const heroSolvedCount = document.getElementById('heroSolvedCount');
@@ -1328,11 +1348,13 @@ main { padding-block: 28px 48px; min-width: 0; }
 
   // Load checkboxes from localStorage
   checkboxes.forEach(cb => {
-    const saved = localStorage.getItem('v_sprint_' + cb.id);
+    const saved = readSaved('v_sprint_' + cb.id);
     if (saved === '1') cb.checked = true;
     cb.addEventListener('change', () => {
-      localStorage.setItem('v_sprint_' + cb.id, cb.checked ? '1' : '0');
+      writeSaved('v_sprint_' + cb.id, cb.checked ? '1' : '0');
       updateMetrics();
+      applyFilters();
+      if (learning) learning.refresh();
     });
   });
 
@@ -1349,10 +1371,10 @@ main { padding-block: 28px 48px; min-width: 0; }
 
   document.querySelectorAll('.notes-textarea').forEach(ta => {
     const drawerId = ta.parentElement.id;
-    const saved = localStorage.getItem('v_notes_' + drawerId);
+    const saved = readSaved('v_notes_' + drawerId);
     if (saved) ta.value = saved;
     ta.addEventListener('input', () => {
-      localStorage.setItem('v_notes_' + drawerId, ta.value);
+      writeSaved('v_notes_' + drawerId, ta.value);
     });
   });
 
@@ -1402,8 +1424,9 @@ main { padding-block: 28px 48px; min-width: 0; }
     if (confirm("Vasavi, do you want to reset your checkboxes and start fresh?")) {
       checkboxes.forEach(cb => {
         cb.checked = false;
-        localStorage.removeItem('v_sprint_' + cb.id);
+        removeSaved('v_sprint_' + cb.id);
       });
+      if (learning) learning.refresh();
       updateMetrics();
       applyFilters();
     }
@@ -1480,6 +1503,7 @@ main { padding-block: 28px 48px; min-width: 0; }
   });
 
   // Initial calculation
+  learning = window.SprintLearning.attach({ checkboxes, isPersistent: () => storageAvailable });
   updateMetrics();
   renderTimer();
 

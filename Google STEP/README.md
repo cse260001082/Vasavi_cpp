@@ -3,7 +3,7 @@
 > **This guide is for you, Vasavi.** As a 1st-semester CSE student at **IIT Indore**, you're at the perfect starting point to aim for one of the most prestigious early-career programs in tech.
 >
 > 💡 *Interactive Tools:*
-> - 🌟 **[sprint_tracker.html](sprint_tracker.html)** — Dedicated interactive 24-day winter sprint tracker with local progress saving, search, timers, and personal notes.
+> - 🌟 **[sprint_tracker.html](sprint_tracker.html)** — Interactive 24-day tracker with saved progress, search, timers, notes, and a concept check for each item. Pass the check to earn your tick and open **Watch the walkthrough** for a visual, step-by-step solution. Completed items keep a **Walkthrough** button for revision.
 > - 🌐 **[README.html](README.html)** — Full visual guide to Google STEP, the internship pipeline, and day-in-the-life walkthroughs.
 
 ---
