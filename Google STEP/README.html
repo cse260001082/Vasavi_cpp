@@ -166,27 +166,48 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   -webkit-backdrop-filter: saturate(1.4) blur(10px); backdrop-filter: saturate(1.4) blur(10px);
   border-bottom: 1px solid var(--border);
 }
-.topnav-in { max-width: 1120px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; }
+.topnav-in { position: relative; max-width: 1120px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 24px; }
 .brand {
-  display: inline-flex; align-items: center; gap: 8px; flex-shrink: 0;
+  display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; min-height: 44px;
   font-family: var(--font-display); font-weight: 800; color: var(--ink); text-decoration: none;
 }
-.brand-dot { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--on-accent); }
-.navlinks {
-  position: relative; display: flex; gap: 4px; flex: 1; min-width: 0;
-  overflow-x: auto; scrollbar-width: none;
+.brand-dot { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--lav); color: var(--on-lav); }
+.section-menu { flex: 0 1 320px; min-width: 0; margin-left: auto; }
+.section-menu summary {
+  display: flex; align-items: center; gap: 16px; min-height: 52px; padding: 6px 14px;
+  border: 1px solid var(--border); border-radius: 14px; background: var(--surface);
+  cursor: pointer; list-style: none;
 }
-.navlinks::-webkit-scrollbar { display: none; }
+.section-menu summary::-webkit-details-marker { display: none; }
+.section-menu summary:hover, .section-menu[open] summary { border-color: var(--accent); }
+.section-menu summary > span { min-width: 0; flex: 1; }
+.nav-caption { display: block; color: var(--muted); font-size: .7rem; line-height: 1.4; }
+.nav-current { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: .95rem; line-height: 1.4; }
+.nav-chevron { color: var(--accent-text); transition: transform .15s ease; }
+.section-menu[open] .nav-chevron { transform: rotate(180deg); }
+.navlinks {
+  position: absolute; top: calc(100% + 8px); left: 24px; right: 24px;
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; padding: 20px;
+  max-height: calc(100vh - var(--section-nav-height, 76px) - 24px);
+  max-height: calc(100dvh - var(--section-nav-height, 76px) - 24px);
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px; box-shadow: var(--shadow);
+}
+.section-menu:not([open]) .navlinks { display: none; }
+.nav-group-title { margin: 0 12px 8px; font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--muted); }
+.navlinks ul { list-style: none; padding: 0; margin: 0; }
 .navlinks a {
-  flex-shrink: 0; padding: 6px 12px; border-radius: 999px; white-space: nowrap;
-  font-size: .88rem; font-weight: 700; color: var(--ink-2); text-decoration: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px;
+  padding: 8px 12px; border-radius: 10px; font-size: .95rem; font-weight: 700; color: var(--ink-2); text-decoration: none;
 }
 .navlinks a:hover { background: var(--border); }
-.navlinks a[aria-current="true"] { background: var(--lav); color: var(--on-lav); }
+.navlinks a[aria-current="location"] { background: var(--lav); color: var(--on-lav); }
+.navlinks a[aria-current="location"]::after { content: ""; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: currentColor; }
+.tracker-link { min-height: 44px; flex-shrink: 0; }
 
 /* Layout */
 .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
-.sec { padding-block: 64px; border-top: 1px solid var(--border); scroll-margin-top: 60px; }
+.sec { padding-block: 64px; border-top: 1px solid var(--border); scroll-margin-top: calc(var(--section-nav-height, 76px) + 16px); }
 .sec:first-child { border-top: 0; }
 .kicker {
   display: inline-flex; align-items: center; gap: 8px; margin: 0 0 .7em;
@@ -416,9 +437,6 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   .blocks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .perks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 980px) {
-  .navlinks { -webkit-mask-image: linear-gradient(90deg, #000 88%, transparent); mask-image: linear-gradient(90deg, #000 88%, transparent); }
-}
 @media (max-width: 860px) {
   .days { grid-template-columns: repeat(12, minmax(0, 1fr)); }
   .hero-in { grid-template-columns: 1fr; gap: 32px; padding-top: 40px; padding-bottom: 40px; }
@@ -439,12 +457,19 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   .hero-in { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
   .sec { padding-block: 48px; }
   .brand-text { display: none; }
+  .topnav-in { gap: 10px; }
+  .section-menu { flex: 1; }
+  .section-menu summary { gap: 8px; padding-inline: 10px; }
+  .tracker-verb { display: none; }
+  .navlinks { left: 16px; right: 16px; grid-template-columns: 1fr; gap: 16px; padding: 16px; }
   .cols, .resources, .blocks, .watchlist { grid-template-columns: 1fr; }
   .phase { flex-direction: column; gap: 12px; padding: 18px; }
   .tl { grid-template-columns: 78px 24px minmax(0, 1fr); gap: 10px; }
   .sched { grid-template-columns: 74px 36px minmax(0, 1fr); gap: 10px; }
 }
 @media (max-width: 420px) {
+  .topnav-in { gap: 8px; }
+  .nav-current { font-size: .88rem; }
   .days { grid-template-columns: repeat(8, minmax(0, 1fr)); }
   .perks { grid-template-columns: 1fr; }
   .hero-actions .btn { width: 100%; justify-content: center; }
@@ -539,21 +564,39 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
   </div>
 </header>
 
-<nav class="topnav" aria-label="Sections">
+<nav class="topnav" aria-label="Roadmap navigation">
   <div class="topnav-in">
-    <a class="brand" href="#top"><span class="brand-dot"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="brand-text">STEP roadmap</span></a>
-    <div class="navlinks" id="navlinks">
-      <a href="#sprint">Sprint</a>
-      <a href="#routine">Daily plan</a>
-      <a href="#step">What is STEP</a>
-      <a href="#path">The path</a>
-      <a href="#selection">Selection</a>
-      <a href="#life">Intern life</a>
-      <a href="#timeline">Timeline</a>
-      <a href="#resources">Resources</a>
-      <a href="#videos">Watch</a>
-    </div>
-    <a class="btn btn-sm" href="sprint_tracker.html">Tracker<svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
+    <a class="brand" href="#top" aria-label="STEP roadmap, back to top"><span class="brand-dot"><svg class="icon" aria-hidden="true"><use href="#i-flame"/></svg></span><span class="brand-text">STEP roadmap</span></a>
+    <details class="section-menu" id="sectionMenu">
+      <summary aria-controls="navlinks"><span><span class="nav-caption">On this page</span><strong class="nav-current" id="navCurrent">Overview</strong></span><svg class="icon nav-chevron" aria-hidden="true" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></summary>
+      <div class="navlinks" id="navlinks">
+        <div>
+          <p class="nav-group-title">Build your routine</p>
+          <ul>
+            <li><a href="#sprint">Sprint</a></li>
+            <li><a href="#routine">Daily plan</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="nav-group-title">Understand STEP</p>
+          <ul>
+            <li><a href="#step">What is STEP</a></li>
+            <li><a href="#path">The path</a></li>
+            <li><a href="#selection">Selection</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="nav-group-title">Look ahead</p>
+          <ul>
+            <li><a href="#life">Intern life</a></li>
+            <li><a href="#timeline">Timeline</a></li>
+            <li><a href="#resources">Resources</a></li>
+            <li><a href="#videos">Watch videos</a></li>
+          </ul>
+        </div>
+      </div>
+    </details>
+    <a class="btn btn-sm tracker-link" href="sprint_tracker.html"><span><span class="tracker-verb">Open </span>Tracker</span><svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg></a>
   </div>
 </nav>
 
@@ -1174,21 +1217,77 @@ code { font-family: var(--font-mono); font-size: .86em; background: var(--lav); 
 
   var nav = $("navlinks");
   var links = nav.querySelectorAll("a");
-  if ("IntersectionObserver" in window) {
-    var byId = {};
-    links.forEach(function (a) { byId[a.getAttribute("href").slice(1)] = a; });
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        var a = byId[e.target.id];
-        if (!a) return;
-        links.forEach(function (l) { l.removeAttribute("aria-current"); });
-        a.setAttribute("aria-current", "true");
-        nav.scrollTo({ left: a.offsetLeft - nav.clientWidth / 2 + a.offsetWidth / 2 });
-      });
-    }, { rootMargin: "-40% 0px -55% 0px" });
-    Object.keys(byId).forEach(function (id) { var s = $(id); if (s) io.observe(s); });
+  var menu = $("sectionMenu");
+  var summary = menu.querySelector("summary");
+  var topnav = document.querySelector(".topnav");
+  var sections = Array.from(links, function (a) { return $(a.hash.slice(1)); });
+  var activeLink = null;
+  var navHeight = topnav.offsetHeight;
+  var scrollPending = false;
+
+  function fitMenu() {
+    if (menu.open) nav.style.maxHeight = Math.max(0, window.innerHeight - nav.getBoundingClientRect().top - 16) + "px";
   }
+
+  function updateCurrentSection() {
+    scrollPending = false;
+    fitMenu();
+    var currentLink = null;
+    sections.forEach(function (section, i) {
+      if (section.getBoundingClientRect().top <= navHeight + 32) currentLink = links[i];
+    });
+    if (currentLink === activeLink) return;
+    activeLink = currentLink;
+    links.forEach(function (a) { a.removeAttribute("aria-current"); });
+    if (activeLink) activeLink.setAttribute("aria-current", "location");
+    $("navCurrent").textContent = activeLink ? activeLink.textContent : "Overview";
+  }
+
+  function scheduleSectionUpdate() {
+    if (scrollPending) return;
+    scrollPending = true;
+    requestAnimationFrame(updateCurrentSection);
+  }
+
+  function measureNav() {
+    navHeight = topnav.offsetHeight;
+    document.documentElement.style.setProperty("--section-nav-height", navHeight + "px");
+    scheduleSectionUpdate();
+  }
+
+  links.forEach(function (a, i) {
+    a.addEventListener("click", function (event) {
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      menu.open = false;
+      // Keep keyboard focus at the destination after the menu closes.
+      sections[i].setAttribute("tabindex", "-1");
+      sections[i].focus({ preventScroll: true });
+    });
+  });
+  document.addEventListener("click", function (event) {
+    if (!menu.contains(event.target)) menu.open = false;
+  });
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape" && menu.open) {
+      menu.open = false;
+      summary.focus({ preventScroll: true });
+    }
+  });
+  menu.addEventListener("focusout", function (event) {
+    if (!menu.contains(event.relatedTarget)) menu.open = false;
+  });
+  menu.addEventListener("toggle", function () {
+    if (!menu.open) return;
+    fitMenu();
+    nav.scrollTop = activeLink ? activeLink.offsetTop - (nav.clientHeight - activeLink.offsetHeight) / 2 : 0;
+  });
+  window.addEventListener("scroll", scheduleSectionUpdate, { passive: true });
+  window.addEventListener("resize", measureNav);
+  window.addEventListener("hashchange", scheduleSectionUpdate);
+  window.addEventListener("pageshow", measureNav);
+  window.addEventListener("load", measureNav);
+  if ("ResizeObserver" in window) new ResizeObserver(measureNav).observe(topnav);
+  measureNav();
 })();
 </script>
 

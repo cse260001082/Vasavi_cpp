@@ -1,6 +1,6 @@
 # Repository context
 
-Last updated: 2026-11-05.
+Last updated: 2026-11-14.
 
 Read this with `AGENTS.md` at the start of a chat. It provides background so agents can open only the files relevant to the task. Source files and the user's latest message take precedence over an outdated snapshot. This document summarizes the repo; it does not replace inspecting code before editing or reviewing it.
 
@@ -87,6 +87,8 @@ The finished Dice Roll project and the practice task folders are separate. The p
 - Cards have numbers, topic/location tags, publication metadata where verified, a short **Why watch**, chapter links and a YouTube button. Four preparation videos precede two office-life videos. A lavender callout asks Vasavi to tell her brother one takeaway and one habit to try.
 - Video selection used indexed titles, descriptions and chapters, not full playback assessment. The guide distinguishes personal experiences and publication dates from official current program details.
 - Verification of this addition: 13 browser/link checks passed, including video order, Markdown parity, navigation IDs, new-tab attributes, existing summary initialization and layouts at 1440, 390 and 320 px in light/dark mode. Desktop and phone screenshots were visually reviewed; `git diff --check` passed. QA artifacts are temporary, not a repo test suite.
+- On 2026-11-14, the roadmap's crowded horizontal section links were replaced with a native **On this page** disclosure. It shows the current section while scrolling, groups all nine destinations under **Build your routine / Understand STEP / Look ahead**, and keeps the tracker button visible. The menu uses three columns on desktop and one on phones, fits the available viewport height, and scrolls internally on short screens. Jump destinations clear the measured sticky header; selection moves keyboard focus to the section. Escape, clicking outside and tabbing away close the menu. Native navigation remains available without JavaScript.
+- Navigation verification: 239 targeted browser checks passed across 320, 390, 720, 768, 1024 and 1440 px in both themes, including every destination on desktop/phone, keyboard focus, direct hashes, smooth/reduced motion, short screens, no-JavaScript navigation, existing saved sprint progress and theme preferences. Desktop and phone screenshots were visually reviewed. Existing content, section IDs and storage keys are preserved.
 
 ## Design and technical conventions
 
