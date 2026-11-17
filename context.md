@@ -1,6 +1,6 @@
 # Repository context
 
-Last updated: 2026-11-14.
+Last updated: 2026-11-18.
 
 Read this with `AGENTS.md` at the start of a chat. It provides background so agents can open only the files relevant to the task. Source files and the user's latest message take precedence over an outdated snapshot. This document summarizes the repo; it does not replace inspecting code before editing or reviewing it.
 
@@ -21,7 +21,7 @@ Read this with `AGENTS.md` at the start of a chat. It provides background so age
 | `assets/selection.css` | Selection colours shared by every HTML page, including learner pages by Dinesh's explicit request. |
 | `assets/guide-ui.css`, `assets/guide-theme.js` | Shared SVG theme controls and presentation for the four authored guides; not loaded by learner pages. |
 | `githubCommands.md` | Beginner Git/GitHub instructions. Encourage Vasavi to commit finished steps in her own words. |
-| `CPP Coding/Practice/` | Five standalone C++ practice programs: digits, matrix traversal, palindrome, reverse, pointers/references. Problems, hints and tests are in comments. |
+| `CPP Coding/Practice/` | Six standalone C++ practice programs: digits, matrix traversal, palindrome, reverse, pointers/references, and C-style string ordering. Problems, hints and tests are in comments. |
 | `CPP Coding/OOPs/notes.md` | Classes, objects, member functions, access modifiers, constructors, beginner mistakes and a teaching plan for Dinesh. |
 | `CPP Coding/OOPs/practice/` | 15 exercises in order. 01–08 fill `___` blanks; 09–15 are comment-only prompts for independent programs. Its README is the exercise index/checklist. |
 | `CPP Coding/OOPs/functions_1.cpp`, `random.cpp` | Additional experiments/practice; inspect only when relevant. |
@@ -43,6 +43,7 @@ The following exercise status is carried from `AGENTS.md`, **not a fresh audit o
 | `01_MiniTest.cpp` | `digitDetail` and `reversedNum` done; `sumDigits` still needs debugging. Review the loop using small hand traces. |
 | `02_MatrixTraversing.cpp` | Row, column and diagonal traversal done; spiral still has layer/corner bugs and assumes a square. Vasavi developed the diagonal `i + j` idea herself. Fix the basic spiral before extending to rectangles. |
 | Practice 03–05 | Recorded as done. |
+| Practice 06 | `06_CStyleStringOrder.cpp` is a complete reference solution requested by Dinesh, not a completed learner attempt. It explains C-style strings, `strcmp`, `strcpy` and three compare-and-swap steps, with a trace and tests. Dinesh moved the detailed explanation to the bottom; preserve his comment edits. At his request, input now uses plain `cin` without `setw` or an input-failure branch, assuming three valid words of at most 100 characters each. |
 | OOP exercises | 01–02 done; next is `03_access_a_member.cpp`; 03–15 recorded as not started. The OOP README checkboxes have not all caught up. |
 | Dice tasks 01–03 | Done. |
 | Dice task 04 | Hover step missing; a green header does not validate manual checks. |
