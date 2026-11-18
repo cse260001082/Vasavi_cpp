@@ -4,6 +4,10 @@ Web projects, built with plain HTML, CSS and JavaScript.
 
 All HTML pages load the repo's shared `assets/selection.css` for teal selection in light mode and lavender in dark mode. The authored guides also share sun/moon SVG theme controls, accessible focus styling and theme preferences through `assets/guide-ui.css` and `assets/guide-theme.js`. Learner projects and task pages receive only the selection styling. See `../Design.md` for the required includes when adding a new page.
 
+## Scrimba Study Plan
+
+Open [Scrimba Study Plan](scrimba_plan.html) in your browser for 14 optional web development sessions. Each checklist entry names the Scrimba section, what you’ll learn and what you’ll have when it’s done. The page links to the course and labels the repo guides as optional references. Ticks are saved in the browser you use to open the plan.
+
 ## Dice Roll
 
 Your project for the Programming Club (Software Division) induction.

@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en" data-guide-ui>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Scrimba Study Plan · Development</title>
+  <script src="../assets/guide-theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+  <style>
+    :root {
+      --bg: #FFFFEB;
+      --surface: #FFFFFF;
+      --border: #E4E4D0;
+      --ink: #1A1A1A;
+      --ink-2: #3D3D36;
+      --muted: #6E6E64;
+      --accent: #034F46;
+      --on-accent: #FFFFEB;
+      --accent-text: #034F46;
+      --lav: #F0D7FF;
+      --on-lav: #1A1A1A;
+      --ember: #FFA946;
+      --ember-soft: #FFEBCF;
+      --on-ember: #1A1A1A;
+      --hero-bg: #034F46;
+      --hero-fg: #FFFFEB;
+      --hero-fg-2: #CFE3DC;
+      --hero-chip: #0A5F55;
+      --hero-line: #2F7A70;
+      --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+      --body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", Consolas, monospace;
+      text-size-adjust: 100%;
+      -webkit-text-size-adjust: 100%;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root:not([data-theme="light"]) {
+        --bg: #1A1A1A;
+        --surface: #222222;
+        --border: #36362F;
+        --ink: #FFFFEB;
+        --ink-2: #DADAC8;
+        --muted: #A3A397;
+        --accent: #F0D7FF;
+        --on-accent: #1A1A1A;
+        --accent-text: #F0D7FF;
+        --lav: #3A2D47;
+        --on-lav: #FFFFEB;
+        --ember-soft: #3B2C18;
+      }
+    }
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.6 var(--body); }
+    h1, h2, h3 { margin: 0; font-family: var(--display); line-height: 1.12; }
+    p { margin: 0; }
+    a { color: var(--accent-text); text-underline-offset: .16em; }
+    .wrap {
+      width: min(100%, 1160px);
+      margin-inline: auto;
+      padding-left: max(clamp(16px, 4vw, 44px), env(safe-area-inset-left));
+      padding-right: max(clamp(16px, 4vw, 44px), env(safe-area-inset-right));
+    }
+    .hero { background: var(--hero-bg); color: var(--hero-fg); }
+    .hero-in {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(235px, .48fr);
+      align-items: end;
+      gap: clamp(24px, 5vw, 72px);
+      padding-bottom: clamp(30px, 5vw, 64px);
+    }
+    .hero h1 { margin: 8px 0 14px; font-size: clamp(2.6rem, 6.3vw, 5rem); letter-spacing: -.055em; }
+    .hero p:not(.eyebrow) { max-width: 58ch; color: var(--hero-fg-2); }
+    .eyebrow, .week-tag, .session-number {
+      font: 600 .76rem/1.4 var(--mono);
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+    .progress-card {
+      padding: 18px 20px;
+      border: 1px solid var(--hero-line);
+      border-radius: 14px;
+      background: var(--hero-chip);
+    }
+    #progress-text { color: var(--hero-fg); font-weight: 700; }
+    .progress-card progress {
+      display: block;
+      width: 100%;
+      height: 9px;
+      margin: 12px 0 14px;
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      background: var(--hero-bg);
+      accent-color: var(--ember);
+    }
+    progress::-webkit-progress-bar { background: var(--hero-bg); border-radius: 999px; }
+    progress::-webkit-progress-value { background: var(--ember); border-radius: 999px; }
+    progress::-moz-progress-bar { background: var(--ember); border-radius: 999px; }
+    .hero a { color: var(--hero-fg); font-weight: 700; }
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(235px, 295px);
+      grid-template-areas: "plan resources";
+      align-items: start;
+      gap: clamp(24px, 4vw, 48px);
+      padding-top: 32px;
+      padding-bottom: max(54px, env(safe-area-inset-bottom));
+    }
+    .resources { grid-area: resources; display: grid; gap: 14px; }
+    .checklist { grid-area: plan; }
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; }
+    .resource-card { padding: 18px; }
+    .resource-card h2 { font-size: 1.35rem; margin-bottom: 10px; }
+    .resource-card ul + p { margin-top: 12px; }
+    .resource-card ul { padding-left: 1.2em; margin: 10px 0 0; }
+    .resource-card li + li { margin-top: 7px; }
+    .resource-card a { font-weight: 700; }
+    .resource-card .button {
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 14px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: var(--on-accent);
+      text-decoration: none;
+    }
+    .resource-card .button:hover { text-decoration: underline; }
+    .optional { background: var(--lav); color: var(--on-lav); border: 0; }
+    .optional a { color: inherit; }
+    .week { scroll-margin-top: 16px; }
+    .week + .week { margin-top: 36px; }
+    .week-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 5px 14px; margin-bottom: 13px; }
+    .week-tag { color: var(--accent-text); }
+    .week h2 { font-size: clamp(1.55rem, 3vw, 2.15rem); letter-spacing: -.025em; }
+    .session-list { display: grid; gap: 12px; margin: 0; padding-left: 0; list-style: none; }
+    .session { padding: 16px 18px; scroll-margin-top: 16px; }
+    .session:has(:checked) { border-color: var(--accent-text); }
+    .session:target { box-shadow: inset 4px 0 var(--ember); }
+    .session-number { display: block; margin-bottom: 6px; color: var(--accent-text); }
+    .session h3 { font-size: clamp(1.25rem, 2.4vw, 1.65rem); letter-spacing: -.015em; }
+    .section-name { color: var(--muted); font-size: .91rem; margin-top: 3px; }
+    .checkpoint { margin-top: 9px; color: var(--ink-2); }
+    .outcomes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 20px; margin: 13px 0; }
+    .outcomes dt { font-weight: 700; }
+    .outcomes dd { margin: 2px 0 0; color: var(--ink-2); }
+    .done {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 5px 13px 5px 9px;
+      border-radius: 999px;
+      background: var(--ember-soft);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .done:has(:checked) { background: var(--lav); color: var(--on-lav); }
+    .checkpoint + .done { margin-top: 10px; }
+    .done input { width: 18px; height: 18px; margin: 0; accent-color: var(--accent); cursor: inherit; }
+    .storage-note { margin-bottom: 14px; padding: 10px 14px; border-radius: 10px; background: var(--ember-soft); }
+    @media (min-width: 761px) and (min-height: 850px) {
+      .resources { position: sticky; top: 16px; }
+    }
+    @media (max-width: 760px) {
+      body { font-size: 16px; }
+      .hero-in { grid-template-columns: 1fr; gap: 20px; }
+      .layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "resources" "plan"; padding-top: 22px; }
+    }
+    @media (max-width: 520px) {
+      .outcomes { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/selection.css">
+  <link rel="stylesheet" href="../assets/guide-ui.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap hero-in">
+      <div>
+        <p class="eyebrow">Optional web development</p>
+        <h1>Scrimba Study Plan</h1>
+        <p>Vasavi, use this whenever you feel like building something for the web. There are 14 sessions of about 2–3 hours each. Follow them in order and pick up where you left off when you have time.</p>
+      </div>
+      <div class="progress-card" id="progress-card" hidden>
+        <p id="progress-text" role="status">0 of 14 sessions complete</p>
+        <progress id="plan-progress" max="14" value="0" aria-label="Sessions completed"></progress>
+        <a id="next-session" href="#session-01">Go to session 1</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap layout">
+    <aside class="resources" aria-label="Study resources">
+      <section class="card resource-card" aria-labelledby="resources-title">
+        <h2 id="resources-title">What you need</h2>
+        <p>Sign in to the <strong>Scrimba Frontend Developer Career Path</strong>. Each card names the project or lesson to open. Scrimba provides the starter files and briefs.</p>
+        <a class="button" href="https://scrimba.com/frontend-path-c0j" target="_blank" rel="noopener">Open Scrimba <span aria-hidden="true">&nbsp;↗</span></a>
+        <ul>
+          <li>Use Git in sessions 4 and 11. For session 11, you’ll also need a terminal and a GitHub practice repo.</li>
+          <li>Use desktop Chrome for the extension in sessions 8–9.</li>
+        </ul>
+        <p>Tick a session when you have its listed result. This browser saves your ticks.</p>
+      </section>
+      <section class="card resource-card optional" aria-labelledby="help-title">
+        <h2 id="help-title">Optional help</h2>
+        <p>Use the <a href="Web%20Dev%20Guide/html_css_guide.html">HTML/CSS Guide</a> to look up a topic you want to refresh, or <a href="../githubCommands.md">Git commands</a> as a reference in sessions 4 and 11.</p>
+      </section>
+    </aside>
+
+    <div class="checklist">
+      <p class="storage-note" id="storage-note" role="status" hidden>Browser storage is unavailable. Your ticks will last while this page stays open.</p>
+      <noscript><p class="storage-note">Switch on JavaScript to save your ticks and see your progress.</p></noscript>
+      <section class="week" aria-labelledby="week-1">
+        <div class="week-head">
+          <p class="week-tag">Week 1</p>
+          <h2 id="week-1">From pages to programs</h2>
+        </div>
+        <ol class="session-list" role="list">
+          <li class="card session" id="session-01" tabindex="-1">
+            <span class="session-number">Session 01</span>
+            <h3 id="title-01">Build a Birthday Website</h3>
+            <p class="section-name">HTML and CSS Fundamentals</p>
+            <p class="checkpoint">If you need a refresher first, revisit the relevant part of <strong>Intro to HTML</strong> or <strong>Intro to CSS</strong> in Scrimba.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to group and center content, style photos and text, and change an element when the pointer hovers over it.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A birthday page with a styled greeting and at least one surprise image that appears on hover.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-01" aria-describedby="title-01">Session complete</label>
+          </li>
+          <li class="card session" id="session-02" tabindex="-1">
+            <span class="session-number">Session 02</span>
+            <h3 id="title-02">Solo Project: Hometown Homepage</h3>
+            <p class="section-name">HTML and CSS Fundamentals</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to turn a design brief into sections and arrange images and text with spacing and Flexbox.</dd></div>
+              <div><dt>What you’ll have</dt><dd>Your own hometown page with an opening section, local highlights and a guide card that match the Scrimba brief.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-02" aria-describedby="title-02">Session complete</label>
+          </li>
+          <li class="card session" id="session-03" tabindex="-1">
+            <span class="session-number">Session 03</span>
+            <h3 id="title-03">Build a Counter App</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How a variable remembers the count and how a click runs a function that updates the text on the page.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A counter app that increases on a click, records the current count, and resets the counter for the next entry.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-03" aria-describedby="title-03">Session complete</label>
+          </li>
+          <li class="card session" id="session-04" tabindex="-1">
+            <span class="session-number">Session 04</span>
+            <h3 id="title-04">Solo Project: Basketball Scoreboard</h3>
+            <p class="section-name">JavaScript Fundamentals · Then Git and GitHub basics</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to track two scores independently, connect buttons to the right score, and save a version of your work with Git.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A scoreboard with working +1, +2 and +3 buttons for both teams, plus a Git commit that describes what you built.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-04" aria-describedby="title-04">Session complete</label>
+          </li>
+          <li class="card session" id="session-05" tabindex="-1">
+            <span class="session-number">Session 05</span>
+            <h3 id="title-05">Build a Blackjack Game · Part 1</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <p class="checkpoint">Start the section and go through the lesson where a loop displays the cards on the page.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How conditions choose a game message, how an array holds the cards, and how a loop displays them.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A first version that shows the cards, their total and a message when you start the game or add a card.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-05" aria-describedby="title-05">Session complete</label>
+          </li>
+          <li class="card session" id="session-06" tabindex="-1">
+            <span class="session-number">Session 06</span>
+            <h3 id="title-06">Build a Blackjack Game · Part 2</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <p class="checkpoint">Resume after the card display lesson and finish the section.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How functions return random card values, how to combine conditions, and how an object groups player details.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A playable Blackjack game that deals random cards and stops drawing after a win or a bust.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-06" aria-describedby="title-06">Session complete</label>
+          </li>
+          <li class="card session" id="session-07" tabindex="-1">
+            <span class="session-number">Session 07</span>
+            <h3 id="title-07">Solo Project: Password Generator</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to pick a random item from a list, repeat that selection in a loop, and combine the characters into a string.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A practice app that displays two generated passwords of the brief’s required length when you click the button.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-07" aria-describedby="title-07">Session complete</label>
+          </li>
+        </ol>
+      </section>
+
+      <section class="week" aria-labelledby="week-2">
+        <div class="week-head">
+          <p class="week-tag">Week 2</p>
+          <h2 id="week-2">Build more and refine your work</h2>
+        </div>
+        <ol class="session-list" role="list" start="8">
+          <li class="card session" id="session-08" tabindex="-1">
+            <span class="session-number">Session 08</span>
+            <h3 id="title-08">Build a Chrome Extension · Part 1</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <p class="checkpoint">Go through the first time the course loads the extension into Chrome. Save browser storage for part 2.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to read a text field, handle clicks, show a list of links, and describe an extension to Chrome with a manifest file.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A first extension running in desktop Chrome. Its popup adds a link you type to the visible list.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-08" aria-describedby="title-08">Session complete</label>
+          </li>
+          <li class="card session" id="session-09" tabindex="-1">
+            <span class="session-number">Session 09</span>
+            <h3 id="title-09">Build a Chrome Extension · Part 2</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <p class="checkpoint">Resume at browser storage and finish the section.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to keep data with browser storage, pass different lists to a display function, and get the current tab’s address.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A working extension that saves typed links or the current tab, remembers them when reopened, and can clear the list.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-09" aria-describedby="title-09">Session complete</label>
+          </li>
+          <li class="card session" id="session-10" tabindex="-1">
+            <span class="session-number">Session 10</span>
+            <h3 id="title-10">Solo Project: Unit converter</h3>
+            <p class="section-name">JavaScript Fundamentals</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to read input as a number, apply conversion formulas and format the results to a fixed number of decimal places.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A converter that shows length, volume and mass in both directions. You can check its results with a few known inputs.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-10" aria-describedby="title-10">Session complete</label>
+          </li>
+          <li class="card session" id="session-11" tabindex="-1">
+            <span class="session-number">Session 11</span>
+            <h3 id="title-11">Command Line Fundamentals</h3>
+            <p class="section-name">Tools of the Trade · Then Essential Git and GitHub Skills</p>
+            <p class="checkpoint">Save <strong>Command Line Power Tools</strong> for later.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to navigate folders from the terminal and use Git to review, stage, commit and push a change.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A practice repo where you can find your files in the terminal and see a commit you pushed on GitHub.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-11" aria-describedby="title-11">Session complete</label>
+          </li>
+          <li class="card session" id="session-12" tabindex="-1">
+            <span class="session-number">Session 12</span>
+            <h3 id="title-12">Build an NFT Site · Part 1</h3>
+            <p class="section-name">Essential CSS</p>
+            <p class="checkpoint">Go through the lesson that styles the footer.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>How to use meaningful HTML sections, contain the width of content and use Flexbox to arrange images.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A first version of the Scrimba page with a header, styled content sections and a footer.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-12" aria-describedby="title-12">Session complete</label>
+          </li>
+          <li class="card session" id="session-13" tabindex="-1">
+            <span class="session-number">Session 13</span>
+            <h3 id="title-13">Build an NFT Site · Part 2</h3>
+            <p class="section-name">Essential CSS</p>
+            <p class="checkpoint">Resume after the footer and finish the section.</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>Why one CSS rule wins over another, how to share styles across buttons, and how to handle items that need to wrap.</dd></div>
+              <div><dt>What you’ll have</dt><dd>A finished page with reusable button styles and one small visual change you can explain, such as a different hover state.</dd></div>
+            </dl>
+            <label class="done"><input type="checkbox" id="done-13" aria-describedby="title-13">Session complete</label>
+          </li>
+          <li class="card session" id="session-14" tabindex="-1">
+            <span class="session-number">Session 14</span>
+            <h3 id="title-14">Catch up, rebuild and explain</h3>
+            <p class="section-name">Review your Scrimba projects</p>
+            <dl class="outcomes">
+              <div><dt>What you will learn</dt><dd>Which part of a feature you can recreate from memory and where you still need a reference.</dd></div>
+              <div><dt>What you’ll have</dt><dd>Any unfinished work caught up, plus a small feature you can rebuild from a blank file and explain in your own words.</dd></div>
+            </dl>
+            <p class="checkpoint">If you finish early, <strong>Build a Portfolio</strong> in Essential CSS is an optional next project.</p>
+            <label class="done"><input type="checkbox" id="done-14" aria-describedby="title-14">Session complete</label>
+          </li>
+        </ol>
+      </section>
+    </div>
+  </main>
+  <script>
+    (() => {
+      const key = "scrimba-study-plan-v1";
+      const boxes = [...document.querySelectorAll(".done input")];
+      const progressCard = document.querySelector("#progress-card");
+      const progressText = document.querySelector("#progress-text");
+      const progressBar = document.querySelector("#plan-progress");
+      const nextLink = document.querySelector("#next-session");
+      const storageNote = document.querySelector("#storage-note");
+
+      function restore(saved) {
+        let done = [];
+        try {
+          const value = JSON.parse(saved);
+          if (Array.isArray(value)) done = value;
+        } catch {
+          // An invalid saved value starts with an empty checklist.
+        }
+        for (const box of boxes) box.checked = done.includes(box.id);
+      }
+
+      function updateProgress() {
+        const complete = boxes.filter(box => box.checked).length;
+        const next = boxes.findIndex(box => !box.checked);
+        progressBar.max = boxes.length;
+        progressBar.value = complete;
+        progressText.textContent = `${complete} of ${boxes.length} sessions complete`;
+        nextLink.hidden = next === -1;
+        if (next !== -1) {
+          nextLink.href = "#" + boxes[next].closest(".session").id;
+          nextLink.textContent = "Go to session " + (next + 1);
+        }
+      }
+
+      try {
+        restore(localStorage.getItem(key));
+      } catch {
+        storageNote.hidden = false;
+      }
+      for (const box of boxes) {
+        box.addEventListener("change", () => {
+          const done = boxes.filter(item => item.checked).map(item => item.id);
+          try {
+            localStorage.setItem(key, JSON.stringify(done));
+          } catch {
+            storageNote.hidden = false;
+          }
+          updateProgress();
+        });
+      }
+      window.addEventListener("storage", event => {
+        if (event.key !== key && event.key !== null) return;
+        restore(event.newValue);
+        updateProgress();
+      });
+      updateProgress();
+      progressCard.hidden = false;
+    })();
+  </script>
+</body>
+</html>
