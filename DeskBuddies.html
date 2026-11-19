@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" data-guide-ui>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#034f46">
+  <title>Desk Buddies · Vasavi’s study desk</title>
+  <script src="assets/guide-theme.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&amp;family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;display=swap">
+  <link rel="stylesheet" href="assets/desk-buddies/gallery.css">
+  <link rel="stylesheet" href="assets/selection.css">
+  <link rel="stylesheet" href="assets/guide-ui.css">
+  <script defer src="assets/desk-buddies/animals.js"></script>
+  <script defer src="assets/desk-buddies/gallery.js"></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <symbol id="paw" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M6 3h4v2h1v5H7V8H5V4h1zm9 0h4v5h-1v2h-4V5h1zM2 9h3v2h2v4H3v-2H1v-3h1zm18 0h3v4h-2v2h-4v-4h2V9zM9 12h6v2h2v2h2v4h-2v1h-4v-1h-2v1H7v-1H5v-4h2v-2h2z"/></symbol>
+      <symbol id="sprig" viewBox="0 0 24 24"><path d="M5 21c7-4 9-10 10-17m-3 12C7 16 4 13 4 9c4 0 7 2 8 7zm2-6c1-5 4-7 8-7 0 4-2 7-8 7Z"/></symbol>
+      <symbol id="heart" viewBox="0 0 24 24"><path d="M20.8 4.9c-2.6-2.4-6.1-1.4-8.8 1.6-2.7-3-6.2-4-8.8-1.6-2.6 2.6-2 6.3.7 9.1l8.1 7 8.1-7c2.7-2.8 3.3-6.5.7-9.1Z"/></symbol>
+      <symbol id="spark" viewBox="0 0 24 24"><path d="m10 3 2.2 6.8L19 12l-6.8 2.2L10 21l-2.2-6.8L1 12l6.8-2.2L10 3Zm9-2 .9 3.1L23 5l-3.1.9L19 9l-.9-3.1L15 5l3.1-.9L19 1Z"/></symbol>
+      <symbol id="berry" viewBox="0 0 24 24"><path d="M14 8c-3-2-8-1-10 2-3 4 1 11 5 11s9-3 10-7c1-3-1-5-5-6Zm0 0c0-3 2-5 5-6M14 8c-4-1-5-3-5-6 4 0 6 2 5 6Z"/><path d="m7 13 .2-.2m4 3 .2-.2"/></symbol>
+      <symbol id="book" viewBox="0 0 24 24"><path d="M12 6c-3-2-6-3-10-2v15c4-1 7 0 10 2 3-2 6-3 10-2V4c-4-1-7 0-10 2Zm0 0v15"/></symbol>
+      <symbol id="pin" viewBox="0 0 24 24"><path d="M19 9c0 5-7 12-7 12S5 14 5 9a7 7 0 1 1 14 0Z"/><circle cx="12" cy="9" r="2"/></symbol>
+      <symbol id="pause" viewBox="0 0 24 24"><path d="M8 5v14m8-14v14" stroke-width="3.6"/></symbol>
+      <symbol id="play" viewBox="0 0 24 24"><path d="m8 5 11 7-11 7z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="mini" viewBox="0 0 24 24"><rect x="2.5" y="4" width="19" height="15" rx="2"/><path d="M13 12h5v4h-5z" fill="currentColor" stroke="none"/></symbol>
+      <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 18 18 5M6 5h12v12"/></symbol>
+      <symbol id="check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6" stroke-width="3"/></symbol>
+    </defs>
+  </svg>
+  <header class="hero">
+    <nav class="topbar wrap" aria-label="Main">
+      <a class="brand" href="#top"><span class="brand-mark"><svg class="icon"><use href="#paw"/></svg></span>Desk Buddies</a>
+      <a class="original" href="Pet.html">Original fox <svg class="icon"><use href="#arrow"/></svg></a>
+      <button id="themeBtn" hidden></button>
+    </nav>
+  </header>
+  <main id="top" class="wrap">
+    <div class="intro">
+      <div class="eyebrow"><svg class="icon"><use href="#sprig"/></svg> Vasavi’s study desk</div>
+      <h1>Companion grove<span>.</span></h1>
+      <p>Five little study buddies for your winter coding sprint. Meet them and pick your favourite.</p>
+    </div>
+    <noscript>Enable JavaScript to meet the animated companions.</noscript>
+    <section class="showcase" aria-label="Companion preview">
+      <div class="habitat">
+        <div class="scene" id="scene">
+          <div class="scene-tools">
+            <span class="live-label"><i></i><span id="scene-state">Live habitat</span></span>
+            <button type="button" class="glass" id="motionBtn" aria-label="Pause animation" title="Pause animation"><svg class="icon"><use href="#pause"/></svg></button>
+          </div>
+          <canvas id="stage" aria-hidden="true"></canvas>
+          <button type="button" id="pet-target" aria-label="Say hello to Maple" title="Say hello to Maple"></button>
+          <div id="speech" class="speech" hidden></div>
+          <span class="location"><svg class="icon"><use href="#pin"/></svg> Firefly clearing</span>
+        </div>
+        <div class="scene-foot"><span><svg class="icon"><use href="#paw"/></svg> <span id="tap-hint">Tap Maple to say hello</span></span><button type="button" id="sizeBtn" aria-pressed="false"><svg class="icon"><use href="#mini"/></svg> Desk size</button></div>
+      </div>
+      <article class="profile" aria-labelledby="pet-name">
+        <div class="profile-top"><span class="species" id="species">Red panda</span><button type="button" id="favourite" class="favourite" aria-pressed="false" aria-label="Save Maple as your favourite" title="Save Maple as your favourite"><svg class="icon"><use href="#heart"/></svg></button></div>
+        <h2 id="pet-name">Maple</h2>
+        <p id="bio">Maple curls a striped tail around your notebook. Finish a tricky trace and this little show-off rolls a victory lap.</p>
+        <dl class="field-notes">
+          <div><dt><svg class="icon"><use href="#spark"/></svg> Signature trick</dt><dd id="trick-name">Ringtail tumble</dd></div>
+          <div><dt><svg class="icon"><use href="#berry"/></svg> Favourite snack</dt><dd id="snack-name">Bamboo shoot</dd></div>
+        </dl>
+        <div class="actions">
+          <button class="primary" id="trickBtn" type="button"><svg class="icon"><use href="#spark"/></svg> Play trick</button>
+          <button class="secondary" id="snackBtn" type="button"><svg class="icon"><use href="#berry"/></svg> Give snack</button>
+        </div>
+        <button class="study" type="button" id="studyBtn" aria-pressed="false"><svg class="icon"><use href="#book"/></svg> <span>Study together</span></button>
+      </article>
+    </section>
+    <section class="collection" aria-labelledby="collection-title">
+      <h2 id="collection-title">Choose a companion</h2>
+      <div id="roster" class="roster" role="group" aria-labelledby="collection-title"></div>
+    </section>
+    <p id="announce" class="sr-only" role="status" aria-live="polite"></p>
+  </main>
+</body>
+</html>

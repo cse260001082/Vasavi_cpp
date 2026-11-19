@@ -1,6 +1,6 @@
 # Repository context
 
-Last updated: 2026-11-18.
+Last updated: 2026-11-19.
 
 Read this with `AGENTS.md` at the start of a chat. It provides background so agents can open only the files relevant to the task. Source files and the user's latest message take precedence over an outdated snapshot. This document summarizes the repo; it does not replace inspecting code before editing or reviewing it.
 
@@ -18,6 +18,7 @@ Read this with `AGENTS.md` at the start of a chat. It provides background so age
 | `AGENTS.md` | Teaching rules, startup workflow and detailed tutor progress notes. |
 | `README.md` | Vasavi's task checklist and overview. She owns its checkmarks; some lag behind code. |
 | `Design.md` | Shared visual system for guides and HTML material made for Vasavi. |
+| `DeskBuddies.html`, `assets/desk-buddies/` | Standalone gallery of five animated companions, linked from Dinesh’s original `Pet.html` fox demo. The two STEP pages reuse its Lumen artwork. |
 | `assets/selection.css` | Selection colours shared by every HTML page, including learner pages by Dinesh's explicit request. |
 | `assets/guide-ui.css`, `assets/guide-theme.js` | Shared SVG theme controls and presentation for authored guides; not loaded by learner pages. |
 | `githubCommands.md` | Beginner Git/GitHub instructions. Encourage Vasavi to commit finished steps in her own words. |
@@ -72,6 +73,8 @@ The finished Dice Roll project and the practice task folders are separate. The p
 
 ## Google STEP plan and recent work
 
+- On 2026-11-19, Dinesh requested five study-pet candidates. Open `DeskBuddies.html` to try Maple the red panda, Boba the axolotl, Lumen the luna moth, Pip the penguin and Moss the garden tortoise. Each has a distinct idle pose, signature trick and snack. The gallery also offers quiet reading, a desk-size preview, motion controls and a local favourite (`desk-buddies-favourite-v1`). The drawings and motion live in `assets/desk-buddies/animals.js` and the clearing is a local WebP. Browser checks covered file/HTTP use, all five pets’ actions, favourite persistence, keyboard input, themes, reduced motion, blocked storage and phone layouts.
+- Dinesh chose Lumen for `Google STEP/README.html` and `sprint_tracker.html`. Both load the same `lumen-companion.js` and CSS. Drag with mouse or touch, move with arrow keys, or click/tap to cycle the figure eight, twirl and wing wave. The browser stores the perch and one dewdrop nectar per device-local day across both pages via the `step-lumen-*` keys. The snack visibly drops on the first visit that day and remains available until fed. Chromium checks covered file and HTTP loading, drag versus tap, shared position and snack, simultaneous claims, midnight rollover, reduced motion, offline use, mobile bounds and the tracker quiz dialog.
 - Dinesh's goal is a friendly high-level introduction plus a preparation plan and checklist for his sister. The HTML story runs from her current semester → winter sprint → continued DSA → application/selection → intern life. Keep the personal, concrete tone.
 - The sprint is **24 days**, around **3–4 hours/day**, based on Striver's A2Z sheet: arrays (days 1–7, 26 problems), strings (8–12, 15), linked lists (13–18, 22), stacks/queues (19–23, 18), then review/mock interview (24, 5 milestones). That is **81 problems + 5 review milestones = 86 checkboxes**. The tracker's old 70-item labels and closing note now use the correct totals; JavaScript calculates live metrics from checkboxes.
 - Routine: hand trace → C++ implementation/testing → complexity and notes → explain aloud to Dinesh. The guide suggests asking for a hint after 45 minutes stuck.
